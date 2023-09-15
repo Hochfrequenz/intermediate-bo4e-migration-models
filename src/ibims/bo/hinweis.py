@@ -18,4 +18,4 @@ class Hinweis(Geschaeftsobjekt):
 
     thema: HinweisThema | str
 
-    nachricht: str #: the note itself; e.g. 'Hat Hotline angerufen; Beschwert sich über zu hohen Abschlag'
+    nachricht: str  #: the note itself; e.g. 'Hat Hotline angerufen; Beschwert sich über zu hohen Abschlag'
