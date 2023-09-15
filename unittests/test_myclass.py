@@ -1,4 +1,4 @@
-from mypackage.mymodule import MyClass
+from ibims.mymodule import MyClass
 
 
 class TestMyClass:
