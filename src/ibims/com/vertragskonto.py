@@ -71,7 +71,7 @@ class VertragskontoCBA(Vertragskonto):
 class VertragskontoMBA(Vertragskonto):
     """
     Models an MBA (master billing account). Its main purpose is to bundle CBAs together having the same address in
-    their related contracts (Powercloud). This feature supports a single invoice for all CBAs instead of several
+    their related contracts. This feature supports a single invoice for all CBAs instead of several
     invoices for each.
     """
 
