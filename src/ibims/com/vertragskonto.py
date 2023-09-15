@@ -43,8 +43,8 @@ class Vertragskonto(COM):
 class VertragskontoCBA(Vertragskonto):
     """
     Models a CBA (child billing account) which directly relates to a single contract. It contains information about
-    locks and billing dates. But in the first place, CBAs will be grouped together by the address in their contracts
-    (in Powercloud). For each group of CBAs with a common address there will be created an MBA (master billing
+    locks and billing dates. But in the first place, CBAs will be grouped together by the address in their contracts.
+    For each group of CBAs with a common address there will be created an MBA (master billing
     account) to support that the invoices for the CBAs can be bundled into a single invoice for the MBA.
     """
 
