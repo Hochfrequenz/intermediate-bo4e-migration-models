@@ -13,4 +13,4 @@ class Regelzone(StrEnum):
     TENNETDE = "10YDE-EON------1"
     AMPRION = "10YDE-RWENET---I"
     FUENFZIGHERTZ = "10YDE-VE-------2"
-    GAS = "37Y005053MH0000R"  # hard coded for gas https://github.com/Hochfrequenz/powercloud2lynqtech/issues/1512
+    GAS = "37Y005053MH0000R" 
