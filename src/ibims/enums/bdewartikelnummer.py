@@ -7,7 +7,7 @@ from enum import StrEnum
 
 class BDEWArtikelnummerErweitert(StrEnum):
     """
-    Extension of BDEW Artikelnummern. The additional fields can be found in thr go implementation:
+    Extension of BDEW Artikelnummern. The additional fields can be found in the go implementation:
     https://github.com/Hochfrequenz/go-bo4e/blob/8dda93f8eda51557bb355a93e94c379111f0242b/enum/bdewartikelnummer/bdewartikelnummer.go
     """
 
