@@ -9,7 +9,6 @@ class HinweisThema(StrEnum):
     Topics for the hints
     """
 
-    # todo get the topics https://github.com/Hochfrequenz/powercloud2lynqtech/issues/636
     # filled with placeholders as of now
     SCHLECHTZAHLER = "SCHLECHTZAHLER"
     STROMLIEBHABER = "STROMLIEBHABER"
