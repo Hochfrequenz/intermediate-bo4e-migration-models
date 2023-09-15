@@ -7,7 +7,7 @@ from datetime import datetime
 from bo4e.com.com import COM
 
 
-class ConcessionFee(COM):
+class Konzessionsabgabe(COM):
     # https://github.com/Hochfrequenz/integrated-bo4e-migration-models/issues/7
     """
     The Concession Fee object was created during a migration project.

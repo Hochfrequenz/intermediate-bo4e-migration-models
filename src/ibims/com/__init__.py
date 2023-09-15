@@ -3,7 +3,7 @@ Bundles extended and new COMs
 """
 from ibims.com.adresse import AdresseErweitert
 from ibims.com.bankverbindung import Bankverbindung
-from ibims.com.concessionfee import ConcessionFee
+from ibims.com.konzessionsabgabe import Konzessionsabgabe
 from ibims.com.preisgarantie import PreisgarantieErweitert
 from ibims.com.preisposition import PreispositionErweitert
 from ibims.com.rechnungsposition import RechnungspositionErweitert
