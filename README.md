@@ -1,4 +1,4 @@
-# Integrated BO4E M**I**gration Models (ibims)
+# Intermediate BO4E M**I**gration Models (ibims)
 
 ![Unittests status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Unittests/badge.svg)
 ![Coverage status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Coverage/badge.svg)
