@@ -1,6 +1,4 @@
-# BO4E Migration Model
-
-<!--- you need to replace the `organization/repo_name` in the status badge URLs --->
+# Integrated BO4E M**I**gration Models (ibims)
 
 ![Unittests status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Unittests/badge.svg)
 ![Coverage status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Coverage/badge.svg)
@@ -8,6 +6,7 @@
 ![Black status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Black/badge.svg)
 
 A data model for migrating data from one system to another.
+The package name is "ibims".
 
 ## How to use this Repository on Your Machine
 

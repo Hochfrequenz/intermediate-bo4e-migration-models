@@ -1,5 +1,5 @@
 [project]
-name = "your-favourite-package-name"
+name = "ibims"
 description = "A Pydantic based BO4E data model that is inteded to be used in data migrations from one system to another"
 license = { text = "MIT" }
 requires-python = ">=3.11"
