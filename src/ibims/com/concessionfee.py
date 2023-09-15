@@ -8,6 +8,7 @@ from bo4e.com.com import COM
 
 
 class ConcessionFee(COM):
+    # https://github.com/Hochfrequenz/integrated-bo4e-migration-models/issues/7
     """
     The Concession Fee object was created during a migration project.
     It contains attributes needed for metering mapping.

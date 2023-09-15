@@ -1,3 +1,6 @@
+"""
+Bundles extended and new COMs
+"""
 from ibims.com.adresse import AdresseErweitert
 from ibims.com.bankverbindung import Bankverbindung
 from ibims.com.concessionfee import ConcessionFee
