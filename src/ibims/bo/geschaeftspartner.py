@@ -43,8 +43,6 @@ class GeschaeftspartnerErweitert(Geschaeftspartner):
     # don't use gewerbekennzeichnung for mapping logic of company name,
     # because in database the company name is not filled all the time.
 
-    # quick and dirty to solve issue 1532
-    # https://github.com/Hochfrequenz/powercloud2lynqtech/issues/1532
     hausbesitzer: Optional[bool] = None
     """
     Flag if the bussinespartner is the House owner.
