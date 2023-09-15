@@ -15,7 +15,6 @@ class Zaehlpunkt(COM):
     It contains attributes needed for metering mapping.
     """
 
-    # fix values for QCells Mig are set as default
     periodenverbrauch_vorhersage: Decimal
     einheit_vorhersage: Mengeneinheit = Mengeneinheit.KWH
     zeitreihentyp: str = "Z21"
