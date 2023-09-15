@@ -1,10 +1,10 @@
 [project]
 name = "your-favourite-package-name"
-description = "Description of your package"
+description = "A Pydantic based BO4E data model that is inteded to be used in data migrations from one system to another"
 license = { text = "MIT" }
 requires-python = ">=3.11"
-authors = [{ name = "your name", email = "your@email.address" }]
-keywords = ["your", "important", "keywords"]
+authors = [{ name = "Hochfrequenz Unternehmensberatung GmbH", email = "info@hochfrequenz.de" }]
+keywords = ["bo4e", "pydantic", "migration"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
@@ -15,12 +15,14 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.11",
 ]
-dependencies = []     # add all the dependencies from requirements.in here, too
+dependencies = [ # add all the dependencies from requirements.in here, too
+    "bo4e>=0.5.5"
+]
 dynamic = ["readme", "version"]
 
 [project.urls]
-Changelog = "https://github.com/Hochfrequenz/python_template_repository/releases"
-Homepage = "https://github.com/Hochfrequenz/python_template_repository"
+Changelog = "hhttps://github.com/Hochfrequenz/bo4e-migration-model/releases"
+Homepage = "https://github.com/Hochfrequenz/bo4e-migration-model"
 
 [tool.black]
 line-length = 120
@@ -31,6 +33,7 @@ profile = "black"
 
 [tool.pylint."MESSAGES CONTROL"]
 max-line-length = 120
+disable = "fixme,too-few-public-methods"
 
 [build-system]
 requires = ["hatchling>=1.8.0", "hatch-vcs", "hatch-fancy-pypi-readme"]
