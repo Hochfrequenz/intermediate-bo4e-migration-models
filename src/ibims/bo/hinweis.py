@@ -14,8 +14,8 @@ class Hinweis(Geschaeftsobjekt):
     Hints are meant to be read and written by agents or customer service employees.
     """
 
-    erstellungsdatum: datetime
+    erstellungsdatum: datetime  #: when the note has been created
 
     thema: HinweisThema | str
 
-    nachricht: str
+    nachricht: str  #: the note itself; e.g. 'Hat Hotline angerufen; Beschwert sich über zu hohen Abschlag'
