@@ -25,7 +25,6 @@ class SepaInfo(COM):
     there may be sepa information regardless of whether it is used or not. this field
     confirms the use case e.g. it is false if the customer pays for himself
     """
-    # requirement of ticket https://lynqtech.atlassian.net/browse/DEV-22116
 
     # optional attributes
     creditor_identifier: Optional[str] = None
