@@ -4,9 +4,8 @@ Contains the dataset for the agent hint loader.
 
 from bo4e.bo.vertrag import Vertrag
 
-from ibims.bo import GeschaeftspartnerErweitert
-from lqtmapping.models.bo4e.custom.bo.hinweis import Hinweis
-from lqtmapping.models.bo4e.datasets.base import DataSetBaseModel
+from ibims.bo import GeschaeftspartnerErweitert, Hinweis
+from ibims.datasets.base import DataSetBaseModel
 
 
 class ED4AgentHintLoaderDataSet(DataSetBaseModel):
