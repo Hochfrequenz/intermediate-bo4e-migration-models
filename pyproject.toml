@@ -21,8 +21,8 @@ dependencies = [ # add all the dependencies from requirements.in here, too
 dynamic = ["readme", "version"]
 
 [project.urls]
-Changelog = "hhttps://github.com/Hochfrequenz/bo4e-migration-model/releases"
-Homepage = "https://github.com/Hochfrequenz/bo4e-migration-model"
+Changelog = "https://github.com/Hochfrequenz/intermediate-bo4e-migration-models/releases"
+Homepage = "https://github.com/Hochfrequenz/intermediate-bo4e-migration-models"
 
 [tool.black]
 line-length = 120
@@ -49,7 +49,7 @@ fragments = [{ path = "README.md" }]
 source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "src/_your_package_version.py"
+version-file = "src/_ibims_version.py"
 template = '''
 version = "{version}"
 '''
