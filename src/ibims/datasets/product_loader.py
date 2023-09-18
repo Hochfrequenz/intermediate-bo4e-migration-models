@@ -12,7 +12,7 @@ from bo4e.com.adresse import Adresse
 from bo4e.com.vertragskonditionen import Vertragskonditionen
 
 from ibims.bo.kampagne import Kampagne
-from ibims.com import VertragskontoCBA, VerbrauchErweitert, PreisgarantieErweitert
+from ibims.com import PreisgarantieErweitert, VerbrauchErweitert, VertragskontoCBA
 from ibims.datasets import DataSetBaseModel
 
 
