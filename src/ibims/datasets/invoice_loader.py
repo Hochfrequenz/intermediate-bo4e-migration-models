@@ -10,8 +10,6 @@ from bo4e.bo.vertrag import Vertrag
 from ibims.bo import Bilanzierung, RechnungErweitert
 from ibims.datasets import DataSetBaseModel
 
-# from lqtmapping.models.invoice_service import TransaktionsdatenInvoices
-
 
 class InvoiceLoaderDataSet(DataSetBaseModel):
     """
