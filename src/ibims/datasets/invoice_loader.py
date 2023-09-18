@@ -8,9 +8,8 @@ from bo4e.bo.marktteilnehmer import Marktteilnehmer
 from bo4e.bo.vertrag import Vertrag
 
 from ibims.bo import Bilanzierung, RechnungErweitert
-from ibims.datasets import DataSetBaseModel
-
 from ibims.dataclass import TransaktionsdatenInvoices
+from ibims.datasets import DataSetBaseModel
 
 
 class InvoiceLoaderDataSet(DataSetBaseModel):
