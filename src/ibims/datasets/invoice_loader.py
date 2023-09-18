@@ -9,7 +9,7 @@ from bo4e.bo.vertrag import Vertrag
 
 from ibims.bo import Bilanzierung, RechnungErweitert
 from ibims.datasets import DataSetBaseModel
-from lqtmapping.models.invoice_service import TransaktionsdatenInvoices
+# from lqtmapping.models.invoice_service import TransaktionsdatenInvoices
 
 
 class InvoiceLoaderDataSet(DataSetBaseModel):
@@ -72,17 +72,17 @@ class InvoiceLoaderDataSet(DataSetBaseModel):
     - vertragskonditionen (only the field netznutzungsabbrechung is needed)
     """
 
-    transaktionsdaten: TransaktionsdatenInvoices
-    """
-    The following attributes need to be filled for this DataSet:
-    - sparte
-    - pruefidentifikator
-    - lieferrichtung
-    - duplikat
-    - referenznummer
-    - datenaustauschreferenz
-    - absender
-    - empfaenger
-    - nachrichtendatum
-    - nachrichten_referenznummer
-    """
+    # transaktionsdaten: TransaktionsdatenInvoices
+    # """
+    # The following attributes need to be filled for this DataSet:
+    # - sparte
+    # - pruefidentifikator
+    # - lieferrichtung
+    # - duplikat
+    # - referenznummer
+    # - datenaustauschreferenz
+    # - absender
+    # - empfaenger
+    # - nachrichtendatum
+    # - nachrichten_referenznummer
+    # """
