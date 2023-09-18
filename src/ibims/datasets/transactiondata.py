@@ -50,3 +50,4 @@ class TransaktionsdatenInvoices(Transaktionsdaten):
     status: InvoiceManagerInvoiceStatus
     # the boneycombs transaktionsdaten are (string,string) key value pairs
     # hence this is not a real boolean but two possible literal strings.
+
