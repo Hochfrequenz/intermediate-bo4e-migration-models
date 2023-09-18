@@ -6,8 +6,8 @@ from bo4e.bo.marktlokation import Marktlokation
 from bo4e.bo.marktteilnehmer import Marktteilnehmer
 from bo4e.bo.messlokation import Messlokation
 
-from ibims.datasets import TransaktionsdatenQuantities
 from ibims.datasets.base import DataSetBaseModel
+from ibims.targetmodels import TransaktionsdatenQuantities
 
 
 class QuantitiesLoaderDataSet(DataSetBaseModel):
