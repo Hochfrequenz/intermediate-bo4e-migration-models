@@ -8,6 +8,13 @@
 A data model for migrating data from one system to another.
 The package name is "ibims".
 
+### Installation
+
+It's also [available on pypi](https://pypi.org/project/ibims/).
+```bash
+pip install ibims
+```
+
 ## How to use this Repository on Your Machine
 
 Follow the instructions in our [Python template repository](https://github.com/Hochfrequenz/python_template_repository#how-to-use-this-repository-on-your-machine).
