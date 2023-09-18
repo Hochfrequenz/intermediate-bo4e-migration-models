@@ -16,7 +16,8 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
 ]
 dependencies = [ # add all the dependencies from requirements.in here, too
-    "bo4e>=0.5.5"
+    "bo4e>=0.5.5",
+    "bomf>=0.6.8"
 ]
 dynamic = ["readme", "version"]
 
