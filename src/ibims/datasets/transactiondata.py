@@ -34,3 +34,19 @@ class TransaktionsdatenQuantities(Transaktionsdaten):
     nachrichtenfunktion: str
     typ: str
     datumsformat: str
+
+
+InvoiceManagerInvoiceStatus = Literal["received", "ignored", "declined", "cancelled", "accepted", "manual_decision"]
+
+
+class TransaktionsdatenInvoices(Transaktionsdaten):
+    """
+    This class adds additional data to the transaktionsdaten, which is needed for an invoice
+    """
+
+    lieferrichtung: Optional[str] = None
+    referenznummer: Optional[str] = None
+    duplikat: Literal["true", "false"]
+    status: InvoiceManagerInvoiceStatus
+    # the boneycombs transaktionsdaten are (string,string) key value pairs
+    # hence this is not a real boolean but two possible literal strings.

@@ -9,5 +9,5 @@ from ibims.datasets.invoice_loader import InvoiceLoaderDataSet
 from ibims.datasets.network_loader import TripicaNetworkLoaderDataSet
 from ibims.datasets.quantities_loader import QuantitiesLoaderDataSet
 from ibims.datasets.resource_loader import TripicaResourceLoaderDataSet
-from ibims.datasets.transactiondata import Transaktionsdaten, TransaktionsdatenQuantities
+from ibims.datasets.transactiondata import Transaktionsdaten, TransaktionsdatenInvoices, TransaktionsdatenQuantities
 from ibims.datasets.usage_loader import TripicaUsageLoaderDataSet
