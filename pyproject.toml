@@ -21,7 +21,7 @@ dependencies = [ # add all the dependencies from requirements.in here, too
 dynamic = ["readme", "version"]
 
 [project.urls]
-Changelog = "hhttps://github.com/Hochfrequenz/intermediate-bo4e-migration-models/releases"
+Changelog = "https://github.com/Hochfrequenz/intermediate-bo4e-migration-models/releases"
 Homepage = "https://github.com/Hochfrequenz/intermediate-bo4e-migration-models"
 
 [tool.black]
