@@ -3,7 +3,7 @@
 ![Unittests status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Unittests/badge.svg)
 ![Coverage status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Coverage/badge.svg)
 ![Linting status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Linting/badge.svg)
-![Black status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Black/badge.svg)
+![Black status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Formatting/badge.svg)
 
 A data model for migrating data from one system to another.
 The package name is "ibims".
