@@ -9,6 +9,7 @@ from bo4e.bo.vertrag import Vertrag
 
 from ibims.bo import Bilanzierung, RechnungErweitert
 from ibims.datasets import DataSetBaseModel
+
 # from lqtmapping.models.invoice_service import TransaktionsdatenInvoices
 
 
@@ -42,7 +43,8 @@ class InvoiceLoaderDataSet(DataSetBaseModel):
     - gesamtsteuer
     - gesamtbrutto, this value should be negative for self issued invoices
     - zuzahlen, this value should be negative for self issued invoices
-    - rechnungspositionen, the values of the fields teilsumme_steuer and teilsumme_netto should be negative for self issued invoices
+    - rechnungspositionen, the values of the fields teilsumme_steuer and teilsumme_netto should be negative 
+        for self issued invoices
     - steuerbetrag, the values of the fields basiswert and steuerwert should be negative for self issued invoices
     - ist_selbstausgestellt,
     - ist_reverse_charge

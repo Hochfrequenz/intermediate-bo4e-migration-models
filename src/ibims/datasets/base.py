@@ -30,7 +30,8 @@ class DataSetBaseModel(Bo4eDataSet):
         call_frame_info = getframeinfo(call_frame)
 
         filepath = Path(call_frame_info.filename).relative_to(Path(__file__).parents[5])
-        warning_msg = f"Avoid using construct on datasets. Used in {call_frame_info.function}, {filepath}:{call_frame_info.lineno}"
+        warning_msg = ("Avoid using construct on datasets." +
+                       f" Used in {call_frame_info.function}, {filepath}:{call_frame_info.lineno}")
         warnings.warn(
             warning_msg,
             category=DeprecationWarning,
