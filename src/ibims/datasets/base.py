@@ -3,7 +3,6 @@ This module contains the base class
 """
 import warnings
 from inspect import currentframe, getframeinfo
-from pathlib import Path
 from typing import Any, Optional, TypeVar
 
 from bomf.model import Bo4eDataSet
