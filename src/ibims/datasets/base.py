@@ -3,7 +3,6 @@ This module contains the base class
 """
 import warnings
 from inspect import currentframe, getframeinfo
-from pathlib import Path
 from typing import Any, Optional, TypeVar
 
 from bomf.model import Bo4eDataSet
@@ -29,10 +28,10 @@ class DataSetBaseModel(Bo4eDataSet):
         assert call_frame is not None
         call_frame_info = getframeinfo(call_frame)
 
-        filepath = Path(call_frame_info.filename).relative_to(Path(__file__).parents[5])
+        # filepath = Path(call_frame_info.filename).relative_to(Path(__file__).parents[5])
         warning_msg = (
             "Avoid using construct on datasets."
-            + f" Used in {call_frame_info.function}, {filepath}:{call_frame_info.lineno}"
+            + f" Used in {call_frame_info.function}, {call_frame_info.filename}:{call_frame_info.lineno}"
         )
         warnings.warn(
             warning_msg,
