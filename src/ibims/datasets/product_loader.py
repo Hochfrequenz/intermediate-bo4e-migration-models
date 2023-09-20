@@ -50,8 +50,8 @@ class TripicaProductLoaderDataSet(DataSetBaseModel):
     the percentage for tripica discount; the values are percentages from 0 to 100
     """
 
-    # I originally thought about it integrating the absolut/prozentualer rabatt nicely into the preisblatt rabatt.
-    # Then I remembered, that the intermediate modell is f***ed up anyway, so I'll just leave the fields on root level.
+    # I originally thought about it integrating the absolute/prozentual rabatt nicely into the preisblatt rabatt.
+    # Then I remembered that the intermediate model is f***ed up anyway, so I'll just leave the fields on root level.
     # I'll just leave it here for now. https://github.com/Hochfrequenz/powercloud2lynqtech/issues/937
 
     verbrauch: VerbrauchErweitert
@@ -67,7 +67,7 @@ class TripicaProductLoaderDataSet(DataSetBaseModel):
     original duration of the contract/product; used for tripica "sed" product agreement items:
      * "INITIAL_COMMITMENT"
      * "TERMINATION_NOTICE_TIME_END_OF_MONTH"
-    
+
     read from powercloud contract tariffs
     """
     initiale_preisgarantie: list[PreisgarantieErweitert]
