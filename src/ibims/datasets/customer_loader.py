@@ -36,9 +36,11 @@ class TripicaCustomerLoaderDataSet(DataSetBaseModel):
     - telefonnummer_mobil
     - telefonnummer_geschaeft
     - kontaktweg
-        - list[Kontaktart (ANSCHREIBEN/E_MAIL/TELEFONAT)]
+    and within each kontaktweg:
+    - list[Kontaktart (ANSCHREIBEN/E_MAIL/TELEFONAT)]
     - externe_referenzen
-        - customerID
+    and within each externe referenz:
+    - customerID
     """
 
     liefer_adressen: dict[str, Adresse]  # [contract_id, Adresse]
@@ -69,8 +71,9 @@ class TripicaCustomerLoaderDataSet(DataSetBaseModel):
     - bankname
     - kontoinhaber
     - sepa_info
-        - sepa_id
-        - gueltig_seit
+    and within each sepa_info:
+    - sepa_id
+    - gueltig_seit
     """
 
     vertragskonten_mbas: list[VertragskontoMBA]  # MBA
@@ -82,8 +85,9 @@ class TripicaCustomerLoaderDataSet(DataSetBaseModel):
     # -billing_cycle might be necessary, if so, it still needs to be implemented.
     # https://github.com/Hochfrequenz/powercloud_to_lynqtech_data_model_transformation/issues/271
     - cbas
-        - this contains all child billing accounts grouped together by the vertragsadresse. I.e. an MBA and all its
-          CBAs share a common `vertrags_adresse`.
+    And within each CBA:
+    - this contains all child billing accounts grouped together by the vertragsadresse. I.e. an MBA and all its
+    CBAs share a common `vertrags_adresse`.
     """
 
     def get_id(self) -> str:

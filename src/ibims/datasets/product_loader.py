@@ -65,8 +65,9 @@ class TripicaProductLoaderDataSet(DataSetBaseModel):
     vertragskonditionen: list[Vertragskonditionen]
     """
     original duration of the contract/product; used for tripica "sed" product agreement items:
-     * "INITIAL_COMMITMENT".
+     * "INITIAL_COMMITMENT"
      * "TERMINATION_NOTICE_TIME_END_OF_MONTH"
+    
     read from powercloud contract tariffs
     """
     initiale_preisgarantie: list[PreisgarantieErweitert]
