@@ -8,7 +8,7 @@ from bo4e.enum.steuerkennzeichen import Steuerkennzeichen
 
 class PreispositionErweitert(Preisposition):
     """
-    Extesion of the bo4e Preisposition with taxrate
+    Extension of the bo4e Preisposition with taxrate
     """
 
     steuersatz: Steuerkennzeichen

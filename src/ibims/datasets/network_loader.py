@@ -46,7 +46,7 @@ class TripicaNetworkLoaderDataSet(DataSetBaseModel):
     - name2 (Firstname)
     - partneradresse
     """
-    # TODO: get a new table join with firstname and surname seperated.
+    # TODO: get a new table join with firstname and surname separated.
     # https://github.com/Hochfrequenz/powercloud2lynqtech/issues/818
 
     marktlokation: MarktlokationErweitert
