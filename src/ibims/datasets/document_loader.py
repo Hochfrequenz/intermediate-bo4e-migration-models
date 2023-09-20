@@ -32,7 +32,7 @@ class TripicaDocumentLoaderDataSet(DataSetBaseModel):
     """
     The following attribute needs to be filled for this DataSet:
     - externe_referenzen
-        - customerID
+    especially the customerID
     """
 
     vertrag: Vertrag

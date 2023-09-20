@@ -92,14 +92,14 @@ class TripicaNetworkLoaderDataSet(DataSetBaseModel):
     - tarifart
     - zaehlerauspraegung
     - zaehlwerke with each
-        - zaehlwerk_id?
-        - obis_kennzahl
+    - zaehlwerk_id?
+    - obis_kennzahl
     """
 
     vertrag: Vertrag
     """
     The following attributes need to be filled for this DataSet:
-    - vertragsnummer    (not mapped just for traking)
+    - vertragsnummer (not mapped just for tracking)
     - vertragsbeginn
     - vertragsende
     """

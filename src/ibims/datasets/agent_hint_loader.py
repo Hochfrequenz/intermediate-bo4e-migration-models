@@ -21,7 +21,7 @@ class ED4AgentHintLoaderDataSet(DataSetBaseModel):
     """
     The following attribute needs to be filled for this DataSet:
     - externe_referenzen
-        - customerID
+    - customerID
     """
 
     vertrag: Vertrag
