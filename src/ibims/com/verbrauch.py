@@ -24,19 +24,6 @@ class AblesendeRolle(StrEnum):
     SYSTEM = "SYSTEM"  #: wert ist eine vom system erstellte schätzung
 
 
-class AbleseGrundErweitert(StrEnum):
-    """
-    Additional information about the meter reading.
-    """
-
-    READ = "READ"
-    ESTIMATED = "ESTIMATED"
-    SUGGESTED = "SUGGESTED"
-    SUM = "SUM"
-    FORECAST = "FORECAST"
-    UNSPECIFIED = "UNSPECIFIED"
-
-
 class Ablesungsstatus(StrEnum):
     """
     State of the reading
@@ -59,9 +46,9 @@ class VerbrauchErweitert(Verbrauch):
     """
     Reason why the counter is read
     """
-    ablesegrund_erweitert: Optional[AbleseGrundErweitert] = None
+    ablesegrund_erweitert: Optional[StrEnum] = None
     """
-    This field specifies if a meter reading is estimated, suggested, or read.
+    This field hand over additional meter reading information.
     """
     ablesebeschreibung: Optional[str] = None
     """
