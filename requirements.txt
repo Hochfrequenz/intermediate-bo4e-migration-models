@@ -12,7 +12,7 @@ bidict==0.22.1
     # via
     #   bomf
     #   pvframework
-bo4e==0.5.6
+bo4e==0.5.10
     # via
     #   -r requirements.in
     #   bomf
