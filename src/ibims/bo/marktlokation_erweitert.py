@@ -1,7 +1,7 @@
 """
 extension of the official BO4E marktlokation
 """
-from typing import Literal
+from typing import Literal, Optional
 
 from bo4e.bo.marktlokation import Marktlokation
 
@@ -22,3 +22,11 @@ class MarktlokationErweitert(Marktlokation):
             Z15: WorkPricePerformancePrice (Arbeitspreis/Leistungspreis)
     """
     community_id: str
+    prognose_grundlage: Optional[Literal["ZA6", "ZC0"]]
+    """
+    forecast type of a market location, ZA6: "Prognose auf Basis von Werten", ZC0: "Prognose auf Basis von Profilen"
+    """
+    prognose_grundlage_detail: Optional[Literal["E02", "E14", "Z36"]]
+    """
+    forecast detail of a market location, E02: SLP/SEP, E14: TLP/TEP, Z36: TEP mit Referenzmessung
+    """
