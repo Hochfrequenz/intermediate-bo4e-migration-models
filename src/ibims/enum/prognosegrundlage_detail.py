@@ -15,5 +15,5 @@ class PrognosegrundlageDetail(StrEnum):
     """
     TAGESPARAMETERABHAENGIG = "TAGESPARAMETERABHAENGIG"
     """
-    corresponds to TLP/TEP (Tagesparameterabhängige Lastprofile)
+    corresponds to TLP/TEP (Tagesparameterabhängige Lastprofile/Einspeiserprofile)
     """
