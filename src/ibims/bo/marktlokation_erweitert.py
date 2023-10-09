@@ -1,7 +1,7 @@
 """
 extension of the official BO4E marktlokation
 """
-from typing import Literal, Optional
+from typing import Literal
 
 from bo4e.bo.marktlokation import Marktlokation
 
