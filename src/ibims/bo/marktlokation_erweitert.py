@@ -6,6 +6,8 @@ from typing import Literal
 from bo4e.bo.marktlokation import Marktlokation
 
 from ibims.enum import MesstechnischeEinordnung, Regelzone
+from ibims.enum.prognosegrundlage import Prognosegrundlage
+from ibims.enum.prognosegrundlage_detail import PrognosegrundlageDetail
 
 
 class MarktlokationErweitert(Marktlokation):
@@ -22,11 +24,11 @@ class MarktlokationErweitert(Marktlokation):
             Z15: WorkPricePerformancePrice (Arbeitspreis/Leistungspreis)
     """
     community_id: str
-    prognose_grundlage: Literal["ZA6", "ZC0", None]
+    prognose_grundlage: Prognosegrundlage
     """
     forecast type of a market location, ZA6: "Prognose auf Basis von Werten", ZC0: "Prognose auf Basis von Profilen"
     """
-    prognose_grundlage_detail: Literal["E02", "E14", "Z36", None]
+    prognose_grundlage_detail: PrognosegrundlageDetail
     """
     forecast detail of a market location, E02: SLP/SEP, E14: TLP/TEP, Z36: TEP mit Referenzmessung
     """
