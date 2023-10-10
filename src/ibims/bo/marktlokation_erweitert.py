@@ -6,8 +6,8 @@ from typing import Literal, Optional
 from bo4e.bo.marktlokation import Marktlokation
 
 from ibims.enum import MesstechnischeEinordnung, Regelzone
+from ibims.enum.profiltyp import Profiltyp
 from ibims.enum.prognosegrundlage import Prognosegrundlage
-from ibims.enum.prognosegrundlage_detail import PrognosegrundlageDetail
 
 
 class MarktlokationErweitert(Marktlokation):
@@ -28,7 +28,7 @@ class MarktlokationErweitert(Marktlokation):
     """
     forecast type of a market location, ZA6: "Prognose auf Basis von Werten", ZC0: "Prognose auf Basis von Profilen"
     """
-    prognose_grundlage_detail: Optional[PrognosegrundlageDetail] = None
+    prognose_grundlage_detail: Optional[Profiltyp] = None
     """
     forecast detail of a market location, E02: SLP/SEP, E14: TLP/TEP, Z36: TEP mit Referenzmessung
     """
