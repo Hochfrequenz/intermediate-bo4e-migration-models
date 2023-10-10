@@ -24,11 +24,11 @@ class MarktlokationErweitert(Marktlokation):
             Z15: WorkPricePerformancePrice (Arbeitspreis/Leistungspreis)
     """
     community_id: str
-    prognose_grundlage: Optional[Prognosegrundlage]
+    prognose_grundlage: Optional[Prognosegrundlage] = None
     """
     forecast type of a market location, ZA6: "Prognose auf Basis von Werten", ZC0: "Prognose auf Basis von Profilen"
     """
-    prognose_grundlage_detail: Optional[PrognosegrundlageDetail]
+    prognose_grundlage_detail: Optional[PrognosegrundlageDetail] = None
     """
     forecast detail of a market location, E02: SLP/SEP, E14: TLP/TEP, Z36: TEP mit Referenzmessung
     """
