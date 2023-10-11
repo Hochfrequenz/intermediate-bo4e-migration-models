@@ -26,9 +26,9 @@ class MarktlokationErweitert(Marktlokation):
     community_id: str
     prognose_grundlage: Optional[Prognosegrundlage] = None
     """
-    forecast type of a market location, ZA6: "Prognose auf Basis von Werten", ZC0: "Prognose auf Basis von Profilen"
+    forecast type of a market location
     """
-    prognose_grundlage_detail: Optional[Profiltyp] = None
+    profiltyp: Optional[Profiltyp] = None
     """
-    forecast detail of a market location, E02: SLP/SEP, E14: TLP/TEP, Z36: TEP mit Referenzmessung
+    forecast detail of a market location
     """

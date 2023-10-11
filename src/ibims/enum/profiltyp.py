@@ -17,3 +17,7 @@ class Profiltyp(StrEnum):
     """
     corresponds to Tagesparameterabhängige Lastprofile/Einspeiserprofile
     """
+    RLM = "RLM"
+    """
+    corresponds to Registrierende Leistungsmessung
+    """
