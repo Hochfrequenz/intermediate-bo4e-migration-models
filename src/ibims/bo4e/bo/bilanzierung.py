@@ -6,7 +6,7 @@ from typing import Optional
 
 from bo4e.bo.geschaeftsobjekt import Geschaeftsobjekt
 
-from ibims.enum import BoTypErweitert
+from ibims.bo4e import BoTypErweitert
 
 
 class Bilanzierung(Geschaeftsobjekt):

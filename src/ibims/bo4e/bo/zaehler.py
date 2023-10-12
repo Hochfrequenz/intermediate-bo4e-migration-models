@@ -11,7 +11,7 @@ from bo4e.enum.geraetemerkmal import Geraetemerkmal
 from bo4e.enum.netzebene import Netzebene
 from pydantic import field_validator
 
-from ibims.enum import Messwerterfassung, ZaehlerTypErweitert
+from ibims.bo4e import Messwerterfassung, ZaehlerTypErweitert
 
 
 class ZaehlerErweitert(Zaehler):

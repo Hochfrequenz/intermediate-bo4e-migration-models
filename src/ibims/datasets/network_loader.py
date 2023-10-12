@@ -8,8 +8,14 @@ from bo4e.bo.marktteilnehmer import Marktteilnehmer
 from bo4e.bo.vertrag import Vertrag
 from bo4e.com.adresse import Adresse
 
-from ibims.bo import Bilanzierung, GeschaeftspartnerErweitert, MarktlokationErweitert, ZaehlerErweitert
-from ibims.com import ConcessionFee, Zaehlpunkt
+from ibims.bo4e import (
+    Bilanzierung,
+    ConcessionFee,
+    GeschaeftspartnerErweitert,
+    MarktlokationErweitert,
+    ZaehlerErweitert,
+    Zaehlpunkt,
+)
 from ibims.datasets import DataSetBaseModel
 
 

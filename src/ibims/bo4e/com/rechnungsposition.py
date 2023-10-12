@@ -6,7 +6,7 @@ from typing import Optional
 
 from bo4e.com.rechnungsposition import Rechnungsposition
 
-from ibims.enum import BDEWArtikelnummerErweitert
+from ibims.bo4e import BDEWArtikelnummerErweitert
 
 
 class RechnungspositionErweitert(Rechnungsposition):

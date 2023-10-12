@@ -11,8 +11,8 @@ from bo4e.bo.preisblatt import Preisblatt
 from bo4e.com.adresse import Adresse
 from bo4e.com.vertragskonditionen import Vertragskonditionen
 
-from ibims.bo.kampagne import Kampagne
-from ibims.com import PreisgarantieErweitert, VerbrauchErweitert, VertragskontoCBA
+from ibims.bo4e import PreisgarantieErweitert, VerbrauchErweitert, VertragskontoCBA
+from ibims.bo4e.kampagne import Kampagne
 from ibims.datasets import DataSetBaseModel
 
 

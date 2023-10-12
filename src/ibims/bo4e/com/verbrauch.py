@@ -9,7 +9,7 @@ from typing import Optional
 from bo4e.com.verbrauch import Verbrauch
 from bo4e.enum.strenum import StrEnum
 
-from ibims.enum import Messwertstatus
+from ibims.bo4e import Messwertstatus
 
 
 class AblesendeRolle(StrEnum):

@@ -7,7 +7,7 @@ from typing import Optional
 
 from bo4e.com.zaehlwerk import Zaehlwerk
 
-from ibims.enum import Abgabeart
+from ibims.bo4e import Abgabeart
 
 
 class ZaehlwerkErweitert(Zaehlwerk):

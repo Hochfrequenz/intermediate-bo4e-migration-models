@@ -7,7 +7,7 @@ from typing import Optional
 from bo4e.com.com import COM
 from pydantic import constr, field_validator
 
-from ibims.com.sepa_info import SepaInfo
+from ibims.bo4e.sepa_info import SepaInfo
 
 
 class Bankverbindung(COM):

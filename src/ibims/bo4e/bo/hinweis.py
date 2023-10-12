@@ -5,7 +5,7 @@ from datetime import datetime
 
 from bo4e.bo.geschaeftsobjekt import Geschaeftsobjekt
 
-from ibims.enum import HinweisThema
+from ibims.bo4e import HinweisThema
 
 
 class Hinweis(Geschaeftsobjekt):

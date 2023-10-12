@@ -5,9 +5,10 @@ from typing import Literal, Optional
 
 from bo4e.bo.marktlokation import Marktlokation
 
-from ibims.enum import MesstechnischeEinordnung, Regelzone
-from ibims.enum.profiltyp import Profiltyp
-from ibims.enum.prognosegrundlage import Prognosegrundlage
+from ibims.bo4e import MesstechnischeEinordnung, Regelzone
+
+from ..enum.profiltyp import Profiltyp
+from ..enum.prognosegrundlage import Prognosegrundlage
 
 
 class MarktlokationErweitert(Marktlokation):

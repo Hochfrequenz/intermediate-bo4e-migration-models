@@ -5,8 +5,7 @@ from typing import Optional
 
 from bo4e.bo.rechnung import Rechnung
 
-from ibims.com import RechnungspositionErweitert
-from ibims.enum import RechnungstypErweitert
+from ibims.bo4e import RechnungspositionErweitert, RechnungstypErweitert
 
 
 class RechnungErweitert(Rechnung):
