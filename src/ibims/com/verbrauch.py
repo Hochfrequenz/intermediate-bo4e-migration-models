@@ -92,16 +92,22 @@ class VerbrauchErweitert(Verbrauch):
         """
         Returns true if the consumption is single tariff ("Eintarif")
         """
-        return "1.8.0" in self.obis_kennzahl
+        if self.obis_kennzahl is None:
+            return False
+        return "1.8.0" in self.obis_kennzahl  # pylint: disable=unsupported-membership-test
 
     def is_high_tariff(self) -> bool:
         """
         Returns true if the consumption is high tariff (HT, "Hochtarif")
         """
-        return "1.8.1" in self.obis_kennzahl
+        if self.obis_kennzahl is None:
+            return False
+        return "1.8.1" in self.obis_kennzahl  # pylint: disable=unsupported-membership-test
 
     def is_low_tariff(self) -> bool:
         """
         Returns true if the consumption is low tariff (NT, "Niedertarif")
         """
-        return "1.8.2" in self.obis_kennzahl
+        if self.obis_kennzahl is None:
+            return False
+        return "1.8.2" in self.obis_kennzahl  # pylint: disable=unsupported-membership-test
