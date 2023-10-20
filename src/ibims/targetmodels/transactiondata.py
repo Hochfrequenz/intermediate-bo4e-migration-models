@@ -22,7 +22,9 @@ class Transaktionsdaten(BaseModel):
     absender: str
     empfaenger: str
 
+
 QuantitiesStatus = Literal["CANCELLED", "DECISION", "IGNORED", "OBJECTED", "RECEIVED", "VALID"]
+
 
 class TransaktionsdatenQuantities(Transaktionsdaten):
     """
