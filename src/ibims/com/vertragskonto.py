@@ -26,7 +26,7 @@ class Vertragskonto(COM):
     """
     vertrags_adresse: Adresse
     """
-    Address related to the `Vertragskonto` which is only used to create a common mba for `Vertragskonto`s with the same
+    Address related to the Vertragskonto which is only used to create a common mba for Vertragskontos with the same
     address.
     """
     vertragskontonummer: str

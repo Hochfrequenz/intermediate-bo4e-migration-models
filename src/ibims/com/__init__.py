@@ -10,5 +10,6 @@ from ibims.com.rechnungsposition import RechnungspositionErweitert
 from ibims.com.sepa_info import SepaInfo
 from ibims.com.steuerbetrag import SteuerbetragErweitert
 from ibims.com.verbrauch import VerbrauchErweitert
+from ibims.com.vertragskonto import Vertragskonto, VertragskontoCBA, VertragskontoMBA
 from ibims.com.zaehlpunkt import Zaehlpunkt
 from ibims.com.zaehlwerk import ZaehlwerkErweitert

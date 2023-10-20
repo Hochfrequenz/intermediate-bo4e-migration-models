@@ -15,6 +15,9 @@ It's also [available on pypi](https://pypi.org/project/ibims/).
 pip install ibims
 ```
 
+### Documentation
+There is a (very early stage) documentation of this repository on [readthedocs](https://intermediate-bo4e-migration-models.readthedocs.io/de/latest/api/ibims.html).
+
 ## How to use this Repository on Your Machine
 
 Follow the instructions in our [Python template repository](https://github.com/Hochfrequenz/python_template_repository#how-to-use-this-repository-on-your-machine).

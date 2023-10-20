@@ -38,3 +38,4 @@ class ZaehlerTypErweitert(StrEnum):
     LASTGANGZAEHLER = "LASTGANGZAEHLER"  #: Lastgangzähler
 
     NEUEMESSEINRICHTUNG = "NEUEMESSEINRICHTUNG"  #: Neue Messeinrichtung GAS nach MsbG
+    # https://github.com/bo4e/BO4E-python/issues/574
