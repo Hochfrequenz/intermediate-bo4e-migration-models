@@ -23,6 +23,9 @@ class Transaktionsdaten(BaseModel):
     empfaenger: str
 
 
+QuantitiesStatus = Literal["CANCELLED", "DECISION", "IGNORED", "OBJECTED", "RECEIVED", "VALID"]
+
+
 class TransaktionsdatenQuantities(Transaktionsdaten):
     """
     This class adds additional data to the transaktionsdaten, which is needed for a energy amount
@@ -34,6 +37,7 @@ class TransaktionsdatenQuantities(Transaktionsdaten):
     nachrichtenfunktion: str
     typ: str
     datumsformat: str
+    status: QuantitiesStatus
 
 
 InvoiceManagerInvoiceStatus = Literal["received", "ignored", "declined", "cancelled", "accepted", "manual_decision"]
