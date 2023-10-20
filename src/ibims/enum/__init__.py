@@ -9,5 +9,5 @@ from ibims.enum.messtechnische_einordnung import MesstechnischeEinordnung
 from ibims.enum.messwerterfassung import Messwerterfassung
 from ibims.enum.messwertstatus import Messwertstatus
 from ibims.enum.rechnung_erweitert import RechnungstypErweitert
-from ibims.enum.regelzone import Regelzone
+from ibims.enum.regelzone import Marktgebiet, Regelzone
 from ibims.enum.zaehlertyp_erweitert import ZaehlerTypErweitert
