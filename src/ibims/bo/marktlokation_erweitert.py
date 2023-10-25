@@ -16,11 +16,11 @@ class MarktlokationErweitert(Marktlokation):
     """
 
     messtechnische_einordnung: MesstechnischeEinordnung
-    uebertragungsnetzgebiet: Regelzone
+    uebertragungsnetzgebiet: Optional[Regelzone]
     """
     uebertragungsnetzgebiet is for electricity
     """
-    marktgebiet: Marktgebiet
+    marktgebiet: Optional[Marktgebiet]
     """
     the gas equivalnt for uebertragungsnetzgebiet, where the Marktgebietscode is set
     """
