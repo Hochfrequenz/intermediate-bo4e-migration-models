@@ -30,4 +30,4 @@ class Bilanzierung(Geschaeftsobjekt):
 
     bilanzkreis: Optional[str] = None
 
-    aggregationsverantwortung: Optional[Aggregationsverantwortung]
+    aggregationsverantwortung: Optional[Aggregationsverantwortung] = None
