@@ -15,6 +15,7 @@ class Lastprofil(COM):
     https://github.com/Hochfrequenz/go-bo4e/blob/708b39de0dcea8a9448ed4e7341a2687f6bf7c11/com/lastprofil.go
     Fields, which are not needed for migrations, are omitted and the field "profilart" is modelled as Profiltyp ENUM.
     """
+
     bezeichnung: Optional[str]
     """
     Bezeichnung des Profils, durch DVGW bzw. den Netzbetreiber vergeben
