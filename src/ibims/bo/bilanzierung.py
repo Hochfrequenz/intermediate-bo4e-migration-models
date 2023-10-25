@@ -6,6 +6,7 @@ from typing import Optional
 
 from bo4e.bo.geschaeftsobjekt import Geschaeftsobjekt
 
+from ibims.com.lastprofil import Lastprofil
 from ibims.enum import BoTypErweitert
 from ibims.enum.aggregationsverantwortung import Aggregationsverantwortung
 
@@ -31,3 +32,5 @@ class Bilanzierung(Geschaeftsobjekt):
     bilanzkreis: Optional[str] = None
 
     aggregationsverantwortung: Optional[Aggregationsverantwortung] = None
+
+    Lastprofile: list[Lastprofil]
