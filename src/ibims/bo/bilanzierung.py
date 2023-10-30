@@ -33,4 +33,4 @@ class Bilanzierung(Geschaeftsobjekt):
 
     aggregationsverantwortung: Optional[Aggregationsverantwortung] = None
 
-    Lastprofile: list[Lastprofil]
+    lastprofile: list[Lastprofil]
