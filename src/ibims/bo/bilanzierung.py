@@ -6,6 +6,7 @@ from typing import Optional
 
 from bo4e.bo.geschaeftsobjekt import Geschaeftsobjekt
 
+from ibims.com.lastprofil import Lastprofil
 from ibims.enum import BoTypErweitert
 from ibims.enum.aggregationsverantwortung import Aggregationsverantwortung
 from ibims.enum.profiltyp import Profiltyp
@@ -37,3 +38,5 @@ class Bilanzierung(Geschaeftsobjekt):
     prognosegrundlage: Optional[Prognosegrundlage] = None
 
     details_prognosegrundlage: Optional[Profiltyp] = None
+      
+    lastprofile: list[Lastprofil]
