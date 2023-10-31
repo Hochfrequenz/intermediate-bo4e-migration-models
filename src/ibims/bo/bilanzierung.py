@@ -38,5 +38,5 @@ class Bilanzierung(Geschaeftsobjekt):
     prognosegrundlage: Optional[Prognosegrundlage] = None
 
     details_prognosegrundlage: Optional[Profiltyp] = None
-      
+
     lastprofile: list[Lastprofil]
