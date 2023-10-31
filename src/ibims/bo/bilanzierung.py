@@ -9,6 +9,8 @@ from bo4e.bo.geschaeftsobjekt import Geschaeftsobjekt
 from ibims.com.lastprofil import Lastprofil
 from ibims.enum import BoTypErweitert
 from ibims.enum.aggregationsverantwortung import Aggregationsverantwortung
+from ibims.enum.profiltyp import Profiltyp
+from ibims.enum.prognosegrundlage import Prognosegrundlage
 
 
 class Bilanzierung(Geschaeftsobjekt):
@@ -32,5 +34,9 @@ class Bilanzierung(Geschaeftsobjekt):
     bilanzkreis: Optional[str] = None
 
     aggregationsverantwortung: Optional[Aggregationsverantwortung] = None
-
+      
     lastprofile: Optional[list[Lastprofil]] = None
+    
+    prognosegrundlage: Optional[Prognosegrundlage] = None
+
+    details_prognosegrundlage: Optional[Profiltyp] = None
