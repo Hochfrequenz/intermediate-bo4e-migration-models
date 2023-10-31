@@ -16,7 +16,7 @@ class Lastprofil(COM):
     Fields, which are not needed for migrations, are omitted and the field "profilart" is modelled as Profiltyp ENUM.
     """
 
-    bezeichnung: Optional[str]
+    bezeichnung: Optional[str] = None
     """
     Bezeichnung des Profils, durch DVGW bzw. den Netzbetreiber vergeben
     """
@@ -24,4 +24,4 @@ class Lastprofil(COM):
     """
     Einspeisung ist true, falls es sich um Einspeisung handelt
     """
-    profilart: Optional[Profiltyp]
+    profilart: Optional[Profiltyp] = None
