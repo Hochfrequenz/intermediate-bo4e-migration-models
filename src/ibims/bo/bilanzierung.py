@@ -34,9 +34,9 @@ class Bilanzierung(Geschaeftsobjekt):
     bilanzkreis: Optional[str] = None
 
     aggregationsverantwortung: Optional[Aggregationsverantwortung] = None
-      
+
     lastprofile: Optional[list[Lastprofil]] = None
-    
+
     prognosegrundlage: Optional[Prognosegrundlage] = None
 
     details_prognosegrundlage: Optional[Profiltyp] = None
