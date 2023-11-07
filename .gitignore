@@ -136,3 +136,5 @@ dmypy.json
 src/_your_package_version.py
 
 src/_ibims_version.py
+
+tmp/
