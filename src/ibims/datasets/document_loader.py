@@ -5,9 +5,7 @@ It also contains the validation logic for the document loader dataset.
 
 from typing import Optional
 
-from bo4e.bo.vertrag import Vertrag
-
-from ibims.bo4e import Dokument, File, Geschaeftspartner, Rechnung
+from ibims.bo4e import Dokument, File, Geschaeftspartner, Rechnung, Vertrag
 from ibims.datasets import DataSetBaseModel
 
 

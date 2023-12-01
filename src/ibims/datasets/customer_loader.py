@@ -3,9 +3,7 @@ Contains the dataset for the customer loader.
 It also contains the validation logic for the customer loader dataset.
 """
 
-from bo4e.com.adresse import Adresse
-
-from ibims.bo4e import Bankverbindung, Geschaeftspartner, VertragskontoMBA
+from ibims.bo4e import Adresse, Bankverbindung, Geschaeftspartner, VertragskontoMBA
 from ibims.datasets import DataSetBaseModel
 
 

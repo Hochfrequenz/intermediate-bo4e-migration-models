@@ -4,11 +4,17 @@ It also contains the validation logic for the network loader dataset.
 """
 from typing import Optional
 
-from bo4e.bo.marktteilnehmer import Marktteilnehmer
-from bo4e.bo.vertrag import Vertrag
-from bo4e.com.adresse import Adresse
-
-from ibims.bo4e import Bilanzierung, ConcessionFee, Geschaeftspartner, Marktlokation, Zaehler, Zaehlpunkt
+from ibims.bo4e import (
+    Adresse,
+    Bilanzierung,
+    ConcessionFee,
+    Geschaeftspartner,
+    Marktlokation,
+    Marktteilnehmer,
+    Vertrag,
+    Zaehler,
+    Zaehlpunkt,
+)
 from ibims.datasets import DataSetBaseModel
 
 
