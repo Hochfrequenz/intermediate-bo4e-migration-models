@@ -7,7 +7,7 @@ from typing import Optional
 
 from bo4e.bo.vertrag import Vertrag
 
-from ibims.bo import Dokument, File, GeschaeftspartnerErweitert, RechnungErweitert
+from ibims.bo4e import Dokument, File, Geschaeftspartner, Rechnung
 from ibims.datasets import DataSetBaseModel
 
 
@@ -28,7 +28,7 @@ class TripicaDocumentLoaderDataSet(DataSetBaseModel):
     a unique id identifying a document in the tripica data loader set (typically a filename)
     """
 
-    geschaeftspartner_erw: GeschaeftspartnerErweitert
+    geschaeftspartner_erw: Geschaeftspartner
     """
     The following attribute needs to be filled for this DataSet:
     - externe_referenzen
@@ -41,7 +41,7 @@ class TripicaDocumentLoaderDataSet(DataSetBaseModel):
     - vertragsnummer
     """
 
-    rechnung: Optional[RechnungErweitert] = None
+    rechnung: Optional[Rechnung] = None
     """
     The following attribute needs to be filled for this DataSet:
     - rechnungsnummer

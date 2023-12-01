@@ -5,8 +5,7 @@ It also contains the validation logic for the customer loader dataset.
 
 from bo4e.com.adresse import Adresse
 
-from ibims.bo import GeschaeftspartnerErweitert
-from ibims.com import Bankverbindung, VertragskontoMBA
+from ibims.bo4e import Bankverbindung, Geschaeftspartner, VertragskontoMBA
 from ibims.datasets import DataSetBaseModel
 
 
@@ -24,7 +23,7 @@ class TripicaCustomerLoaderDataSet(DataSetBaseModel):
     # this allows us to track a customer from its source up the target
     # https://github.com/Hochfrequenz/bo4e_migration_framework/blob/6f091b76ff4e7a72bb0ff6ecb46a8477d35b5bf8/src/bomf/model/__init__.py#L70
 
-    geschaeftspartner_erw: GeschaeftspartnerErweitert
+    geschaeftspartner_erw: Geschaeftspartner
     """
     The following attributes need to be filled for this DataSet:
     - name1 (Surname)

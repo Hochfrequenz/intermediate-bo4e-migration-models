@@ -11,8 +11,7 @@ from bo4e.bo.preisblatt import Preisblatt
 from bo4e.com.adresse import Adresse
 from bo4e.com.vertragskonditionen import Vertragskonditionen
 
-from ibims.bo.kampagne import Kampagne
-from ibims.com import PreisgarantieErweitert, VerbrauchErweitert, VertragskontoCBA
+from ibims.bo4e import Kampagne, Preisgarantie, Verbrauch, VertragskontoCBA
 from ibims.datasets import DataSetBaseModel
 
 
@@ -54,7 +53,7 @@ class TripicaProductLoaderDataSet(DataSetBaseModel):
     # Then I remembered that the intermediate model is f***ed up anyway, so I'll just leave the fields on root level.
     # I'll just leave it here for now. https://github.com/Hochfrequenz/powercloud2lynqtech/issues/937
 
-    verbrauch: VerbrauchErweitert
+    verbrauch: Verbrauch
 
     lieferadresse: Adresse  #: used in the tripica delivery point characteristics; derived from powercloud contract
 
@@ -70,7 +69,7 @@ class TripicaProductLoaderDataSet(DataSetBaseModel):
 
     read from powercloud contract tariffs
     """
-    initiale_preisgarantie: list[PreisgarantieErweitert]
+    initiale_preisgarantie: list[Preisgarantie]
     """
     initial price guarantee; used for tripica "sed" product agreement item "INITIAL_PRICE_GUARANTEE".
     read from powercloud contract tariffs
