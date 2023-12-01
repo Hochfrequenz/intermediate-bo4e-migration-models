@@ -6,12 +6,16 @@ from datetime import datetime
 from decimal import Decimal
 from typing import Optional
 
-from bo4e.bo.messlokation import Messlokation
-from bo4e.bo.preisblatt import Preisblatt
-from bo4e.com.adresse import Adresse
-from bo4e.com.vertragskonditionen import Vertragskonditionen
-
-from ibims.bo4e import Kampagne, Preisgarantie, Verbrauch, VertragskontoCBA
+from ibims.bo4e import (
+    Adresse,
+    Kampagne,
+    Messlokation,
+    Preisblatt,
+    Preisgarantie,
+    Verbrauch,
+    Vertragskonditionen,
+    VertragskontoCBA,
+)
 from ibims.datasets import DataSetBaseModel
 
 

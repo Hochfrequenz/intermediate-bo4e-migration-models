@@ -2,9 +2,7 @@
 Contains the dataset for the agent hint loader.
 """
 
-from bo4e.bo.vertrag import Vertrag
-
-from ibims.bo4e import Geschaeftspartner, Hinweis
+from ibims.bo4e import Geschaeftspartner, Hinweis, Vertrag
 from ibims.datasets.base import DataSetBaseModel
 
 
