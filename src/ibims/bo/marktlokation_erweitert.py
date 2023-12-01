@@ -1,13 +1,26 @@
 """
 extension of the official BO4E marktlokation
 """
-from typing import Literal, Optional
+
+from typing import Optional
 
 from bo4e.bo.marktlokation import Marktlokation
+from bo4e.enum.strenum import StrEnum
 
 from ibims.enum import Marktgebiet, MesstechnischeEinordnung, Regelzone
 from ibims.enum.profiltyp import Profiltyp
 from ibims.enum.prognosegrundlage import Prognosegrundlage
+
+
+class Variant(StrEnum):
+    """
+    gridUsageBilling.variant (Netznutzungsabrechnungsvariante)
+        Z14: WorkPriceBasicPrice (Arbeitspreis/Grundpreis)
+        Z15: WorkPricePerformancePrice (Arbeitspreis/Leistungspreis)
+    """
+
+    Z14 = "Z14"
+    Z15 = "Z15"
 
 
 class MarktlokationErweitert(Marktlokation):
@@ -24,7 +37,7 @@ class MarktlokationErweitert(Marktlokation):
     """
     the gas equivalnt for uebertragungsnetzgebiet, where the Marktgebietscode is set
     """
-    variant: Literal["Z14", "Z15"]
+    variant: Variant
     """
         gridUsageBilling.variant (Netznutzungsabrechnungsvariante)
             Z14: WorkPriceBasicPrice (Arbeitspreis/Grundpreis)

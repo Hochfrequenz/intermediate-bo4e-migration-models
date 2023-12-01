@@ -3,7 +3,7 @@ Extend BO Zaehler to hold information about the data acquisition method.
 New BO ZaehlerGas to disambiguate between use case `Strom` and `Gas`.
 """
 from datetime import datetime
-from typing import Literal, Optional
+from typing import Optional
 
 from bo4e.bo.zaehler import Zaehler
 from bo4e.com.zeitraum import Zeitraum
@@ -38,7 +38,7 @@ class ZaehlerGas(ZaehlerErweitert):
     Add information 'Zählergröße' for 'Gaszähler'.
     """
 
-    druckniveau: Literal[Netzebene.ND, Netzebene.MD, Netzebene.HD]
+    druckniveau: Netzebene
 
     @field_validator("zaehlergroesse")
     @classmethod
