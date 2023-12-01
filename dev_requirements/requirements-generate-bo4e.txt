@@ -63,10 +63,14 @@ pydantic[email]==2.5.2
     #   datamodel-code-generator
 pydantic-core==2.14.5
     # via pydantic
+python-dotenv==1.0.0
+    # via -r .\dev_requirements\requirements-generate-bo4e.in
 pyyaml==6.0.1
     # via datamodel-code-generator
 requests==2.31.0
-    # via bo4e-schema-tool
+    # via
+    #   -r .\dev_requirements\requirements-generate-bo4e.in
+    #   bo4e-schema-tool
 typing-extensions==4.8.0
     # via
     #   pydantic
