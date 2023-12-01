@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check_for_updates:
+  bo4e_updater:
     permissions:
       contents: write
       pull-requests: write
