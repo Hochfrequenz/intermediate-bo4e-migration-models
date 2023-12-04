@@ -10,9 +10,9 @@ argcomplete==3.1.6
     # via datamodel-code-generator
 black==23.11.0
     # via datamodel-code-generator
-bo4e-python-generator==0.0.2
+bo4e-python-generator==0.0.3
     # via -r .\dev_requirements\requirements-generate-bo4e.in
-bo4e-schema-tool==0.0.1
+bo4e-schema-tool==0.0.2
     # via -r .\dev_requirements\requirements-generate-bo4e.in
 certifi==2023.7.22
     # via requests
