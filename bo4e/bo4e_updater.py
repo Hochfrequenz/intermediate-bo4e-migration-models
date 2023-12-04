@@ -1,6 +1,7 @@
 """
 This script checks if the current BO4E version is up-to-date.
 """
+import sys
 from functools import lru_cache
 
 import click
@@ -47,7 +48,7 @@ def main():
 
     # Update BO4E:
     set_key(DOTENV_FILE, "BO4E_VERSION", latest_version)
-    exit(1)
+    sys.exit(1)
 
 
 if __name__ == "__main__":
