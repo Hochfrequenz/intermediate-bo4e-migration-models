@@ -3,11 +3,7 @@ Contains the dataset for the invoice loader
 """
 from typing import Optional
 
-from bo4e.bo.marktlokation import Marktlokation
-from bo4e.bo.marktteilnehmer import Marktteilnehmer
-from bo4e.bo.vertrag import Vertrag
-
-from ibims.bo import Bilanzierung, RechnungErweitert
+from ibims.bo4e import Bilanzierung, Marktlokation, Marktteilnehmer, Rechnung, Vertrag
 from ibims.datasets import DataSetBaseModel
 from ibims.targetmodels import TransaktionsdatenInvoices
 
@@ -30,7 +26,7 @@ class InvoiceLoaderDataSet(DataSetBaseModel):
     - sparte
     """
 
-    rechnung_erweitert: RechnungErweitert
+    rechnung_erweitert: Rechnung
     """
     The following attributes need to be filled for this Dataset:
     - rechungstyp

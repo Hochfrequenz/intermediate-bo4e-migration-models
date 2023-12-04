@@ -3,8 +3,9 @@ Contains classes that describe the boneycomb data structure and provides the bas
 """
 from typing import Literal, Optional
 
-from bo4e.enum.sparte import Sparte
 from pydantic import BaseModel
+
+from ibims.bo4e import Sparte
 
 
 class Transaktionsdaten(BaseModel):

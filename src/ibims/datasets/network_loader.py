@@ -4,12 +4,17 @@ It also contains the validation logic for the network loader dataset.
 """
 from typing import Optional
 
-from bo4e.bo.marktteilnehmer import Marktteilnehmer
-from bo4e.bo.vertrag import Vertrag
-from bo4e.com.adresse import Adresse
-
-from ibims.bo import Bilanzierung, GeschaeftspartnerErweitert, MarktlokationErweitert, ZaehlerErweitert
-from ibims.com import ConcessionFee, Zaehlpunkt
+from ibims.bo4e import (
+    Adresse,
+    Bilanzierung,
+    ConcessionFee,
+    Geschaeftspartner,
+    Marktlokation,
+    Marktteilnehmer,
+    Vertrag,
+    Zaehler,
+    Zaehlpunkt,
+)
 from ibims.datasets import DataSetBaseModel
 
 
@@ -25,7 +30,7 @@ class TripicaNetworkLoaderDataSet(DataSetBaseModel):
     In the context of this package is may be used to create Tripica Network Data.
     """
 
-    kunde: GeschaeftspartnerErweitert
+    kunde: Geschaeftspartner
     """
     The following attributes need to be filled for this DataSet and is used for
     the customer that holds the contract:
@@ -38,7 +43,7 @@ class TripicaNetworkLoaderDataSet(DataSetBaseModel):
 
     liefer_adresse: Adresse
 
-    geschaeftspartner_mit_rechnungs_adresse: GeschaeftspartnerErweitert
+    geschaeftspartner_mit_rechnungs_adresse: Geschaeftspartner
     """
     This information is used for the customerMeterReadings part and
     is not a real business partner, so not all information of this object arte needed:
@@ -49,7 +54,7 @@ class TripicaNetworkLoaderDataSet(DataSetBaseModel):
     # TODO: get a new table join with firstname and surname separated.
     # https://github.com/Hochfrequenz/powercloud2lynqtech/issues/818
 
-    marktlokation: MarktlokationErweitert
+    marktlokation: Marktlokation
     """
     The following attributes need to be filled for this DataSet:
     - marktlokations_id
@@ -81,7 +86,7 @@ class TripicaNetworkLoaderDataSet(DataSetBaseModel):
     - rollencodenummer
     """
 
-    zaehler: ZaehlerErweitert
+    zaehler: Zaehler
     """
     The following attributes need to be filled for this DataSet:
     - zaehlernummer
