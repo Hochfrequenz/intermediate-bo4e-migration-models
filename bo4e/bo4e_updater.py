@@ -29,6 +29,7 @@ def current_version() -> str:
     Query the current version from the tox.env file
     """
     config = dotenv_values(DOTENV_FILE)
+    assert config["BO4E_VERSION"] is not None
     return config["BO4E_VERSION"]
 
 
