@@ -1,7 +1,8 @@
 name: Check for BO4E updates
 on:
   schedule:
-    - cron: '0 0 * * 0'
+    - cron: '23 5 * * 0'
+    # Every Sunday at 5:23 am
   workflow_dispatch:
 
 jobs:
