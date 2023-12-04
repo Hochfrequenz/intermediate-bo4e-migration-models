@@ -2,7 +2,6 @@
 This script checks if the current BO4E version is up-to-date.
 """
 import sys
-from functools import lru_cache
 
 import click
 import requests
@@ -14,7 +13,6 @@ TIMEOUT = 10  # in seconds
 DOTENV_FILE = "bo4e/tox.env"
 
 
-@lru_cache(maxsize=1)
 def resolve_latest_version() -> str:
     """
     Resolve the latest BO4E version from the github api.
@@ -24,7 +22,6 @@ def resolve_latest_version() -> str:
     return response.json()["tag_name"]
 
 
-@lru_cache(maxsize=1)
 def current_version() -> str:
     """
     Query the current version from the tox.env file
