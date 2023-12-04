@@ -16,6 +16,8 @@ DOTENV_FILE = "bo4e/tox.env"
 def resolve_latest_version() -> str:
     """
     Resolve the latest BO4E version from the github api.
+    Returns the version tag as string.
+    E.g. "v2.0.13-rc3"
     """
     response = requests.get(f"https://api.github.com/repos/{OWNER}/{REPO}/releases/latest", timeout=TIMEOUT)
     response.raise_for_status()
@@ -24,7 +26,9 @@ def resolve_latest_version() -> str:
 
 def current_version() -> str:
     """
-    Query the current version from the tox.env file
+    Query the current version from the tox.env file.
+    The version tag should have the same format as the github release tag.
+    E.g. "v2.0.13-rc3"
     """
     config = dotenv_values(DOTENV_FILE)
     assert config["BO4E_VERSION"] is not None
