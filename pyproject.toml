@@ -32,6 +32,9 @@ line-length = 120
 line_length = 120
 profile = "black"
 
+[tool.pylint.MASTER]
+ignore-paths = ".*src/ibims/bo4e/.*"
+
 [tool.pylint."MESSAGES CONTROL"]
 max-line-length = 120
 disable = "fixme,too-few-public-methods"

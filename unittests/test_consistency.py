@@ -3,6 +3,7 @@ class TestConsistency:
         """
         Test that all models and datasets are importable.
         """
+        # pylint: disable=import-outside-toplevel
         from ibims import datasets
 
         assert issubclass(datasets.TripicaCustomerLoaderDataSet, datasets.DataSetBaseModel)
