@@ -4,6 +4,7 @@ on:
     - cron: '23 5 * * 0'
     # Every Sunday at 5:23 am
   workflow_dispatch:
+    # Enable manual workflow runs in the Actions tab
 
 jobs:
   bo4e_updater:
