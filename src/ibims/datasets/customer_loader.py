@@ -21,7 +21,7 @@ class TripicaCustomerLoaderDataSet(DataSetBaseModel):
     # this allows us to track a customer from its source up the target
     # https://github.com/Hochfrequenz/bo4e_migration_framework/blob/6f091b76ff4e7a72bb0ff6ecb46a8477d35b5bf8/src/bomf/model/__init__.py#L70
 
-    geschaeftspartner_erw: Geschaeftspartner
+    geschaeftspartner: Geschaeftspartner
     """
     The following attributes need to be filled for this DataSet:
     - name1 (Surname)

@@ -26,7 +26,7 @@ class InvoiceLoaderDataSet(DataSetBaseModel):
     - sparte
     """
 
-    rechnung_erweitert: Rechnung
+    rechnung: Rechnung
     """
     The following attributes need to be filled for this Dataset:
     - rechungstyp

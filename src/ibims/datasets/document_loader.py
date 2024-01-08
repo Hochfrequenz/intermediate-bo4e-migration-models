@@ -26,7 +26,7 @@ class TripicaDocumentLoaderDataSet(DataSetBaseModel):
     a unique id identifying a document in the tripica data loader set (typically a filename)
     """
 
-    geschaeftspartner_erw: Geschaeftspartner
+    geschaeftspartner: Geschaeftspartner
     """
     The following attribute needs to be filled for this DataSet:
     - externe_referenzen
