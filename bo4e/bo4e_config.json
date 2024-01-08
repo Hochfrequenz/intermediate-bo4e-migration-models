@@ -149,12 +149,6 @@
     {
       "module": "com",
       "schema": {
-        "$ref": "models/com/Vertragskonto.json"
-      }
-    },
-    {
-      "module": "com",
-      "schema": {
         "$ref": "models/com/VertragskontoCBA.json"
       }
     },
