@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..com.auf_abschlag_regional import AufAbschlagRegional
@@ -33,11 +35,12 @@ class Tarif(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     anbieter: Marktteilnehmer | None = None
     anbietername: Annotated[str | None, Field(None, title="Anbietername")]
-    anwendung_von: Annotated[AwareDatetime | None, Field(None, alias="anwendungVon", title="Anwendungvon")]
+    anwendung_von: Annotated[datetime | None, Field(None, alias="anwendungVon", title="Anwendungvon")]
     bemerkung: Annotated[str | None, Field(None, title="Bemerkung")]
     berechnungsparameter: Tarifberechnungsparameter | None = None
     bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
@@ -48,7 +51,7 @@ class Tarif(BaseModel):
     ]
     kundentypen: Annotated[list[Kundentyp] | None, Field(None, title="Kundentypen")]
     preisgarantie: Preisgarantie | None = None
-    preisstand: Annotated[AwareDatetime | None, Field(None, title="Preisstand")]
+    preisstand: Annotated[datetime | None, Field(None, title="Preisstand")]
     sparte: Sparte | None = None
     tarif_auf_abschlaege: Annotated[
         list[AufAbschlagRegional] | None, Field(None, alias="tarifAufAbschlaege", title="Tarifaufabschlaege")

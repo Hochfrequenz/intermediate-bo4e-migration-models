@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..enum.zeiteinheit import Zeiteinheit
@@ -22,11 +24,12 @@ class Zeitraum(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     dauer: Annotated[float | str | None, Field(None, title="Dauer")]
     einheit: Zeiteinheit | None = None
-    enddatum: Annotated[AwareDatetime | None, Field(None, title="Enddatum")]
-    endzeitpunkt: Annotated[AwareDatetime | None, Field(None, title="Endzeitpunkt")]
-    startdatum: Annotated[AwareDatetime | None, Field(None, title="Startdatum")]
-    startzeitpunkt: Annotated[AwareDatetime | None, Field(None, title="Startzeitpunkt")]
+    enddatum: Annotated[datetime | None, Field(None, title="Enddatum")]
+    endzeitpunkt: Annotated[datetime | None, Field(None, title="Endzeitpunkt")]
+    startdatum: Annotated[datetime | None, Field(None, title="Startdatum")]
+    startzeitpunkt: Annotated[datetime | None, Field(None, title="Startzeitpunkt")]

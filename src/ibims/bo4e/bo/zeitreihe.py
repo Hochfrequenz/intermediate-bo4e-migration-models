@@ -26,6 +26,7 @@ class Zeitreihe(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]

@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..com.angebotsvariante import Angebotsvariante
@@ -26,14 +28,15 @@ class Angebot(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     anfragereferenz: Annotated[str | None, Field(None, title="Anfragereferenz")]
-    angebotsdatum: Annotated[AwareDatetime | None, Field(None, title="Angebotsdatum")]
+    angebotsdatum: Annotated[datetime | None, Field(None, title="Angebotsdatum")]
     angebotsgeber: Geschaeftspartner | None = None
     angebotsnehmer: Geschaeftspartner | None = None
     angebotsnummer: Annotated[str | None, Field(None, title="Angebotsnummer")]
-    bindefrist: Annotated[AwareDatetime | None, Field(None, title="Bindefrist")]
+    bindefrist: Annotated[datetime | None, Field(None, title="Bindefrist")]
     bo_typ: Annotated[BoTyp | None, Field(BoTyp.ANGEBOT, alias="boTyp")]
     externe_referenzen: Annotated[
         list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")

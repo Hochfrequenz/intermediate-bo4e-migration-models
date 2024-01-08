@@ -21,6 +21,7 @@ class Energiemenge(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     bo_typ: Annotated[BoTyp | None, Field(BoTyp.ENERGIEMENGE, alias="boTyp")]

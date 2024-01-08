@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..enum.bdew_artikelnummer import BDEWArtikelnummer
@@ -24,13 +26,14 @@ class Rechnungsposition(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     artikel_id: Annotated[str | None, Field(None, alias="artikelId", title="Artikelid")]
     artikelnummer: BDEWArtikelnummer | None = None
     einzelpreis: Preis | None = None
-    lieferung_bis: Annotated[AwareDatetime | None, Field(None, alias="lieferungBis", title="Lieferungbis")]
-    lieferung_von: Annotated[AwareDatetime | None, Field(None, alias="lieferungVon", title="Lieferungvon")]
+    lieferung_bis: Annotated[datetime | None, Field(None, alias="lieferungBis", title="Lieferungbis")]
+    lieferung_von: Annotated[datetime | None, Field(None, alias="lieferungVon", title="Lieferungvon")]
     lokations_id: Annotated[str | None, Field(None, alias="lokationsId", title="Lokationsid")]
     positions_menge: Annotated[Menge | None, Field(None, alias="positionsMenge")]
     positionsnummer: Annotated[int | None, Field(None, title="Positionsnummer")]

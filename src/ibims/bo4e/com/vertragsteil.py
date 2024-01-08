@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from .menge import Menge
@@ -19,11 +21,12 @@ class Vertragsteil(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     lokation: Annotated[str | None, Field(None, title="Lokation")]
     maximale_abnahmemenge: Annotated[Menge | None, Field(None, alias="maximaleAbnahmemenge")]
     minimale_abnahmemenge: Annotated[Menge | None, Field(None, alias="minimaleAbnahmemenge")]
     vertraglich_fixierte_menge: Annotated[Menge | None, Field(None, alias="vertraglichFixierteMenge")]
-    vertragsteilbeginn: Annotated[AwareDatetime | None, Field(None, title="Vertragsteilbeginn")]
-    vertragsteilende: Annotated[AwareDatetime | None, Field(None, title="Vertragsteilende")]
+    vertragsteilbeginn: Annotated[datetime | None, Field(None, title="Vertragsteilbeginn")]
+    vertragsteilende: Annotated[datetime | None, Field(None, title="Vertragsteilende")]

@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..enum.messwertstatus import Messwertstatus
@@ -19,10 +21,11 @@ class Zeitreihenwert(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    datum_uhrzeit_bis: Annotated[AwareDatetime | None, Field(None, alias="datumUhrzeitBis", title="Datumuhrzeitbis")]
-    datum_uhrzeit_von: Annotated[AwareDatetime | None, Field(None, alias="datumUhrzeitVon", title="Datumuhrzeitvon")]
+    datum_uhrzeit_bis: Annotated[datetime | None, Field(None, alias="datumUhrzeitBis", title="Datumuhrzeitbis")]
+    datum_uhrzeit_von: Annotated[datetime | None, Field(None, alias="datumUhrzeitVon", title="Datumuhrzeitvon")]
     status: Messwertstatus | None = None
     statuszusatz: Messwertstatuszusatz | None = None
     wert: Annotated[float | str | None, Field(None, title="Wert")]

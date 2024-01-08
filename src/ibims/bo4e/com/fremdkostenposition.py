@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from .betrag import Betrag
@@ -20,12 +22,13 @@ class Fremdkostenposition(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     artikelbezeichnung: Annotated[str | None, Field(None, title="Artikelbezeichnung")]
     artikeldetail: Annotated[str | None, Field(None, title="Artikeldetail")]
     betrag_kostenposition: Annotated[Betrag | None, Field(None, alias="betragKostenposition")]
-    bis: Annotated[AwareDatetime | None, Field(None, title="Bis")]
+    bis: Annotated[datetime | None, Field(None, title="Bis")]
     einzelpreis: Preis | None = None
     gebietcode_eic: Annotated[str | None, Field(None, alias="gebietcodeEic", title="Gebietcodeeic")]
     link_preisblatt: Annotated[str | None, Field(None, alias="linkPreisblatt", title="Linkpreisblatt")]
@@ -33,5 +36,5 @@ class Fremdkostenposition(BaseModel):
     marktpartnername: Annotated[str | None, Field(None, title="Marktpartnername")]
     menge: Menge | None = None
     positionstitel: Annotated[str | None, Field(None, title="Positionstitel")]
-    von: Annotated[AwareDatetime | None, Field(None, title="Von")]
+    von: Annotated[datetime | None, Field(None, title="Von")]
     zeitmenge: Menge | None = None

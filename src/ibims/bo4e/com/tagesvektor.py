@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from .zeitreihenwertkompakt import Zeitreihenwertkompakt
@@ -18,7 +20,8 @@ class Tagesvektor(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    tag: Annotated[AwareDatetime | None, Field(None, title="Tag")]
+    tag: Annotated[datetime | None, Field(None, title="Tag")]
     werte: Annotated[list[Zeitreihenwertkompakt] | None, Field(None, title="Werte")]

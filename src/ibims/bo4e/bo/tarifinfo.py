@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..com.energiemix import Energiemix
@@ -29,11 +31,12 @@ class Tarifinfo(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     anbieter: Marktteilnehmer | None = None
     anbietername: Annotated[str | None, Field(None, title="Anbietername")]
-    anwendung_von: Annotated[AwareDatetime | None, Field(None, alias="anwendungVon", title="Anwendungvon")]
+    anwendung_von: Annotated[datetime | None, Field(None, alias="anwendungVon", title="Anwendungvon")]
     bemerkung: Annotated[str | None, Field(None, title="Bemerkung")]
     bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
     bo_typ: Annotated[BoTyp | None, Field(BoTyp.TARIFINFO, alias="boTyp")]

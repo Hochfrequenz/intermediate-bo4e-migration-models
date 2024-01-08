@@ -17,6 +17,7 @@ class Sigmoidparameter(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     a: Annotated[float | str | None, Field(None, alias="A", title="A")]
     b: Annotated[float | str | None, Field(None, alias="B", title="B")]

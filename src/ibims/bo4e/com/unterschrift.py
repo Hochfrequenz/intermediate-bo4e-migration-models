@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 
@@ -16,8 +18,9 @@ class Unterschrift(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    datum: Annotated[AwareDatetime | None, Field(None, title="Datum")]
+    datum: Annotated[datetime | None, Field(None, title="Datum")]
     name: Annotated[str | None, Field(None, title="Name")]
     ort: Annotated[str | None, Field(None, title="Ort")]

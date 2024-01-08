@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
@@ -22,6 +24,7 @@ class ZaehlerGas(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
     bo_typ: Annotated[BoTyp | None, Field(BoTyp.ZAEHLER, alias="boTyp")]
@@ -36,12 +39,12 @@ class ZaehlerGas(BaseModel):
     zaehlwerke: Annotated[list[Zaehlwerk] | None, Field(None, title="Zaehlwerke")]
     tarifart: Tarifart | None = None
     zaehlerkonstante: Annotated[float | str | None, Field(None, title="Zaehlerkonstante")]
-    eichung_bis: Annotated[AwareDatetime | None, Field(None, alias="eichungBis", title="Eichungbis")]
-    letzte_eichung: Annotated[AwareDatetime | None, Field(None, alias="letzteEichung", title="Letzteeichung")]
+    eichung_bis: Annotated[datetime | None, Field(None, alias="eichungBis", title="Eichungbis")]
+    letzte_eichung: Annotated[datetime | None, Field(None, alias="letzteEichung", title="Letzteeichung")]
     zaehlerhersteller: Geschaeftspartner | None = None
     messwerterfassung: Messwerterfassung
     nachstes_ablesedatum: Annotated[
-        AwareDatetime | None, Field(None, alias="nachstesAblesedatum", title="Nachstesablesedatum")
+        datetime | None, Field(None, alias="nachstesAblesedatum", title="Nachstesablesedatum")
     ]
     aktiver_zeitraum: Annotated[Zeitraum | None, Field(None, alias="aktiverZeitraum")]
     zaehlergroesse: Geraetemerkmal
