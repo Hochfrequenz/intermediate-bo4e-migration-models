@@ -21,7 +21,7 @@ class Kostenposition(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     artikelbezeichnung: Annotated[str | None, Field(None, title="Artikelbezeichnung")]
     artikeldetail: Annotated[str | None, Field(None, title="Artikeldetail")]
     betrag_kostenposition: Annotated[Betrag | None, Field(None, alias="betragKostenposition")]

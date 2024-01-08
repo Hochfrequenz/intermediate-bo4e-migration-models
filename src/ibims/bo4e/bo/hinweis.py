@@ -20,7 +20,7 @@ class Hinweis(BaseModel):
     externe_referenzen: Annotated[
         list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
     ]
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     erstellungsdatum: Annotated[AwareDatetime, Field(title="Erstellungsdatum")]
     thema: Annotated[HinweisThema | str, Field(title="Thema")]
     nachricht: Annotated[str, Field(title="Nachricht")]

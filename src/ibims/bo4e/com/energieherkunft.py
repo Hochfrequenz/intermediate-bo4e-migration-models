@@ -19,6 +19,6 @@ class Energieherkunft(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     anteil_prozent: Annotated[float | str | None, Field(None, alias="anteilProzent", title="Anteilprozent")]
     erzeugungsart: Erzeugungsart | None = None

@@ -21,7 +21,7 @@ class Tarifberechnungsparameter(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     berechnungsmethode: Tarifkalkulationsmethode | None = None
     hoechstpreis_ht: Annotated[Preis | None, Field(None, alias="hoechstpreisHT")]
     hoechstpreis_nt: Annotated[Preis | None, Field(None, alias="hoechstpreisNT")]

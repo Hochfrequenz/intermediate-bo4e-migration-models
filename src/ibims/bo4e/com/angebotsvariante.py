@@ -22,7 +22,7 @@ class Angebotsvariante(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     angebotsstatus: Angebotsstatus | None = None
     bindefrist: Annotated[AwareDatetime | None, Field(None, title="Bindefrist")]
     erstellungsdatum: Annotated[AwareDatetime | None, Field(None, title="Erstellungsdatum")]

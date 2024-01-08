@@ -21,7 +21,7 @@ class Tarifeinschraenkung(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     einschraenkungleistung: Annotated[list[Menge] | None, Field(None, title="Einschraenkungleistung")]
     einschraenkungzaehler: Annotated[list[Geraet] | None, Field(None, title="Einschraenkungzaehler")]
     voraussetzungen: Annotated[list[Voraussetzungen] | None, Field(None, title="Voraussetzungen")]

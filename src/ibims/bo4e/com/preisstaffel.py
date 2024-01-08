@@ -19,7 +19,7 @@ class Preisstaffel(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     einheitspreis: Annotated[float | str | None, Field(None, title="Einheitspreis")]
     sigmoidparameter: Sigmoidparameter | None = None
     staffelgrenze_bis: Annotated[float | str | None, Field(None, alias="staffelgrenzeBis", title="Staffelgrenzebis")]

@@ -34,7 +34,7 @@ class Tarif(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     anbieter: Marktteilnehmer | None = None
     anbietername: Annotated[str | None, Field(None, title="Anbietername")]
     anwendung_von: Annotated[AwareDatetime | None, Field(None, alias="anwendungVon", title="Anwendungvon")]

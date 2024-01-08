@@ -20,7 +20,7 @@ class RegionaleGueltigkeit(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     gueltigkeitstyp: Gueltigkeitstyp | None = None
     kriteriums_werte: Annotated[
         list[KriteriumWert] | None, Field(None, alias="kriteriumsWerte", title="Kriteriumswerte")

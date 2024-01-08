@@ -20,7 +20,7 @@ class Vertragsteil(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     lokation: Annotated[str | None, Field(None, title="Lokation")]
     maximale_abnahmemenge: Annotated[Menge | None, Field(None, alias="maximaleAbnahmemenge")]
     minimale_abnahmemenge: Annotated[Menge | None, Field(None, alias="minimaleAbnahmemenge")]

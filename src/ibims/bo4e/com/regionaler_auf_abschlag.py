@@ -30,7 +30,7 @@ class RegionalerAufAbschlag(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     auf_abschlagstyp: Annotated[AufAbschlagstyp | None, Field(None, alias="aufAbschlagstyp")]
     auf_abschlagsziel: Annotated[AufAbschlagsziel | None, Field(None, alias="aufAbschlagsziel")]
     beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]

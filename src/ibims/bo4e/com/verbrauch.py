@@ -23,7 +23,7 @@ class Verbrauch(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     einheit: Mengeneinheit | None = None
     enddatum: Annotated[AwareDatetime | None, Field(None, title="Enddatum")]
     obis_kennzahl: Annotated[str | None, Field(None, alias="obisKennzahl", title="Obiskennzahl")]

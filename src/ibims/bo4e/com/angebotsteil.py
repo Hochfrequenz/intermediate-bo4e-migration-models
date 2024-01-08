@@ -27,7 +27,7 @@ class Angebotsteil(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     anfrage_subreferenz: Annotated[str | None, Field(None, alias="anfrageSubreferenz", title="Anfragesubreferenz")]
     gesamtkostenangebotsteil: Betrag | None = None
     gesamtmengeangebotsteil: Menge | None = None

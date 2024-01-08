@@ -28,7 +28,7 @@ class ZaehlerGas(BaseModel):
     externe_referenzen: Annotated[
         list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
     ]
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     zaehlernummer: Annotated[str | None, Field(None, title="Zaehlernummer")]
     sparte: Sparte | None = None
     zaehlerauspraegung: Zaehlerauspraegung | None = None

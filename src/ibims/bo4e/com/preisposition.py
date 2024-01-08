@@ -28,7 +28,7 @@ class Preisposition(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     bdew_artikelnummer: Annotated[BDEWArtikelnummer | None, Field(None, alias="bdewArtikelnummer")]
     berechnungsmethode: Kalkulationsmethode | None = None
     bezugsgroesse: Mengeneinheit | None = None

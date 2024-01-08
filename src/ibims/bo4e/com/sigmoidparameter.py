@@ -22,4 +22,4 @@ class Sigmoidparameter(BaseModel):
     b: Annotated[float | str | None, Field(None, alias="B", title="B")]
     c: Annotated[float | str | None, Field(None, alias="C", title="C")]
     d: Annotated[float | str | None, Field(None, alias="D", title="D")]
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]

@@ -19,7 +19,7 @@ class Adresse(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     adresszusatz: Annotated[str | None, Field(None, title="Adresszusatz")]
     co_ergaenzung: Annotated[str | None, Field(None, alias="coErgaenzung", title="Coergaenzung")]
     hausnummer: Annotated[str | None, Field(None, title="Hausnummer")]

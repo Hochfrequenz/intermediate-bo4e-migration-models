@@ -11,7 +11,7 @@ class ConcessionFee(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     market_location_id: Annotated[str, Field(alias="marketLocationId", title="Marketlocationid")]
     group: Annotated[str | None, Field(None, title="Group")]
     obis: Annotated[str, Field(title="Obis")]

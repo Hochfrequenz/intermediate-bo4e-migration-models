@@ -25,7 +25,7 @@ class Ausschreibungslos(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     anzahl_lieferstellen: Annotated[int | None, Field(None, alias="anzahlLieferstellen", title="Anzahllieferstellen")]
     bemerkung: Annotated[str | None, Field(None, title="Bemerkung")]
     betreut_durch: Annotated[str | None, Field(None, alias="betreutDurch", title="Betreutdurch")]

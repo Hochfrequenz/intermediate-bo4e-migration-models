@@ -19,6 +19,6 @@ class Menge(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     einheit: Mengeneinheit | None = None
     wert: Annotated[float | str | None, Field(None, title="Wert")]

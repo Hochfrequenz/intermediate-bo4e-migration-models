@@ -23,7 +23,7 @@ class PositionsAufAbschlag(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     auf_abschlagstyp: Annotated[AufAbschlagstyp | None, Field(None, alias="aufAbschlagstyp")]
     auf_abschlagswaehrung: Annotated[Waehrungseinheit | None, Field(None, alias="aufAbschlagswaehrung")]
     auf_abschlagswert: Annotated[float | str | None, Field(None, alias="aufAbschlagswert", title="Aufabschlagswert")]

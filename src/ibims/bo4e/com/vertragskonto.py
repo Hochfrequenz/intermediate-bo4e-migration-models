@@ -13,7 +13,7 @@ class Vertragskonto(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     ouid: Annotated[int, Field(title="Ouid")]
     vertrags_adresse: Annotated[Adresse, Field(alias="vertragsAdresse")]
     vertragskontonummer: Annotated[str, Field(title="Vertragskontonummer")]
