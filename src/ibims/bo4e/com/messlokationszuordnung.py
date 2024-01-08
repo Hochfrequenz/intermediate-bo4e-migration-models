@@ -21,7 +21,7 @@ class Messlokationszuordnung(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     arithmetik: ArithmetischeOperation | None = None
     gueltig_bis: Annotated[AwareDatetime | None, Field(None, alias="gueltigBis", title="Gueltigbis")]
     gueltig_seit: Annotated[AwareDatetime | None, Field(None, alias="gueltigSeit", title="Gueltigseit")]

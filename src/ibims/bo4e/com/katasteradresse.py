@@ -17,6 +17,6 @@ class Katasteradresse(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     flurstueck: Annotated[str | None, Field(None, title="Flurstueck")]
     gemarkung_flur: Annotated[str | None, Field(None, alias="gemarkungFlur", title="Gemarkungflur")]

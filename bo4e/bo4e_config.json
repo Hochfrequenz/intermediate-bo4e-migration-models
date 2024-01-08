@@ -1,6 +1,6 @@
 {
   "requiredFields": [
-    "\\w+\\.\\w+\\._(id|version|typ)"
+    "\\w+\\.\\w+\\._(version|typ)"
   ],
   "additionalFields": [
     {

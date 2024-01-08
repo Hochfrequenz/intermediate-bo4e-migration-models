@@ -20,7 +20,7 @@ class Steuerbetrag(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     basiswert: Annotated[float | str | None, Field(None, title="Basiswert")]
     steuerkennzeichen: Steuerkennzeichen | None = None
     steuerwert: Annotated[float | str | None, Field(None, title="Steuerwert")]

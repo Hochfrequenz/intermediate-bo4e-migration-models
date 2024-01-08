@@ -17,7 +17,7 @@ class Unterschrift(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     datum: Annotated[AwareDatetime | None, Field(None, title="Datum")]
     name: Annotated[str | None, Field(None, title="Name")]
     ort: Annotated[str | None, Field(None, title="Ort")]

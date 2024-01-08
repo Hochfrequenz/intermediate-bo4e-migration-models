@@ -23,7 +23,7 @@ class Zeitraum(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     dauer: Annotated[float | str | None, Field(None, title="Dauer")]
     einheit: Zeiteinheit | None = None
     enddatum: Annotated[AwareDatetime | None, Field(None, title="Enddatum")]

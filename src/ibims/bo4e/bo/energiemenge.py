@@ -22,7 +22,7 @@ class Energiemenge(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     bo_typ: Annotated[BoTyp | None, Field(BoTyp.ENERGIEMENGE, alias="boTyp")]
     energieverbrauch: Annotated[list[Verbrauch] | None, Field(None, title="Energieverbrauch")]
     externe_referenzen: Annotated[

@@ -22,7 +22,7 @@ class Standorteigenschaften(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     bo_typ: Annotated[BoTyp | None, Field(BoTyp.STANDORTEIGENSCHAFTEN, alias="boTyp")]
     eigenschaften_gas: Annotated[StandorteigenschaftenGas | None, Field(None, alias="eigenschaftenGas")]
     eigenschaften_strom: Annotated[

@@ -17,6 +17,6 @@ class Geokoordinaten(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     breitengrad: Annotated[float | str | None, Field(None, title="Breitengrad")]
     laengengrad: Annotated[float | str | None, Field(None, title="Laengengrad")]

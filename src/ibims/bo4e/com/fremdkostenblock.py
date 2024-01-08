@@ -20,7 +20,7 @@ class Fremdkostenblock(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     kostenblockbezeichnung: Annotated[str | None, Field(None, title="Kostenblockbezeichnung")]
     kostenpositionen: Annotated[list[Fremdkostenposition] | None, Field(None, title="Kostenpositionen")]
     summe_kostenblock: Annotated[Betrag | None, Field(None, alias="summeKostenblock")]

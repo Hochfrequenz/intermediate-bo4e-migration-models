@@ -17,7 +17,7 @@ class TarifpreisstaffelProOrt(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     arbeitspreis: Annotated[float | str | None, Field(None, title="Arbeitspreis")]
     arbeitspreis_nt: Annotated[float | str | None, Field(None, alias="arbeitspreisNT", title="Arbeitspreisnt")]
     grundpreis: Annotated[float | str | None, Field(None, title="Grundpreis")]

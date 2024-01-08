@@ -23,7 +23,7 @@ class Ausschreibungsdetail(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     kunde: Annotated[str | None, Field(None, title="Kunde")]
     lastgang_vorhanden: Annotated[bool | None, Field(None, alias="lastgangVorhanden", title="Lastgangvorhanden")]
     lieferzeitraum: Zeitraum | None = None

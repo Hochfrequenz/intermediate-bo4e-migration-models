@@ -12,7 +12,7 @@ class Bankverbindung(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     iban: Annotated[str | None, Field(None, title="Iban")]
     bic: Annotated[str | None, Field(None, title="Bic")]
     gueltig_seit: Annotated[AwareDatetime | None, Field(None, alias="gueltigSeit", title="Gueltigseit")]

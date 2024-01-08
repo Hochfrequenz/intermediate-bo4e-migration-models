@@ -10,7 +10,7 @@ class SepaInfo(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     sepa_id: Annotated[str, Field(alias="sepaId", title="Sepaid")]
     sepa_zahler: Annotated[bool, Field(alias="sepaZahler", title="Sepazahler")]
     creditor_identifier: Annotated[str | None, Field(None, alias="creditorIdentifier", title="Creditoridentifier")]

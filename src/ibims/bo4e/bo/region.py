@@ -21,7 +21,7 @@ class Region(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
     bo_typ: Annotated[BoTyp | None, Field(BoTyp.REGION, alias="boTyp")]
     externe_referenzen: Annotated[

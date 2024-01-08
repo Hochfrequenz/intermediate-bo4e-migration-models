@@ -22,7 +22,7 @@ class Energiemix(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     anteil: Annotated[list[Energieherkunft] | None, Field(None, title="Anteil")]
     atommuell: Annotated[float | str | None, Field(None, title="Atommuell")]
     bemerkung: Annotated[str | None, Field(None, title="Bemerkung")]

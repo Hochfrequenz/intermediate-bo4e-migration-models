@@ -21,7 +21,7 @@ class Preis(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     bezugswert: Mengeneinheit | None = None
     einheit: Waehrungseinheit | None = None
     status: Preisstatus | None = None

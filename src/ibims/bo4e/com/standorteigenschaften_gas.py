@@ -19,6 +19,6 @@ class StandorteigenschaftenGas(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     marktgebiete: Annotated[list[MarktgebietInfo] | None, Field(None, title="Marktgebiete")]
     netzkontonummern: Annotated[list[str] | None, Field(None, title="Netzkontonummern")]

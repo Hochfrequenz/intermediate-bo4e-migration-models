@@ -20,7 +20,7 @@ class RegionalePreisstaffel(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     einheitspreis: Annotated[float | str | None, Field(None, title="Einheitspreis")]
     regionale_gueltigkeit: Annotated[RegionaleGueltigkeit | None, Field(None, alias="regionaleGueltigkeit")]
     sigmoidparameter: Sigmoidparameter | None = None

@@ -19,6 +19,6 @@ class ExterneReferenz(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     ex_ref_name: Annotated[str | None, Field(None, alias="exRefName", title="Exrefname")]
     ex_ref_wert: Annotated[str | None, Field(None, alias="exRefWert", title="Exrefwert")]

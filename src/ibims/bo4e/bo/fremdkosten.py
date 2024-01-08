@@ -25,7 +25,7 @@ class Fremdkosten(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     bo_typ: Annotated[BoTyp | None, Field(BoTyp.FREMDKOSTEN, alias="boTyp")]
     externe_referenzen: Annotated[
         list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")

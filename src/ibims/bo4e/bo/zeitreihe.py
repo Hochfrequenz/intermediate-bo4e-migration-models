@@ -27,7 +27,7 @@ class Zeitreihe(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]
     bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
     bo_typ: Annotated[BoTyp | None, Field(BoTyp.ZEITREIHE, alias="boTyp")]

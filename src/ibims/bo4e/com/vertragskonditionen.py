@@ -19,7 +19,7 @@ class Vertragskonditionen(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     abschlagszyklus: Zeitraum | None = None
     anzahl_abschlaege: Annotated[float | str | None, Field(None, alias="anzahlAbschlaege", title="Anzahlabschlaege")]
     beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]

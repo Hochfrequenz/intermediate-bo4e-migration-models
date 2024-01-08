@@ -23,7 +23,7 @@ class RegionaleTarifpreisposition(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     bezugseinheit: Mengeneinheit | None = None
     einheit: Waehrungseinheit | None = None
     mengeneinheitstaffel: Mengeneinheit | None = None

@@ -27,7 +27,7 @@ class Angebot(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    id: Annotated[str, Field(alias="_id", title=" Id")]
+    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     anfragereferenz: Annotated[str | None, Field(None, title="Anfragereferenz")]
     angebotsdatum: Annotated[AwareDatetime | None, Field(None, title="Angebotsdatum")]
     angebotsgeber: Geschaeftspartner | None = None
