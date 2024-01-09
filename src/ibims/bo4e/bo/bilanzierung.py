@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
@@ -18,6 +20,7 @@ class Bilanzierung(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
     bo_typ: Annotated[BoTyp | None, Field("BILANZIERUNG", alias="boTyp")]
@@ -25,8 +28,8 @@ class Bilanzierung(BaseModel):
         list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
     ]
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bilanzierungsbeginn: Annotated[AwareDatetime, Field(title="Bilanzierungsbeginn")]
-    bilanzierungsende: Annotated[AwareDatetime, Field(title="Bilanzierungsende")]
+    bilanzierungsbeginn: Annotated[datetime, Field(title="Bilanzierungsbeginn")]
+    bilanzierungsende: Annotated[datetime, Field(title="Bilanzierungsende")]
     bilanzkreis: Annotated[str | None, Field(None, title="Bilanzkreis")]
     aggregationsverantwortung: Aggregationsverantwortung | None = None
     lastprofile: Annotated[list[Lastprofil] | None, Field(None, title="Lastprofile")]

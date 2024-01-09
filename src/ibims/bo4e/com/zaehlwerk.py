@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..enum.abgabeart import Abgabeart
@@ -20,6 +22,7 @@ class Zaehlwerk(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
@@ -32,7 +35,7 @@ class Zaehlwerk(BaseModel):
     nachkommastellen: Annotated[int, Field(title="Nachkommastellen")]
     schwachlastfaehig: Annotated[bool, Field(title="Schwachlastfaehig")]
     konzessionsabgaben_typ: Annotated[Abgabeart | None, Field(None, alias="konzessionsabgabenTyp")]
-    active_from: Annotated[AwareDatetime, Field(alias="activeFrom", title="Activefrom")]
-    active_until: Annotated[AwareDatetime | None, Field(None, alias="activeUntil", title="Activeuntil")]
+    active_from: Annotated[datetime, Field(alias="activeFrom", title="Activefrom")]
+    active_until: Annotated[datetime | None, Field(None, alias="activeUntil", title="Activeuntil")]
     description: Annotated[str | None, Field(None, title="Description")]
     verbrauchsart: Annotated[str | None, Field(None, title="Verbrauchsart")]

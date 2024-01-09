@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..com.adresse import Adresse
@@ -26,6 +28,7 @@ class Geschaeftspartner(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     amtsgericht: Annotated[str | None, Field(None, title="Amtsgericht")]
@@ -47,8 +50,8 @@ class Geschaeftspartner(BaseModel):
     umsatzsteuer_id: Annotated[str | None, Field(None, alias="umsatzsteuerId", title="Umsatzsteuerid")]
     versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
     website: Annotated[str | None, Field(None, title="Website")]
-    erstellungsdatum: Annotated[AwareDatetime | None, Field(None, title="Erstellungsdatum")]
-    geburtstag: Annotated[AwareDatetime | None, Field(None, title="Geburtstag")]
+    erstellungsdatum: Annotated[datetime | None, Field(None, title="Erstellungsdatum")]
+    geburtstag: Annotated[datetime | None, Field(None, title="Geburtstag")]
     telefonnummer_mobil: Annotated[str | None, Field(None, alias="telefonnummerMobil", title="Telefonnummermobil")]
     telefonnummer_privat: Annotated[str | None, Field(None, alias="telefonnummerPrivat", title="Telefonnummerprivat")]
     telefonnummer_geschaeft: Annotated[

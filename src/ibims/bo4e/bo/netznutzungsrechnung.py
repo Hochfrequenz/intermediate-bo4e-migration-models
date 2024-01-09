@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..com.betrag import Betrag
@@ -29,6 +31,7 @@ class Netznutzungsrechnung(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     absendercodenummer: Annotated[str | None, Field(None, title="Absendercodenummer")]
@@ -37,7 +40,7 @@ class Netznutzungsrechnung(BaseModel):
     externe_referenzen: Annotated[
         list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
     ]
-    faelligkeitsdatum: Annotated[AwareDatetime | None, Field(None, title="Faelligkeitsdatum")]
+    faelligkeitsdatum: Annotated[datetime | None, Field(None, title="Faelligkeitsdatum")]
     gesamtbrutto: Betrag | None = None
     gesamtnetto: Betrag | None = None
     gesamtsteuer: Betrag | None = None
@@ -49,7 +52,7 @@ class Netznutzungsrechnung(BaseModel):
         str | None, Field(None, alias="originalRechnungsnummer", title="Originalrechnungsnummer")
     ]
     rabatt_brutto: Annotated[Betrag | None, Field(None, alias="rabattBrutto")]
-    rechnungsdatum: Annotated[AwareDatetime | None, Field(None, title="Rechnungsdatum")]
+    rechnungsdatum: Annotated[datetime | None, Field(None, title="Rechnungsdatum")]
     rechnungsempfaenger: Geschaeftspartner | None = None
     rechnungsersteller: Geschaeftspartner | None = None
     rechnungsnummer: Annotated[str | None, Field(None, title="Rechnungsnummer")]

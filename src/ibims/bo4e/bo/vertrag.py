@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
@@ -27,6 +29,7 @@ class Vertrag(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]
@@ -39,8 +42,8 @@ class Vertrag(BaseModel):
     unterzeichnervp2: Annotated[list[Unterschrift] | None, Field(None, title="Unterzeichnervp2")]
     versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
     vertragsart: Vertragsart | None = None
-    vertragsbeginn: Annotated[AwareDatetime | None, Field(None, title="Vertragsbeginn")]
-    vertragsende: Annotated[AwareDatetime | None, Field(None, title="Vertragsende")]
+    vertragsbeginn: Annotated[datetime | None, Field(None, title="Vertragsbeginn")]
+    vertragsende: Annotated[datetime | None, Field(None, title="Vertragsende")]
     vertragskonditionen: Vertragskonditionen | None = None
     vertragsnummer: Annotated[str | None, Field(None, title="Vertragsnummer")]
     vertragspartner1: Geschaeftspartner | None = None

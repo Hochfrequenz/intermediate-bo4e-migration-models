@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..com.ausschreibungslos import Ausschreibungslos
@@ -25,6 +27,7 @@ class Ausschreibung(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     abgabefrist: Zeitraum | None = None
@@ -40,6 +43,6 @@ class Ausschreibung(BaseModel):
     ]
     kostenpflichtig: Annotated[bool | None, Field(None, title="Kostenpflichtig")]
     lose: Annotated[list[Ausschreibungslos] | None, Field(None, title="Lose")]
-    veroeffentlichungszeitpunkt: Annotated[AwareDatetime | None, Field(None, title="Veroeffentlichungszeitpunkt")]
+    veroeffentlichungszeitpunkt: Annotated[datetime | None, Field(None, title="Veroeffentlichungszeitpunkt")]
     versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
     webseite: Annotated[str | None, Field(None, title="Webseite")]

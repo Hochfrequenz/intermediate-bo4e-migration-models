@@ -26,6 +26,7 @@ class Angebotsteil(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     anfrage_subreferenz: Annotated[str | None, Field(None, alias="anfrageSubreferenz", title="Anfragesubreferenz")]

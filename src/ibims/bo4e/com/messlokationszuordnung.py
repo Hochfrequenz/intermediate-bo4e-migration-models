@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..enum.arithmetische_operation import ArithmetischeOperation
@@ -20,9 +22,10 @@ class Messlokationszuordnung(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     arithmetik: ArithmetischeOperation | None = None
-    gueltig_bis: Annotated[AwareDatetime | None, Field(None, alias="gueltigBis", title="Gueltigbis")]
-    gueltig_seit: Annotated[AwareDatetime | None, Field(None, alias="gueltigSeit", title="Gueltigseit")]
+    gueltig_bis: Annotated[datetime | None, Field(None, alias="gueltigBis", title="Gueltigbis")]
+    gueltig_seit: Annotated[datetime | None, Field(None, alias="gueltigSeit", title="Gueltigseit")]
     messlokations_id: Annotated[str | None, Field(None, alias="messlokationsId", title="Messlokationsid")]

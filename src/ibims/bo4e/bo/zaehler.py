@@ -1,4 +1,6 @@
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
@@ -27,14 +29,15 @@ class Zaehler(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     bo_typ: Annotated[BoTyp | None, Field(BoTyp.ZAEHLER, alias="boTyp")]
-    eichung_bis: Annotated[AwareDatetime | None, Field(None, alias="eichungBis", title="Eichungbis")]
+    eichung_bis: Annotated[datetime | None, Field(None, alias="eichungBis", title="Eichungbis")]
     externe_referenzen: Annotated[
         list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
     ]
-    letzte_eichung: Annotated[AwareDatetime | None, Field(None, alias="letzteEichung", title="Letzteeichung")]
+    letzte_eichung: Annotated[datetime | None, Field(None, alias="letzteEichung", title="Letzteeichung")]
     sparte: Sparte | None = None
     tarifart: Tarifart | None = None
     versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
@@ -46,6 +49,6 @@ class Zaehler(BaseModel):
     zaehlwerke: Annotated[list[Zaehlwerk] | None, Field(None, title="Zaehlwerke")]
     messwerterfassung: Messwerterfassung
     nachstes_ablesedatum: Annotated[
-        AwareDatetime | None, Field(None, alias="nachstesAblesedatum", title="Nachstesablesedatum")
+        datetime | None, Field(None, alias="nachstesAblesedatum", title="Nachstesablesedatum")
     ]
     aktiver_zeitraum: Annotated[Zeitraum | None, Field(None, alias="aktiverZeitraum")]

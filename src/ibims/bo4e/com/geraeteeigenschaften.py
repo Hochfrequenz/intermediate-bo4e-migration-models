@@ -19,6 +19,7 @@ class Geraeteeigenschaften(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     geraetemerkmal: Geraetemerkmal | None = None

@@ -19,6 +19,7 @@ class Zeitintervall(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     wert: Annotated[int | None, Field(None, title="Wert")]

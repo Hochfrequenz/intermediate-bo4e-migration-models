@@ -12,6 +12,7 @@ class Kampagne(BaseModel):
 
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
     bo_typ: Annotated[BoTyp | None, Field(BoTyp.GESCHAEFTSOBJEKT, alias="boTyp")]
