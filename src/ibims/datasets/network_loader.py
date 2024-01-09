@@ -43,7 +43,7 @@ class TripicaNetworkLoaderDataSet(DataSetBaseModel):
 
     liefer_adresse: Adresse
 
-    geschaeftspartner_mit_rechnungs_adresse: Geschaeftspartner
+    geschaeftspartner: Geschaeftspartner
     """
     This information is used for the customerMeterReadings part and
     is not a real business partner, so not all information of this object arte needed:

@@ -15,7 +15,7 @@ class ED4AgentHintLoaderDataSet(DataSetBaseModel):
     In the context of this package is may be used to create ED$ AgentHint Data.
     """
 
-    geschaeftspartner_erw: Geschaeftspartner
+    geschaeftspartner: Geschaeftspartner
     """
     The following attribute needs to be filled for this DataSet:
     - externe_referenzen
