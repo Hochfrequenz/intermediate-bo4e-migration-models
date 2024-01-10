@@ -1,0 +1,35 @@
+name: "BO4E Integrity Check"
+
+on: [push]
+jobs:
+  bo4e_integrity_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r dev_requirements/requirements-generate-bo4e.txt
+          pip install -r dev_requirements/requirements-formatting.txt
+      - name: Install tox
+        run: pip install tox
+      - name: Build BO4E
+        run: |
+          tox -e generate_bo4e
+      - name: Run formatters
+        run: |
+          black src/ibims/bo4e
+          isort src/ibims/bo4e
+      - name: Check if BO4E is correct and up-to-date
+        run: |
+          git diff
+          if git diff --exit-code; then
+            echo "No changes found"
+          else
+            echo "Changes found"
+            exit 1
+          fi
