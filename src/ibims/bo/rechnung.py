@@ -5,7 +5,7 @@ from typing import Optional
 
 from bo4e.bo.rechnung import Rechnung
 
-from ibims.com import RechnungspositionErweitert
+from ibims.com import RechnungspositionErweitert, SteuerbetragErweitert
 from ibims.enum import RechnungstypErweitert
 
 
@@ -20,3 +20,8 @@ class RechnungErweitert(Rechnung):
     rechnungstyp: RechnungstypErweitert  # type: ignore[assignment]
     ist_selbstausgestellt: Optional[bool] = None
     ist_reverse_charge: Optional[bool] = None
+    steuerbetraege: Optional[list[SteuerbetragErweitert]] = None  # type: ignore[assignment]
+    """
+    Eine Liste mit Steuerbeträgen pro Steuerkennzeichen/Steuersatz;
+    die Summe dieser Beträge ergibt den Wert für gesamtsteuer.
+    """
