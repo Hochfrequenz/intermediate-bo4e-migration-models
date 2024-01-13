@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
@@ -28,4 +29,4 @@ class Zeitreihenwert(BaseModel):
     datum_uhrzeit_von: Annotated[datetime | None, Field(None, alias="datumUhrzeitVon", title="Datumuhrzeitvon")]
     status: Messwertstatus | None = None
     statuszusatz: Messwertstatuszusatz | None = None
-    wert: Annotated[float | str | None, Field(None, title="Wert")]
+    wert: Annotated[Decimal | None, Field(None, title="Wert")]

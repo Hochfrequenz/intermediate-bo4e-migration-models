@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
@@ -26,8 +28,8 @@ class Tarifberechnungsparameter(BaseModel):
     berechnungsmethode: Tarifkalkulationsmethode | None = None
     hoechstpreis_ht: Annotated[Preis | None, Field(None, alias="hoechstpreisHT")]
     hoechstpreis_nt: Annotated[Preis | None, Field(None, alias="hoechstpreisNT")]
-    kw_inklusive: Annotated[float | str | None, Field(None, alias="kwInklusive", title="Kwinklusive")]
-    kw_weitere_mengen: Annotated[float | str | None, Field(None, alias="kwWeitereMengen", title="Kwweiteremengen")]
+    kw_inklusive: Annotated[Decimal | None, Field(None, alias="kwInklusive", title="Kwinklusive")]
+    kw_weitere_mengen: Annotated[Decimal | None, Field(None, alias="kwWeitereMengen", title="Kwweiteremengen")]
     messpreis_beruecksichtigen: Annotated[
         bool | None, Field(None, alias="messpreisBeruecksichtigen", title="Messpreisberuecksichtigen")
     ]

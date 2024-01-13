@@ -108,10 +108,8 @@
     "zaehlerkonstante": {
       "anyOf": [
         {
-          "type": "number"
-        },
-        {
-          "type": "string"
+          "type": "string",
+          "format": "decimal"
         },
         {
           "type": "null"

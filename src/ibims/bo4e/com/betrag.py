@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
@@ -23,4 +25,4 @@ class Betrag(BaseModel):
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     waehrung: Waehrungscode | None = None
-    wert: Annotated[float | str | None, Field(None, title="Wert")]
+    wert: Annotated[Decimal | None, Field(None, title="Wert")]

@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
@@ -25,10 +27,10 @@ class Energiemix(BaseModel):
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     anteil: Annotated[list[Energieherkunft] | None, Field(None, title="Anteil")]
-    atommuell: Annotated[float | str | None, Field(None, title="Atommuell")]
+    atommuell: Annotated[Decimal | None, Field(None, title="Atommuell")]
     bemerkung: Annotated[str | None, Field(None, title="Bemerkung")]
     bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
-    co2_emission: Annotated[float | str | None, Field(None, alias="co2Emission", title="Co2Emission")]
+    co2_emission: Annotated[Decimal | None, Field(None, alias="co2Emission", title="Co2Emission")]
     energieart: Sparte | None = None
     energiemixnummer: Annotated[int | None, Field(None, title="Energiemixnummer")]
     gueltigkeitsjahr: Annotated[int | None, Field(None, title="Gueltigkeitsjahr")]

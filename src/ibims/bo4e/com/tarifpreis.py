@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
@@ -29,4 +31,4 @@ class Tarifpreis(BaseModel):
     einheit: Waehrungseinheit | None = None
     preistyp: Preistyp | None = None
     status: Preisstatus | None = None
-    wert: Annotated[float | str | None, Field(None, title="Wert")]
+    wert: Annotated[Decimal | None, Field(None, title="Wert")]
