@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
@@ -19,6 +21,6 @@ class AufAbschlagstaffelProOrt(BaseModel):
         populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    staffelgrenze_bis: Annotated[float | str | None, Field(None, alias="staffelgrenzeBis", title="Staffelgrenzebis")]
-    staffelgrenze_von: Annotated[float | str | None, Field(None, alias="staffelgrenzeVon", title="Staffelgrenzevon")]
-    wert: Annotated[float | str | None, Field(None, title="Wert")]
+    staffelgrenze_bis: Annotated[Decimal | None, Field(None, alias="staffelgrenzeBis", title="Staffelgrenzebis")]
+    staffelgrenze_von: Annotated[Decimal | None, Field(None, alias="staffelgrenzeVon", title="Staffelgrenzevon")]
+    wert: Annotated[Decimal | None, Field(None, title="Wert")]

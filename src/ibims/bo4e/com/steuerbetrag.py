@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
@@ -22,10 +24,10 @@ class Steuerbetrag(BaseModel):
         populate_by_name=True,
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    basiswert: Annotated[float | str | None, Field(None, title="Basiswert")]
+    basiswert: Annotated[Decimal | None, Field(None, title="Basiswert")]
     steuerkennzeichen: Steuerkennzeichen | None = None
-    steuerwert: Annotated[float | str | None, Field(None, title="Steuerwert")]
+    steuerwert: Annotated[Decimal | None, Field(None, title="Steuerwert")]
     waehrung: Waehrungscode | None = None
     steuerwert_vorausgezahlt: Annotated[
-        float | str | None, Field(None, alias="steuerwertVorausgezahlt", title="Steuerwertvorausgezahlt")
+        Decimal | None, Field(None, alias="steuerwertVorausgezahlt", title="Steuerwertvorausgezahlt")
     ]

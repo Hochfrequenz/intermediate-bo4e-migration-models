@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
@@ -27,6 +29,6 @@ class PositionsAufAbschlag(BaseModel):
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     auf_abschlagstyp: Annotated[AufAbschlagstyp | None, Field(None, alias="aufAbschlagstyp")]
     auf_abschlagswaehrung: Annotated[Waehrungseinheit | None, Field(None, alias="aufAbschlagswaehrung")]
-    auf_abschlagswert: Annotated[float | str | None, Field(None, alias="aufAbschlagswert", title="Aufabschlagswert")]
+    auf_abschlagswert: Annotated[Decimal | None, Field(None, alias="aufAbschlagswert", title="Aufabschlagswert")]
     beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]
     bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]

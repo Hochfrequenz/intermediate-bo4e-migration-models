@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
@@ -29,7 +30,7 @@ class Zaehlwerk(BaseModel):
     einheit: Mengeneinheit | None = None
     obis_kennzahl: Annotated[str | None, Field(None, alias="obisKennzahl", title="Obiskennzahl")]
     richtung: Energierichtung | None = None
-    wandlerfaktor: Annotated[float | str | None, Field(None, title="Wandlerfaktor")]
+    wandlerfaktor: Annotated[Decimal | None, Field(None, title="Wandlerfaktor")]
     zaehlwerk_id: Annotated[str | None, Field(None, alias="zaehlwerkId", title="Zaehlwerkid")]
     vorkommastellen: Annotated[int, Field(title="Vorkommastellen")]
     nachkommastellen: Annotated[int, Field(title="Nachkommastellen")]

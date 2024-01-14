@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
@@ -19,8 +21,8 @@ class Sigmoidparameter(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    a: Annotated[float | str | None, Field(None, alias="A", title="A")]
-    b: Annotated[float | str | None, Field(None, alias="B", title="B")]
-    c: Annotated[float | str | None, Field(None, alias="C", title="C")]
-    d: Annotated[float | str | None, Field(None, alias="D", title="D")]
+    a: Annotated[Decimal | None, Field(None, alias="A", title="A")]
+    b: Annotated[Decimal | None, Field(None, alias="B", title="B")]
+    c: Annotated[Decimal | None, Field(None, alias="C", title="C")]
+    d: Annotated[Decimal | None, Field(None, alias="D", title="D")]
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]

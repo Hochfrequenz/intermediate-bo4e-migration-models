@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
@@ -38,7 +39,7 @@ class ZaehlerGas(BaseModel):
     zaehlertyp: Zaehlertyp
     zaehlwerke: Annotated[list[Zaehlwerk] | None, Field(None, title="Zaehlwerke")]
     tarifart: Tarifart | None = None
-    zaehlerkonstante: Annotated[float | str | None, Field(None, title="Zaehlerkonstante")]
+    zaehlerkonstante: Annotated[Decimal | None, Field(None, title="Zaehlerkonstante")]
     eichung_bis: Annotated[datetime | None, Field(None, alias="eichungBis", title="Eichungbis")]
     letzte_eichung: Annotated[datetime | None, Field(None, alias="letzteEichung", title="Letzteeichung")]
     zaehlerhersteller: Geschaeftspartner | None = None

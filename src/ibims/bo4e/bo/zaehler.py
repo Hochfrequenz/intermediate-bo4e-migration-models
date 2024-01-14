@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
@@ -43,7 +44,7 @@ class Zaehler(BaseModel):
     versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
     zaehlerauspraegung: Zaehlerauspraegung | None = None
     zaehlerhersteller: Geschaeftspartner | None = None
-    zaehlerkonstante: Annotated[float | str | None, Field(None, title="Zaehlerkonstante")]
+    zaehlerkonstante: Annotated[Decimal | None, Field(None, title="Zaehlerkonstante")]
     zaehlernummer: Annotated[str | None, Field(None, title="Zaehlernummer")]
     zaehlertyp: Zaehlertyp | None = None
     zaehlwerke: Annotated[list[Zaehlwerk] | None, Field(None, title="Zaehlwerke")]

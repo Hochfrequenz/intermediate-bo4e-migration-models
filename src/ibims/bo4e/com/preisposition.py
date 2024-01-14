@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
@@ -34,10 +36,10 @@ class Preisposition(BaseModel):
     berechnungsmethode: Kalkulationsmethode | None = None
     bezugsgroesse: Mengeneinheit | None = None
     freimenge_blindarbeit: Annotated[
-        float | str | None, Field(None, alias="freimengeBlindarbeit", title="Freimengeblindarbeit")
+        Decimal | None, Field(None, alias="freimengeBlindarbeit", title="Freimengeblindarbeit")
     ]
     freimenge_leistungsfaktor: Annotated[
-        float | str | None, Field(None, alias="freimengeLeistungsfaktor", title="Freimengeleistungsfaktor")
+        Decimal | None, Field(None, alias="freimengeLeistungsfaktor", title="Freimengeleistungsfaktor")
     ]
     gruppenartikel_id: Annotated[str | None, Field(None, alias="gruppenartikelId", title="Gruppenartikelid")]
     leistungsbezeichnung: Annotated[str | None, Field(None, title="Leistungsbezeichnung")]

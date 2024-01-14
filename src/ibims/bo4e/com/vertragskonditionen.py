@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
 from typing_extensions import Annotated
 
@@ -22,7 +24,7 @@ class Vertragskonditionen(BaseModel):
     )
     id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
     abschlagszyklus: Zeitraum | None = None
-    anzahl_abschlaege: Annotated[float | str | None, Field(None, alias="anzahlAbschlaege", title="Anzahlabschlaege")]
+    anzahl_abschlaege: Annotated[Decimal | None, Field(None, alias="anzahlAbschlaege", title="Anzahlabschlaege")]
     beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]
     kuendigungsfrist: Zeitraum | None = None
     vertragslaufzeit: Zeitraum | None = None
