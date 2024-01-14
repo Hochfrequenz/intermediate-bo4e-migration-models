@@ -1,5 +1,5 @@
 """
-BO4E vunknown - Generated Python implementation of the BO4E standard
+BO4E v0.6.1 - Generated Python implementation of the BO4E standard
 
 BO4E is a standard for the exchange of business objects in the energy industry.
 All our software used to generate this BO4E-implementation is open-source and released under the Apache-2.0 license.
@@ -106,7 +106,6 @@ __all__ = [
     "Unterschrift",
     "Verbrauch",
     "Vertragskonditionen",
-    "Vertragskonto",
     "VertragskontoCBA",
     "VertragskontoMBA",
     "Vertragsteil",
@@ -307,7 +306,6 @@ from .com.tarifpreisstaffel_pro_ort import TarifpreisstaffelProOrt
 from .com.unterschrift import Unterschrift
 from .com.verbrauch import Verbrauch
 from .com.vertragskonditionen import Vertragskonditionen
-from .com.vertragskonto import Vertragskonto
 from .com.vertragskonto_cba import VertragskontoCBA
 from .com.vertragskonto_mba import VertragskontoMBA
 from .com.vertragsteil import Vertragsteil
