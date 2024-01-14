@@ -13,6 +13,7 @@ from ibims.bo4e import (
     Marktteilnehmer,
     Vertrag,
     Zaehler,
+    ZaehlerGas,
     Zaehlpunkt,
 )
 from ibims.datasets import DataSetBaseModel
@@ -86,7 +87,7 @@ class TripicaNetworkLoaderDataSet(DataSetBaseModel):
     - rollencodenummer
     """
 
-    zaehler: Zaehler
+    zaehler: Zaehler | ZaehlerGas
     """
     The following attributes need to be filled for this DataSet:
     - zaehlernummer
