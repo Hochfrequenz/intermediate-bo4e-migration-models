@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
 from ..com.tagesvektor import Tagesvektor
@@ -20,17 +19,17 @@ class LastgangKompakt(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.LASTGANG_KOMPAKT, alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    lokations_id: Annotated[str | None, Field(None, alias="lokationsId", title="Lokationsid")]
-    lokationstyp: Annotated[str | None, Field(None, title="Lokationstyp")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bo_typ: BoTyp | None = Field(default=BoTyp.LASTGANG_KOMPAKT, alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    lokations_id: str | None = Field(default=None, alias="lokationsId", title="Lokationsid")
+    lokationstyp: str | None = Field(default=None, title="Lokationstyp")
     messgroesse: Mengeneinheit | None = None
-    obis_kennzahl: Annotated[str | None, Field(None, alias="obisKennzahl", title="Obiskennzahl")]
+    obis_kennzahl: str | None = Field(default=None, alias="obisKennzahl", title="Obiskennzahl")
     sparte: Sparte | None = None
-    tagesvektoren: Annotated[list[Tagesvektor] | None, Field(None, title="Tagesvektoren")]
-    version: Annotated[str | None, Field(None, title="Version")]
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    tagesvektoren: list[Tagesvektor] | None = Field(default=None, title="Tagesvektoren")
+    version: str | None = Field(default=None, title="Version")
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     zeitintervall: Zeitintervall | None = None

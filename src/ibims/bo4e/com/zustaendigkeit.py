@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.themengebiet import Themengebiet
 
@@ -20,7 +19,7 @@ class Zustaendigkeit(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    abteilung: Annotated[str | None, Field(None, title="Abteilung")]
-    jobtitel: Annotated[str | None, Field(None, title="Jobtitel")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    abteilung: str | None = Field(default=None, title="Abteilung")
+    jobtitel: str | None = Field(default=None, title="Jobtitel")
     themengebiet: Themengebiet | None = None

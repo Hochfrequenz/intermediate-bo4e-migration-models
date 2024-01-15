@@ -1,7 +1,6 @@
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.bdew_artikelnummer import BDEWArtikelnummer
 from ..enum.bemessungsgroesse import Bemessungsgroesse
@@ -31,21 +30,21 @@ class Preisposition(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bdew_artikelnummer: Annotated[BDEWArtikelnummer | None, Field(None, alias="bdewArtikelnummer")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bdew_artikelnummer: BDEWArtikelnummer | None = Field(default=None, alias="bdewArtikelnummer")
     berechnungsmethode: Kalkulationsmethode | None = None
     bezugsgroesse: Mengeneinheit | None = None
-    freimenge_blindarbeit: Annotated[
-        Decimal | None, Field(None, alias="freimengeBlindarbeit", title="Freimengeblindarbeit")
-    ]
-    freimenge_leistungsfaktor: Annotated[
-        Decimal | None, Field(None, alias="freimengeLeistungsfaktor", title="Freimengeleistungsfaktor")
-    ]
-    gruppenartikel_id: Annotated[str | None, Field(None, alias="gruppenartikelId", title="Gruppenartikelid")]
-    leistungsbezeichnung: Annotated[str | None, Field(None, title="Leistungsbezeichnung")]
+    freimenge_blindarbeit: Decimal | None = Field(
+        default=None, alias="freimengeBlindarbeit", title="Freimengeblindarbeit"
+    )
+    freimenge_leistungsfaktor: Decimal | None = Field(
+        default=None, alias="freimengeLeistungsfaktor", title="Freimengeleistungsfaktor"
+    )
+    gruppenartikel_id: str | None = Field(default=None, alias="gruppenartikelId", title="Gruppenartikelid")
+    leistungsbezeichnung: str | None = Field(default=None, title="Leistungsbezeichnung")
     leistungstyp: Leistungstyp | None = None
     preiseinheit: Waehrungseinheit | None = None
-    preisstaffeln: Annotated[list[Preisstaffel] | None, Field(None, title="Preisstaffeln")]
+    preisstaffeln: list[Preisstaffel] | None = Field(default=None, title="Preisstaffeln")
     tarifzeit: Tarifzeit | None = None
     zeitbasis: Zeiteinheit | None = None
     zonungsgroesse: Bemessungsgroesse | None = None

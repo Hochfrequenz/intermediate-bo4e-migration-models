@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from .geraeteeigenschaften import Geraeteeigenschaften
 
@@ -20,6 +19,6 @@ class Geraet(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     geraeteeigenschaften: Geraeteeigenschaften | None = None
-    geraetenummer: Annotated[str | None, Field(None, title="Geraetenummer")]
+    geraetenummer: str | None = Field(default=None, title="Geraetenummer")

@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
 from ..enum.bo_typ import BoTyp
@@ -16,13 +15,13 @@ class Dokument(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.GESCHAEFTSOBJEKT, alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    erstellungsdatum: Annotated[datetime, Field(title="Erstellungsdatum")]
-    has_been_sent: Annotated[bool, Field(alias="hasBeenSent", title="Hasbeensent")]
-    dokumentenname: Annotated[str, Field(title="Dokumentenname")]
-    vorlagenname: Annotated[str, Field(title="Vorlagenname")]
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    bo_typ: BoTyp | None = Field(default=BoTyp.GESCHAEFTSOBJEKT, alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    erstellungsdatum: datetime = Field(..., title="Erstellungsdatum")
+    has_been_sent: bool = Field(..., alias="hasBeenSent", title="Hasbeensent")
+    dokumentenname: str = Field(..., title="Dokumentenname")
+    vorlagenname: str = Field(..., title="Vorlagenname")

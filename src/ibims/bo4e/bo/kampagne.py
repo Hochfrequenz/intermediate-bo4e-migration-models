@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
 from ..enum.bo_typ import BoTyp
@@ -14,10 +13,10 @@ class Kampagne(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.GESCHAEFTSOBJEKT, alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    id: Annotated[str, Field(title="Id")]
-    name: Annotated[str, Field(title="Name")]
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    bo_typ: BoTyp | None = Field(default=BoTyp.GESCHAEFTSOBJEKT, alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    id: str = Field(..., title="Id")
+    name: str = Field(..., title="Name")

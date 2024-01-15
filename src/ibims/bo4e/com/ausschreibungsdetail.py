@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.zaehlertyp import Zaehlertyp
 from .adresse import Adresse
@@ -24,19 +23,19 @@ class Ausschreibungsdetail(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    kunde: Annotated[str | None, Field(None, title="Kunde")]
-    lastgang_vorhanden: Annotated[bool | None, Field(None, alias="lastgangVorhanden", title="Lastgangvorhanden")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    kunde: str | None = Field(default=None, title="Kunde")
+    lastgang_vorhanden: bool | None = Field(default=None, alias="lastgangVorhanden", title="Lastgangvorhanden")
     lieferzeitraum: Zeitraum | None = None
-    marktlokations_id: Annotated[str | None, Field(None, alias="marktlokationsId", title="Marktlokationsid")]
+    marktlokations_id: str | None = Field(default=None, alias="marktlokationsId", title="Marktlokationsid")
     marktlokationsadresse: Adresse | None = None
-    marktlokationsbezeichnung: Annotated[str | None, Field(None, title="Marktlokationsbezeichnung")]
-    netzbetreiber: Annotated[str | None, Field(None, title="Netzbetreiber")]
-    netzebene_lieferung: Annotated[str | None, Field(None, alias="netzebeneLieferung", title="Netzebenelieferung")]
-    netzebene_messung: Annotated[str | None, Field(None, alias="netzebeneMessung", title="Netzebenemessung")]
-    prognose_arbeit_lieferzeitraum: Annotated[Menge | None, Field(None, alias="prognoseArbeitLieferzeitraum")]
-    prognose_jahresarbeit: Annotated[Menge | None, Field(None, alias="prognoseJahresarbeit")]
-    prognose_leistung: Annotated[Menge | None, Field(None, alias="prognoseLeistung")]
+    marktlokationsbezeichnung: str | None = Field(default=None, title="Marktlokationsbezeichnung")
+    netzbetreiber: str | None = Field(default=None, title="Netzbetreiber")
+    netzebene_lieferung: str | None = Field(default=None, alias="netzebeneLieferung", title="Netzebenelieferung")
+    netzebene_messung: str | None = Field(default=None, alias="netzebeneMessung", title="Netzebenemessung")
+    prognose_arbeit_lieferzeitraum: Menge | None = Field(default=None, alias="prognoseArbeitLieferzeitraum")
+    prognose_jahresarbeit: Menge | None = Field(default=None, alias="prognoseJahresarbeit")
+    prognose_leistung: Menge | None = Field(default=None, alias="prognoseLeistung")
     rechnungsadresse: Adresse | None = None
-    zaehlernummer: Annotated[str | None, Field(None, title="Zaehlernummer")]
+    zaehlernummer: str | None = Field(default=None, title="Zaehlernummer")
     zaehlertechnik: Zaehlertyp | None = None

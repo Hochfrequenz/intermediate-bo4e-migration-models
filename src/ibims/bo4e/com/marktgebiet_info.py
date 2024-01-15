@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 
 class MarktgebietInfo(BaseModel):
@@ -18,6 +17,6 @@ class MarktgebietInfo(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    marktgebiet: Annotated[str | None, Field(None, title="Marktgebiet")]
-    marktgebietcode: Annotated[str | None, Field(None, title="Marktgebietcode")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    marktgebiet: str | None = Field(default=None, title="Marktgebiet")
+    marktgebietcode: str | None = Field(default=None, title="Marktgebietcode")

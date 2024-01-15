@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
 from ..com.unterschrift import Unterschrift
@@ -31,22 +30,22 @@ class Buendelvertrag(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.BUENDELVERTRAG, alias="boTyp")]
-    einzelvertraege: Annotated[list[Vertrag] | None, Field(None, title="Einzelvertraege")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    beschreibung: str | None = Field(default=None, title="Beschreibung")
+    bo_typ: BoTyp | None = Field(default=BoTyp.BUENDELVERTRAG, alias="boTyp")
+    einzelvertraege: list[Vertrag] | None = Field(default=None, title="Einzelvertraege")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
     sparte: Sparte | None = None
-    unterzeichnervp1: Annotated[list[Unterschrift] | None, Field(None, title="Unterzeichnervp1")]
-    unterzeichnervp2: Annotated[list[Unterschrift] | None, Field(None, title="Unterzeichnervp2")]
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    unterzeichnervp1: list[Unterschrift] | None = Field(default=None, title="Unterzeichnervp1")
+    unterzeichnervp2: list[Unterschrift] | None = Field(default=None, title="Unterzeichnervp2")
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     vertragsart: Vertragsart | None = None
-    vertragsbeginn: Annotated[datetime | None, Field(None, title="Vertragsbeginn")]
-    vertragsende: Annotated[datetime | None, Field(None, title="Vertragsende")]
-    vertragskonditionen: Annotated[list[Vertragskonditionen] | None, Field(None, title="Vertragskonditionen")]
-    vertragsnummer: Annotated[str | None, Field(None, title="Vertragsnummer")]
+    vertragsbeginn: datetime | None = Field(default=None, title="Vertragsbeginn")
+    vertragsende: datetime | None = Field(default=None, title="Vertragsende")
+    vertragskonditionen: list[Vertragskonditionen] | None = Field(default=None, title="Vertragskonditionen")
+    vertragsnummer: str | None = Field(default=None, title="Vertragsnummer")
     vertragspartner1: Geschaeftspartner | None = None
     vertragspartner2: Geschaeftspartner | None = None
     vertragsstatus: Vertragsstatus | None = None

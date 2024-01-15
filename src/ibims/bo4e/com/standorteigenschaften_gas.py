@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from .marktgebiet_info import MarktgebietInfo
 
@@ -20,6 +19,6 @@ class StandorteigenschaftenGas(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    marktgebiete: Annotated[list[MarktgebietInfo] | None, Field(None, title="Marktgebiete")]
-    netzkontonummern: Annotated[list[str] | None, Field(None, title="Netzkontonummern")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    marktgebiete: list[MarktgebietInfo] | None = Field(default=None, title="Marktgebiete")
+    netzkontonummern: list[str] | None = Field(default=None, title="Netzkontonummern")

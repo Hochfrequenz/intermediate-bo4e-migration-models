@@ -1,7 +1,6 @@
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.oekolabel import Oekolabel
 from ..enum.oekozertifikat import Oekozertifikat
@@ -25,16 +24,16 @@ class Energiemix(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    anteil: Annotated[list[Energieherkunft] | None, Field(None, title="Anteil")]
-    atommuell: Annotated[Decimal | None, Field(None, title="Atommuell")]
-    bemerkung: Annotated[str | None, Field(None, title="Bemerkung")]
-    bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
-    co2_emission: Annotated[Decimal | None, Field(None, alias="co2Emission", title="Co2Emission")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    anteil: list[Energieherkunft] | None = Field(default=None, title="Anteil")
+    atommuell: Decimal | None = Field(default=None, title="Atommuell")
+    bemerkung: str | None = Field(default=None, title="Bemerkung")
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    co2_emission: Decimal | None = Field(default=None, alias="co2Emission", title="Co2Emission")
     energieart: Sparte | None = None
-    energiemixnummer: Annotated[int | None, Field(None, title="Energiemixnummer")]
-    gueltigkeitsjahr: Annotated[int | None, Field(None, title="Gueltigkeitsjahr")]
-    oeko_top_ten: Annotated[bool | None, Field(None, alias="oekoTopTen", title="Oekotopten")]
-    oekolabel: Annotated[list[Oekolabel] | None, Field(None, title="Oekolabel")]
-    oekozertifikate: Annotated[list[Oekozertifikat] | None, Field(None, title="Oekozertifikate")]
-    website: Annotated[str | None, Field(None, title="Website")]
+    energiemixnummer: int | None = Field(default=None, title="Energiemixnummer")
+    gueltigkeitsjahr: int | None = Field(default=None, title="Gueltigkeitsjahr")
+    oeko_top_ten: bool | None = Field(default=None, alias="oekoTopTen", title="Oekotopten")
+    oekolabel: list[Oekolabel] | None = Field(default=None, title="Oekolabel")
+    oekozertifikate: list[Oekozertifikat] | None = Field(default=None, title="Oekozertifikate")
+    website: str | None = Field(default=None, title="Website")

@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
 from ..com.geraeteeigenschaften import Geraeteeigenschaften
@@ -30,25 +29,24 @@ class PreisblattHardware(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     basisgeraet: Geraeteeigenschaften | None = None
-    bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
     bilanzierungsmethode: Bilanzierungsmethode | None = None
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.PREISBLATTHARDWARE, alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
+    bo_typ: BoTyp | None = Field(default=BoTyp.PREISBLATTHARDWARE, alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
     gueltigkeit: Zeitraum | None = None
     herausgeber: Marktteilnehmer | None = None
-    inklusive_dienstleistungen: Annotated[
-        list[Dienstleistungstyp] | None,
-        Field(None, alias="inklusiveDienstleistungen", title="Inklusivedienstleistungen"),
-    ]
-    inklusive_geraete: Annotated[
-        list[Geraeteeigenschaften] | None, Field(None, alias="inklusiveGeraete", title="Inklusivegeraete")
-    ]
+    inklusive_dienstleistungen: list[Dienstleistungstyp] | None = Field(
+        default=None, alias="inklusiveDienstleistungen", title="Inklusivedienstleistungen"
+    )
+    inklusive_geraete: list[Geraeteeigenschaften] | None = Field(
+        default=None, alias="inklusiveGeraete", title="Inklusivegeraete"
+    )
     messebene: Netzebene | None = None
-    preispositionen: Annotated[list[Preisposition] | None, Field(None, title="Preispositionen")]
+    preispositionen: list[Preisposition] | None = Field(default=None, title="Preispositionen")
     preisstatus: Preisstatus | None = None
     sparte: Sparte | None = None
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
