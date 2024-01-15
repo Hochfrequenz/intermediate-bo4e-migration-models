@@ -1,7 +1,6 @@
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.auf_abschlagstyp import AufAbschlagstyp
 from ..enum.waehrungseinheit import Waehrungseinheit
@@ -26,9 +25,9 @@ class PositionsAufAbschlag(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    auf_abschlagstyp: Annotated[AufAbschlagstyp | None, Field(None, alias="aufAbschlagstyp")]
-    auf_abschlagswaehrung: Annotated[Waehrungseinheit | None, Field(None, alias="aufAbschlagswaehrung")]
-    auf_abschlagswert: Annotated[Decimal | None, Field(None, alias="aufAbschlagswert", title="Aufabschlagswert")]
-    beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]
-    bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    auf_abschlagstyp: AufAbschlagstyp | None = Field(default=None, alias="aufAbschlagstyp")
+    auf_abschlagswaehrung: Waehrungseinheit | None = Field(default=None, alias="aufAbschlagswaehrung")
+    auf_abschlagswert: Decimal | None = Field(default=None, alias="aufAbschlagswert", title="Aufabschlagswert")
+    beschreibung: str | None = Field(default=None, title="Beschreibung")
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")

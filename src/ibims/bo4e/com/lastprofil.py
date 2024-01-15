@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.profiltyp import Profiltyp
 
@@ -16,7 +15,7 @@ class Lastprofil(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
-    einspeisung: Annotated[bool | None, Field(False, title="Einspeisung")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    einspeisung: bool | None = Field(default=False, title="Einspeisung")
     profilart: Profiltyp | None = None

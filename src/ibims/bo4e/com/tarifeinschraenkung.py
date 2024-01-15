@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.voraussetzungen import Voraussetzungen
 from .geraet import Geraet
@@ -22,8 +21,8 @@ class Tarifeinschraenkung(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    einschraenkungleistung: Annotated[list[Menge] | None, Field(None, title="Einschraenkungleistung")]
-    einschraenkungzaehler: Annotated[list[Geraet] | None, Field(None, title="Einschraenkungzaehler")]
-    voraussetzungen: Annotated[list[Voraussetzungen] | None, Field(None, title="Voraussetzungen")]
-    zusatzprodukte: Annotated[list[str] | None, Field(None, title="Zusatzprodukte")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    einschraenkungleistung: list[Menge] | None = Field(default=None, title="Einschraenkungleistung")
+    einschraenkungzaehler: list[Geraet] | None = Field(default=None, title="Einschraenkungzaehler")
+    voraussetzungen: list[Voraussetzungen] | None = Field(default=None, title="Voraussetzungen")
+    zusatzprodukte: list[str] | None = Field(default=None, title="Zusatzprodukte")

@@ -1,7 +1,6 @@
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 
 class Geokoordinaten(BaseModel):
@@ -20,6 +19,6 @@ class Geokoordinaten(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    breitengrad: Annotated[Decimal | None, Field(None, title="Breitengrad")]
-    laengengrad: Annotated[Decimal | None, Field(None, title="Laengengrad")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    breitengrad: Decimal | None = Field(default=None, title="Breitengrad")
+    laengengrad: Decimal | None = Field(default=None, title="Laengengrad")

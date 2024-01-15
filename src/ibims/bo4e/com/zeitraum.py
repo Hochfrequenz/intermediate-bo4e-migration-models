@@ -2,7 +2,6 @@ from datetime import datetime
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.zeiteinheit import Zeiteinheit
 
@@ -27,10 +26,10 @@ class Zeitraum(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    dauer: Annotated[Decimal | None, Field(None, title="Dauer")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    dauer: Decimal | None = Field(default=None, title="Dauer")
     einheit: Zeiteinheit | None = None
-    enddatum: Annotated[datetime | None, Field(None, title="Enddatum")]
-    endzeitpunkt: Annotated[datetime | None, Field(None, title="Endzeitpunkt")]
-    startdatum: Annotated[datetime | None, Field(None, title="Startdatum")]
-    startzeitpunkt: Annotated[datetime | None, Field(None, title="Startzeitpunkt")]
+    enddatum: datetime | None = Field(default=None, title="Enddatum")
+    endzeitpunkt: datetime | None = Field(default=None, title="Endzeitpunkt")
+    startdatum: datetime | None = Field(default=None, title="Startdatum")
+    startzeitpunkt: datetime | None = Field(default=None, title="Startzeitpunkt")

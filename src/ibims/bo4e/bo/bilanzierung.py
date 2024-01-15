@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
 from ..com.lastprofil import Lastprofil
@@ -22,16 +21,16 @@ class Bilanzierung(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
-    bo_typ: Annotated[BoTyp | None, Field("BILANZIERUNG", alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bilanzierungsbeginn: Annotated[datetime, Field(title="Bilanzierungsbeginn")]
-    bilanzierungsende: Annotated[datetime, Field(title="Bilanzierungsende")]
-    bilanzkreis: Annotated[str | None, Field(None, title="Bilanzkreis")]
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    bo_typ: BoTyp | None = Field(default="BILANZIERUNG", alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bilanzierungsbeginn: datetime = Field(..., title="Bilanzierungsbeginn")
+    bilanzierungsende: datetime = Field(..., title="Bilanzierungsende")
+    bilanzkreis: str | None = Field(default=None, title="Bilanzkreis")
     aggregationsverantwortung: Aggregationsverantwortung | None = None
-    lastprofile: Annotated[list[Lastprofil] | None, Field(None, title="Lastprofile")]
+    lastprofile: list[Lastprofil] | None = Field(default=None, title="Lastprofile")
     prognosegrundlage: Prognosegrundlage | None = None
-    details_prognosegrundlage: Annotated[Profiltyp | None, Field(None, alias="detailsPrognosegrundlage")]
+    details_prognosegrundlage: Profiltyp | None = Field(default=None, alias="detailsPrognosegrundlage")

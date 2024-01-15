@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.betrag import Betrag
 from ..com.externe_referenz import ExterneReferenz
@@ -33,38 +32,38 @@ class Netznutzungsrechnung(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    absendercodenummer: Annotated[str | None, Field(None, title="Absendercodenummer")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.NETZNUTZUNGSRECHNUNG, alias="boTyp")]
-    empfaengercodenummer: Annotated[str | None, Field(None, title="Empfaengercodenummer")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    faelligkeitsdatum: Annotated[datetime | None, Field(None, title="Faelligkeitsdatum")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    absendercodenummer: str | None = Field(default=None, title="Absendercodenummer")
+    bo_typ: BoTyp | None = Field(default=BoTyp.NETZNUTZUNGSRECHNUNG, alias="boTyp")
+    empfaengercodenummer: str | None = Field(default=None, title="Empfaengercodenummer")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    faelligkeitsdatum: datetime | None = Field(default=None, title="Faelligkeitsdatum")
     gesamtbrutto: Betrag | None = None
     gesamtnetto: Betrag | None = None
     gesamtsteuer: Betrag | None = None
-    lokations_id: Annotated[str | None, Field(None, alias="lokationsId", title="Lokationsid")]
+    lokations_id: str | None = Field(default=None, alias="lokationsId", title="Lokationsid")
     nnrechnungsart: NNRechnungsart | None = None
     nnrechnungstyp: NNRechnungstyp | None = None
-    original: Annotated[bool | None, Field(None, title="Original")]
-    original_rechnungsnummer: Annotated[
-        str | None, Field(None, alias="originalRechnungsnummer", title="Originalrechnungsnummer")
-    ]
-    rabatt_brutto: Annotated[Betrag | None, Field(None, alias="rabattBrutto")]
-    rechnungsdatum: Annotated[datetime | None, Field(None, title="Rechnungsdatum")]
+    original: bool | None = Field(default=None, title="Original")
+    original_rechnungsnummer: str | None = Field(
+        default=None, alias="originalRechnungsnummer", title="Originalrechnungsnummer"
+    )
+    rabatt_brutto: Betrag | None = Field(default=None, alias="rabattBrutto")
+    rechnungsdatum: datetime | None = Field(default=None, title="Rechnungsdatum")
     rechnungsempfaenger: Geschaeftspartner | None = None
     rechnungsersteller: Geschaeftspartner | None = None
-    rechnungsnummer: Annotated[str | None, Field(None, title="Rechnungsnummer")]
+    rechnungsnummer: str | None = Field(default=None, title="Rechnungsnummer")
     rechnungsperiode: Zeitraum | None = None
-    rechnungspositionen: Annotated[list[Rechnungsposition] | None, Field(None, title="Rechnungspositionen")]
+    rechnungspositionen: list[Rechnungsposition] | None = Field(default=None, title="Rechnungspositionen")
     rechnungsstatus: Rechnungsstatus | None = None
-    rechnungstitel: Annotated[str | None, Field(None, title="Rechnungstitel")]
+    rechnungstitel: str | None = Field(default=None, title="Rechnungstitel")
     rechnungstyp: Rechnungstyp | None = None
-    simuliert: Annotated[bool | None, Field(None, title="Simuliert")]
+    simuliert: bool | None = Field(default=None, title="Simuliert")
     sparte: Sparte | None = None
-    steuerbetraege: Annotated[list[Steuerbetrag] | None, Field(None, title="Steuerbetraege")]
-    storno: Annotated[bool | None, Field(None, title="Storno")]
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    steuerbetraege: list[Steuerbetrag] | None = Field(default=None, title="Steuerbetraege")
+    storno: bool | None = Field(default=None, title="Storno")
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     vorausgezahlt: Betrag | None = None
     zuzahlen: Betrag | None = None

@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.kontaktart import Kontaktart
 from .adresse import Adresse
@@ -17,9 +16,9 @@ class VertragskontoMBA(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    ouid: Annotated[int, Field(title="Ouid")]
-    vertrags_adresse: Annotated[Adresse, Field(alias="vertragsAdresse")]
-    vertragskontonummer: Annotated[str, Field(title="Vertragskontonummer")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    ouid: int = Field(..., title="Ouid")
+    vertrags_adresse: Adresse = Field(..., alias="vertragsAdresse")
+    vertragskontonummer: str = Field(..., title="Vertragskontonummer")
     rechnungsstellung: Kontaktart
-    cbas: Annotated[list[VertragskontoCBA], Field(title="Cbas")]
+    cbas: list[VertragskontoCBA] = Field(..., title="Cbas")

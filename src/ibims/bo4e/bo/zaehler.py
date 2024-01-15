@@ -2,7 +2,6 @@ from datetime import datetime
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
 from ..com.zaehlwerk import Zaehlwerk
@@ -32,24 +31,24 @@ class Zaehler(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.ZAEHLER, alias="boTyp")]
-    eichung_bis: Annotated[datetime | None, Field(None, alias="eichungBis", title="Eichungbis")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    letzte_eichung: Annotated[datetime | None, Field(None, alias="letzteEichung", title="Letzteeichung")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bo_typ: BoTyp | None = Field(default=BoTyp.ZAEHLER, alias="boTyp")
+    eichung_bis: datetime | None = Field(default=None, alias="eichungBis", title="Eichungbis")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    letzte_eichung: datetime | None = Field(default=None, alias="letzteEichung", title="Letzteeichung")
     sparte: Sparte | None = None
     tarifart: Tarifart | None = None
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     zaehlerauspraegung: Zaehlerauspraegung | None = None
     zaehlerhersteller: Geschaeftspartner | None = None
-    zaehlerkonstante: Annotated[Decimal | None, Field(None, title="Zaehlerkonstante")]
-    zaehlernummer: Annotated[str | None, Field(None, title="Zaehlernummer")]
+    zaehlerkonstante: Decimal | None = Field(default=None, title="Zaehlerkonstante")
+    zaehlernummer: str | None = Field(default=None, title="Zaehlernummer")
     zaehlertyp: Zaehlertyp | None = None
-    zaehlwerke: Annotated[list[Zaehlwerk] | None, Field(None, title="Zaehlwerke")]
+    zaehlwerke: list[Zaehlwerk] | None = Field(default=None, title="Zaehlwerke")
     messwerterfassung: Messwerterfassung
-    nachstes_ablesedatum: Annotated[
-        datetime | None, Field(None, alias="nachstesAblesedatum", title="Nachstesablesedatum")
-    ]
-    aktiver_zeitraum: Annotated[Zeitraum | None, Field(None, alias="aktiverZeitraum")]
+    nachstes_ablesedatum: datetime | None = Field(
+        default=None, alias="nachstesAblesedatum", title="Nachstesablesedatum"
+    )
+    aktiver_zeitraum: Zeitraum | None = Field(default=None, alias="aktiverZeitraum")

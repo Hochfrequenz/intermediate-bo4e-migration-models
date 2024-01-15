@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 
 class Katasteradresse(BaseModel):
@@ -18,6 +17,6 @@ class Katasteradresse(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    flurstueck: Annotated[str | None, Field(None, title="Flurstueck")]
-    gemarkung_flur: Annotated[str | None, Field(None, alias="gemarkungFlur", title="Gemarkungflur")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    flurstueck: str | None = Field(default=None, title="Flurstueck")
+    gemarkung_flur: str | None = Field(default=None, alias="gemarkungFlur", title="Gemarkungflur")

@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
 from ..com.preisposition import Preisposition
@@ -31,15 +30,15 @@ class Preisblatt(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.PREISBLATT, alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    bo_typ: BoTyp | None = Field(default=BoTyp.PREISBLATT, alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
     gueltigkeit: Zeitraum | None = None
     herausgeber: Marktteilnehmer | None = None
-    preispositionen: Annotated[list[Preisposition] | None, Field(None, title="Preispositionen")]
+    preispositionen: list[Preisposition] | None = Field(default=None, title="Preispositionen")
     preisstatus: Preisstatus | None = None
     sparte: Sparte | None = None
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")

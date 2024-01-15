@@ -1,7 +1,6 @@
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.waehrungscode import Waehrungscode
 
@@ -23,6 +22,6 @@ class Betrag(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     waehrung: Waehrungscode | None = None
-    wert: Annotated[Decimal | None, Field(None, title="Wert")]
+    wert: Decimal | None = Field(default=None, title="Wert")

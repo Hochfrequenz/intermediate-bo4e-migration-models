@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.dienstleistungstyp import Dienstleistungstyp
 
@@ -20,6 +19,6 @@ class Dienstleistung(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
     dienstleistungstyp: Dienstleistungstyp | None = None

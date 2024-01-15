@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.mengeneinheit import Mengeneinheit
 from ..enum.preistyp import Preistyp
@@ -23,9 +22,9 @@ class Tarifpreisposition(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     bezugseinheit: Mengeneinheit | None = None
     einheit: Waehrungseinheit | None = None
     mengeneinheitstaffel: Mengeneinheit | None = None
-    preisstaffeln: Annotated[list[Preisstaffel] | None, Field(None, title="Preisstaffeln")]
+    preisstaffeln: list[Preisstaffel] | None = Field(default=None, title="Preisstaffeln")
     preistyp: Preistyp | None = None

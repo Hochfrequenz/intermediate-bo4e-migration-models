@@ -1,7 +1,6 @@
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.mengeneinheit import Mengeneinheit
 
@@ -16,12 +15,12 @@ class Zaehlpunkt(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    periodenverbrauch_vorhersage: Annotated[
-        Decimal, Field(alias="periodenverbrauchVorhersage", title="Periodenverbrauchvorhersage")
-    ]
-    einheit_vorhersage: Annotated[Mengeneinheit | None, Field(Mengeneinheit.KWH, alias="einheitVorhersage")]
-    zeitreihentyp: Annotated[str | None, Field("Z21", title="Zeitreihentyp")]
-    kunden_wert: Annotated[Decimal | None, Field(alias="kundenWert", title="Kundenwert")]
-    einheit_kunde: Annotated[Mengeneinheit | None, Field(None, alias="einheitKunde")]
-    grundzustaendiger: Annotated[bool | None, Field(True, title="Grundzustaendiger")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    periodenverbrauch_vorhersage: Decimal = Field(
+        ..., alias="periodenverbrauchVorhersage", title="Periodenverbrauchvorhersage"
+    )
+    einheit_vorhersage: Mengeneinheit | None = Field(default=Mengeneinheit.KWH, alias="einheitVorhersage")
+    zeitreihentyp: str | None = Field(default="Z21", title="Zeitreihentyp")
+    kunden_wert: Decimal | None = Field(..., alias="kundenWert", title="Kundenwert")
+    einheit_kunde: Mengeneinheit | None = Field(default=None, alias="einheitKunde")
+    grundzustaendiger: bool | None = Field(default=True, title="Grundzustaendiger")

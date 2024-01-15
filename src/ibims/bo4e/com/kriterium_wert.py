@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.tarifregionskriterium import Tarifregionskriterium
 
@@ -20,6 +19,6 @@ class KriteriumWert(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     kriterium: Tarifregionskriterium | None = None
-    wert: Annotated[str | None, Field(None, title="Wert")]
+    wert: str | None = Field(default=None, title="Wert")

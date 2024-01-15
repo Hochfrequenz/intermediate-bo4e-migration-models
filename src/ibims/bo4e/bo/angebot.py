@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.angebotsvariante import Angebotsvariante
 from ..com.externe_referenz import ExterneReferenz
@@ -30,19 +29,19 @@ class Angebot(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    anfragereferenz: Annotated[str | None, Field(None, title="Anfragereferenz")]
-    angebotsdatum: Annotated[datetime | None, Field(None, title="Angebotsdatum")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    anfragereferenz: str | None = Field(default=None, title="Anfragereferenz")
+    angebotsdatum: datetime | None = Field(default=None, title="Angebotsdatum")
     angebotsgeber: Geschaeftspartner | None = None
     angebotsnehmer: Geschaeftspartner | None = None
-    angebotsnummer: Annotated[str | None, Field(None, title="Angebotsnummer")]
-    bindefrist: Annotated[datetime | None, Field(None, title="Bindefrist")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.ANGEBOT, alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
+    angebotsnummer: str | None = Field(default=None, title="Angebotsnummer")
+    bindefrist: datetime | None = Field(default=None, title="Bindefrist")
+    bo_typ: BoTyp | None = Field(default=BoTyp.ANGEBOT, alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
     sparte: Sparte | None = None
-    unterzeichner_angebotsgeber: Annotated[Ansprechpartner | None, Field(None, alias="unterzeichnerAngebotsgeber")]
-    unterzeichner_angebotsnehmer: Annotated[Ansprechpartner | None, Field(None, alias="unterzeichnerAngebotsnehmer")]
-    varianten: Annotated[list[Angebotsvariante] | None, Field(None, title="Varianten")]
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    unterzeichner_angebotsgeber: Ansprechpartner | None = Field(default=None, alias="unterzeichnerAngebotsgeber")
+    unterzeichner_angebotsnehmer: Ansprechpartner | None = Field(default=None, alias="unterzeichnerAngebotsnehmer")
+    varianten: list[Angebotsvariante] | None = Field(default=None, title="Varianten")
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")

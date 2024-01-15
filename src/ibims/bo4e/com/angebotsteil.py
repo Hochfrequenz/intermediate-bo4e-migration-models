@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..bo.marktlokation import Marktlokation
 from .angebotsposition import Angebotsposition
@@ -28,10 +27,10 @@ class Angebotsteil(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    anfrage_subreferenz: Annotated[str | None, Field(None, alias="anfrageSubreferenz", title="Anfragesubreferenz")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    anfrage_subreferenz: str | None = Field(default=None, alias="anfrageSubreferenz", title="Anfragesubreferenz")
     gesamtkostenangebotsteil: Betrag | None = None
     gesamtmengeangebotsteil: Menge | None = None
-    lieferstellenangebotsteil: Annotated[list[Marktlokation] | None, Field(None, title="Lieferstellenangebotsteil")]
+    lieferstellenangebotsteil: list[Marktlokation] | None = Field(default=None, title="Lieferstellenangebotsteil")
     lieferzeitraum: Zeitraum | None = None
-    positionen: Annotated[list[Angebotsposition] | None, Field(None, title="Positionen")]
+    positionen: list[Angebotsposition] | None = Field(default=None, title="Positionen")

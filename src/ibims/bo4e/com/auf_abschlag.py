@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.auf_abschlagstyp import AufAbschlagstyp
 from ..enum.auf_abschlagsziel import AufAbschlagsziel
@@ -25,12 +24,12 @@ class AufAbschlag(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    auf_abschlagstyp: Annotated[AufAbschlagstyp | None, Field(None, alias="aufAbschlagstyp")]
-    auf_abschlagsziel: Annotated[AufAbschlagsziel | None, Field(None, alias="aufAbschlagsziel")]
-    beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]
-    bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    auf_abschlagstyp: AufAbschlagstyp | None = Field(default=None, alias="aufAbschlagstyp")
+    auf_abschlagsziel: AufAbschlagsziel | None = Field(default=None, alias="aufAbschlagsziel")
+    beschreibung: str | None = Field(default=None, title="Beschreibung")
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
     einheit: Waehrungseinheit | None = None
     gueltigkeitszeitraum: Zeitraum | None = None
-    staffeln: Annotated[list[Preisstaffel] | None, Field(None, title="Staffeln")]
-    website: Annotated[str | None, Field(None, title="Website")]
+    staffeln: list[Preisstaffel] | None = Field(default=None, title="Staffeln")
+    website: str | None = Field(default=None, title="Website")

@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.preismodell import Preismodell
 from ..enum.rechnungslegung import Rechnungslegung
@@ -26,21 +25,21 @@ class Ausschreibungslos(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    anzahl_lieferstellen: Annotated[int | None, Field(None, alias="anzahlLieferstellen", title="Anzahllieferstellen")]
-    bemerkung: Annotated[str | None, Field(None, title="Bemerkung")]
-    betreut_durch: Annotated[str | None, Field(None, alias="betreutDurch", title="Betreutdurch")]
-    bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    anzahl_lieferstellen: int | None = Field(default=None, alias="anzahlLieferstellen", title="Anzahllieferstellen")
+    bemerkung: str | None = Field(default=None, title="Bemerkung")
+    betreut_durch: str | None = Field(default=None, alias="betreutDurch", title="Betreutdurch")
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
     energieart: Sparte | None = None
-    gesamt_menge: Annotated[Menge | None, Field(None, alias="gesamtMenge")]
-    lieferstellen: Annotated[list[Ausschreibungsdetail] | None, Field(None, title="Lieferstellen")]
+    gesamt_menge: Menge | None = Field(default=None, alias="gesamtMenge")
+    lieferstellen: list[Ausschreibungsdetail] | None = Field(default=None, title="Lieferstellen")
     lieferzeitraum: Zeitraum | None = None
-    losnummer: Annotated[str | None, Field(None, title="Losnummer")]
+    losnummer: str | None = Field(default=None, title="Losnummer")
     preismodell: Preismodell | None = None
     wiederholungsintervall: Zeitraum | None = None
-    wunsch_kuendingungsfrist: Annotated[Zeitraum | None, Field(None, alias="wunschKuendingungsfrist")]
-    wunsch_maximalmenge: Annotated[Menge | None, Field(None, alias="wunschMaximalmenge")]
-    wunsch_mindestmenge: Annotated[Menge | None, Field(None, alias="wunschMindestmenge")]
-    wunsch_rechnungslegung: Annotated[Rechnungslegung | None, Field(None, alias="wunschRechnungslegung")]
-    wunsch_vertragsform: Annotated[Vertragsform | None, Field(None, alias="wunschVertragsform")]
-    wunsch_zahlungsziel: Annotated[Zeitraum | None, Field(None, alias="wunschZahlungsziel")]
+    wunsch_kuendingungsfrist: Zeitraum | None = Field(default=None, alias="wunschKuendingungsfrist")
+    wunsch_maximalmenge: Menge | None = Field(default=None, alias="wunschMaximalmenge")
+    wunsch_mindestmenge: Menge | None = Field(default=None, alias="wunschMindestmenge")
+    wunsch_rechnungslegung: Rechnungslegung | None = Field(default=None, alias="wunschRechnungslegung")
+    wunsch_vertragsform: Vertragsform | None = Field(default=None, alias="wunschVertragsform")
+    wunsch_zahlungsziel: Zeitraum | None = Field(default=None, alias="wunschZahlungsziel")

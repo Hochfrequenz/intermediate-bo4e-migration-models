@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.adresse import Adresse
 from ..com.externe_referenz import ExterneReferenz
@@ -40,35 +39,35 @@ class Marktlokation(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bilanzierungsgebiet: Annotated[str | None, Field(None, title="Bilanzierungsgebiet")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bilanzierungsgebiet: str | None = Field(default=None, title="Bilanzierungsgebiet")
     bilanzierungsmethode: Bilanzierungsmethode | None = None
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.MARKTLOKATION, alias="boTyp")]
+    bo_typ: BoTyp | None = Field(default=BoTyp.MARKTLOKATION, alias="boTyp")
     endkunde: Geschaeftspartner | None = None
     energierichtung: Energierichtung | None = None
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
     gasqualitaet: Gasqualitaet | None = None
     gebietstyp: Gebiettyp | None = None
     geoadresse: Geokoordinaten | None = None
-    grundversorgercodenr: Annotated[str | None, Field(None, title="Grundversorgercodenr")]
+    grundversorgercodenr: str | None = Field(default=None, title="Grundversorgercodenr")
     katasterinformation: Katasteradresse | None = None
-    kundengruppen: Annotated[list[Kundentyp] | None, Field(None, title="Kundengruppen")]
+    kundengruppen: list[Kundentyp] | None = Field(default=None, title="Kundengruppen")
     lokationsadresse: Adresse | None = None
-    marktlokations_id: Annotated[str | None, Field(None, alias="marktlokationsId", title="Marktlokationsid")]
-    netzbetreibercodenr: Annotated[str | None, Field(None, title="Netzbetreibercodenr")]
+    marktlokations_id: str | None = Field(default=None, alias="marktlokationsId", title="Marktlokationsid")
+    netzbetreibercodenr: str | None = Field(default=None, title="Netzbetreibercodenr")
     netzebene: Netzebene | None = None
-    netzgebietsnr: Annotated[str | None, Field(None, title="Netzgebietsnr")]
+    netzgebietsnr: str | None = Field(default=None, title="Netzgebietsnr")
     sparte: Sparte | None = None
-    unterbrechbar: Annotated[bool | None, Field(None, title="Unterbrechbar")]
+    unterbrechbar: bool | None = Field(default=None, title="Unterbrechbar")
     verbrauchsart: Verbrauchsart | None = None
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
-    zugehoerige_messlokation: Annotated[Messlokationszuordnung | None, Field(None, alias="zugehoerigeMesslokation")]
-    messtechnische_einordnung: Annotated[MesstechnischeEinordnung, Field(alias="messtechnischeEinordnung")]
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    zugehoerige_messlokation: Messlokationszuordnung | None = Field(default=None, alias="zugehoerigeMesslokation")
+    messtechnische_einordnung: MesstechnischeEinordnung = Field(..., alias="messtechnischeEinordnung")
     uebertragungsnetzgebiet: Regelzone | None = None
     marktgebiet: Marktgebiet | None = None
     variant: Variant
-    community_id: Annotated[str, Field(alias="communityId", title="Communityid")]
-    prognose_grundlage: Annotated[Prognosegrundlage | None, Field(None, alias="prognoseGrundlage")]
-    prognose_grundlage_detail: Annotated[Profiltyp | None, Field(None, alias="prognoseGrundlageDetail")]
+    community_id: str = Field(..., alias="communityId", title="Communityid")
+    prognose_grundlage: Prognosegrundlage | None = Field(default=None, alias="prognoseGrundlage")
+    prognose_grundlage_detail: Profiltyp | None = Field(default=None, alias="prognoseGrundlageDetail")

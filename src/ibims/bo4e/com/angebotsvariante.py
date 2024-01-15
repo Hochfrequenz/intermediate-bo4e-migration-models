@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.angebotsstatus import Angebotsstatus
 from .angebotsteil import Angebotsteil
@@ -25,10 +24,10 @@ class Angebotsvariante(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     angebotsstatus: Angebotsstatus | None = None
-    bindefrist: Annotated[datetime | None, Field(None, title="Bindefrist")]
-    erstellungsdatum: Annotated[datetime | None, Field(None, title="Erstellungsdatum")]
+    bindefrist: datetime | None = Field(default=None, title="Bindefrist")
+    erstellungsdatum: datetime | None = Field(default=None, title="Erstellungsdatum")
     gesamtkosten: Betrag | None = None
     gesamtmenge: Menge | None = None
-    teile: Annotated[list[Angebotsteil] | None, Field(None, title="Teile")]
+    teile: list[Angebotsteil] | None = Field(default=None, title="Teile")

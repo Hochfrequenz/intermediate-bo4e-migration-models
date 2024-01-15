@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 
 class ExterneReferenz(BaseModel):
@@ -20,6 +19,6 @@ class ExterneReferenz(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    ex_ref_name: Annotated[str | None, Field(None, alias="exRefName", title="Exrefname")]
-    ex_ref_wert: Annotated[str | None, Field(None, alias="exRefWert", title="Exrefwert")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    ex_ref_name: str | None = Field(default=None, alias="exRefName", title="Exrefname")
+    ex_ref_wert: str | None = Field(default=None, alias="exRefWert", title="Exrefwert")

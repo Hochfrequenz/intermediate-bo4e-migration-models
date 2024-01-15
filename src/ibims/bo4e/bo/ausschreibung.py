@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.ausschreibungslos import Ausschreibungslos
 from ..com.externe_referenz import ExterneReferenz
@@ -29,20 +28,20 @@ class Ausschreibung(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     abgabefrist: Zeitraum | None = None
     ausschreibender: Geschaeftspartner | None = None
     ausschreibungportal: Ausschreibungsportal | None = None
-    ausschreibungsnummer: Annotated[str | None, Field(None, title="Ausschreibungsnummer")]
+    ausschreibungsnummer: str | None = Field(default=None, title="Ausschreibungsnummer")
     ausschreibungsstatus: Ausschreibungsstatus | None = None
     ausschreibungstyp: Ausschreibungstyp | None = None
     bindefrist: Zeitraum | None = None
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.AUSSCHREIUNG, alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    kostenpflichtig: Annotated[bool | None, Field(None, title="Kostenpflichtig")]
-    lose: Annotated[list[Ausschreibungslos] | None, Field(None, title="Lose")]
-    veroeffentlichungszeitpunkt: Annotated[datetime | None, Field(None, title="Veroeffentlichungszeitpunkt")]
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
-    webseite: Annotated[str | None, Field(None, title="Webseite")]
+    bo_typ: BoTyp | None = Field(default=BoTyp.AUSSCHREIUNG, alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    kostenpflichtig: bool | None = Field(default=None, title="Kostenpflichtig")
+    lose: list[Ausschreibungslos] | None = Field(default=None, title="Lose")
+    veroeffentlichungszeitpunkt: datetime | None = Field(default=None, title="Veroeffentlichungszeitpunkt")
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    webseite: str | None = Field(default=None, title="Webseite")

@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
 from ..com.verbrauch import Verbrauch
@@ -23,12 +22,12 @@ class Energiemenge(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.ENERGIEMENGE, alias="boTyp")]
-    energieverbrauch: Annotated[list[Verbrauch] | None, Field(None, title="Energieverbrauch")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    lokations_id: Annotated[str | None, Field(None, alias="lokationsId", title="Lokationsid")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bo_typ: BoTyp | None = Field(default=BoTyp.ENERGIEMENGE, alias="boTyp")
+    energieverbrauch: list[Verbrauch] | None = Field(default=None, title="Energieverbrauch")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    lokations_id: str | None = Field(default=None, alias="lokationsId", title="Lokationsid")
     lokationstyp: Lokationstyp | None = None
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
