@@ -31,14 +31,14 @@ class Preisblatt(BaseModel):
         populate_by_name=True,
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
-    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    bezeichnung: str = Field(..., title="Bezeichnung")
     bo_typ: BoTyp | None = Field(default=BoTyp.PREISBLATT, alias="boTyp")
     externe_referenzen: list[ExterneReferenz] | None = Field(
         default=None, alias="externeReferenzen", title="Externereferenzen"
     )
-    gueltigkeit: Zeitraum | None = None
+    gueltigkeit: Zeitraum
     herausgeber: Marktteilnehmer | None = None
-    preispositionen: list[Preisposition] | None = Field(default=None, title="Preispositionen")
+    preispositionen: list[Preisposition] = Field(..., title="Preispositionen")
     preisstatus: Preisstatus | None = None
     sparte: Sparte | None = None
     versionstruktur: str | None = Field(default="2", title="Versionstruktur")

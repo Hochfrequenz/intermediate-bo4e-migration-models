@@ -44,7 +44,7 @@ class Preisposition(BaseModel):
     leistungsbezeichnung: str | None = Field(default=None, title="Leistungsbezeichnung")
     leistungstyp: Leistungstyp | None = None
     preiseinheit: Waehrungseinheit | None = None
-    preisstaffeln: list[Preisstaffel] | None = Field(default=None, title="Preisstaffeln")
+    preisstaffeln: list[Preisstaffel] = Field(..., title="Preisstaffeln")
     tarifzeit: Tarifzeit | None = None
     zeitbasis: Zeiteinheit | None = None
     zonungsgroesse: Bemessungsgroesse | None = None

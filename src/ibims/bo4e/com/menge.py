@@ -23,4 +23,4 @@ class Menge(BaseModel):
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
     einheit: Mengeneinheit | None = None
-    wert: Decimal | None = Field(default=None, title="Wert")
+    wert: Decimal = Field(..., title="Wert")

@@ -24,7 +24,7 @@ class Energiemenge(BaseModel):
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
     bo_typ: BoTyp | None = Field(default=BoTyp.ENERGIEMENGE, alias="boTyp")
-    energieverbrauch: list[Verbrauch] | None = Field(default=None, title="Energieverbrauch")
+    energieverbrauch: list[Verbrauch] = Field(..., title="Energieverbrauch")
     externe_referenzen: list[ExterneReferenz] | None = Field(
         default=None, alias="externeReferenzen", title="Externereferenzen"
     )

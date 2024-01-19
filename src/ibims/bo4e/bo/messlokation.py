@@ -45,7 +45,7 @@ class Messlokation(BaseModel):
     messadresse: Adresse | None = None
     messdienstleistung: list[Dienstleistung] | None = Field(default=None, title="Messdienstleistung")
     messgebietnr: str | None = Field(default=None, title="Messgebietnr")
-    messlokations_id: str | None = Field(default=None, alias="messlokationsId", title="Messlokationsid")
+    messlokations_id: str = Field(..., alias="messlokationsId", title="Messlokationsid")
     messlokationszaehler: list[Zaehler] | None = Field(default=None, title="Messlokationszaehler")
     netzebene_messung: Netzebene | None = Field(default=None, alias="netzebeneMessung")
     sparte: Sparte | None = None

@@ -41,11 +41,11 @@ class Vertrag(BaseModel):
     unterzeichnervp2: list[Unterschrift] | None = Field(default=None, title="Unterzeichnervp2")
     versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     vertragsart: Vertragsart | None = None
-    vertragsbeginn: datetime | None = Field(default=None, title="Vertragsbeginn")
-    vertragsende: datetime | None = Field(default=None, title="Vertragsende")
+    vertragsbeginn: datetime = Field(..., title="Vertragsbeginn")
+    vertragsende: datetime = Field(..., title="Vertragsende")
     vertragskonditionen: Vertragskonditionen | None = None
-    vertragsnummer: str | None = Field(default=None, title="Vertragsnummer")
-    vertragspartner1: Geschaeftspartner | None = None
-    vertragspartner2: Geschaeftspartner | None = None
+    vertragsnummer: str = Field(..., title="Vertragsnummer")
+    vertragspartner1: Geschaeftspartner
+    vertragspartner2: Geschaeftspartner
     vertragsstatus: Vertragsstatus | None = None
     vertragsteile: list[Vertragsteil] | None = Field(default=None, title="Vertragsteile")

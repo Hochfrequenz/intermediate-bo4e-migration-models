@@ -32,11 +32,11 @@ class ZaehlerGas(BaseModel):
         default=None, alias="externeReferenzen", title="Externereferenzen"
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
-    zaehlernummer: str | None = Field(default=None, title="Zaehlernummer")
-    sparte: Sparte | None = None
+    zaehlernummer: str = Field(..., title="Zaehlernummer")
+    sparte: Sparte
     zaehlerauspraegung: Zaehlerauspraegung | None = None
     zaehlertyp: Zaehlertyp
-    zaehlwerke: list[Zaehlwerk] | None = Field(default=None, title="Zaehlwerke")
+    zaehlwerke: list[Zaehlwerk] = Field(..., title="Zaehlwerke")
     tarifart: Tarifart | None = None
     zaehlerkonstante: Decimal | None = Field(default=None, title="Zaehlerkonstante")
     eichung_bis: datetime | None = Field(default=None, alias="eichungBis", title="Eichungbis")

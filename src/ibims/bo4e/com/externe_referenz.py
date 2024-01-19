@@ -20,5 +20,5 @@ class ExterneReferenz(BaseModel):
         populate_by_name=True,
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
-    ex_ref_name: str | None = Field(default=None, alias="exRefName", title="Exrefname")
-    ex_ref_wert: str | None = Field(default=None, alias="exRefWert", title="Exrefwert")
+    ex_ref_name: str = Field(..., alias="exRefName", title="Exrefname")
+    ex_ref_wert: str = Field(..., alias="exRefWert", title="Exrefwert")

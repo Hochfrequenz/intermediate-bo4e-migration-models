@@ -25,5 +25,5 @@ class Preisgarantie(BaseModel):
     id: str | None = Field(default=None, alias="_id", title=" Id")
     beschreibung: str | None = Field(default=None, title="Beschreibung")
     preisgarantietyp: Preisgarantietyp | None = None
-    zeitliche_gueltigkeit: Zeitraum | None = Field(default=None, alias="zeitlicheGueltigkeit")
+    zeitliche_gueltigkeit: Zeitraum = Field(..., alias="zeitlicheGueltigkeit")
     creation_date: datetime | None = Field(default=None, alias="creationDate", title="Creationdate")

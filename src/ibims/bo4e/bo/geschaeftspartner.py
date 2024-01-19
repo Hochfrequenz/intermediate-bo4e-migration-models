@@ -42,7 +42,7 @@ class Geschaeftspartner(BaseModel):
     glaeubiger_id: str | None = Field(default=None, alias="glaeubigerId", title="Glaeubigerid")
     hrnummer: str | None = Field(default=None, title="Hrnummer")
     kontaktweg: list[Kontaktart] | None = Field(default=None, title="Kontaktweg")
-    name1: str | None = Field(default=None, title="Name1")
+    name1: str = Field(..., title="Name1")
     name2: str | None = Field(default=None, title="Name2")
     name3: str | None = Field(default=None, title="Name3")
     partneradresse: Adresse | None = None

@@ -23,9 +23,9 @@ class Steuerbetrag(BaseModel):
         populate_by_name=True,
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
-    basiswert: Decimal | None = Field(default=None, title="Basiswert")
+    basiswert: Decimal = Field(..., title="Basiswert")
     steuerkennzeichen: Steuerkennzeichen | None = None
-    steuerwert: Decimal | None = Field(default=None, title="Steuerwert")
+    steuerwert: Decimal = Field(..., title="Steuerwert")
     waehrung: Waehrungscode | None = None
     steuerwert_vorausgezahlt: Decimal | None = Field(
         default=None, alias="steuerwertVorausgezahlt", title="Steuerwertvorausgezahlt"

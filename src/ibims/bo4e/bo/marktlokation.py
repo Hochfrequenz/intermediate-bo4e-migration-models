@@ -55,11 +55,11 @@ class Marktlokation(BaseModel):
     katasterinformation: Katasteradresse | None = None
     kundengruppen: list[Kundentyp] | None = Field(default=None, title="Kundengruppen")
     lokationsadresse: Adresse | None = None
-    marktlokations_id: str | None = Field(default=None, alias="marktlokationsId", title="Marktlokationsid")
+    marktlokations_id: str = Field(..., alias="marktlokationsId", title="Marktlokationsid")
     netzbetreibercodenr: str | None = Field(default=None, title="Netzbetreibercodenr")
     netzebene: Netzebene | None = None
     netzgebietsnr: str | None = Field(default=None, title="Netzgebietsnr")
-    sparte: Sparte | None = None
+    sparte: Sparte
     unterbrechbar: bool | None = Field(default=None, title="Unterbrechbar")
     verbrauchsart: Verbrauchsart | None = None
     versionstruktur: str | None = Field(default="2", title="Versionstruktur")

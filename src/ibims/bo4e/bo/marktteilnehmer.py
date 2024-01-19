@@ -42,7 +42,7 @@ class Marktteilnehmer(BaseModel):
     kontaktweg: list[Kontaktart] | None = Field(default=None, title="Kontaktweg")
     makoadresse: str | None = Field(default=None, title="Makoadresse")
     marktrolle: Marktrolle | None = None
-    name1: str | None = Field(default=None, title="Name1")
+    name1: str = Field(..., title="Name1")
     name2: str | None = Field(default=None, title="Name2")
     name3: str | None = Field(default=None, title="Name3")
     partneradresse: Adresse | None = None

@@ -3,7 +3,16 @@
     "pattern": "bo\\.Zaehler",
     "fieldName": "messwerterfassung",
     "fieldDef": {
-      "$ref": "../enum/Messwerterfassung.json#"
+      "anyOf": [
+        {
+          "$ref": "../enum/Messwerterfassung.json#"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Messwerterfassung"
     }
   },
   {

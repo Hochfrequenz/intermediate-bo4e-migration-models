@@ -29,9 +29,9 @@ class Verbrauch(BaseModel):
     id: str | None = Field(default=None, alias="_id", title=" Id")
     einheit: Mengeneinheit | None = None
     enddatum: datetime | None = Field(default=None, title="Enddatum")
-    obis_kennzahl: str | None = Field(default=None, alias="obisKennzahl", title="Obiskennzahl")
+    obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
     startdatum: datetime | None = Field(default=None, title="Startdatum")
-    wert: Decimal | None = Field(default=None, title="Wert")
+    wert: Decimal = Field(..., title="Wert")
     wertermittlungsverfahren: Wertermittlungsverfahren | None = None
     ablesegrund: str | None = Field(default=None, title="Ablesegrund")
     ablesebeschreibung: str | None = Field(default=None, title="Ablesebeschreibung")

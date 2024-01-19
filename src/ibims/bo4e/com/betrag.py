@@ -24,4 +24,4 @@ class Betrag(BaseModel):
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
     waehrung: Waehrungscode | None = None
-    wert: Decimal | None = Field(default=None, title="Wert")
+    wert: Decimal = Field(..., title="Wert")
