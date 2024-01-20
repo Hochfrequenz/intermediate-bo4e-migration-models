@@ -27,4 +27,4 @@ class Messlokationszuordnung(BaseModel):
     arithmetik: ArithmetischeOperation | None = None
     gueltig_bis: datetime | None = Field(default=None, alias="gueltigBis", title="Gueltigbis")
     gueltig_seit: datetime | None = Field(default=None, alias="gueltigSeit", title="Gueltigseit")
-    messlokations_id: str | None = Field(default=None, alias="messlokationsId", title="Messlokationsid")
+    messlokations_id: str = Field(..., alias="messlokationsId", title="Messlokationsid")

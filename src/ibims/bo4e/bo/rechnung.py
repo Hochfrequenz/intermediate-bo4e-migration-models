@@ -36,9 +36,9 @@ class Rechnung(BaseModel):
         default=None, alias="externeReferenzen", title="Externereferenzen"
     )
     faelligkeitsdatum: datetime | None = Field(default=None, title="Faelligkeitsdatum")
-    gesamtbrutto: Betrag | None = None
+    gesamtbrutto: Betrag
     gesamtnetto: Betrag | None = None
-    gesamtsteuer: Betrag | None = None
+    gesamtsteuer: Betrag
     original_rechnungsnummer: str | None = Field(
         default=None, alias="originalRechnungsnummer", title="Originalrechnungsnummer"
     )
@@ -51,11 +51,11 @@ class Rechnung(BaseModel):
     rechnungspositionen: list[Rechnungsposition] | None = Field(default=None, title="Rechnungspositionen")
     rechnungsstatus: Rechnungsstatus | None = None
     rechnungstitel: str | None = Field(default=None, title="Rechnungstitel")
-    rechnungstyp: Rechnungstyp | None = None
+    rechnungstyp: Rechnungstyp
     steuerbetraege: list[Steuerbetrag] | None = Field(default=None, title="Steuerbetraege")
-    storno: bool | None = Field(default=None, title="Storno")
+    storno: bool = Field(..., title="Storno")
     versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     vorausgezahlt: Betrag | None = None
-    zuzahlen: Betrag | None = None
+    zuzahlen: Betrag
     ist_selbstausgestellt: bool | None = Field(default=None, alias="istSelbstausgestellt", title="Istselbstausgestellt")
     ist_reverse_charge: bool | None = Field(default=None, alias="istReverseCharge", title="Istreversecharge")

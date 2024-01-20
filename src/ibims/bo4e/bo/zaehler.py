@@ -38,16 +38,16 @@ class Zaehler(BaseModel):
         default=None, alias="externeReferenzen", title="Externereferenzen"
     )
     letzte_eichung: datetime | None = Field(default=None, alias="letzteEichung", title="Letzteeichung")
-    sparte: Sparte | None = None
+    sparte: Sparte
     tarifart: Tarifart | None = None
     versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     zaehlerauspraegung: Zaehlerauspraegung | None = None
     zaehlerhersteller: Geschaeftspartner | None = None
     zaehlerkonstante: Decimal | None = Field(default=None, title="Zaehlerkonstante")
-    zaehlernummer: str | None = Field(default=None, title="Zaehlernummer")
+    zaehlernummer: str = Field(..., title="Zaehlernummer")
     zaehlertyp: Zaehlertyp | None = None
-    zaehlwerke: list[Zaehlwerk] | None = Field(default=None, title="Zaehlwerke")
-    messwerterfassung: Messwerterfassung
+    zaehlwerke: list[Zaehlwerk] = Field(..., title="Zaehlwerke")
+    messwerterfassung: Messwerterfassung | None = Field(default=None, title="Messwerterfassung")
     nachstes_ablesedatum: datetime | None = Field(
         default=None, alias="nachstesAblesedatum", title="Nachstesablesedatum"
     )

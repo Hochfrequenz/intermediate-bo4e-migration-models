@@ -22,7 +22,7 @@ class Preisstaffel(BaseModel):
         populate_by_name=True,
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
-    einheitspreis: Decimal | None = Field(default=None, title="Einheitspreis")
+    einheitspreis: Decimal = Field(..., title="Einheitspreis")
     sigmoidparameter: Sigmoidparameter | None = None
     staffelgrenze_bis: Decimal | None = Field(default=None, alias="staffelgrenzeBis", title="Staffelgrenzebis")
     staffelgrenze_von: Decimal | None = Field(default=None, alias="staffelgrenzeVon", title="Staffelgrenzevon")

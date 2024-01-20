@@ -27,7 +27,7 @@ class Zaehlwerk(BaseModel):
     id: str | None = Field(default=None, alias="_id", title=" Id")
     bezeichnung: str | None = Field(default=None, title="Bezeichnung")
     einheit: Mengeneinheit | None = None
-    obis_kennzahl: str | None = Field(default=None, alias="obisKennzahl", title="Obiskennzahl")
+    obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
     richtung: Energierichtung | None = None
     wandlerfaktor: Decimal | None = Field(default=None, title="Wandlerfaktor")
     zaehlwerk_id: str | None = Field(default=None, alias="zaehlwerkId", title="Zaehlwerkid")

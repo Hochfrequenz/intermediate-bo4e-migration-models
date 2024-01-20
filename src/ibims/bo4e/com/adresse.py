@@ -24,8 +24,8 @@ class Adresse(BaseModel):
     co_ergaenzung: str | None = Field(default=None, alias="coErgaenzung", title="Coergaenzung")
     hausnummer: str | None = Field(default=None, title="Hausnummer")
     landescode: Landescode | None = Landescode.DE
-    ort: str | None = Field(default=None, title="Ort")
+    ort: str = Field(..., title="Ort")
     ortsteil: str | None = Field(default=None, title="Ortsteil")
     postfach: str | None = Field(default=None, title="Postfach")
-    postleitzahl: str | None = Field(default=None, title="Postleitzahl")
+    postleitzahl: str = Field(..., title="Postleitzahl")
     strasse: str | None = Field(default=None, title="Strasse")
