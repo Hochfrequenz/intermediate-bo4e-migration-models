@@ -11,9 +11,9 @@ argcomplete==3.1.6
 black==23.12.1
     # via datamodel-code-generator
 bo4e-python-generator==0.0.6
-    # via -r requirements-generate-bo4e.in
+    # via -r dev_requirements/requirements-generate-bo4e.in
 bo4e-schema-tool==0.0.4
-    # via -r requirements-generate-bo4e.in
+    # via -r dev_requirements/requirements-generate-bo4e.in
 certifi==2023.7.22
     # via requests
 charset-normalizer==3.1.0
@@ -61,13 +61,13 @@ pydantic[email]==2.3.0
     #   datamodel-code-generator
 pydantic-core==2.6.3
     # via pydantic
-python-dotenv==1.0.0
-    # via -r requirements-generate-bo4e.in
+python-dotenv==1.0.1
+    # via -r dev_requirements/requirements-generate-bo4e.in
 pyyaml==6.0.1
     # via datamodel-code-generator
 requests==2.31.0
     # via
-    #   -r requirements-generate-bo4e.in
+    #   -r dev_requirements/requirements-generate-bo4e.in
     #   bo4e-schema-tool
 typing-extensions==4.7.1
     # via
