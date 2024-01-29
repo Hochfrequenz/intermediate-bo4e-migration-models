@@ -1,6 +1,7 @@
 """
 This module contains the base class
 """
+
 import warnings
 from inspect import currentframe, getframeinfo
 from typing import Any, Optional, TypeVar

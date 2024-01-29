@@ -1,6 +1,7 @@
 """
 Contains classes that describe the boneycomb data structure and provides the base Transaktionsdaten class
 """
+
 from typing import Literal, Optional
 
 from pydantic import BaseModel

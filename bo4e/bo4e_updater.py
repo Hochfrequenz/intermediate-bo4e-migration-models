@@ -1,6 +1,7 @@
 """
 This script checks if the current BO4E version is up-to-date.
 """
+
 import sys
 
 import click
