@@ -1,6 +1,7 @@
 """
 Contains the dataset for the quantities loader
 """
+
 from ibims.bo4e import Energiemenge, Marktlokation, Marktteilnehmer, Messlokation
 from ibims.datasets.base import DataSetBaseModel
 from ibims.targetmodels import TransaktionsdatenQuantities

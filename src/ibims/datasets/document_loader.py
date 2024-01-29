@@ -10,7 +10,6 @@ from ibims.datasets import DataSetBaseModel
 
 
 class TripicaDocumentLoaderDataSet(DataSetBaseModel):
-
     """
     This is a bo4e data set that consists of
     * a GeschaeftspartnerErweitert

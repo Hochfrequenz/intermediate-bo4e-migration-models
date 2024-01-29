@@ -2,6 +2,7 @@
 Contains the dataset for the product loader.
 It also contains the validation logic for the product loader dataset.
 """
+
 from datetime import datetime
 from decimal import Decimal
 from typing import Optional

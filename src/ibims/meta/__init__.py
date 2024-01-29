@@ -1,6 +1,7 @@
 """
 additional meta information for all BOs or COMponents
 """
+
 from datetime import datetime
 from typing import Optional
 

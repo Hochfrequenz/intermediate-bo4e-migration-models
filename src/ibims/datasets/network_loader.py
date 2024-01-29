@@ -2,6 +2,7 @@
 Contains the dataset for the network loader.
 It also contains the validation logic for the network loader dataset.
 """
+
 from typing import Optional
 
 from ibims.bo4e import (
