@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.gueltigkeitstyp import Gueltigkeitstyp
 from ..enum.regionskriteriumtyp import Regionskriteriumtyp
@@ -21,7 +20,7 @@ class Regionskriterium(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     gueltigkeitstyp: Gueltigkeitstyp | None = None
     regionskriteriumtyp: Regionskriteriumtyp | None = None
-    wert: Annotated[str | None, Field(None, title="Wert")]
+    wert: str | None = Field(default=None, title="Wert")

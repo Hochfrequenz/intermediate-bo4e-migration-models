@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.zeiteinheit import Zeiteinheit
 
@@ -21,6 +20,6 @@ class Zeitintervall(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    wert: Annotated[int | None, Field(None, title="Wert")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    wert: int | None = Field(default=None, title="Wert")
     zeiteinheit: Zeiteinheit | None = None

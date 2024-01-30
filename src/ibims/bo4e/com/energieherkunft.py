@@ -1,5 +1,6 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.erzeugungsart import Erzeugungsart
 
@@ -20,6 +21,6 @@ class Energieherkunft(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    anteil_prozent: Annotated[float | str | None, Field(None, alias="anteilProzent", title="Anteilprozent")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    anteil_prozent: Decimal | None = Field(default=None, alias="anteilProzent", title="Anteilprozent")
     erzeugungsart: Erzeugungsart | None = None

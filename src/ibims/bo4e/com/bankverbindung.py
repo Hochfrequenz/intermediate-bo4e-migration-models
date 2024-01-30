@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from .sepa_info import SepaInfo
 
@@ -15,12 +14,12 @@ class Bankverbindung(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    iban: Annotated[str | None, Field(None, title="Iban")]
-    bic: Annotated[str | None, Field(None, title="Bic")]
-    gueltig_seit: Annotated[datetime | None, Field(None, alias="gueltigSeit", title="Gueltigseit")]
-    gueltig_bis: Annotated[datetime | None, Field(None, alias="gueltigBis", title="Gueltigbis")]
-    bankname: Annotated[str | None, Field(None, title="Bankname")]
-    sepa_info: Annotated[SepaInfo | None, Field(None, alias="sepaInfo")]
-    kontoinhaber: Annotated[str | None, Field(None, title="Kontoinhaber")]
-    ouid: Annotated[int, Field(title="Ouid")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    iban: str | None = Field(default=None, title="Iban")
+    bic: str | None = Field(default=None, title="Bic")
+    gueltig_seit: datetime | None = Field(default=None, alias="gueltigSeit", title="Gueltigseit")
+    gueltig_bis: datetime | None = Field(default=None, alias="gueltigBis", title="Gueltigbis")
+    bankname: str | None = Field(default=None, title="Bankname")
+    sepa_info: SepaInfo | None = Field(default=None, alias="sepaInfo")
+    kontoinhaber: str | None = Field(default=None, title="Kontoinhaber")
+    ouid: int = Field(..., title="Ouid")

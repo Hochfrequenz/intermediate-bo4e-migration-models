@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from .zeitreihenwertkompakt import Zeitreihenwertkompakt
 
@@ -22,6 +21,6 @@ class Tagesvektor(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    tag: Annotated[datetime | None, Field(None, title="Tag")]
-    werte: Annotated[list[Zeitreihenwertkompakt] | None, Field(None, title="Werte")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    tag: datetime | None = Field(default=None, title="Tag")
+    werte: list[Zeitreihenwertkompakt] | None = Field(default=None, title="Werte")

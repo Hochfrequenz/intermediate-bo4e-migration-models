@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from .auf_abschlagstaffel_pro_ort import AufAbschlagstaffelProOrt
 
@@ -21,8 +20,8 @@ class AufAbschlagProOrt(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    netznr: Annotated[str | None, Field(None, title="Netznr")]
-    ort: Annotated[str | None, Field(None, title="Ort")]
-    postleitzahl: Annotated[str | None, Field(None, title="Postleitzahl")]
-    staffeln: Annotated[list[AufAbschlagstaffelProOrt] | None, Field(None, title="Staffeln")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    netznr: str | None = Field(default=None, title="Netznr")
+    ort: str | None = Field(default=None, title="Ort")
+    postleitzahl: str | None = Field(default=None, title="Postleitzahl")
+    staffeln: list[AufAbschlagstaffelProOrt] | None = Field(default=None, title="Staffeln")

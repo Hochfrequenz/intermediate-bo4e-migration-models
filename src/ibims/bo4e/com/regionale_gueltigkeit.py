@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.gueltigkeitstyp import Gueltigkeitstyp
 from .kriterium_wert import KriteriumWert
@@ -21,8 +20,6 @@ class RegionaleGueltigkeit(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     gueltigkeitstyp: Gueltigkeitstyp | None = None
-    kriteriums_werte: Annotated[
-        list[KriteriumWert] | None, Field(None, alias="kriteriumsWerte", title="Kriteriumswerte")
-    ]
+    kriteriums_werte: list[KriteriumWert] | None = Field(default=None, alias="kriteriumsWerte", title="Kriteriumswerte")

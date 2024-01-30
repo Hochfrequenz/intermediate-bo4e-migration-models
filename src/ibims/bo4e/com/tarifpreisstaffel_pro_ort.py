@@ -1,5 +1,6 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 
 class TarifpreisstaffelProOrt(BaseModel):
@@ -18,9 +19,9 @@ class TarifpreisstaffelProOrt(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    arbeitspreis: Annotated[float | str | None, Field(None, title="Arbeitspreis")]
-    arbeitspreis_nt: Annotated[float | str | None, Field(None, alias="arbeitspreisNT", title="Arbeitspreisnt")]
-    grundpreis: Annotated[float | str | None, Field(None, title="Grundpreis")]
-    staffelgrenze_bis: Annotated[float | str | None, Field(None, alias="staffelgrenzeBis", title="Staffelgrenzebis")]
-    staffelgrenze_von: Annotated[float | str | None, Field(None, alias="staffelgrenzeVon", title="Staffelgrenzevon")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    arbeitspreis: Decimal | None = Field(default=None, title="Arbeitspreis")
+    arbeitspreis_nt: Decimal | None = Field(default=None, alias="arbeitspreisNT", title="Arbeitspreisnt")
+    grundpreis: Decimal | None = Field(default=None, title="Grundpreis")
+    staffelgrenze_bis: Decimal | None = Field(default=None, alias="staffelgrenzeBis", title="Staffelgrenzebis")
+    staffelgrenze_von: Decimal | None = Field(default=None, alias="staffelgrenzeVon", title="Staffelgrenzevon")

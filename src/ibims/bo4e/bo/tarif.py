@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.auf_abschlag_regional import AufAbschlagRegional
 from ..com.energiemix import Energiemix
@@ -37,31 +36,31 @@ class Tarif(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     anbieter: Marktteilnehmer | None = None
-    anbietername: Annotated[str | None, Field(None, title="Anbietername")]
-    anwendung_von: Annotated[datetime | None, Field(None, alias="anwendungVon", title="Anwendungvon")]
-    bemerkung: Annotated[str | None, Field(None, title="Bemerkung")]
+    anbietername: str | None = Field(default=None, title="Anbietername")
+    anwendung_von: datetime | None = Field(default=None, alias="anwendungVon", title="Anwendungvon")
+    bemerkung: str | None = Field(default=None, title="Bemerkung")
     berechnungsparameter: Tarifberechnungsparameter | None = None
-    bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.TARIF, alias="boTyp")]
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    bo_typ: BoTyp | None = Field(default=BoTyp.TARIF, alias="boTyp")
     energiemix: Energiemix | None = None
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    kundentypen: Annotated[list[Kundentyp] | None, Field(None, title="Kundentypen")]
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    kundentypen: list[Kundentyp] | None = Field(default=None, title="Kundentypen")
     preisgarantie: Preisgarantie | None = None
-    preisstand: Annotated[datetime | None, Field(None, title="Preisstand")]
+    preisstand: datetime | None = Field(default=None, title="Preisstand")
     sparte: Sparte | None = None
-    tarif_auf_abschlaege: Annotated[
-        list[AufAbschlagRegional] | None, Field(None, alias="tarifAufAbschlaege", title="Tarifaufabschlaege")
-    ]
+    tarif_auf_abschlaege: list[AufAbschlagRegional] | None = Field(
+        default=None, alias="tarifAufAbschlaege", title="Tarifaufabschlaege"
+    )
     tarifart: Tarifart | None = None
     tarifeinschraenkung: Tarifeinschraenkung | None = None
-    tarifmerkmale: Annotated[list[Tarifmerkmal] | None, Field(None, title="Tarifmerkmale")]
-    tarifpreise: Annotated[list[TarifpreispositionProOrt] | None, Field(None, title="Tarifpreise")]
+    tarifmerkmale: list[Tarifmerkmal] | None = Field(default=None, title="Tarifmerkmale")
+    tarifpreise: list[TarifpreispositionProOrt] | None = Field(default=None, title="Tarifpreise")
     tariftyp: Tariftyp | None = None
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     vertragskonditionen: Vertragskonditionen | None = None
-    website: Annotated[str | None, Field(None, title="Website")]
-    zeitliche_gueltigkeit: Annotated[Zeitraum | None, Field(None, alias="zeitlicheGueltigkeit")]
+    website: str | None = Field(default=None, title="Website")
+    zeitliche_gueltigkeit: Zeitraum | None = Field(default=None, alias="zeitlicheGueltigkeit")

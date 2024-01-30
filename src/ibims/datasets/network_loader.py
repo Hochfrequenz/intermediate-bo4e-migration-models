@@ -2,6 +2,7 @@
 Contains the dataset for the network loader.
 It also contains the validation logic for the network loader dataset.
 """
+
 from typing import Optional
 
 from ibims.bo4e import (
@@ -13,6 +14,7 @@ from ibims.bo4e import (
     Marktteilnehmer,
     Vertrag,
     Zaehler,
+    ZaehlerGas,
     Zaehlpunkt,
 )
 from ibims.datasets import DataSetBaseModel
@@ -86,7 +88,7 @@ class TripicaNetworkLoaderDataSet(DataSetBaseModel):
     - rollencodenummer
     """
 
-    zaehler: Zaehler
+    zaehler: Zaehler | ZaehlerGas
     """
     The following attributes need to be filled for this DataSet:
     - zaehlernummer

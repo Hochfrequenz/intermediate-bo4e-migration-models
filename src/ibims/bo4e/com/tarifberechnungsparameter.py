@@ -1,5 +1,6 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.messpreistyp import Messpreistyp
 from ..enum.tarifkalkulationsmethode import Tarifkalkulationsmethode
@@ -22,18 +23,18 @@ class Tarifberechnungsparameter(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     berechnungsmethode: Tarifkalkulationsmethode | None = None
-    hoechstpreis_ht: Annotated[Preis | None, Field(None, alias="hoechstpreisHT")]
-    hoechstpreis_nt: Annotated[Preis | None, Field(None, alias="hoechstpreisNT")]
-    kw_inklusive: Annotated[float | str | None, Field(None, alias="kwInklusive", title="Kwinklusive")]
-    kw_weitere_mengen: Annotated[float | str | None, Field(None, alias="kwWeitereMengen", title="Kwweiteremengen")]
-    messpreis_beruecksichtigen: Annotated[
-        bool | None, Field(None, alias="messpreisBeruecksichtigen", title="Messpreisberuecksichtigen")
-    ]
-    messpreis_in_gp_enthalten: Annotated[
-        bool | None, Field(None, alias="messpreisInGpEnthalten", title="Messpreisingpenthalten")
-    ]
+    hoechstpreis_ht: Preis | None = Field(default=None, alias="hoechstpreisHT")
+    hoechstpreis_nt: Preis | None = Field(default=None, alias="hoechstpreisNT")
+    kw_inklusive: Decimal | None = Field(default=None, alias="kwInklusive", title="Kwinklusive")
+    kw_weitere_mengen: Decimal | None = Field(default=None, alias="kwWeitereMengen", title="Kwweiteremengen")
+    messpreis_beruecksichtigen: bool | None = Field(
+        default=None, alias="messpreisBeruecksichtigen", title="Messpreisberuecksichtigen"
+    )
+    messpreis_in_gp_enthalten: bool | None = Field(
+        default=None, alias="messpreisInGpEnthalten", title="Messpreisingpenthalten"
+    )
     messpreistyp: Messpreistyp | None = None
     mindestpreis: Preis | None = None
-    zusatzpreise: Annotated[list[Tarifpreis] | None, Field(None, title="Zusatzpreise")]
+    zusatzpreise: list[Tarifpreis] | None = Field(default=None, title="Zusatzpreise")

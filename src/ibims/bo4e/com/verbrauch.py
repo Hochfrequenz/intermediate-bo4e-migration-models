@@ -1,7 +1,7 @@
 from datetime import datetime
+from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.ablesende_rolle import AblesendeRolle
 from ..enum.ablesungsstatus import Ablesungsstatus
@@ -26,35 +26,35 @@ class Verbrauch(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     einheit: Mengeneinheit | None = None
-    enddatum: Annotated[datetime | None, Field(None, title="Enddatum")]
-    obis_kennzahl: Annotated[str | None, Field(None, alias="obisKennzahl", title="Obiskennzahl")]
-    startdatum: Annotated[datetime | None, Field(None, title="Startdatum")]
-    wert: Annotated[float | str | None, Field(None, title="Wert")]
+    enddatum: datetime | None = Field(default=None, title="Enddatum")
+    obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
+    startdatum: datetime | None = Field(default=None, title="Startdatum")
+    wert: Decimal = Field(..., title="Wert")
     wertermittlungsverfahren: Wertermittlungsverfahren | None = None
-    ablesegrund: Annotated[str | None, Field(None, title="Ablesegrund")]
-    ablesebeschreibung: Annotated[str | None, Field(None, title="Ablesebeschreibung")]
-    periodenverbrauch: Annotated[float | str | None, Field(None, title="Periodenverbrauch")]
-    periodenverbrauch_ursprung: Annotated[
-        str | None, Field(None, alias="periodenverbrauchUrsprung", title="Periodenverbrauchursprung")
-    ]
+    ablesegrund: str | None = Field(default=None, title="Ablesegrund")
+    ablesebeschreibung: str | None = Field(default=None, title="Ablesebeschreibung")
+    periodenverbrauch: Decimal | None = Field(default=None, title="Periodenverbrauch")
+    periodenverbrauch_ursprung: str | None = Field(
+        default=None, alias="periodenverbrauchUrsprung", title="Periodenverbrauchursprung"
+    )
     ableser: AblesendeRolle | None = None
     status: Ablesungsstatus | None = None
-    energiegehalt_gas: Annotated[float | str | None, Field(None, alias="energiegehaltGas", title="Energiegehaltgas")]
-    energiegehalt_gas_gueltig_von: Annotated[
-        datetime | None, Field(None, alias="energiegehaltGasGueltigVon", title="Energiegehaltgasgueltigvon")
-    ]
-    energiegehalt_gas_gueltig_bis: Annotated[
-        datetime | None, Field(None, alias="energiegehaltGasGueltigBis", title="Energiegehaltgasgueltigbis")
-    ]
-    umwandlungsfaktor_gas: Annotated[
-        float | str | None, Field(None, alias="umwandlungsfaktorGas", title="Umwandlungsfaktorgas")
-    ]
-    umwandlungsfaktor_gas_gueltig_von: Annotated[
-        datetime | None, Field(None, alias="umwandlungsfaktorGasGueltigVon", title="Umwandlungsfaktorgasgueltigvon")
-    ]
-    umwandlungsfaktor_gas_gueltig_bis: Annotated[
-        datetime | None, Field(None, alias="umwandlungsfaktorGasGueltigBis", title="Umwandlungsfaktorgasgueltigbis")
-    ]
+    energiegehalt_gas: Decimal | None = Field(default=None, alias="energiegehaltGas", title="Energiegehaltgas")
+    energiegehalt_gas_gueltig_von: datetime | None = Field(
+        default=None, alias="energiegehaltGasGueltigVon", title="Energiegehaltgasgueltigvon"
+    )
+    energiegehalt_gas_gueltig_bis: datetime | None = Field(
+        default=None, alias="energiegehaltGasGueltigBis", title="Energiegehaltgasgueltigbis"
+    )
+    umwandlungsfaktor_gas: Decimal | None = Field(
+        default=None, alias="umwandlungsfaktorGas", title="Umwandlungsfaktorgas"
+    )
+    umwandlungsfaktor_gas_gueltig_von: datetime | None = Field(
+        default=None, alias="umwandlungsfaktorGasGueltigVon", title="Umwandlungsfaktorgasgueltigvon"
+    )
+    umwandlungsfaktor_gas_gueltig_bis: datetime | None = Field(
+        default=None, alias="umwandlungsfaktorGasGueltigBis", title="Umwandlungsfaktorgasgueltigbis"
+    )
     messwertstatus: Messwertstatus | None = None

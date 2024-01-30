@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..bo.vertrag import Vertrag
 from ..enum.kontaktart import Kontaktart
@@ -20,14 +19,12 @@ class VertragskontoCBA(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    ouid: Annotated[int, Field(title="Ouid")]
-    vertrags_adresse: Annotated[Adresse, Field(alias="vertragsAdresse")]
-    vertragskontonummer: Annotated[str, Field(title="Vertragskontonummer")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    ouid: int = Field(..., title="Ouid")
+    vertrags_adresse: Adresse = Field(..., alias="vertragsAdresse")
+    vertragskontonummer: str = Field(..., title="Vertragskontonummer")
     rechnungsstellung: Kontaktart
     vertrag: Vertrag
-    erstellungsdatum: Annotated[datetime, Field(title="Erstellungsdatum")]
-    rechnungsdatum_start: Annotated[datetime, Field(alias="rechnungsdatumStart", title="Rechnungsdatumstart")]
-    rechnungsdatum_naechstes: Annotated[
-        datetime, Field(alias="rechnungsdatumNaechstes", title="Rechnungsdatumnaechstes")
-    ]
+    erstellungsdatum: datetime = Field(..., title="Erstellungsdatum")
+    rechnungsdatum_start: datetime = Field(..., alias="rechnungsdatumStart", title="Rechnungsdatumstart")
+    rechnungsdatum_naechstes: datetime = Field(..., alias="rechnungsdatumNaechstes", title="Rechnungsdatumnaechstes")

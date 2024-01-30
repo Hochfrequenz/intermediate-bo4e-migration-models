@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 
 class ConcessionFee(BaseModel):
@@ -14,10 +13,10 @@ class ConcessionFee(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    market_location_id: Annotated[str, Field(alias="marketLocationId", title="Marketlocationid")]
-    group: Annotated[str | None, Field(None, title="Group")]
-    obis: Annotated[str, Field(title="Obis")]
-    active_from: Annotated[datetime, Field(alias="activeFrom", title="Activefrom")]
-    active_until: Annotated[datetime | None, Field(None, alias="activeUntil", title="Activeuntil")]
-    ka: Annotated[str | None, Field(None, title="Ka")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    market_location_id: str = Field(..., alias="marketLocationId", title="Marketlocationid")
+    group: str | None = Field(default=None, title="Group")
+    obis: str = Field(..., title="Obis")
+    active_from: datetime = Field(..., alias="activeFrom", title="Activefrom")
+    active_until: datetime | None = Field(default=None, alias="activeUntil", title="Activeuntil")
+    ka: str | None = Field(default=None, title="Ka")

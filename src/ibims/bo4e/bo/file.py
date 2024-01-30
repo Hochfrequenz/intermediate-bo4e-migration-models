@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 
 class File(BaseModel):
@@ -10,6 +9,6 @@ class File(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    file_name_for_docstore: Annotated[str | None, Field(None, title="File Name For Docstore")]
-    folder_name_for_docstore: Annotated[str | None, Field(None, title="Folder Name For Docstore")]
-    file: Annotated[bytes, Field(title="File")]
+    file_name_for_docstore: str | None = Field(default=None, title="File Name For Docstore")
+    folder_name_for_docstore: str | None = Field(default=None, title="Folder Name For Docstore")
+    file: bytes = Field(..., title="File")

@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.adresse import Adresse
 from ..com.externe_referenz import ExterneReferenz
@@ -30,32 +29,32 @@ class Geschaeftspartner(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    amtsgericht: Annotated[str | None, Field(None, title="Amtsgericht")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    amtsgericht: str | None = Field(default=None, title="Amtsgericht")
     anrede: Anrede | None = None
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.GESCHAEFTSPARTNER, alias="boTyp")]
-    e_mail_adresse: Annotated[str | None, Field(None, alias="eMailAdresse", title="Emailadresse")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    geschaeftspartnerrolle: Annotated[list[Geschaeftspartnerrolle] | None, Field(None, title="Geschaeftspartnerrolle")]
-    gewerbekennzeichnung: Annotated[bool | None, Field(None, title="Gewerbekennzeichnung")]
-    glaeubiger_id: Annotated[str | None, Field(None, alias="glaeubigerId", title="Glaeubigerid")]
-    hrnummer: Annotated[str | None, Field(None, title="Hrnummer")]
-    kontaktweg: Annotated[list[Kontaktart] | None, Field(None, title="Kontaktweg")]
-    name1: Annotated[str | None, Field(None, title="Name1")]
-    name2: Annotated[str | None, Field(None, title="Name2")]
-    name3: Annotated[str | None, Field(None, title="Name3")]
+    bo_typ: BoTyp | None = Field(default=BoTyp.GESCHAEFTSPARTNER, alias="boTyp")
+    e_mail_adresse: str | None = Field(default=None, alias="eMailAdresse", title="Emailadresse")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    geschaeftspartnerrolle: list[Geschaeftspartnerrolle] | None = Field(default=None, title="Geschaeftspartnerrolle")
+    gewerbekennzeichnung: bool | None = Field(default=None, title="Gewerbekennzeichnung")
+    glaeubiger_id: str | None = Field(default=None, alias="glaeubigerId", title="Glaeubigerid")
+    hrnummer: str | None = Field(default=None, title="Hrnummer")
+    kontaktweg: list[Kontaktart] | None = Field(default=None, title="Kontaktweg")
+    name1: str = Field(..., title="Name1")
+    name2: str | None = Field(default=None, title="Name2")
+    name3: str | None = Field(default=None, title="Name3")
     partneradresse: Adresse | None = None
-    umsatzsteuer_id: Annotated[str | None, Field(None, alias="umsatzsteuerId", title="Umsatzsteuerid")]
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
-    website: Annotated[str | None, Field(None, title="Website")]
-    erstellungsdatum: Annotated[datetime | None, Field(None, title="Erstellungsdatum")]
-    geburtstag: Annotated[datetime | None, Field(None, title="Geburtstag")]
-    telefonnummer_mobil: Annotated[str | None, Field(None, alias="telefonnummerMobil", title="Telefonnummermobil")]
-    telefonnummer_privat: Annotated[str | None, Field(None, alias="telefonnummerPrivat", title="Telefonnummerprivat")]
-    telefonnummer_geschaeft: Annotated[
-        str | None, Field(None, alias="telefonnummerGeschaeft", title="Telefonnummergeschaeft")
-    ]
-    firmenname: Annotated[str | None, Field(None, title="Firmenname")]
-    hausbesitzer: Annotated[bool | None, Field(None, title="Hausbesitzer")]
+    umsatzsteuer_id: str | None = Field(default=None, alias="umsatzsteuerId", title="Umsatzsteuerid")
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    website: str | None = Field(default=None, title="Website")
+    erstellungsdatum: datetime | None = Field(default=None, title="Erstellungsdatum")
+    geburtstag: datetime | None = Field(default=None, title="Geburtstag")
+    telefonnummer_mobil: str | None = Field(default=None, alias="telefonnummerMobil", title="Telefonnummermobil")
+    telefonnummer_privat: str | None = Field(default=None, alias="telefonnummerPrivat", title="Telefonnummerprivat")
+    telefonnummer_geschaeft: str | None = Field(
+        default=None, alias="telefonnummerGeschaeft", title="Telefonnummergeschaeft"
+    )
+    firmenname: str | None = Field(default=None, title="Firmenname")
+    hausbesitzer: bool | None = Field(default=None, title="Hausbesitzer")

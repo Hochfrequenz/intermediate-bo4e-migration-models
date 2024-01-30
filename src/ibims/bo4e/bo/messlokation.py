@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.adresse import Adresse
 from ..com.dienstleistung import Dienstleistung
@@ -29,25 +28,25 @@ class Messlokation(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.MESSLOKATION, alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bo_typ: BoTyp | None = Field(default=BoTyp.MESSLOKATION, alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
     geoadresse: Geokoordinaten | None = None
-    geraete: Annotated[list[Hardware] | None, Field(None, title="Geraete")]
-    grundzustaendiger_msb_codenr: Annotated[
-        str | None, Field(None, alias="grundzustaendigerMsbCodenr", title="Grundzustaendigermsbcodenr")
-    ]
-    grundzustaendiger_msbim_codenr: Annotated[
-        str | None, Field(None, alias="grundzustaendigerMsbimCodenr", title="Grundzustaendigermsbimcodenr")
-    ]
+    geraete: list[Hardware] | None = Field(default=None, title="Geraete")
+    grundzustaendiger_msb_codenr: str | None = Field(
+        default=None, alias="grundzustaendigerMsbCodenr", title="Grundzustaendigermsbcodenr"
+    )
+    grundzustaendiger_msbim_codenr: str | None = Field(
+        default=None, alias="grundzustaendigerMsbimCodenr", title="Grundzustaendigermsbimcodenr"
+    )
     katasterinformation: Katasteradresse | None = None
     messadresse: Adresse | None = None
-    messdienstleistung: Annotated[list[Dienstleistung] | None, Field(None, title="Messdienstleistung")]
-    messgebietnr: Annotated[str | None, Field(None, title="Messgebietnr")]
-    messlokations_id: Annotated[str | None, Field(None, alias="messlokationsId", title="Messlokationsid")]
-    messlokationszaehler: Annotated[list[Zaehler] | None, Field(None, title="Messlokationszaehler")]
-    netzebene_messung: Annotated[Netzebene | None, Field(None, alias="netzebeneMessung")]
+    messdienstleistung: list[Dienstleistung] | None = Field(default=None, title="Messdienstleistung")
+    messgebietnr: str | None = Field(default=None, title="Messgebietnr")
+    messlokations_id: str = Field(..., alias="messlokationsId", title="Messlokationsid")
+    messlokationszaehler: list[Zaehler] | None = Field(default=None, title="Messlokationszaehler")
+    netzebene_messung: Netzebene | None = Field(default=None, alias="netzebeneMessung")
     sparte: Sparte | None = None
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")

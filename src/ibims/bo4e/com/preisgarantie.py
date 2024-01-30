@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.preisgarantietyp import Preisgarantietyp
 from .zeitraum import Zeitraum
@@ -23,8 +22,8 @@ class Preisgarantie(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    beschreibung: str | None = Field(default=None, title="Beschreibung")
     preisgarantietyp: Preisgarantietyp | None = None
-    zeitliche_gueltigkeit: Annotated[Zeitraum | None, Field(None, alias="zeitlicheGueltigkeit")]
-    creation_date: Annotated[datetime | None, Field(None, alias="creationDate", title="Creationdate")]
+    zeitliche_gueltigkeit: Zeitraum = Field(..., alias="zeitlicheGueltigkeit")
+    creation_date: datetime | None = Field(default=None, alias="creationDate", title="Creationdate")

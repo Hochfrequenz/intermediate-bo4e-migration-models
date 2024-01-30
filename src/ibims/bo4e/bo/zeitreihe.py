@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
 from ..com.zeitreihenwert import Zeitreihenwert
@@ -28,18 +27,18 @@ class Zeitreihe(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]
-    bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.ZEITREIHE, alias="boTyp")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    beschreibung: str | None = Field(default=None, title="Beschreibung")
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    bo_typ: BoTyp | None = Field(default=BoTyp.ZEITREIHE, alias="boTyp")
     einheit: Mengeneinheit | None = None
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
     medium: Medium | None = None
     messart: Messart | None = None
     messgroesse: Messgroesse | None = None
-    version: Annotated[str | None, Field(None, title="Version")]
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
-    werte: Annotated[list[Zeitreihenwert] | None, Field(None, title="Werte")]
+    version: str | None = Field(default=None, title="Version")
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    werte: list[Zeitreihenwert] | None = Field(default=None, title="Werte")
     wertherkunft: Wertermittlungsverfahren | None = None

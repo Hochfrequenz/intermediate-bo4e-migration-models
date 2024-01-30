@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.betrag import Betrag
 from ..com.externe_referenz import ExterneReferenz
@@ -31,34 +30,32 @@ class Rechnung(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.RECHNUNG, alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    faelligkeitsdatum: Annotated[datetime | None, Field(None, title="Faelligkeitsdatum")]
-    gesamtbrutto: Betrag | None = None
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bo_typ: BoTyp | None = Field(default=BoTyp.RECHNUNG, alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    faelligkeitsdatum: datetime | None = Field(default=None, title="Faelligkeitsdatum")
+    gesamtbrutto: Betrag
     gesamtnetto: Betrag | None = None
-    gesamtsteuer: Betrag | None = None
-    original_rechnungsnummer: Annotated[
-        str | None, Field(None, alias="originalRechnungsnummer", title="Originalrechnungsnummer")
-    ]
-    rabatt_brutto: Annotated[Betrag | None, Field(None, alias="rabattBrutto")]
-    rechnungsdatum: Annotated[datetime | None, Field(None, title="Rechnungsdatum")]
+    gesamtsteuer: Betrag
+    original_rechnungsnummer: str | None = Field(
+        default=None, alias="originalRechnungsnummer", title="Originalrechnungsnummer"
+    )
+    rabatt_brutto: Betrag | None = Field(default=None, alias="rabattBrutto")
+    rechnungsdatum: datetime | None = Field(default=None, title="Rechnungsdatum")
     rechnungsempfaenger: Geschaeftspartner | None = None
     rechnungsersteller: Geschaeftspartner | None = None
-    rechnungsnummer: Annotated[str | None, Field(None, title="Rechnungsnummer")]
+    rechnungsnummer: str | None = Field(default=None, title="Rechnungsnummer")
     rechnungsperiode: Zeitraum | None = None
-    rechnungspositionen: Annotated[list[Rechnungsposition] | None, Field(None, title="Rechnungspositionen")]
+    rechnungspositionen: list[Rechnungsposition] | None = Field(default=None, title="Rechnungspositionen")
     rechnungsstatus: Rechnungsstatus | None = None
-    rechnungstitel: Annotated[str | None, Field(None, title="Rechnungstitel")]
-    rechnungstyp: Rechnungstyp | None = None
-    steuerbetraege: Annotated[list[Steuerbetrag] | None, Field(None, title="Steuerbetraege")]
-    storno: Annotated[bool | None, Field(None, title="Storno")]
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    rechnungstitel: str | None = Field(default=None, title="Rechnungstitel")
+    rechnungstyp: Rechnungstyp
+    steuerbetraege: list[Steuerbetrag] | None = Field(default=None, title="Steuerbetraege")
+    storno: bool = Field(..., title="Storno")
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     vorausgezahlt: Betrag | None = None
-    zuzahlen: Betrag | None = None
-    ist_selbstausgestellt: Annotated[
-        bool | None, Field(None, alias="istSelbstausgestellt", title="Istselbstausgestellt")
-    ]
-    ist_reverse_charge: Annotated[bool | None, Field(None, alias="istReverseCharge", title="Istreversecharge")]
+    zuzahlen: Betrag
+    ist_selbstausgestellt: bool | None = Field(default=None, alias="istSelbstausgestellt", title="Istselbstausgestellt")
+    ist_reverse_charge: bool | None = Field(default=None, alias="istReverseCharge", title="Istreversecharge")

@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.bdew_artikelnummer import BDEWArtikelnummer
 from ..enum.zeiteinheit import Zeiteinheit
@@ -28,18 +27,18 @@ class Rechnungsposition(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    artikel_id: Annotated[str | None, Field(None, alias="artikelId", title="Artikelid")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    artikel_id: str | None = Field(default=None, alias="artikelId", title="Artikelid")
     artikelnummer: BDEWArtikelnummer | None = None
     einzelpreis: Preis | None = None
-    lieferung_bis: Annotated[datetime | None, Field(None, alias="lieferungBis", title="Lieferungbis")]
-    lieferung_von: Annotated[datetime | None, Field(None, alias="lieferungVon", title="Lieferungvon")]
-    lokations_id: Annotated[str | None, Field(None, alias="lokationsId", title="Lokationsid")]
-    positions_menge: Annotated[Menge | None, Field(None, alias="positionsMenge")]
-    positionsnummer: Annotated[int | None, Field(None, title="Positionsnummer")]
-    positionstext: Annotated[str | None, Field(None, title="Positionstext")]
-    teilrabatt_netto: Annotated[Betrag | None, Field(None, alias="teilrabattNetto")]
-    teilsumme_netto: Annotated[Betrag | None, Field(None, alias="teilsummeNetto")]
-    teilsumme_steuer: Annotated[Steuerbetrag | None, Field(None, alias="teilsummeSteuer")]
-    zeitbezogene_menge: Annotated[Menge | None, Field(None, alias="zeitbezogeneMenge")]
+    lieferung_bis: datetime | None = Field(default=None, alias="lieferungBis", title="Lieferungbis")
+    lieferung_von: datetime | None = Field(default=None, alias="lieferungVon", title="Lieferungvon")
+    lokations_id: str | None = Field(default=None, alias="lokationsId", title="Lokationsid")
+    positions_menge: Menge = Field(..., alias="positionsMenge")
+    positionsnummer: int | None = Field(default=None, title="Positionsnummer")
+    positionstext: str | None = Field(default=None, title="Positionstext")
+    teilrabatt_netto: Betrag | None = Field(default=None, alias="teilrabattNetto")
+    teilsumme_netto: Betrag = Field(..., alias="teilsummeNetto")
+    teilsumme_steuer: Steuerbetrag = Field(..., alias="teilsummeSteuer")
+    zeitbezogene_menge: Menge | None = Field(default=None, alias="zeitbezogeneMenge")
     zeiteinheit: Zeiteinheit | None = None

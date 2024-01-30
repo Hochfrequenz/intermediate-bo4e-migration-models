@@ -1,7 +1,7 @@
 from datetime import datetime
+from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.messwertstatus import Messwertstatus
 from ..enum.messwertstatuszusatz import Messwertstatuszusatz
@@ -23,9 +23,9 @@ class Zeitreihenwert(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    datum_uhrzeit_bis: Annotated[datetime | None, Field(None, alias="datumUhrzeitBis", title="Datumuhrzeitbis")]
-    datum_uhrzeit_von: Annotated[datetime | None, Field(None, alias="datumUhrzeitVon", title="Datumuhrzeitvon")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    datum_uhrzeit_bis: datetime | None = Field(default=None, alias="datumUhrzeitBis", title="Datumuhrzeitbis")
+    datum_uhrzeit_von: datetime | None = Field(default=None, alias="datumUhrzeitVon", title="Datumuhrzeitvon")
     status: Messwertstatus | None = None
     statuszusatz: Messwertstatuszusatz | None = None
-    wert: Annotated[float | str | None, Field(None, title="Wert")]
+    wert: Decimal | None = Field(default=None, title="Wert")

@@ -2,9 +2,10 @@
 Contains the dataset for the usage loader.
 It also contains the validation logic for the usage loader dataset.
 """
+
 from bomf.model import Bo4eDataSet
 
-from ibims.bo4e import Energiemenge, Messlokation, Zaehler
+from ibims.bo4e import Energiemenge, Messlokation, Zaehler, ZaehlerGas
 
 
 class TripicaUsageLoaderDataSet(Bo4eDataSet):
@@ -19,4 +20,4 @@ class TripicaUsageLoaderDataSet(Bo4eDataSet):
 
     energiemenge: Energiemenge
     messlokation: Messlokation
-    zaehler: Zaehler
+    zaehler: Zaehler | ZaehlerGas

@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from .tarifpreisstaffel_pro_ort import TarifpreisstaffelProOrt
 
@@ -20,8 +19,8 @@ class TarifpreispositionProOrt(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    netznr: Annotated[str | None, Field(None, title="Netznr")]
-    ort: Annotated[str | None, Field(None, title="Ort")]
-    postleitzahl: Annotated[str | None, Field(None, title="Postleitzahl")]
-    preisstaffeln: Annotated[list[TarifpreisstaffelProOrt] | None, Field(None, title="Preisstaffeln")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    netznr: str | None = Field(default=None, title="Netznr")
+    ort: str | None = Field(default=None, title="Ort")
+    postleitzahl: str | None = Field(default=None, title="Postleitzahl")
+    preisstaffeln: list[TarifpreisstaffelProOrt] | None = Field(default=None, title="Preisstaffeln")

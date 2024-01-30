@@ -1,5 +1,6 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.mengeneinheit import Mengeneinheit
 from ..enum.preisstatus import Preisstatus
@@ -23,10 +24,10 @@ class Tarifpreis(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    beschreibung: str | None = Field(default=None, title="Beschreibung")
     bezugswert: Mengeneinheit | None = None
     einheit: Waehrungseinheit | None = None
     preistyp: Preistyp | None = None
     status: Preisstatus | None = None
-    wert: Annotated[float | str | None, Field(None, title="Wert")]
+    wert: Decimal | None = Field(default=None, title="Wert")

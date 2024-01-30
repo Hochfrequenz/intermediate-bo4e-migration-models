@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.preisgarantietyp import Preisgarantietyp
 from .regionale_gueltigkeit import RegionaleGueltigkeit
@@ -22,8 +21,8 @@ class RegionalePreisgarantie(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    beschreibung: Annotated[str | None, Field(None, title="Beschreibung")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    beschreibung: str | None = Field(default=None, title="Beschreibung")
     preisgarantietyp: Preisgarantietyp | None = None
-    regionale_gueltigkeit: Annotated[RegionaleGueltigkeit | None, Field(None, alias="regionaleGueltigkeit")]
-    zeitliche_gueltigkeit: Annotated[Zeitraum | None, Field(None, alias="zeitlicheGueltigkeit")]
+    regionale_gueltigkeit: RegionaleGueltigkeit | None = Field(default=None, alias="regionaleGueltigkeit")
+    zeitliche_gueltigkeit: Zeitraum | None = Field(default=None, alias="zeitlicheGueltigkeit")

@@ -1,6 +1,7 @@
 """
 Contains the dataset for the invoice loader
 """
+
 from typing import Optional
 
 from ibims.bo4e import Bilanzierung, Marktlokation, Marktteilnehmer, Rechnung, Vertrag

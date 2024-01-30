@@ -1,5 +1,6 @@
+from decimal import Decimal
+
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.messwertstatus import Messwertstatus
 from ..enum.messwertstatuszusatz import Messwertstatuszusatz
@@ -21,7 +22,7 @@ class Zeitreihenwertkompakt(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     status: Messwertstatus | None = None
     statuszusatz: Messwertstatuszusatz | None = None
-    wert: Annotated[float | str | None, Field(None, title="Wert")]
+    wert: Decimal | None = Field(default=None, title="Wert")

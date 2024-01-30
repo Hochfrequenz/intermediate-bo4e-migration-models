@@ -1,7 +1,7 @@
 from datetime import datetime
+from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.externe_referenz import ExterneReferenz
 from ..com.zaehlwerk import Zaehlwerk
@@ -26,26 +26,26 @@ class ZaehlerGas(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.ZAEHLER, alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    zaehlernummer: Annotated[str | None, Field(None, title="Zaehlernummer")]
-    sparte: Sparte | None = None
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    bo_typ: BoTyp | None = Field(default=BoTyp.ZAEHLER, alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    zaehlernummer: str = Field(..., title="Zaehlernummer")
+    sparte: Sparte
     zaehlerauspraegung: Zaehlerauspraegung | None = None
     zaehlertyp: Zaehlertyp
-    zaehlwerke: Annotated[list[Zaehlwerk] | None, Field(None, title="Zaehlwerke")]
+    zaehlwerke: list[Zaehlwerk] = Field(..., title="Zaehlwerke")
     tarifart: Tarifart | None = None
-    zaehlerkonstante: Annotated[float | str | None, Field(None, title="Zaehlerkonstante")]
-    eichung_bis: Annotated[datetime | None, Field(None, alias="eichungBis", title="Eichungbis")]
-    letzte_eichung: Annotated[datetime | None, Field(None, alias="letzteEichung", title="Letzteeichung")]
+    zaehlerkonstante: Decimal | None = Field(default=None, title="Zaehlerkonstante")
+    eichung_bis: datetime | None = Field(default=None, alias="eichungBis", title="Eichungbis")
+    letzte_eichung: datetime | None = Field(default=None, alias="letzteEichung", title="Letzteeichung")
     zaehlerhersteller: Geschaeftspartner | None = None
     messwerterfassung: Messwerterfassung
-    nachstes_ablesedatum: Annotated[
-        datetime | None, Field(None, alias="nachstesAblesedatum", title="Nachstesablesedatum")
-    ]
-    aktiver_zeitraum: Annotated[Zeitraum | None, Field(None, alias="aktiverZeitraum")]
+    nachstes_ablesedatum: datetime | None = Field(
+        default=None, alias="nachstesAblesedatum", title="Nachstesablesedatum"
+    )
+    aktiver_zeitraum: Zeitraum | None = Field(default=None, alias="aktiverZeitraum")
     zaehlergroesse: Geraetemerkmal
     druckniveau: Netzebene

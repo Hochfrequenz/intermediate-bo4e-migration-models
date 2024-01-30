@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from .betrag import Betrag
 from .menge import Menge
@@ -24,17 +23,17 @@ class Fremdkostenposition(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    artikelbezeichnung: Annotated[str | None, Field(None, title="Artikelbezeichnung")]
-    artikeldetail: Annotated[str | None, Field(None, title="Artikeldetail")]
-    betrag_kostenposition: Annotated[Betrag | None, Field(None, alias="betragKostenposition")]
-    bis: Annotated[datetime | None, Field(None, title="Bis")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    artikelbezeichnung: str | None = Field(default=None, title="Artikelbezeichnung")
+    artikeldetail: str | None = Field(default=None, title="Artikeldetail")
+    betrag_kostenposition: Betrag | None = Field(default=None, alias="betragKostenposition")
+    bis: datetime | None = Field(default=None, title="Bis")
     einzelpreis: Preis | None = None
-    gebietcode_eic: Annotated[str | None, Field(None, alias="gebietcodeEic", title="Gebietcodeeic")]
-    link_preisblatt: Annotated[str | None, Field(None, alias="linkPreisblatt", title="Linkpreisblatt")]
-    marktpartnercode: Annotated[str | None, Field(None, title="Marktpartnercode")]
-    marktpartnername: Annotated[str | None, Field(None, title="Marktpartnername")]
+    gebietcode_eic: str | None = Field(default=None, alias="gebietcodeEic", title="Gebietcodeeic")
+    link_preisblatt: str | None = Field(default=None, alias="linkPreisblatt", title="Linkpreisblatt")
+    marktpartnercode: str | None = Field(default=None, title="Marktpartnercode")
+    marktpartnername: str | None = Field(default=None, title="Marktpartnername")
     menge: Menge | None = None
-    positionstitel: Annotated[str | None, Field(None, title="Positionstitel")]
-    von: Annotated[datetime | None, Field(None, title="Von")]
+    positionstitel: str | None = Field(default=None, title="Positionstitel")
+    von: datetime | None = Field(default=None, title="Von")
     zeitmenge: Menge | None = None

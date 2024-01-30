@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 
 class Unterschrift(BaseModel):
@@ -20,7 +19,7 @@ class Unterschrift(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    datum: Annotated[datetime | None, Field(None, title="Datum")]
-    name: Annotated[str | None, Field(None, title="Name")]
-    ort: Annotated[str | None, Field(None, title="Ort")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    datum: datetime | None = Field(default=None, title="Datum")
+    name: str | None = Field(default=None, title="Name")
+    ort: str | None = Field(default=None, title="Ort")

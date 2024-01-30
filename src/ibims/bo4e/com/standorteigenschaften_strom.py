@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 
 class StandorteigenschaftenStrom(BaseModel):
@@ -18,9 +17,9 @@ class StandorteigenschaftenStrom(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bilanzierungsgebiet_eic: Annotated[
-        str | None, Field(None, alias="bilanzierungsgebietEic", title="Bilanzierungsgebieteic")
-    ]
-    regelzone: Annotated[str | None, Field(None, title="Regelzone")]
-    regelzone_eic: Annotated[str | None, Field(None, alias="regelzoneEic", title="Regelzoneeic")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bilanzierungsgebiet_eic: str | None = Field(
+        default=None, alias="bilanzierungsgebietEic", title="Bilanzierungsgebieteic"
+    )
+    regelzone: str | None = Field(default=None, title="Regelzone")
+    regelzone_eic: str | None = Field(default=None, alias="regelzoneEic", title="Regelzoneeic")

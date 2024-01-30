@@ -1,6 +1,46 @@
 {
   "requiredFields": [
-    "\\w+\\.\\w+\\._(version|typ)"
+    "\\w+\\.\\w+\\._(version|typ)",
+    "bo\\.Energiemenge\\.energieverbrauch",
+    "bo\\.Geschaeftspartner\\.name1",
+    "bo\\.Messlokation\\.messlokationsId",
+    "bo\\.Marktlokation\\.marktlokationsId",
+    "bo\\.Marktlokation\\.sparte",
+    "bo\\.Marktteilnehmer\\.name1",
+    "bo\\.Preisblatt\\.bezeichnung",
+    "bo\\.Preisblatt\\.gueltigkeit",
+    "bo\\.Preisblatt\\.preispositionen",
+    "bo\\.Rechnung\\.gesamtbrutto",
+    "bo\\.Rechnung\\.gesamtsteuer",
+    "bo\\.Rechnung\\.rechnungstyp",
+    "bo\\.Rechnung\\.storno",
+    "bo\\.Rechnung\\.zuzahlen",
+    "bo\\.Vertrag\\.vertragsbeginn",
+    "bo\\.Vertrag\\.vertragsende",
+    "bo\\.Vertrag\\.vertragsnummer",
+    "bo\\.Vertrag\\.vertragspartner1",
+    "bo\\.Vertrag\\.vertragspartner2",
+    "bo\\.Zaehler(Gas)?\\.zaehlernummer",
+    "bo\\.Zaehler(Gas)?\\.zaehlwerke",
+    "bo\\.Zaehler(Gas)?\\.sparte",
+    "com\\.Adresse\\.ort",
+    "com\\.Adresse\\.postleitzahl",
+    "com\\.Betrag\\.wert",
+    "com\\.ExterneReferenz\\.exRefName",
+    "com\\.ExterneReferenz\\.exRefWert",
+    "com\\.Menge\\.wert",
+    "com\\.Messlokationszuordnung\\.messlokationsId",
+    "com\\.Preisgarantie\\.zeitlicheGueltigkeit",
+    "com\\.Preisposition\\.preisstaffeln",
+    "com\\.Preisstaffel\\.einheitspreis",
+    "com\\.Rechnungsposition\\.positionsMenge",
+    "com\\.Rechnungsposition\\.teilsummeNetto",
+    "com\\.Rechnungsposition\\.teilsummeSteuer",
+    "com\\.Steuerbetrag\\.basiswert",
+    "com\\.Steuerbetrag\\.steuerwert",
+    "com\\.Verbrauch\\.obisKennzahl",
+    "com\\.Verbrauch\\.wert",
+    "com\\.Zaehlwerk\\.obisKennzahl"
   ],
   "additionalFields": [
     {
@@ -25,9 +65,6 @@
       "$ref": "models/com/Preisposition_extension.json"
     },
     {
-      "$ref": "models/com/Rechnungsposition_extension.json"
-    },
-    {
       "$ref": "models/com/Steuerbetrag_extension.json"
     },
     {
@@ -39,7 +76,7 @@
   ],
   "additionalEnumItems": [
     {
-      "pattern": "enum.BDEWArtikelnummer",
+      "pattern": "enum\\.BDEWArtikelnummer",
       "items": [
         "ZUSATZDIENSTLEISTUNG_PARAGRAPH_35_2_1_MSBG",
         "ZUSATZDIENSTLEISTUNG_PARAGRAPH_35_2_2_MSBG",
@@ -50,7 +87,7 @@
       ]
     },
     {
-      "pattern": "enum.BoTyp",
+      "pattern": "enum\\.BoTyp",
       "items": [
         "Bilanzierung",
         "Dokument",
@@ -61,7 +98,7 @@
       ]
     },
     {
-      "pattern": "enum.Rechnungstyp",
+      "pattern": "enum\\.Rechnungstyp",
       "items": [
         "TURNUSRECHNUNG",
         "ABSCHLAGSRECHNUNG",
@@ -73,7 +110,7 @@
       ]
     },
     {
-      "pattern": "enum.Zaehlertyp",
+      "pattern": "enum\\.Zaehlertyp",
       "items": [
         "WIRBELGASZAEHLER",
         "MESSDATENREGISTRIERGERAET",

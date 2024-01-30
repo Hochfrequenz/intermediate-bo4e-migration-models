@@ -17,10 +17,8 @@
     "periodenverbrauchVorhersage": {
       "anyOf": [
         {
-          "type": "number"
-        },
-        {
-          "type": "string"
+          "type": "string",
+          "format": "decimal"
         }
       ],
       "title": "Periodenverbrauchvorhersage"
@@ -41,10 +39,8 @@
     "kundenWert": {
       "anyOf": [
         {
-          "type": "number"
-        },
-        {
-          "type": "string"
+          "type": "string",
+          "format": "decimal"
         },
         {
           "type": "null"

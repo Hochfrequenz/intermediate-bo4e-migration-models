@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from .betrag import Betrag
 from .kostenposition import Kostenposition
@@ -21,7 +20,7 @@ class Kostenblock(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    kostenblockbezeichnung: Annotated[str | None, Field(None, title="Kostenblockbezeichnung")]
-    kostenpositionen: Annotated[list[Kostenposition] | None, Field(None, title="Kostenpositionen")]
-    summe_kostenblock: Annotated[Betrag | None, Field(None, alias="summeKostenblock")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    kostenblockbezeichnung: str | None = Field(default=None, title="Kostenblockbezeichnung")
+    kostenpositionen: list[Kostenposition] | None = Field(default=None, title="Kostenpositionen")
+    summe_kostenblock: Betrag | None = Field(default=None, alias="summeKostenblock")

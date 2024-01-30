@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.adresse import Adresse
 from ..com.externe_referenz import ExterneReferenz
@@ -27,20 +26,20 @@ class Ansprechpartner(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
     adresse: Adresse | None = None
     anrede: Anrede | None = None
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.ANSPRECHPARTNER, alias="boTyp")]
-    e_mail_adresse: Annotated[str | None, Field(None, alias="eMailAdresse", title="Emailadresse")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
+    bo_typ: BoTyp | None = Field(default=BoTyp.ANSPRECHPARTNER, alias="boTyp")
+    e_mail_adresse: str | None = Field(default=None, alias="eMailAdresse", title="Emailadresse")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
     geschaeftspartner: Geschaeftspartner | None = None
-    individuelle_anrede: Annotated[str | None, Field(None, alias="individuelleAnrede", title="Individuelleanrede")]
-    kommentar: Annotated[str | None, Field(None, title="Kommentar")]
-    nachname: Annotated[str | None, Field(None, title="Nachname")]
+    individuelle_anrede: str | None = Field(default=None, alias="individuelleAnrede", title="Individuelleanrede")
+    kommentar: str | None = Field(default=None, title="Kommentar")
+    nachname: str | None = Field(default=None, title="Nachname")
     rufnummer: Rufnummer | None = None
     titel: Titel | None = None
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
-    vorname: Annotated[str | None, Field(None, title="Vorname")]
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    vorname: str | None = Field(default=None, title="Vorname")
     zustaendigkeit: Zustaendigkeit | None = None

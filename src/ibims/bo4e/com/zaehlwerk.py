@@ -1,7 +1,7 @@
 from datetime import datetime
+from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..enum.abgabeart import Abgabeart
 from ..enum.energierichtung import Energierichtung
@@ -24,18 +24,18 @@ class Zaehlwerk(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bezeichnung: Annotated[str | None, Field(None, title="Bezeichnung")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
     einheit: Mengeneinheit | None = None
-    obis_kennzahl: Annotated[str | None, Field(None, alias="obisKennzahl", title="Obiskennzahl")]
+    obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
     richtung: Energierichtung | None = None
-    wandlerfaktor: Annotated[float | str | None, Field(None, title="Wandlerfaktor")]
-    zaehlwerk_id: Annotated[str | None, Field(None, alias="zaehlwerkId", title="Zaehlwerkid")]
-    vorkommastellen: Annotated[int, Field(title="Vorkommastellen")]
-    nachkommastellen: Annotated[int, Field(title="Nachkommastellen")]
-    schwachlastfaehig: Annotated[bool, Field(title="Schwachlastfaehig")]
-    konzessionsabgaben_typ: Annotated[Abgabeart | None, Field(None, alias="konzessionsabgabenTyp")]
-    active_from: Annotated[datetime, Field(alias="activeFrom", title="Activefrom")]
-    active_until: Annotated[datetime | None, Field(None, alias="activeUntil", title="Activeuntil")]
-    description: Annotated[str | None, Field(None, title="Description")]
-    verbrauchsart: Annotated[str | None, Field(None, title="Verbrauchsart")]
+    wandlerfaktor: Decimal | None = Field(default=None, title="Wandlerfaktor")
+    zaehlwerk_id: str | None = Field(default=None, alias="zaehlwerkId", title="Zaehlwerkid")
+    vorkommastellen: int = Field(..., title="Vorkommastellen")
+    nachkommastellen: int = Field(..., title="Nachkommastellen")
+    schwachlastfaehig: bool = Field(..., title="Schwachlastfaehig")
+    konzessionsabgaben_typ: Abgabeart | None = Field(default=None, alias="konzessionsabgabenTyp")
+    active_from: datetime = Field(..., alias="activeFrom", title="Activefrom")
+    active_until: datetime | None = Field(default=None, alias="activeUntil", title="Activeuntil")
+    description: str | None = Field(default=None, title="Description")
+    verbrauchsart: str | None = Field(default=None, title="Verbrauchsart")

@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 
 class SepaInfo(BaseModel):
@@ -13,8 +12,8 @@ class SepaInfo(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    sepa_id: Annotated[str, Field(alias="sepaId", title="Sepaid")]
-    sepa_zahler: Annotated[bool, Field(alias="sepaZahler", title="Sepazahler")]
-    creditor_identifier: Annotated[str | None, Field(None, alias="creditorIdentifier", title="Creditoridentifier")]
-    gueltig_seit: Annotated[datetime | None, Field(None, alias="gueltigSeit", title="Gueltigseit")]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    sepa_id: str = Field(..., alias="sepaId", title="Sepaid")
+    sepa_zahler: bool = Field(..., alias="sepaZahler", title="Sepazahler")
+    creditor_identifier: str | None = Field(default=None, alias="creditorIdentifier", title="Creditoridentifier")
+    gueltig_seit: datetime | None = Field(default=None, alias="gueltigSeit", title="Gueltigseit")

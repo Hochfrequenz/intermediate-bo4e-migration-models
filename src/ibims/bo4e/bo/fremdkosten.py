@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing_extensions import Annotated
 
 from ..com.betrag import Betrag
 from ..com.externe_referenz import ExterneReferenz
@@ -26,12 +25,12 @@ class Fremdkosten(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: Annotated[str | None, Field(None, alias="_id", title=" Id")]
-    bo_typ: Annotated[BoTyp | None, Field(BoTyp.FREMDKOSTEN, alias="boTyp")]
-    externe_referenzen: Annotated[
-        list[ExterneReferenz] | None, Field(None, alias="externeReferenzen", title="Externereferenzen")
-    ]
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    bo_typ: BoTyp | None = Field(default=BoTyp.FREMDKOSTEN, alias="boTyp")
+    externe_referenzen: list[ExterneReferenz] | None = Field(
+        default=None, alias="externeReferenzen", title="Externereferenzen"
+    )
     gueltigkeit: Zeitraum | None = None
-    kostenbloecke: Annotated[list[Fremdkostenblock] | None, Field(None, title="Kostenbloecke")]
-    summe_kosten: Annotated[Betrag | None, Field(None, alias="summeKosten")]
-    versionstruktur: Annotated[str | None, Field("2", title="Versionstruktur")]
+    kostenbloecke: list[Fremdkostenblock] | None = Field(default=None, title="Kostenbloecke")
+    summe_kosten: Betrag | None = Field(default=None, alias="summeKosten")
+    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
