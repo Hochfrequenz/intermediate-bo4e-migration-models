@@ -23,12 +23,15 @@ jobs:
         run: |
           black src/ibims/bo4e
           isort src/ibims/bo4e
-      - name: Check if BO4E is correct and up-to-date
+      - name: Detect changed files
+        uses: tj-actions/verify-changed-files@v17
+        id: verify-changed-files
+        with:
+          files: src/ibims/bo4e
+      - name: Output if any of the above files changed.
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        env:
+          CHANGED_FILES: ${{ steps.verify-changed-files.outputs.changed_files }}
         run: |
-          git update-index --refresh
-          if git add . && git diff --quiet && git diff --cached --quiet ; then
-            echo "No changes found"
-          else
-            echo "Changes found"
-            exit 1
-          fi
+          echo "Changed files: $CHANGED_FILES"
+          exit 1
