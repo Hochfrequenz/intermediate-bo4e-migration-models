@@ -26,6 +26,7 @@ jobs:
           isort src/ibims/bo4e
       - name: Check if BO4E is correct and up-to-date
         run: |
+          git update-index --refresh
           if git add . && git diff --quiet && git diff --cached --quiet ; then
             echo "No changes found"
           else
