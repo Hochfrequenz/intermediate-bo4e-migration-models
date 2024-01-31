@@ -21,8 +21,8 @@ jobs:
           tox -e generate_bo4e
       - name: Run formatters
         run: |
-          black src/ibims/bo4e
           isort src/ibims/bo4e
+          black src/ibims/bo4e
       - name: Detect changed files
         uses: tj-actions/verify-changed-files@v17
         id: verify-changed-files
