@@ -24,7 +24,7 @@ jobs:
           pip install -r dev_requirements/requirements-generate-bo4e.txt
       - name: Check for updates
         run: |
-          if python -m bo4e/bo4e_updater.py; then
+          if python bo4e/bo4e_updater.py; then
             echo "No updates found"
             exit 0
           fi

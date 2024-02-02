@@ -3,6 +3,7 @@ This script checks if the current BO4E version is up-to-date.
 """
 
 import sys
+from pathlib import Path
 
 import click
 import requests
@@ -11,7 +12,7 @@ from dotenv import dotenv_values, set_key
 OWNER = "Hochfrequenz"
 REPO = "BO4E-Schemas"
 TIMEOUT = 10  # in seconds
-DOTENV_FILE = "bo4e/tox.env"
+DOTENV_FILE = Path(__file__).parents[1] / "bo4e/tox.env"
 
 
 def resolve_latest_version() -> str:
