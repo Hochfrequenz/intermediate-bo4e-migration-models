@@ -1,8 +1,8 @@
-name: "BO4E Integrity Check"
+name: "BO4E Consistency Check"
 
 on: [push]
 jobs:
-  bo4e_integrity_check:
+  bo4e_consistency_check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
