@@ -24,9 +24,10 @@ jobs:
           isort src/ibims/bo4e
           black src/ibims/bo4e
       - name: Detect changed files
-        run: |
-          git diff
-          if git diff --quiet ; then
-            echo "No changes found"
-          else
-            echo "Changes found"
+        uses: tj-actions/verify-changed-files@v17
+        id: verify-changed-files
+        with:
+          files: src/ibims/bo4e
+          fail-if-changed: true
+          fail-message: "src/ibims/bo4e was changed manually. Try editing the configuration files in bo4e/ instead. \
+          Changed files: ${{ steps.verify-changed-files.outputs.files }}"
