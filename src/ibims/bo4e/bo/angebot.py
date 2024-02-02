@@ -29,7 +29,6 @@ class Angebot(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    test: str = Field(default="test", title="Test")
     id: str | None = Field(default=None, alias="_id", title=" Id")
     anfragereferenz: str | None = Field(default=None, title="Anfragereferenz")
     angebotsdatum: datetime | None = Field(default=None, title="Angebotsdatum")
