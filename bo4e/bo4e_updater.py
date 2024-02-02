@@ -50,7 +50,7 @@ def main():
         return
 
     # Update BO4E:
-    set_key(DOTENV_FILE, "BO4E_VERSION", latest_version)
+    set_key(DOTENV_FILE, "BO4E_VERSION", latest_version, quote_mode="never")
     sys.exit(1)
 
 
