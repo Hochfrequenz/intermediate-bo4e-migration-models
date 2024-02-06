@@ -47,21 +47,20 @@ def catch_all_exceptions(
     on_finalize: Optional[Callable[[], Any]] = None,
     reraise: bool = False,
 ):
+    """
+    Context manager to catch all exceptions and call the appropriate callback functions.
+    Optionally, the exception can be reraised after calling the callbacks.
+    """
     try:
-        print("Catching exceptions...")
         yield
-        print("No exceptions raised")
         if on_success is not None:
             on_success()
-    except Exception as error:
-        print(f"Caught exception: {error}")
+    except Exception as error:  # pylint: disable=broad-exception-caught
         if on_error is not None:
             on_error(error)
         if reraise:
-            print("Reraising exception")
             raise
     finally:
-        print("Finalizing...")
         if on_finalize is not None:
             on_finalize()
 
@@ -97,6 +96,7 @@ def rebuild_bo4e(version: str) -> bool:
     return success
 
 
+# pylint: disable=too-many-locals
 @click.command()
 def main():
     """
