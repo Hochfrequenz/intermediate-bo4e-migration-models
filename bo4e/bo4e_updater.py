@@ -49,25 +49,31 @@ def catch_all_exceptions(
     reraise: bool = False,
 ):
     try:
+        print("Catching exceptions...")
         yield
+        print("No exceptions raised")
         if on_success is not None:
             on_success()
     except Exception as error:
+        print(f"Caught exception: {error}")
         if on_error is not None:
             on_error(error)
         if reraise:
+            print("Reraising exception")
             raise
     finally:
+        print("Finalizing...")
         if on_finalize is not None:
             on_finalize()
 
 
-def rebuild_bo4e(version: str, context: click.Context) -> bool:
+def rebuild_bo4e(version: str) -> bool:
     """Try to rebuild auto-generated BO4E code"""
     success = False
     with catch_all_exceptions(
         on_error=lambda error: logger.warning("Could not rebuild auto-generated code", exc_info=error)
     ):
+        print("Running bost...")
         bost_main(
             output=REPO_ROOT / "tmp/bo4e_schemas",
             target_version=version,
@@ -77,6 +83,7 @@ def rebuild_bo4e(version: str, context: click.Context) -> bool:
             config_file=REPO_ROOT / "bo4e/bo4e_config.json",
             cache_dir=REPO_ROOT / "tmp/bo4e_cache",
         )
+        print("Running bo4e-generator...")
         generate_bo4e_schemas(
             input_directory=REPO_ROOT / "tmp/bo4e_schemas",
             output_directory=REPO_ROOT / "src/ibims/bo4e",
@@ -85,15 +92,16 @@ def rebuild_bo4e(version: str, context: click.Context) -> bool:
             pydantic_v1=False,
         )
         logger.info("Run black and isort on auto-generated code")
-        context.invoke(black_main, str(REPO_ROOT / "src/ibims/bo4e"))
+        # context.invoke(black_main, str(REPO_ROOT / "src/ibims/bo4e"))
+        print("Running black...")
         isort_main(str(REPO_ROOT / "src/ibims/bo4e"))
         success = True
+    print("Returning result from rebuild_bo4e...")
     return success
 
 
 @click.command()
-@click.pass_context
-def main(ctx: click.Context):
+def main():
     """
     Check if the current version is up-to-date. If so, exit with exit code 0.
     If not, update the version in the tox.env file and exit with exit code 1.
@@ -127,6 +135,7 @@ def main(ctx: click.Context):
 
     def log_error_and_unstash(error_msg: str):
         def inner(error: Exception):
+            print(f"Log error and unstash: {error_msg}: {error}")
             logger.error(error_msg, exc_info=error)
             git_repo.git.execute(["git", "stash", "pop"])
 
@@ -145,12 +154,17 @@ def main(ctx: click.Context):
 
     # Update BO4E-version in .env file and try to rebuild BO4E
     set_key(DOTENV_FILE, "BO4E_VERSION", latest_version, quote_mode="never")
-    succeeded_rebuild = rebuild_bo4e(latest_version, context=ctx)
+    # succeeded_rebuild = rebuild_bo4e(latest_version)
+    succeeded_rebuild = False
+    print(f"Rebuild finished: {succeeded_rebuild}")
 
     # Commit and push changes to remote
     with catch_all_exceptions(on_error=log_error_and_unstash("Could not push changes to remote"), reraise=True):
+        # Path(REPO_ROOT / "test.txt").unlink(missing_ok=True)
         diff = git_repo.index.diff(None)
-        git_repo.index.add(diff)
+        diff_paths = [diff_elem.a_path for diff_elem in diff] + git_repo.untracked_files
+        print(f"Diff paths: {diff_paths}")
+        git_repo.index.add(diff_paths)
         git_repo.index.commit(f"Update BO4E version to {latest_version}")
         remote.push(f"refs/heads/{new_branch_name}:refs/heads/{new_branch_name}")
 
