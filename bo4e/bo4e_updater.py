@@ -143,7 +143,6 @@ def main():
 
     def log_error_and_unstash(error_msg: str) -> Callable[[Exception], None]:
         def inner(error: Exception):
-            print(f"Log error and unstash: {error_msg}: {error}")
             logger.error(error_msg, exc_info=error)
             git_repo.git.execute(["git", "stash", "pop"])
 
@@ -221,7 +220,9 @@ def main():
 
     # Pop stash if it was created
     with catch_all_exceptions(
-        on_error=log_error_and_unstash("Could not pop stash"),
+        on_error=lambda error: logger.warning(
+            "Could not pop stash. If run by the updater.yml workflow, this is usual and fine."
+        ),
         on_success=lambda: logger.info("Popped stash successfully"),
     ):
         git_repo.git.execute(["git", "stash", "pop"])
