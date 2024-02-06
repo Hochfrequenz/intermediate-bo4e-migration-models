@@ -22,6 +22,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r dev_requirements/requirements-generate-bo4e.txt
+          pip install -r dev_requirements/requirements-formatting.txt
       - name: Run updater
         run: |
           python bo4e/bo4e_updater.py
