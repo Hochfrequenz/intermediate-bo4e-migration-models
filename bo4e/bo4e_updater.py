@@ -4,19 +4,18 @@ This script checks if the current BO4E version is up-to-date.
 
 import logging
 import os
-import sys
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Callable, Optional
 
 import click
-from black import main as black_main
 from bo4e_generator.__main__ import generate_bo4e_schemas
 from bost.__main__ import main as bost_main
 from bost.pull import OWNER, REPO, resolve_latest_version
 from dotenv import dotenv_values, set_key
 from git import Repo
 from github import Github
+from github.Auth import Token
 from isort.main import main as isort_main
 
 PR_TARGET_OWNER = "Hochfrequenz"
@@ -71,9 +70,10 @@ def rebuild_bo4e(version: str) -> bool:
     """Try to rebuild auto-generated BO4E code"""
     success = False
     with catch_all_exceptions(
-        on_error=lambda error: logger.warning("Could not rebuild auto-generated code", exc_info=error)
+        on_error=lambda error: logger.warning("Could not rebuild auto-generated code", exc_info=error),
+        on_success=lambda: logger.info("Rebuilt and formatted auto-generated code successfully"),
     ):
-        print("Running bost...")
+        logger.info("Running bost...")
         bost_main(
             output=REPO_ROOT / "tmp/bo4e_schemas",
             target_version=version,
@@ -83,7 +83,7 @@ def rebuild_bo4e(version: str) -> bool:
             config_file=REPO_ROOT / "bo4e/bo4e_config.json",
             cache_dir=REPO_ROOT / "tmp/bo4e_cache",
         )
-        print("Running bo4e-generator...")
+        logger.info("Running bo4e-generator...")
         generate_bo4e_schemas(
             input_directory=REPO_ROOT / "tmp/bo4e_schemas",
             output_directory=REPO_ROOT / "src/ibims/bo4e",
@@ -91,12 +91,9 @@ def rebuild_bo4e(version: str) -> bool:
             clear_output=True,
             pydantic_v1=False,
         )
-        logger.info("Run black and isort on auto-generated code")
-        # context.invoke(black_main, str(REPO_ROOT / "src/ibims/bo4e"))
-        print("Running black...")
+        logger.info("Run isort on auto-generated code. Normally, this should not change anything.")
         isort_main(str(REPO_ROOT / "src/ibims/bo4e"))
         success = True
-    print("Returning result from rebuild_bo4e...")
     return success
 
 
@@ -108,6 +105,10 @@ def main():
     """
     os.environ["GIT_PYTHON_TRACE"] = "full"
     with catch_all_exceptions(
+        on_error=lambda error: logger.error("Access Token not provided", exc_info=error), reraise=True
+    ):
+        gh_access_token = os.environ["GITHUB_ACCESS_TOKEN"]
+    with catch_all_exceptions(
         on_error=lambda error: logger.error("Could not resolve latest version", exc_info=error), reraise=True
     ):
         latest_version = resolve_latest_version()
@@ -116,56 +117,79 @@ def main():
     ):
         current = current_version()
 
-    # if latest_version == current:
-    #     logger.info("Version %s is up to date.", current)
-    #     return
+    if latest_version == current:
+        logger.info("Version %s is up to date.", current)
+        return
+
+    logger.info("Version %s is outdated. Updating to %s.", current, latest_version)
 
     with catch_all_exceptions(
-        on_error=lambda error: logger.error("Could not initialize variables", exc_info=error), reraise=True
+        on_error=lambda error: logger.error("Could not initialize variables", exc_info=error),
+        on_success=lambda: logger.info("Initialized variables successfully"),
+        reraise=True,
     ):
         git_repo = Repo(REPO_ROOT)
-        github_repo = Github().get_repo(f"{PR_TARGET_OWNER}/{PR_TARGET_REPO}")
-        github_bo4e_repo = Github().get_repo(f"{BO4E_SOURCE_OWNER}/{BO4E_SOURCE_REPO}")
+        auth = Token(gh_access_token)
+        github_repo = Github(auth=auth).get_repo(f"{PR_TARGET_OWNER}/{PR_TARGET_REPO}")
+        github_bo4e_repo = Github(auth=auth).get_repo(f"{BO4E_SOURCE_OWNER}/{BO4E_SOURCE_REPO}")
         latest_release = github_bo4e_repo.get_latest_release()
     # If using the script locally with a dirty working directory, stash changes to avoid conflicts
     with catch_all_exceptions(
-        on_error=lambda error: logger.error("Could not stash changes", exc_info=error), reraise=True
+        on_error=lambda error: logger.error("Could not stash changes", exc_info=error),
+        on_success=lambda: logger.info("Stashed changes successfully"),
+        reraise=True,
     ):
         git_repo.git.execute(["git", "stash", "push", "--include-untracked"])
 
-    def log_error_and_unstash(error_msg: str):
+    def log_error_and_unstash(error_msg: str) -> Callable[[Exception], None]:
         def inner(error: Exception):
             print(f"Log error and unstash: {error_msg}: {error}")
             logger.error(error_msg, exc_info=error)
             git_repo.git.execute(["git", "stash", "pop"])
 
+        return inner
+
     # Checkout new branch to later commit and push changes to remote etc.
-    with catch_all_exceptions(on_error=log_error_and_unstash("Could not create new branch"), reraise=True):
+    with catch_all_exceptions(
+        on_error=log_error_and_unstash("Could not create new branch"),
+        on_success=lambda: logger.info("Created and checkout new branch successfully"),
+        reraise=True,
+    ):
         new_branch_name = f"bo4e_bot/bo4e-{latest_version[1:]}"
         new_branch = git_repo.create_head(new_branch_name, logmsg=f"Create branch {new_branch_name}")
         new_branch.checkout()
 
     # Create some later needed variables before the long rebuilding process. For faster error responses if it fails.
-    with catch_all_exceptions(on_error=log_error_and_unstash("Could not retrieve remote"), reraise=True):
+    with catch_all_exceptions(
+        on_error=log_error_and_unstash("Could not retrieve remote"),
+        on_success=lambda: logger.info("Retrieved remote successfully"),
+        reraise=True,
+    ):
         remotes = git_repo.remotes
         assert len(remotes) == 1, "Expected exactly one remote"
         remote = remotes[0]
         assert remote.exists(), "Remote does not exist"
 
+    logger.info("Branch: %s, Remote to create PR: %s", new_branch, remote.url)
+
     # Update BO4E-version in .env file and try to rebuild BO4E
     set_key(DOTENV_FILE, "BO4E_VERSION", latest_version, quote_mode="never")
-    # succeeded_rebuild = rebuild_bo4e(latest_version)
-    succeeded_rebuild = False
-    print(f"Rebuild finished: {succeeded_rebuild}")
+    logger.info("Updated BO4E version in bo4e/tox.env file from %s to %s", current, latest_version)
+    succeeded_rebuild = rebuild_bo4e(latest_version)
 
     # Commit and push changes to remote
-    with catch_all_exceptions(on_error=log_error_and_unstash("Could not push changes to remote"), reraise=True):
+    with catch_all_exceptions(
+        on_error=log_error_and_unstash("Could not commit or push changes to remote"),
+        on_success=lambda: logger.info("Pushed changes to remote branch successfully"),
+        reraise=True,
+    ):
         # Path(REPO_ROOT / "test.txt").unlink(missing_ok=True)
         diff = git_repo.index.diff(None)
         diff_paths = [diff_elem.a_path for diff_elem in diff] + git_repo.untracked_files
+        assert len(diff_paths) > 0, "Expected at least one changed file"
         print(f"Diff paths: {diff_paths}")
         git_repo.index.add(diff_paths)
-        git_repo.index.commit(f"Update BO4E version to {latest_version}")
+        git_repo.index.commit(f"Update BO4E version to {latest_version}", skip_hooks=True)
         remote.push(f"refs/heads/{new_branch_name}:refs/heads/{new_branch_name}")
 
     # Create PR with new BO4E version. Even if it couldn't be rebuilt, a new version should be created.
@@ -183,7 +207,11 @@ def main():
         "</blockquote>"
         "</details>"
     )
-    with catch_all_exceptions(on_error=log_error_and_unstash("Could not create pull request"), reraise=True):
+    with catch_all_exceptions(
+        on_error=log_error_and_unstash("Could not create pull request"),
+        on_success=lambda: logger.info("Created pull request successfully"),
+        reraise=True,
+    ):
         github_repo.create_pull(
             title=title,
             body=body,
@@ -192,8 +220,13 @@ def main():
         )
 
     # Pop stash if it was created
-    with catch_all_exceptions(on_error=log_error_and_unstash("Could not pop stash"), reraise=True):
-        git_repo.git.stash.pop()
+    with catch_all_exceptions(
+        on_error=log_error_and_unstash("Could not pop stash"),
+        on_success=lambda: logger.info("Popped stash successfully"),
+    ):
+        git_repo.git.execute(["git", "stash", "pop"])
+
+    logger.info("Finished.")
 
 
 if __name__ == "__main__":
