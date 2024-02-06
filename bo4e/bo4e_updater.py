@@ -7,7 +7,7 @@ import os
 import sys
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Callable, Optional
 
 import click
 from black import main as black_main
@@ -43,20 +43,31 @@ def current_version() -> str:
 
 @contextmanager
 def catch_all_exceptions(
-    log_level: int, error_msg: str, *msg_args: Any, exit_code: Optional[int] = None, **msg_kwargs: Any
+    on_success: Optional[Callable[[], Any]] = None,
+    on_error: Optional[Callable[[Exception], Any]] = None,
+    on_finalize: Optional[Callable[[], Any]] = None,
+    reraise: bool = False,
 ):
     try:
         yield
+        if on_success is not None:
+            on_success()
     except Exception as error:
-        logger.log(log_level, error_msg, *msg_args, exc_info=error, **msg_kwargs)
-        if exit_code is not None:
-            sys.exit(exit_code)
+        if on_error is not None:
+            on_error(error)
+        if reraise:
+            raise
+    finally:
+        if on_finalize is not None:
+            on_finalize()
 
 
 def rebuild_bo4e(version: str, context: click.Context) -> bool:
     """Try to rebuild auto-generated BO4E code"""
     success = False
-    with catch_all_exceptions(logging.WARNING, "Could not rebuild auto-generated code"):
+    with catch_all_exceptions(
+        on_error=lambda error: logger.warning("Could not rebuild auto-generated code", exc_info=error)
+    ):
         bost_main(
             output=REPO_ROOT / "tmp/bo4e_schemas",
             target_version=version,
@@ -88,31 +99,45 @@ def main(ctx: click.Context):
     If not, update the version in the tox.env file and exit with exit code 1.
     """
     os.environ["GIT_PYTHON_TRACE"] = "full"
-    with catch_all_exceptions(logging.ERROR, "Could not resolve latest version", exit_code=1):
+    with catch_all_exceptions(
+        on_error=lambda error: logger.error("Could not resolve latest version", exc_info=error), reraise=True
+    ):
         latest_version = resolve_latest_version()
-    with catch_all_exceptions(logging.ERROR, "Could not resolve current version", exit_code=1):
+    with catch_all_exceptions(
+        on_error=lambda error: logger.error("Could not resolve current version", exc_info=error), reraise=True
+    ):
         current = current_version()
 
     # if latest_version == current:
     #     logger.info("Version %s is up to date.", current)
     #     return
 
-    with catch_all_exceptions(logging.ERROR, "Could not initialize variables", exit_code=1):
+    with catch_all_exceptions(
+        on_error=lambda error: logger.error("Could not initialize variables", exc_info=error), reraise=True
+    ):
         git_repo = Repo(REPO_ROOT)
         github_repo = Github().get_repo(f"{PR_TARGET_OWNER}/{PR_TARGET_REPO}")
         github_bo4e_repo = Github().get_repo(f"{BO4E_SOURCE_OWNER}/{BO4E_SOURCE_REPO}")
         latest_release = github_bo4e_repo.get_latest_release()
     # If using the script locally with a dirty working directory, stash changes to avoid conflicts
-    with catch_all_exceptions(logging.ERROR, "Could not stash changes", exit_code=1):
+    with catch_all_exceptions(
+        on_error=lambda error: logger.error("Could not stash changes", exc_info=error), reraise=True
+    ):
         git_repo.git.execute(["git", "stash", "push", "--include-untracked"])
+
+    def log_error_and_unstash(error_msg: str):
+        def inner(error: Exception):
+            logger.error(error_msg, exc_info=error)
+            git_repo.git.execute(["git", "stash", "pop"])
+
     # Checkout new branch to later commit and push changes to remote etc.
-    with catch_all_exceptions(logging.ERROR, "Could not new branch", exit_code=1):
+    with catch_all_exceptions(on_error=log_error_and_unstash("Could not create new branch"), reraise=True):
         new_branch_name = f"bo4e_bot/bo4e-{latest_version[1:]}"
         new_branch = git_repo.create_head(new_branch_name, logmsg=f"Create branch {new_branch_name}")
         new_branch.checkout()
 
     # Create some later needed variables before the long rebuilding process. For faster error responses if it fails.
-    with catch_all_exceptions(logging.ERROR, "Could not retrieve remote", exit_code=1):
+    with catch_all_exceptions(on_error=log_error_and_unstash("Could not retrieve remote"), reraise=True):
         remotes = git_repo.remotes
         assert len(remotes) == 1, "Expected exactly one remote"
         remote = remotes[0]
@@ -123,7 +148,7 @@ def main(ctx: click.Context):
     succeeded_rebuild = rebuild_bo4e(latest_version, context=ctx)
 
     # Commit and push changes to remote
-    with catch_all_exceptions(logging.ERROR, "Could not push changes to remote", exit_code=1):
+    with catch_all_exceptions(on_error=log_error_and_unstash("Could not push changes to remote"), reraise=True):
         diff = git_repo.index.diff(None)
         git_repo.index.add(diff)
         git_repo.index.commit(f"Update BO4E version to {latest_version}")
@@ -144,7 +169,7 @@ def main(ctx: click.Context):
         "</blockquote>"
         "</details>"
     )
-    with catch_all_exceptions(logging.ERROR, "Could not create pull request", exit_code=1):
+    with catch_all_exceptions(on_error=log_error_and_unstash("Could not create pull request"), reraise=True):
         github_repo.create_pull(
             title=title,
             body=body,
@@ -153,7 +178,7 @@ def main(ctx: click.Context):
         )
 
     # Pop stash if it was created
-    with catch_all_exceptions(logging.ERROR, "Could not pop stash", exit_code=1):
+    with catch_all_exceptions(on_error=log_error_and_unstash("Could not pop stash"), reraise=True):
         git_repo.git.stash.pop()
 
 
