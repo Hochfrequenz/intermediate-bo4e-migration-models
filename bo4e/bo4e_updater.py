@@ -103,7 +103,7 @@ def rebuild_bo4e(version: str) -> Optional[Exception]:
     return error_during_rebuild
 
 
-# pylint: disable=too-many-locals
+# pylint: disable=too-many-locals, too-many-statements
 @click.command()
 def main():
     """
