@@ -7,7 +7,7 @@ import os
 from contextlib import contextmanager
 from io import StringIO
 from pathlib import Path
-from traceback import print_tb
+from traceback import print_exception
 from typing import Any, Callable, Optional
 
 import click
@@ -215,12 +215,11 @@ def main():
     )
     if error is not None:
         traceback_str = StringIO()
-        print_tb(error.__traceback__, file=traceback_str)
+        print_exception(error.__traceback__, file=traceback_str)
         body += (
             "<details>\n"
             "<summary>Rebuild error</summary>\n"
             "<blockquote>\n"
-            f"<h2>{type(error).__name__}: {error}</h2>\n\n"
             f"```\n"
             f"{traceback_str.getvalue()}\n"
             f"```\n"
