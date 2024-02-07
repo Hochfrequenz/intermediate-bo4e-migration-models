@@ -108,7 +108,8 @@ def rebuild_bo4e(version: str) -> Optional[Exception]:
 def main():
     """
     Check if the current version is up-to-date. If so, exit with exit code 0.
-    If not, update the version in the tox.env file and exit with exit code 1.
+    If not, update the version in the tox.env file and try to rebuild the BO4E code.
+    Whether this succeeds or not, create a new branch and push the changes to the remote to create a pull request.
     """
     os.environ["GIT_PYTHON_TRACE"] = "full"
     with catch_all_exceptions(
