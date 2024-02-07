@@ -5,7 +5,9 @@ This script checks if the current BO4E version is up-to-date.
 import logging
 import os
 from contextlib import contextmanager
+from io import StringIO
 from pathlib import Path
+from traceback import print_tb
 from typing import Any, Callable, Optional
 
 import click
@@ -65,11 +67,17 @@ def catch_all_exceptions(
             on_finalize()
 
 
-def rebuild_bo4e(version: str) -> bool:
+def rebuild_bo4e(version: str) -> Optional[Exception]:
     """Try to rebuild auto-generated BO4E code"""
-    success = False
+    error_during_rebuild: Optional[Exception] = None
+
+    def error_callback(error: Exception):
+        nonlocal error_during_rebuild
+        error_during_rebuild = error
+        logger.warning("Could not rebuild auto-generated code", exc_info=error)
+
     with catch_all_exceptions(
-        on_error=lambda error: logger.warning("Could not rebuild auto-generated code", exc_info=error),
+        on_error=error_callback,
         on_success=lambda: logger.info("Rebuilt and formatted auto-generated code successfully"),
     ):
         logger.info("Running bost...")
@@ -92,8 +100,7 @@ def rebuild_bo4e(version: str) -> bool:
         )
         logger.info("Run isort on auto-generated code. Normally, this should not change anything.")
         isort_main(str(REPO_ROOT / "src/ibims/bo4e"))
-        success = True
-    return success
+    return error_during_rebuild
 
 
 # pylint: disable=too-many-locals
@@ -174,7 +181,7 @@ def main():
     # Update BO4E-version in .env file and try to rebuild BO4E
     set_key(DOTENV_FILE, "BO4E_VERSION", latest_version, quote_mode="never")
     logger.info("Updated BO4E version in bo4e/tox.env file from %s to %s", current, latest_version)
-    succeeded_rebuild = rebuild_bo4e(latest_version)
+    error = rebuild_bo4e(latest_version)
 
     # Commit and push changes to remote
     with catch_all_exceptions(
@@ -195,17 +202,29 @@ def main():
     title = f"Bump BO4E from {current[1:]} to {latest_version[1:]}"
     body = (
         f"{title}.\n"
-        f"BO4E rebuild: {'succeeded' if succeeded_rebuild else 'failed'}.\n\n"
-        "<details>"
-        "<summary>Changelog</summary>"
-        f'<p><em>Sourced from <a href="{latest_release.html_url}">'
-        "BO4E's changelog</a>.</em></p>"
-        "<blockquote>"
-        f"<h2>{latest_release.title}</h2>"
-        f"{latest_release.body}"
-        "</blockquote>"
-        "</details>"
+        f"BO4E rebuild: {'succeeded' if error is None else 'failed'}.\n\n"
+        "<details>\n"
+        "<summary>Changelog</summary>\n"
+        f'<p><em>Sourced from <a href="{latest_release.html_url}">\n'
+        "BO4E's changelog</a>.</em></p>\n"
+        "<blockquote>\n"
+        f"<h2>{latest_release.title}</h2>\n\n"
+        f"{latest_release.body}\n"
+        "</blockquote>\n"
+        "</details>\n"
     )
+    if error is not None:
+        traceback_str = StringIO()
+        print_tb(error.__traceback__, file=traceback_str)
+        body += (
+            "<details>\n"
+            "<summary>Rebuild error</summary>\n"
+            "<blockquote>\n"
+            f"<h2>{type(error).__name__}: {error}</h2>\n\n"
+            f"{traceback_str.getvalue()}\n"
+            "</blockquote>\n"
+            "</details>\n"
+        )
     with catch_all_exceptions(
         on_error=log_error_and_unstash("Could not create pull request"),
         on_success=lambda: logger.info("Created pull request successfully"),
