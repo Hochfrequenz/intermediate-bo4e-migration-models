@@ -221,7 +221,9 @@ def main():
             "<summary>Rebuild error</summary>\n"
             "<blockquote>\n"
             f"<h2>{type(error).__name__}: {error}</h2>\n\n"
+            f"```\n"
             f"{traceback_str.getvalue()}\n"
+            f"```\n"
             "</blockquote>\n"
             "</details>\n"
         )
