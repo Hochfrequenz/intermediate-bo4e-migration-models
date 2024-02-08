@@ -13,7 +13,7 @@ from typing import Any, Callable, Optional
 import click
 from bo4e_generator.__main__ import generate_bo4e_schemas
 from bost.__main__ import main as bost_main
-from bost.pull import OWNER, REPO, resolve_latest_version
+from bost.pull import get_source_repo, resolve_latest_version
 from dotenv import dotenv_values, set_key
 from git import Repo
 from github import Github
@@ -22,8 +22,6 @@ from isort.main import main as isort_main
 
 PR_TARGET_OWNER = "Hochfrequenz"
 PR_TARGET_REPO = "intermediate-bo4e-migration-models"
-BO4E_SOURCE_OWNER = OWNER
-BO4E_SOURCE_REPO = REPO
 REPO_ROOT = Path(__file__).parents[1]
 DOTENV_FILE = REPO_ROOT / "bo4e/tox.env"
 
@@ -67,7 +65,7 @@ def catch_all_exceptions(
             on_finalize()
 
 
-def rebuild_bo4e(version: str) -> Optional[Exception]:
+def rebuild_bo4e(version: str, gh_access_token: str) -> Optional[Exception]:
     """Try to rebuild auto-generated BO4E code"""
     error_during_rebuild: Optional[Exception] = None
 
@@ -89,6 +87,7 @@ def rebuild_bo4e(version: str) -> Optional[Exception]:
             clear_output=True,
             config_file=REPO_ROOT / "bo4e/bo4e_config.json",
             cache_dir=REPO_ROOT / "tmp/bo4e_cache",
+            token=gh_access_token,
         )
         logger.info("Running bo4e-generator...")
         generate_bo4e_schemas(
@@ -119,7 +118,7 @@ def main():
     with catch_all_exceptions(
         on_error=lambda error: logger.error("Could not resolve latest version", exc_info=error), reraise=True
     ):
-        latest_version = resolve_latest_version()
+        latest_version = resolve_latest_version(token=gh_access_token)
     with catch_all_exceptions(
         on_error=lambda error: logger.error("Could not resolve current version", exc_info=error), reraise=True
     ):
@@ -139,7 +138,7 @@ def main():
         git_repo = Repo(REPO_ROOT)
         auth = Token(gh_access_token)
         github_repo = Github(auth=auth).get_repo(f"{PR_TARGET_OWNER}/{PR_TARGET_REPO}")
-        github_bo4e_repo = Github(auth=auth).get_repo(f"{BO4E_SOURCE_OWNER}/{BO4E_SOURCE_REPO}")
+        github_bo4e_repo = get_source_repo(gh_access_token)
         latest_release = github_bo4e_repo.get_latest_release()
     # If using the script locally with a dirty working directory, stash changes to avoid conflicts
     with catch_all_exceptions(
@@ -182,7 +181,7 @@ def main():
     # Update BO4E-version in .env file and try to rebuild BO4E
     set_key(DOTENV_FILE, "BO4E_VERSION", latest_version, quote_mode="never")
     logger.info("Updated BO4E version in bo4e/tox.env file from %s to %s", current, latest_version)
-    error = rebuild_bo4e(latest_version)
+    error = rebuild_bo4e(latest_version, gh_access_token)
 
     # Commit and push changes to remote
     with catch_all_exceptions(
