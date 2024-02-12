@@ -12,7 +12,7 @@ bidict==0.22.1
     #   pvframework
 bo4e==0.6.1
     # via bomf
-bomf==0.9.2
+bomf==0.10.0
     # via -r requirements.in
 frozendict==2.3.8
     # via
