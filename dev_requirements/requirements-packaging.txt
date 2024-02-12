@@ -7,7 +7,7 @@
 bleach==6.0.0
     # via readme-renderer
 build==1.0.3
-    # via -r requirements-packaging.in
+    # via -r dev_requirements/requirements-packaging.in
 certifi==2023.7.22
     # via requests
 cffi==1.15.1
@@ -21,9 +21,7 @@ docutils==0.20.1
 idna==3.4
     # via requests
 importlib-metadata==6.7.0
-    # via
-    #   keyring
-    #   twine
+    # via twine
 jaraco-classes==3.2.3
     # via keyring
 jeepney==0.8.0
@@ -66,12 +64,8 @@ secretstorage==3.3.3
     # via keyring
 six==1.16.0
     # via bleach
-tomli==2.0.1
-    # via
-    #   build
-    #   pyproject-hooks
-twine==4.0.2
-    # via -r requirements-packaging.in
+twine==5.0.0
+    # via -r dev_requirements/requirements-packaging.in
 urllib3==2.1.0
     # via
     #   requests
