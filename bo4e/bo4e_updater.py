@@ -5,9 +5,8 @@ This script checks if the current BO4E version is up-to-date.
 import logging
 import os
 from contextlib import contextmanager
-from io import StringIO
 from pathlib import Path
-from traceback import print_exception
+from traceback import format_exception
 from typing import Any, Callable, Optional
 
 import click
@@ -214,14 +213,13 @@ def main():
         "</details>\n"
     )
     if error is not None:
-        traceback_str = StringIO()
-        print_exception(error.__traceback__, file=traceback_str)
+        error_str = format_exception(error)
         body += (
             "<details>\n"
             "<summary>Rebuild error</summary>\n"
             "<blockquote>\n"
             f"```\n"
-            f"{traceback_str.getvalue()}\n"
+            f"{''.join(error_str)}\n"
             f"```\n"
             "</blockquote>\n"
             "</details>\n"
