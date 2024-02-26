@@ -10,9 +10,7 @@ bidict==0.22.1
     # via
     #   bomf
     #   pvframework
-bo4e==0.6.1
-    # via bomf
-bomf==0.10.0
+bomf==0.11.0
     # via -r requirements.in
 frozendict==2.3.8
     # via
@@ -20,8 +18,6 @@ frozendict==2.3.8
     #   pvframework
 injector==0.21.0
     # via bomf
-iso3166==2.1.1
-    # via bo4e
 networkx==3.1
     # via
     #   bomf
@@ -29,13 +25,9 @@ networkx==3.1
 pvframework==0.0.2
     # via bomf
 pydantic==2.3.0
-    # via
-    #   bo4e
-    #   bomf
+    # via bomf
 pydantic-core==2.6.3
     # via pydantic
-pyhumps==3.8.0
-    # via bo4e
 python-generics==0.0.2
     # via bomf
 typeguard==4.1.5
