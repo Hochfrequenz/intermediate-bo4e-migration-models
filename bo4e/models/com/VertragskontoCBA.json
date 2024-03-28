@@ -36,6 +36,11 @@
       "title": "Erstellungsdatum",
       "type": "string"
     },
+    "enddatum": {
+      "format": "date-time",
+      "title": "Enddatum",
+      "type": "string"
+    },
     "rechnungsdatumStart": {
       "format": "date-time",
       "title": "Rechnungsdatumstart",

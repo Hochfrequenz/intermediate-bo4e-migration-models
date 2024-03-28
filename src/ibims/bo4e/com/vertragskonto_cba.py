@@ -26,5 +26,6 @@ class VertragskontoCBA(BaseModel):
     rechnungsstellung: Kontaktart
     vertrag: Vertrag
     erstellungsdatum: datetime = Field(..., title="Erstellungsdatum")
+    enddatum: datetime | None = Field(default=None, title="Enddatum")
     rechnungsdatum_start: datetime = Field(..., alias="rechnungsdatumStart", title="Rechnungsdatumstart")
     rechnungsdatum_naechstes: datetime = Field(..., alias="rechnungsdatumNaechstes", title="Rechnungsdatumnaechstes")
