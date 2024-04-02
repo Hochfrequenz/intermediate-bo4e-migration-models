@@ -42,7 +42,7 @@ class Vertrag(BaseModel):
     versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     vertragsart: Vertragsart | None = None
     vertragsbeginn: datetime = Field(..., title="Vertragsbeginn")
-    vertragsende: datetime = Field(..., title="Vertragsende")
+    vertragsende: datetime | None = Field(default=None, title="Vertragsende")
     vertragskonditionen: Vertragskonditionen | None = None
     vertragsnummer: str = Field(..., title="Vertragsnummer")
     vertragspartner1: Geschaeftspartner

@@ -207,6 +207,7 @@ __all__ = [
     "__version__",
 ]
 
+from .__version__ import __version__
 from .bo.angebot import Angebot
 from .bo.ansprechpartner import Ansprechpartner
 from .bo.ausschreibung import Ausschreibung
@@ -286,8 +287,8 @@ from .com.rechnungsposition import Rechnungsposition
 from .com.regionale_gueltigkeit import RegionaleGueltigkeit
 from .com.regionale_preisgarantie import RegionalePreisgarantie
 from .com.regionale_preisstaffel import RegionalePreisstaffel
-from .com.regionaler_auf_abschlag import RegionalerAufAbschlag
 from .com.regionale_tarifpreisposition import RegionaleTarifpreisposition
+from .com.regionaler_auf_abschlag import RegionalerAufAbschlag
 from .com.regionskriterium import Regionskriterium
 from .com.rufnummer import Rufnummer
 from .com.sepa_info import SepaInfo
@@ -403,5 +404,3 @@ from .enum.wertermittlungsverfahren import Wertermittlungsverfahren
 from .enum.zaehlerauspraegung import Zaehlerauspraegung
 from .enum.zaehlertyp import Zaehlertyp
 from .enum.zeiteinheit import Zeiteinheit
-
-from .__version__ import __version__
