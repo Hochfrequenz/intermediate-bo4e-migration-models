@@ -111,6 +111,20 @@
         }
       ],
       "default": null
+    },
+    "lastprofilNamen": {
+      "default": null,
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ]
     }
   },
   "required": [
