@@ -119,7 +119,3 @@ class TripicaNetworkLoaderDataSet(DataSetBaseModel):
     """
 
     concession_fees: list[ConcessionFee] | None
-
-    slp_profilname: str | None
-
-    tlp_profilname: str | None
