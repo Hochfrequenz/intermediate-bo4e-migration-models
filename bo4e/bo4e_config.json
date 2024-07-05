@@ -159,6 +159,18 @@
       }
     },
     {
+      "module": "bo",
+      "schema": {
+        "$ref": "models/bo/Transaktionsdaten_invoices.json"
+      }
+    },
+    {
+      "module": "bo",
+      "schema": {
+        "$ref": "models/bo/Transaktionsdaten_quantities.json"
+      }
+    },
+    {
       "module": "com",
       "schema": {
         "$ref": "models/com/Bankverbindung.json"
