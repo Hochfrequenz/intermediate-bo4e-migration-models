@@ -2,6 +2,50 @@
   "additionalProperties": true,
   "description": "This class adds additional data to the transaktionsdaten, which is needed for an invoice",
   "properties": {
+    "migration_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Migration_id"
+    },
+    "import_fuer_storno_adhoc": {
+      "type": "string",
+      "title": "Import_fuer_storno_adhoc"
+    },
+    "sparte": {
+      "$ref": "../enum/Sparte.json#",
+      "title": "Sparte"
+    },
+    "pruefidentifikator": {
+      "type": "string",
+      "title": "Pruefidentifikator"
+    },
+    "datenaustauschreferenz": {
+      "type": "string",
+      "title": "Datenaustauschreferenz"
+    },
+    "nachrichtendatum": {
+      "type": "string",
+      "title": "Nachrichtendatum"
+    },
+    "nachrichten_referenznummer": {
+      "type": "string",
+      "title": "Nachrichten_referenznummer"
+    },
+    "absender": {
+      "type": "string",
+      "title": "Absender"
+    },
+    "empfaenger": {
+      "type": "string",
+      "title": "Empfaenger"
+    },
     "lieferrichtung": {
       "anyOf": [
         {
@@ -31,11 +75,19 @@
       "title": "Duplikat"
     },
     "status": {
-      "type": "InvoiceManagerInvoiceStatus",
+      "type": "string",
       "title": "Status"
     }
   },
   "required": [
+    "import_fuer_storno_adhoc",
+    "sparte",
+    "pruefidentifikator",
+    "datenaustauschreferenz",
+    "nachrichtendatum",
+    "nachrichten_referenznummer",
+    "absender",
+    "empfaenger",
     "duplikat",
     "status"
     ],

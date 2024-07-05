@@ -14,6 +14,38 @@
       "default": null,
       "title": "Migration_id"
     },
+    "import_fuer_storno_adhoc": {
+      "type": "string",
+      "title": "Import_fuer_storno_adhoc"
+    },
+    "sparte": {
+      "$ref": "../enum/Sparte.json#",
+      "title": "Sparte"
+    },
+    "pruefidentifikator": {
+      "type": "string",
+      "title": "Pruefidentifikator"
+    },
+    "datenaustauschreferenz": {
+      "type": "string",
+      "title": "Datenaustauschreferenz"
+    },
+    "nachrichtendatum": {
+      "type": "string",
+      "title": "Nachrichtendatum"
+    },
+    "nachrichten_referenznummer": {
+      "type": "string",
+      "title": "Nachrichten_referenznummer"
+    },
+    "absender": {
+      "type": "string",
+      "title": "Absender"
+    },
+    "empfaenger": {
+      "type": "string",
+      "title": "Empfaenger"
+    },
     "dokumentennummer": {
       "type": "string",
       "title": "Dokumentennummer"
@@ -35,11 +67,19 @@
       "title": "Datumsformat"
     },
     "status": {
-      "type": "QuantitiesStatus",
+      "type": "string",
       "title": "Status"
     }
   },
   "required": [
+    "import_fuer_storno_adhoc",
+    "sparte",
+    "pruefidentifikator",
+    "datenaustauschreferenz",
+    "nachrichtendatum",
+    "nachrichten_referenznummer",
+    "absender",
+    "empfaenger",
     "dokumentennummer",
     "kategorie",
     "nachrichtenfunktion",
