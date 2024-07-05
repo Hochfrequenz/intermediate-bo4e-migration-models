@@ -34,3 +34,4 @@ class Bilanzierung(BaseModel):
     lastprofile: list[Lastprofil] | None = Field(default=None, title="Lastprofile")
     prognosegrundlage: Prognosegrundlage | None = None
     details_prognosegrundlage: Profiltyp | None = Field(default=None, alias="detailsPrognosegrundlage")
+    lastprofil_namen: list[str] | None = Field(default=None, alias="lastprofilNamen")
