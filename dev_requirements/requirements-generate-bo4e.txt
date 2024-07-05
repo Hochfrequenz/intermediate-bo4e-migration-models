@@ -85,7 +85,7 @@ python-dotenv==1.0.1
     # via -r dev_requirements/requirements-generate-bo4e.in
 pyyaml==6.0.1
     # via datamodel-code-generator
-requests==2.32.2
+requests==2.32.3
     # via
     #   -r dev_requirements/requirements-generate-bo4e.in
     #   bo4e-schema-tool
