@@ -1,0 +1,44 @@
+{
+  "additionalProperties": true,
+  "description": "This class adds additional data to the transaktionsdaten, which is needed for an invoice",
+  "properties": {
+    "lieferrichtung": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Lieferrichtung"
+    },
+    "referenznummer": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Referenznummer"
+    },
+    "duplikat": {
+      "type": "string",
+      "title": "Duplikat"
+    },
+    "status": {
+      "type": "InvoiceManagerInvoiceStatus",
+      "title": "Status"
+    }
+  },
+  "required": [
+    "duplikat",
+    "status"
+    ],
+  "title": "TransaktionsdatenInvoices",
+  "type": "object"
+}
