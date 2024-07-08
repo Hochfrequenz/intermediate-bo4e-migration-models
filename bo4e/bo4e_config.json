@@ -25,8 +25,8 @@
     "com\\.Adresse\\.ort",
     "com\\.Adresse\\.postleitzahl",
     "com\\.Betrag\\.wert",
-    "com\\.ExterneReferenz\\.exRefName",
-    "com\\.ExterneReferenz\\.exRefWert",
+    "ZusatzAttribut\\.name",
+    "ZusatzAttribut\\.wert",
     "com\\.Menge\\.wert",
     "com\\.Messlokationszuordnung\\.messlokationsId",
     "com\\.Preisgarantie\\.zeitlicheGueltigkeit",
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "pattern": "enum\\.BoTyp",
+      "pattern": "enum\\.Typ",
       "items": [
         "Bilanzierung",
         "Dokument",
