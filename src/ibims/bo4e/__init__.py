@@ -8,7 +8,7 @@ The BO4E version can be queried using `bo4e.__version__`.
 """
 
 __all__ = [
-    "Abgabeart",
+    "AbgabeArt",
     "AblesendeRolle",
     "Ablesungsstatus",
     "Adresse",
@@ -313,7 +313,7 @@ from .com.zeitraum import Zeitraum
 from .com.zeitreihenwert import Zeitreihenwert
 from .com.zeitspanne import Zeitspanne
 from .com.zustaendigkeit import Zustaendigkeit
-from .enum.abgabe_art import Abgabeart
+from .enum.abgabe_art import AbgabeArt
 from .enum.ablesende_rolle import AblesendeRolle
 from .enum.ablesungsstatus import Ablesungsstatus
 from .enum.aggregationsverantwortung import Aggregationsverantwortung

@@ -215,12 +215,6 @@
     {
       "module": "enum",
       "schema": {
-        "$ref": "models/enum/Abgabeart.json"
-      }
-    },
-    {
-      "module": "enum",
-      "schema": {
         "$ref": "models/enum/AblesendeRolle.json"
       }
     },
