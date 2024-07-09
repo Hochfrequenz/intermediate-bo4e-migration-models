@@ -1,12 +1,12 @@
 from pydantic import BaseModel, ConfigDict, Field
 
 from ..com.adresse import Adresse
-from ..com.externe_referenz import ExterneReferenz
 from ..com.geokoordinaten import Geokoordinaten
 from ..com.katasteradresse import Katasteradresse
 from ..com.messlokationszuordnung import Messlokationszuordnung
+from ..com.verbrauch import Verbrauch
+from ..com.zaehlwerk import Zaehlwerk
 from ..enum.bilanzierungsmethode import Bilanzierungsmethode
-from ..enum.bo_typ import BoTyp
 from ..enum.energierichtung import Energierichtung
 from ..enum.gasqualitaet import Gasqualitaet
 from ..enum.gebiettyp import Gebiettyp
@@ -18,8 +18,10 @@ from ..enum.profiltyp import Profiltyp
 from ..enum.prognosegrundlage import Prognosegrundlage
 from ..enum.regelzone import Regelzone
 from ..enum.sparte import Sparte
+from ..enum.typ import Typ
 from ..enum.variant import Variant
 from ..enum.verbrauchsart import Verbrauchsart
+from ..zusatz_attribut import ZusatzAttribut
 from .geschaeftspartner import Geschaeftspartner
 
 
@@ -32,41 +34,106 @@ class Marktlokation(BaseModel):
         <object data="../_static/images/bo4e/bo/Marktlokation.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Marktlokation JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/Hochfrequenz/BO4E-python/main/json_schemas/bo/Marktlokation.json>`_
+        `Marktlokation JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/Marktlokation.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
-    bilanzierungsgebiet: str | None = Field(default=None, title="Bilanzierungsgebiet")
-    bilanzierungsmethode: Bilanzierungsmethode | None = None
-    bo_typ: BoTyp | None = Field(default=BoTyp.MARKTLOKATION, alias="boTyp")
-    endkunde: Geschaeftspartner | None = None
-    energierichtung: Energierichtung | None = None
-    externe_referenzen: list[ExterneReferenz] | None = Field(
-        default=None, alias="externeReferenzen", title="Externereferenzen"
+    id: str | None = Field(
+        default=None,
+        alias="_id",
+        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
+        title=" Id",
     )
-    gasqualitaet: Gasqualitaet | None = None
-    gebietstyp: Gebiettyp | None = None
-    geoadresse: Geokoordinaten | None = None
-    grundversorgercodenr: str | None = Field(default=None, title="Grundversorgercodenr")
-    katasterinformation: Katasteradresse | None = None
-    kundengruppen: list[Kundentyp] | None = Field(default=None, title="Kundengruppen")
-    lokationsadresse: Adresse | None = None
-    marktlokations_id: str = Field(..., alias="marktlokationsId", title="Marktlokationsid")
-    netzbetreibercodenr: str | None = Field(default=None, title="Netzbetreibercodenr")
-    netzebene: Netzebene | None = None
-    netzgebietsnr: str | None = Field(default=None, title="Netzgebietsnr")
-    sparte: Sparte
-    unterbrechbar: bool | None = Field(default=None, title="Unterbrechbar")
-    verbrauchsart: Verbrauchsart | None = None
-    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    typ: Typ = Field(
+        ...,
+        alias="_typ",
+        description="Identifikationsnummer einer Marktlokation, an der Energie entweder verbraucht, oder erzeugt wird.",
+    )
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    )
+    bilanzierungsgebiet: str | None = Field(
+        default=None,
+        description="Bilanzierungsgebiet, dem das Netzgebiet zugeordnet ist - im Falle eines Strom Netzes",
+        title="Bilanzierungsgebiet",
+    )
+    bilanzierungsmethode: Bilanzierungsmethode | None = Field(
+        default=None, description="Die Bilanzierungsmethode, RLM oder SLP"
+    )
+    endkunde: Geschaeftspartner | None = Field(
+        default=None, description="Geschäftspartner, dem diese Marktlokation gehört"
+    )
+    energierichtung: Energierichtung | None = Field(
+        default=None, description="Kennzeichnung, ob Energie eingespeist oder entnommen (ausgespeist) wird"
+    )
+    gasqualitaet: Gasqualitaet | None = Field(
+        default=None, description="Die Gasqualität in diesem Netzgebiet. H-Gas oder L-Gas. Im Falle eines Gas-Netzes"
+    )
+    gebietstyp: Gebiettyp | None = Field(default=None, description="Typ des Netzgebietes, z.B. Verteilnetz")
+    geoadresse: Geokoordinaten | None = Field(
+        default=None, description='katasterinformation: Optional["Katasteradresse"] = None'
+    )
+    grundversorgercodenr: str | None = Field(
+        default=None,
+        description="Codenummer des Grundversorgers, der für diese Marktlokation zuständig ist",
+        title="Grundversorgercodenr",
+    )
+    ist_unterbrechbar: bool | None = Field(
+        default=None,
+        alias="istUnterbrechbar",
+        description="Gibt an, ob es sich um eine unterbrechbare Belieferung handelt",
+        title="Istunterbrechbar",
+    )
+    katasterinformation: Katasteradresse | None = Field(
+        default=None,
+        description="Alternativ zu einer postalischen Adresse und Geokoordinaten kann hier eine Ortsangabe mittels Gemarkung und\nFlurstück erfolgen.",
+    )
+    kundengruppen: list[Kundentyp] | None = Field(
+        default=None, description="Kundengruppen der Marktlokation", title="Kundengruppen"
+    )
+    lokationsadresse: Adresse | None = Field(
+        default=None, description="Die Adresse, an der die Energie-Lieferung oder -Einspeisung erfolgt"
+    )
+    marktgebiet: Marktgebiet | None = None
+    marktlokations_id: str = Field(
+        ...,
+        alias="marktlokationsId",
+        description="Identifikationsnummer einer Marktlokation, an der Energie entweder verbraucht, oder erzeugt wird.",
+        title="Marktlokationsid",
+    )
+    netzbetreibercodenr: str | None = Field(
+        default=None,
+        description="Codenummer des Netzbetreibers, an dessen Netz diese Marktlokation angeschlossen ist.",
+        title="Netzbetreibercodenr",
+    )
+    netzebene: Netzebene | None = Field(
+        default=None,
+        description="Netzebene, in der der Bezug der Energie erfolgt.\nBei Strom Spannungsebene der Lieferung, bei Gas Druckstufe.\nBeispiel Strom: Niederspannung Beispiel Gas: Niederdruck.",
+    )
+    netzgebietsnr: str | None = Field(
+        default=None, description="Die ID des Gebietes in der ene't-Datenbank", title="Netzgebietsnr"
+    )
+    regelzone: str | None = Field(default=None, description="Kundengruppen der Marktlokation", title="Regelzone")
+    sparte: Sparte = Field(..., description="Sparte der Marktlokation, z.B. Gas oder Strom")
+    verbrauchsart: Verbrauchsart | None = Field(default=None, description="Verbrauchsart der Marktlokation.")
+    verbrauchsmengen: list[Verbrauch] | None = Field(default=None, title="Verbrauchsmengen")
+    zaehlwerke: list[Zaehlwerk] | None = Field(
+        default=None,
+        description="für Gas. Code vom EIC, https://www.entsog.eu/data/data-portal/codes-list",
+        title="Zaehlwerke",
+    )
+    zaehlwerke_der_beteiligten_marktrolle: list[Zaehlwerk] | None = Field(
+        default=None, alias="zaehlwerkeDerBeteiligtenMarktrolle", title="Zaehlwerkederbeteiligtenmarktrolle"
+    )
     zugehoerige_messlokation: Messlokationszuordnung | None = Field(default=None, alias="zugehoerigeMesslokation")
+    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+        default=None, alias="zusatzAttribute", title="Zusatzattribute"
+    )
     messtechnische_einordnung: MesstechnischeEinordnung = Field(..., alias="messtechnischeEinordnung")
     uebertragungsnetzgebiet: Regelzone | None = None
-    marktgebiet: Marktgebiet | None = None
     variant: Variant
     community_id: str = Field(..., alias="communityId", title="Communityid")
     prognose_grundlage: Prognosegrundlage | None = Field(default=None, alias="prognoseGrundlage")

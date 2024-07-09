@@ -4,19 +4,19 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from ..com.auf_abschlag import AufAbschlag
 from ..com.energiemix import Energiemix
-from ..com.externe_referenz import ExterneReferenz
 from ..com.preisgarantie import Preisgarantie
 from ..com.tarifberechnungsparameter import Tarifberechnungsparameter
 from ..com.tarifeinschraenkung import Tarifeinschraenkung
 from ..com.tarifpreisposition import Tarifpreisposition
 from ..com.vertragskonditionen import Vertragskonditionen
 from ..com.zeitraum import Zeitraum
-from ..enum.bo_typ import BoTyp
 from ..enum.kundentyp import Kundentyp
+from ..enum.registeranzahl import Registeranzahl
 from ..enum.sparte import Sparte
-from ..enum.tarifart import Tarifart
 from ..enum.tarifmerkmal import Tarifmerkmal
 from ..enum.tariftyp import Tariftyp
+from ..enum.typ import Typ
+from ..zusatz_attribut import ZusatzAttribut
 from .marktteilnehmer import Marktteilnehmer
 
 
@@ -29,38 +29,81 @@ class Tarifpreisblatt(BaseModel):
         <object data="../_static/images/bo4e/bo/Tarifpreisblatt.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Tarifpreisblatt JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/Hochfrequenz/BO4E-python/main/json_schemas/bo/Tarifpreisblatt.json>`_
+        `Tarifpreisblatt JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/Tarifpreisblatt.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
-    anbieter: Marktteilnehmer | None = None
-    anbietername: str | None = Field(default=None, title="Anbietername")
-    anwendung_von: datetime | None = Field(default=None, alias="anwendungVon", title="Anwendungvon")
-    bemerkung: str | None = Field(default=None, title="Bemerkung")
-    berechnungsparameter: Tarifberechnungsparameter | None = None
-    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
-    bo_typ: BoTyp | None = Field(default=BoTyp.TARIFPREISBLATT, alias="boTyp")
-    energiemix: Energiemix | None = None
-    externe_referenzen: list[ExterneReferenz] | None = Field(
-        default=None, alias="externeReferenzen", title="Externereferenzen"
+    id: str | None = Field(
+        default=None,
+        alias="_id",
+        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
+        title=" Id",
     )
-    kundentypen: list[Kundentyp] | None = Field(default=None, title="Kundentypen")
-    preisgarantie: Preisgarantie | None = None
-    preisstand: datetime | None = Field(default=None, title="Preisstand")
-    sparte: Sparte | None = None
+    typ: Typ = Field(..., alias="_typ", description="Gibt an, wann der Preis zuletzt angepasst wurde")
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    )
+    anbieter: Marktteilnehmer | None = Field(
+        default=None, description="Der Marktteilnehmer (Lieferant), der diesen Tarif anbietet"
+    )
+    anbietername: str | None = Field(
+        default=None, description="Der Name des Marktpartners, der den Tarif anbietet", title="Anbietername"
+    )
+    anwendung_von: datetime | None = Field(
+        default=None,
+        alias="anwendungVon",
+        description='Angabe des inklusiven Zeitpunkts, ab dem der Tarif bzw. der Preis angewendet und abgerechnet wird,\nz.B. "2021-07-20T18:31:48Z"',
+        title="Anwendungvon",
+    )
+    bemerkung: str | None = Field(default=None, description="Freitext", title="Bemerkung")
+    berechnungsparameter: Tarifberechnungsparameter | None = Field(
+        default=None, description="Für die Berechnung der Kosten sind die hier abgebildeten Parameter heranzuziehen"
+    )
+    bezeichnung: str | None = Field(default=None, description="Name des Tarifs", title="Bezeichnung")
+    energiemix: Energiemix | None = Field(default=None, description="Der Energiemix, der für diesen Tarif gilt")
+    kundentypen: list[Kundentyp] | None = Field(
+        default=None, description="Kundentypen für den der Tarif gilt, z.B. Privatkunden", title="Kundentypen"
+    )
+    preisgarantie: Preisgarantie | None = Field(
+        default=None, description="Festlegung von Garantien für bestimmte Preisanteile"
+    )
+    preisstand: datetime | None = Field(
+        default=None, description="Gibt an, wann der Preis zuletzt angepasst wurde", title="Preisstand"
+    )
+    registeranzahl: Registeranzahl | None = Field(
+        default=None, description="Die Art des Tarifes, z.B. Eintarif oder Mehrtarif"
+    )
+    sparte: Sparte | None = Field(default=None, description="Strom oder Gas, etc.")
     tarif_auf_abschlaege: list[AufAbschlag] | None = Field(
-        default=None, alias="tarifAufAbschlaege", title="Tarifaufabschlaege"
+        default=None,
+        alias="tarifAufAbschlaege",
+        description="Auf- und Abschläge auf die Preise oder Kosten",
+        title="Tarifaufabschlaege",
     )
-    tarifart: Tarifart | None = None
-    tarifeinschraenkung: Tarifeinschraenkung | None = None
-    tarifmerkmale: list[Tarifmerkmal] | None = Field(default=None, title="Tarifmerkmale")
-    tarifpreise: list[Tarifpreisposition] | None = Field(default=None, title="Tarifpreise")
-    tariftyp: Tariftyp | None = None
-    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
-    vertragskonditionen: Vertragskonditionen | None = None
-    website: str | None = Field(default=None, title="Website")
-    zeitliche_gueltigkeit: Zeitraum | None = Field(default=None, alias="zeitlicheGueltigkeit")
+    tarifeinschraenkung: Tarifeinschraenkung | None = Field(
+        default=None, description="Die Bedingungen und Einschränkungen unter denen ein Tarif angewendet werden kann"
+    )
+    tarifmerkmale: list[Tarifmerkmal] | None = Field(
+        default=None, description="Weitere Merkmale des Tarifs, z.B. Festpreis oder Vorkasse", title="Tarifmerkmale"
+    )
+    tarifpreise: list[Tarifpreisposition] | None = Field(
+        default=None, description="Die festgelegten Preise, z.B. für Arbeitspreis, Grundpreis etc.", title="Tarifpreise"
+    )
+    tariftyp: Tariftyp | None = Field(
+        default=None, description="Hinweis auf den Tariftyp, z.B. Grundversorgung oder Sondertarif"
+    )
+    vertragskonditionen: Vertragskonditionen | None = Field(
+        default=None, description="Mindestlaufzeiten und Kündigungsfristen zusammengefasst"
+    )
+    website: str | None = Field(
+        default=None, description="Internetseite auf dem der Tarif zu finden ist", title="Website"
+    )
+    zeitliche_gueltigkeit: Zeitraum | None = Field(
+        default=None, alias="zeitlicheGueltigkeit", description="Angabe, in welchem Zeitraum der Tarif gültig ist"
+    )
+    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+        default=None, alias="zusatzAttribute", title="Zusatzattribute"
+    )

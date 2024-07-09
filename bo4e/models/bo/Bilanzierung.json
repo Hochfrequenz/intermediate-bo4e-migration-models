@@ -10,7 +10,7 @@
     "boTyp": {
       "allOf": [
         {
-          "$ref": "../enum/BoTyp.json#"
+          "$ref": "../enum/Typ.json#"
         }
       ],
       "default": "BILANZIERUNG"
@@ -19,7 +19,7 @@
       "anyOf": [
         {
           "items": {
-            "$ref": "../com/ExterneReferenz.json#"
+            "$ref": "../ZusatzAttribut.json#"
           },
           "type": "array"
         },

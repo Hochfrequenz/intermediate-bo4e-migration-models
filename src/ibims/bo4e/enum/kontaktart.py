@@ -3,11 +3,11 @@ from enum import Enum
 
 class Kontaktart(str, Enum):
     """
-    Art des Kontaktes zwischen Geschäftspartnern.
+    Gibt an, auf welchem Weg die Person oder der Geschäftspartner kontaktiert werden kann.
     """
 
-    ANSCHREIBEN = "ANSCHREIBEN"
-    TELEFONAT = "TELEFONAT"
+    POSTWEG = "POSTWEG"
+    TELEFON = "TELEFON"
     FAX = "FAX"
     E_MAIL = "E_MAIL"
     SMS = "SMS"

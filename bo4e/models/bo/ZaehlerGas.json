@@ -10,7 +10,7 @@
     "boTyp": {
       "allOf": [
         {
-          "$ref": "../enum/BoTyp.json#"
+          "$ref": "../enum/Typ.json#"
         }
       ],
       "default": "ZAEHLER"
@@ -19,7 +19,7 @@
       "anyOf": [
         {
           "items": {
-            "$ref": "../com/ExterneReferenz.json#"
+            "$ref": "../ZusatzAttribut.json#"
           },
           "type": "array"
         },
@@ -97,7 +97,7 @@
     "tarifart": {
       "anyOf": [
         {
-          "$ref": "../enum/Tarifart.json#"
+          "$ref": "../enum/Registeranzahl.json#"
         },
         {
           "type": "null"
@@ -183,7 +183,7 @@
       "default": null
     },
     "zaehlergroesse": {
-      "$ref": "../enum/Geraetemerkmal.json#"
+      "$ref": "../enum/Zaehlergroesse.json#"
     },
     "druckniveau": {
       "$ref": "../enum/Netzebene.json#"
