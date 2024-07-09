@@ -28,10 +28,6 @@ jobs:
         id: verify-changed-files
         with:
           files: src/ibims/bo4e
-#          fail-if-changed: true
-#          fail-message: "src/ibims/bo4e is inconsistent with the configuration in bo4e/. \
-#          Please run 'tox -e generate_bo4e' and commit the changes or try editing the configuration files \
-#          if you want to change files in src/ibims/bo4e/."
       - name: Fail if changes detected
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: |
