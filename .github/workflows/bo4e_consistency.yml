@@ -41,4 +41,5 @@ jobs:
 
           echo "The following files have been changed:"
           echo "${{ steps.verify-changed-files.outputs.changed_files }}"
+          git diff
           exit 1
