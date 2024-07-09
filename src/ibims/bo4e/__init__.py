@@ -1,5 +1,5 @@
 """
-BO4E v0.6.2 - Generated Python implementation of the BO4E standard
+BO4E v202401.2.1 - Generated Python implementation of the BO4E standard
 
 BO4E is a standard for the exchange of business objects in the energy industry.
 All our software used to generate this BO4E-implementation is open-source and released under the Apache-2.0 license.
@@ -19,7 +19,6 @@ __all__ = [
     "Angebotsteil",
     "Angebotsvariante",
     "Anrede",
-    "Ansprechpartner",
     "ArithmetischeOperation",
     "ArtikelId",
     "AufAbschlag",
@@ -36,13 +35,12 @@ __all__ = [
     "Ausschreibungstyp",
     "BDEWArtikelnummer",
     "Bankverbindung",
+    "Befestigungsart",
     "Bemessungsgroesse",
     "Betrag",
     "Bilanzierung",
     "Bilanzierungsmethode",
-    "BoTyp",
     "Buendelvertrag",
-    "COM",
     "ConcessionFee",
     "Dienstleistung",
     "Dienstleistungstyp",
@@ -52,7 +50,6 @@ __all__ = [
     "Energiemix",
     "Energierichtung",
     "Erzeugungsart",
-    "ExterneReferenz",
     "File",
     "Fremdkosten",
     "Fremdkostenblock",
@@ -61,20 +58,19 @@ __all__ = [
     "Gebiettyp",
     "Geokoordinaten",
     "Geraet",
-    "Geraeteeigenschaften",
-    "Geraetemerkmal",
+    "Geraeteklasse",
     "Geraetetyp",
-    "Geschaeftsobjekt",
     "Geschaeftspartner",
     "Geschaeftspartnerrolle",
     "Gueltigkeitstyp",
-    "Hardware",
     "Hinweis",
     "HinweisThema",
     "Kalkulationsmethode",
     "Kampagne",
     "Katasteradresse",
     "Kontaktart",
+    "Kontaktweg",
+    "Konzessionsabgabe",
     "Kosten",
     "Kostenblock",
     "Kostenklasse",
@@ -85,7 +81,6 @@ __all__ = [
     "Kundentyp",
     "Landescode",
     "Lastgang",
-    "LastgangKompakt",
     "Lastprofil",
     "Leistungstyp",
     "Lokationstyp",
@@ -107,12 +102,13 @@ __all__ = [
     "Messwerterfassung",
     "Messwertstatus",
     "Messwertstatuszusatz",
-    "NNRechnungsart",
-    "NNRechnungstyp",
     "Netzebene",
-    "Netznutzungsrechnung",
+    "NetznutzungRechnungsart",
+    "NetznutzungRechnungstyp",
     "Oekolabel",
     "Oekozertifikat",
+    "Organisationstyp",
+    "Person",
     "PositionsAufAbschlag",
     "Preis",
     "Preisblatt",
@@ -145,9 +141,8 @@ __all__ = [
     "Regionaltarif",
     "Regionskriterium",
     "Regionskriteriumtyp",
+    "Registeranzahl",
     "Rollencodetyp",
-    "Rufnummer",
-    "Rufnummernart",
     "SepaInfo",
     "Sigmoidparameter",
     "Sparte",
@@ -156,9 +151,7 @@ __all__ = [
     "StandorteigenschaftenStrom",
     "Steuerbetrag",
     "Steuerkennzeichen",
-    "Tagesvektor",
     "Tarif",
-    "Tarifart",
     "Tarifberechnungsparameter",
     "Tarifeinschraenkung",
     "Tarifinfo",
@@ -175,6 +168,7 @@ __all__ = [
     "Tarifzeit",
     "Themengebiet",
     "Titel",
+    "Typ",
     "Unterschrift",
     "Variant",
     "Verbrauch",
@@ -187,29 +181,33 @@ __all__ = [
     "VertragskontoMBA",
     "Vertragsstatus",
     "Vertragsteil",
+    "Verwendungszweck",
+    "VerwendungszweckProMarktrolle",
     "Voraussetzungen",
     "Waehrungscode",
     "Waehrungseinheit",
+    "Waermenutzung",
     "Wertermittlungsverfahren",
     "Zaehler",
     "ZaehlerGas",
     "Zaehlerauspraegung",
+    "Zaehlergroesse",
     "Zaehlertyp",
+    "ZaehlertypSpezifikation",
     "Zaehlpunkt",
     "Zaehlwerk",
-    "Zeiteinheit",
-    "Zeitintervall",
+    "Zaehlzeitregister",
     "Zeitraum",
     "Zeitreihe",
     "Zeitreihenwert",
-    "Zeitreihenwertkompakt",
+    "Zeitspanne",
+    "ZusatzAttribut",
     "Zustaendigkeit",
     "__version__",
 ]
 
 from .__version__ import __version__
 from .bo.angebot import Angebot
-from .bo.ansprechpartner import Ansprechpartner
 from .bo.ausschreibung import Ausschreibung
 from .bo.bilanzierung import Bilanzierung
 from .bo.buendelvertrag import Buendelvertrag
@@ -217,17 +215,16 @@ from .bo.dokument import Dokument
 from .bo.energiemenge import Energiemenge
 from .bo.file import File
 from .bo.fremdkosten import Fremdkosten
-from .bo.geschaeftsobjekt import Geschaeftsobjekt
+from .bo.geraet import Geraet
 from .bo.geschaeftspartner import Geschaeftspartner
 from .bo.hinweis import Hinweis
 from .bo.kampagne import Kampagne
 from .bo.kosten import Kosten
 from .bo.lastgang import Lastgang
-from .bo.lastgang_kompakt import LastgangKompakt
 from .bo.marktlokation import Marktlokation
 from .bo.marktteilnehmer import Marktteilnehmer
 from .bo.messlokation import Messlokation
-from .bo.netznutzungsrechnung import Netznutzungsrechnung
+from .bo.person import Person
 from .bo.preisblatt import Preisblatt
 from .bo.preisblatt_dienstleistung import PreisblattDienstleistung
 from .bo.preisblatt_hardware import PreisblattHardware
@@ -258,19 +255,16 @@ from .com.ausschreibungsdetail import Ausschreibungsdetail
 from .com.ausschreibungslos import Ausschreibungslos
 from .com.bankverbindung import Bankverbindung
 from .com.betrag import Betrag
-from .com.com import COM
 from .com.concession_fee import ConcessionFee
 from .com.dienstleistung import Dienstleistung
 from .com.energieherkunft import Energieherkunft
 from .com.energiemix import Energiemix
-from .com.externe_referenz import ExterneReferenz
 from .com.fremdkostenblock import Fremdkostenblock
 from .com.fremdkostenposition import Fremdkostenposition
 from .com.geokoordinaten import Geokoordinaten
-from .com.geraet import Geraet
-from .com.geraeteeigenschaften import Geraeteeigenschaften
-from .com.hardware import Hardware
 from .com.katasteradresse import Katasteradresse
+from .com.kontaktweg import Kontaktweg
+from .com.konzessionsabgabe import Konzessionsabgabe
 from .com.kostenblock import Kostenblock
 from .com.kostenposition import Kostenposition
 from .com.kriterium_wert import KriteriumWert
@@ -290,13 +284,11 @@ from .com.regionale_preisstaffel import RegionalePreisstaffel
 from .com.regionale_tarifpreisposition import RegionaleTarifpreisposition
 from .com.regionaler_auf_abschlag import RegionalerAufAbschlag
 from .com.regionskriterium import Regionskriterium
-from .com.rufnummer import Rufnummer
 from .com.sepa_info import SepaInfo
 from .com.sigmoidparameter import Sigmoidparameter
 from .com.standorteigenschaften_gas import StandorteigenschaftenGas
 from .com.standorteigenschaften_strom import StandorteigenschaftenStrom
 from .com.steuerbetrag import Steuerbetrag
-from .com.tagesvektor import Tagesvektor
 from .com.tarifberechnungsparameter import Tarifberechnungsparameter
 from .com.tarifeinschraenkung import Tarifeinschraenkung
 from .com.tarifpreis import Tarifpreis
@@ -309,14 +301,15 @@ from .com.vertragskonditionen import Vertragskonditionen
 from .com.vertragskonto_cba import VertragskontoCBA
 from .com.vertragskonto_mba import VertragskontoMBA
 from .com.vertragsteil import Vertragsteil
+from .com.verwendungszweck_pro_marktrolle import VerwendungszweckProMarktrolle
 from .com.zaehlpunkt import Zaehlpunkt
 from .com.zaehlwerk import Zaehlwerk
-from .com.zeitintervall import Zeitintervall
+from .com.zaehlzeitregister import Zaehlzeitregister
 from .com.zeitraum import Zeitraum
 from .com.zeitreihenwert import Zeitreihenwert
-from .com.zeitreihenwertkompakt import Zeitreihenwertkompakt
+from .com.zeitspanne import Zeitspanne
 from .com.zustaendigkeit import Zustaendigkeit
-from .enum.abgabeart import Abgabeart
+from .enum.abgabe_art import Abgabeart
 from .enum.ablesende_rolle import AblesendeRolle
 from .enum.ablesungsstatus import Ablesungsstatus
 from .enum.aggregationsverantwortung import Aggregationsverantwortung
@@ -330,15 +323,15 @@ from .enum.ausschreibungsportal import Ausschreibungsportal
 from .enum.ausschreibungsstatus import Ausschreibungsstatus
 from .enum.ausschreibungstyp import Ausschreibungstyp
 from .enum.bdew_artikelnummer import BDEWArtikelnummer
+from .enum.befestigungsart import Befestigungsart
 from .enum.bemessungsgroesse import Bemessungsgroesse
 from .enum.bilanzierungsmethode import Bilanzierungsmethode
-from .enum.bo_typ import BoTyp
 from .enum.dienstleistungstyp import Dienstleistungstyp
 from .enum.energierichtung import Energierichtung
 from .enum.erzeugungsart import Erzeugungsart
 from .enum.gasqualitaet import Gasqualitaet
 from .enum.gebiettyp import Gebiettyp
-from .enum.geraetemerkmal import Geraetemerkmal
+from .enum.geraeteklasse import Geraeteklasse
 from .enum.geraetetyp import Geraetetyp
 from .enum.geschaeftspartnerrolle import Geschaeftspartnerrolle
 from .enum.gueltigkeitstyp import Gueltigkeitstyp
@@ -365,10 +358,11 @@ from .enum.messwerterfassung import Messwerterfassung
 from .enum.messwertstatus import Messwertstatus
 from .enum.messwertstatuszusatz import Messwertstatuszusatz
 from .enum.netzebene import Netzebene
-from .enum.nn_rechnungsart import NNRechnungsart
-from .enum.nn_rechnungstyp import NNRechnungstyp
+from .enum.netznutzung_rechnungsart import NetznutzungRechnungsart
+from .enum.netznutzung_rechnungstyp import NetznutzungRechnungstyp
 from .enum.oekolabel import Oekolabel
 from .enum.oekozertifikat import Oekozertifikat
+from .enum.organisationstyp import Organisationstyp
 from .enum.preisgarantietyp import Preisgarantietyp
 from .enum.preismodell import Preismodell
 from .enum.preisstatus import Preisstatus
@@ -380,11 +374,10 @@ from .enum.rechnungsstatus import Rechnungsstatus
 from .enum.rechnungstyp import Rechnungstyp
 from .enum.regelzone import Regelzone
 from .enum.regionskriteriumtyp import Regionskriteriumtyp
+from .enum.registeranzahl import Registeranzahl
 from .enum.rollencodetyp import Rollencodetyp
-from .enum.rufnummernart import Rufnummernart
 from .enum.sparte import Sparte
 from .enum.steuerkennzeichen import Steuerkennzeichen
-from .enum.tarifart import Tarifart
 from .enum.tarifkalkulationsmethode import Tarifkalkulationsmethode
 from .enum.tarifmerkmal import Tarifmerkmal
 from .enum.tarifregionskriterium import Tarifregionskriterium
@@ -392,15 +385,20 @@ from .enum.tariftyp import Tariftyp
 from .enum.tarifzeit import Tarifzeit
 from .enum.themengebiet import Themengebiet
 from .enum.titel import Titel
+from .enum.typ import Typ
 from .enum.variant import Variant
 from .enum.verbrauchsart import Verbrauchsart
 from .enum.vertragsart import Vertragsart
 from .enum.vertragsform import Vertragsform
 from .enum.vertragsstatus import Vertragsstatus
+from .enum.verwendungszweck import Verwendungszweck
 from .enum.voraussetzungen import Voraussetzungen
 from .enum.waehrungscode import Waehrungscode
 from .enum.waehrungseinheit import Waehrungseinheit
+from .enum.waermenutzung import Waermenutzung
 from .enum.wertermittlungsverfahren import Wertermittlungsverfahren
 from .enum.zaehlerauspraegung import Zaehlerauspraegung
+from .enum.zaehlergroesse import Zaehlergroesse
 from .enum.zaehlertyp import Zaehlertyp
-from .enum.zeiteinheit import Zeiteinheit
+from .enum.zaehlertyp_spezifikation import ZaehlertypSpezifikation
+from .zusatz_attribut import ZusatzAttribut

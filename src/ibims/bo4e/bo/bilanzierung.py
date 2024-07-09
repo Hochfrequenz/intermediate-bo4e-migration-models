@@ -2,12 +2,12 @@ from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.externe_referenz import ExterneReferenz
 from ..com.lastprofil import Lastprofil
 from ..enum.aggregationsverantwortung import Aggregationsverantwortung
-from ..enum.bo_typ import BoTyp
 from ..enum.profiltyp import Profiltyp
 from ..enum.prognosegrundlage import Prognosegrundlage
+from ..enum.typ import Typ
+from ..zusatz_attribut import ZusatzAttribut
 
 
 class Bilanzierung(BaseModel):
@@ -22,8 +22,8 @@ class Bilanzierung(BaseModel):
         populate_by_name=True,
     )
     versionstruktur: str | None = Field(default="2", title="Versionstruktur")
-    bo_typ: BoTyp | None = Field(default="BILANZIERUNG", alias="boTyp")
-    externe_referenzen: list[ExterneReferenz] | None = Field(
+    bo_typ: Typ | None = Field(default="BILANZIERUNG", alias="boTyp")
+    externe_referenzen: list[ZusatzAttribut] | None = Field(
         default=None, alias="externeReferenzen", title="Externereferenzen"
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")

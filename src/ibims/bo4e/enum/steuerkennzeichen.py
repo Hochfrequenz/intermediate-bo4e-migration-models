@@ -12,5 +12,6 @@ class Steuerkennzeichen(str, Enum):
     UST_7 = "UST_7"
     VST_0 = "VST_0"
     VST_19 = "VST_19"
+    VST_16 = "VST_16"
     VST_7 = "VST_7"
     RCV = "RCV"

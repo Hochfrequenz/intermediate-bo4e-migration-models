@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class NNRechnungstyp(str, Enum):
+class NetznutzungRechnungstyp(str, Enum):
     """
     Abbildung verschiedener in der INVOIC angegebenen Rechnungstypen.
     """
