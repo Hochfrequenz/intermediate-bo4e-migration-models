@@ -183,7 +183,7 @@
       "default": null
     },
     "zaehlergroesse": {
-      "$ref": "../enum/Geraetemerkmal.json#"
+      "$ref": "../enum/Zaehlergroesse.json#"
     },
     "druckniveau": {
       "$ref": "../enum/Netzebene.json#"
