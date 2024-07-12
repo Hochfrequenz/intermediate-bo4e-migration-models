@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..enum.abgabe_art import Abgabeart
+from ..enum.abgabe_art import AbgabeArt
 from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -33,7 +33,7 @@ class Konzessionsabgabe(BaseModel):
         default=None, description="Gebührenkategorie der Konzessionsabgabe", title="Kategorie"
     )
     kosten: float | None = Field(default=None, description="Konzessionsabgabe in E/kWh", title="Kosten")
-    satz: Abgabeart | None = Field(default=None, description="Art der Abgabe")
+    satz: AbgabeArt | None = Field(default=None, description="Art der Abgabe")
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

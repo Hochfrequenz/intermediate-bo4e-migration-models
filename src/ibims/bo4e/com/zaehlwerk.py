@@ -2,7 +2,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..enum.abgabe_art import Abgabeart
+from ..enum.abgabe_art import AbgabeArt
 from ..enum.energierichtung import Energierichtung
 from ..enum.mengeneinheit import Mengeneinheit
 from ..enum.waermenutzung import Waermenutzung
@@ -79,7 +79,7 @@ class Zaehlwerk(BaseModel):
     vorkommastellen: int = Field(..., title="Vorkommastellen")
     nachkommastellen: int = Field(..., title="Nachkommastellen")
     schwachlastfaehig: bool = Field(..., title="Schwachlastfaehig")
-    konzessionsabgaben_typ: Abgabeart | None = Field(default=None, alias="konzessionsabgabenTyp")
+    konzessionsabgaben_typ: AbgabeArt | None = Field(default=None, alias="konzessionsabgabenTyp")
     active_from: datetime = Field(..., alias="activeFrom", title="Activefrom")
     active_until: datetime | None = Field(default=None, alias="activeUntil", title="Activeuntil")
     description: str | None = Field(default=None, title="Description")

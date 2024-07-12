@@ -8,7 +8,7 @@ The BO4E version can be queried using `bo4e.__version__`.
 """
 
 __all__ = [
-    "Abgabeart",
+    "AbgabeArt",
     "AblesendeRolle",
     "Ablesungsstatus",
     "Adresse",
@@ -168,6 +168,8 @@ __all__ = [
     "Tarifzeit",
     "Themengebiet",
     "Titel",
+    "TransaktionsdatenInvoices",
+    "TransaktionsdatenQuantities",
     "Typ",
     "Unterschrift",
     "Variant",
@@ -239,6 +241,8 @@ from .bo.tarif import Tarif
 from .bo.tarifinfo import Tarifinfo
 from .bo.tarifkosten import Tarifkosten
 from .bo.tarifpreisblatt import Tarifpreisblatt
+from .bo.transaktionsdaten_invoices import TransaktionsdatenInvoices
+from .bo.transaktionsdaten_quantities import TransaktionsdatenQuantities
 from .bo.vertrag import Vertrag
 from .bo.zaehler import Zaehler
 from .bo.zaehler_gas import ZaehlerGas
@@ -309,7 +313,7 @@ from .com.zeitraum import Zeitraum
 from .com.zeitreihenwert import Zeitreihenwert
 from .com.zeitspanne import Zeitspanne
 from .com.zustaendigkeit import Zustaendigkeit
-from .enum.abgabe_art import Abgabeart
+from .enum.abgabe_art import AbgabeArt
 from .enum.ablesende_rolle import AblesendeRolle
 from .enum.ablesungsstatus import Ablesungsstatus
 from .enum.aggregationsverantwortung import Aggregationsverantwortung
