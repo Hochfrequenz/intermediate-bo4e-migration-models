@@ -19,8 +19,8 @@ class Hinweis(BaseModel):
     )
     versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     bo_typ: Typ | None = Field(default=Typ.GESCHAEFTSOBJEKT, alias="boTyp")
-    externe_referenzen: list[ZusatzAttribut] | None = Field(
-        default=None, alias="externeReferenzen", title="Externereferenzen"
+    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+        default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
     erstellungsdatum: datetime = Field(..., title="Erstellungsdatum")
