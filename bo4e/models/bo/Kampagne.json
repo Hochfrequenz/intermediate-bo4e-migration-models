@@ -7,7 +7,7 @@
       "title": "Versionstruktur",
       "type": "string"
     },
-    "boTyp": {
+    "typ": {
       "allOf": [
         {
           "$ref": "../enum/Typ.json#"
@@ -15,7 +15,7 @@
       ],
       "default": "GESCHAEFTSOBJEKT"
     },
-    "externeReferenzen": {
+    "zusatzAttribute": {
       "anyOf": [
         {
           "items": {
@@ -28,7 +28,7 @@
         }
       ],
       "default": null,
-      "title": "Externereferenzen"
+      "title": "ZusatzAttribute"
     },
     "id": {
       "title": "Id",

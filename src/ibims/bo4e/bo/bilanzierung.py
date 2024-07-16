@@ -22,9 +22,9 @@ class Bilanzierung(BaseModel):
         populate_by_name=True,
     )
     versionstruktur: str | None = Field(default="2", title="Versionstruktur")
-    bo_typ: Typ | None = Field(default="BILANZIERUNG", alias="boTyp")
-    externe_referenzen: list[ZusatzAttribut] | None = Field(
-        default=None, alias="externeReferenzen", title="Externereferenzen"
+    typ: Typ | None = Typ.BILANZIERUNG
+    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+        default=None, alias="zusatzAttribute", title="ZusatzAttribute"
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
     bilanzierungsbeginn: datetime = Field(..., title="Bilanzierungsbeginn")

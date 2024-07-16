@@ -7,7 +7,7 @@
       "title": "Versionstruktur",
       "type": "string"
     },
-    "boTyp": {
+    "typ": {
       "allOf": [
         {
           "$ref": "../enum/Typ.json#"

@@ -7,15 +7,15 @@
       "title": "Versionstruktur",
       "type": "string"
     },
-    "boTyp": {
+    "typ": {
       "allOf": [
         {
           "$ref": "../enum/Typ.json#"
         }
       ],
-      "default": "BILANZIERUNG"
+      "default": "Bilanzierung"
     },
-    "externeReferenzen": {
+    "zusatzAttribute": {
       "anyOf": [
         {
           "items": {
@@ -28,7 +28,7 @@
         }
       ],
       "default": null,
-      "title": "Externereferenzen"
+      "title": "ZusatzAttribute"
     },
     "_id": {
       "anyOf": [

@@ -18,7 +18,7 @@ class Hinweis(BaseModel):
         populate_by_name=True,
     )
     versionstruktur: str | None = Field(default="2", title="Versionstruktur")
-    bo_typ: Typ | None = Field(default=Typ.GESCHAEFTSOBJEKT, alias="boTyp")
+    typ: Typ | None = Typ.GESCHAEFTSOBJEKT
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
