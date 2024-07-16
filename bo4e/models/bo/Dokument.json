@@ -7,7 +7,7 @@
       "title": "Version",
       "type": "string"
     },
-    "typ": {
+    "_typ": {
       "allOf": [
         {
           "$ref": "../enum/Typ.json#"

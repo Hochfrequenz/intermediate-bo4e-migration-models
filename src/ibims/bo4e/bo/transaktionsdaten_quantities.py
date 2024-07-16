@@ -24,6 +24,6 @@ class TransaktionsdatenQuantities(BaseModel):
     dokumentennummer: str | None = Field(default=None, title="Dokumentennummer")
     kategorie: str | None = Field(default=None, title="Kategorie")
     nachrichtenfunktion: str | None = Field(default=None, title="Nachrichtenfunktion")
-    typ: str | None = Field(default=None, title="Typ")
+    typ: str | None = Field(default=None, alias="_typ", title=" Typ")
     datumsformat: str | None = Field(default=None, title="Datumsformat")
     status: str | None = Field(default=None, title="Status")

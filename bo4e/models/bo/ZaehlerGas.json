@@ -2,12 +2,12 @@
   "additionalProperties": true,
   "description": "Resolve some ambiguity of `Strom` and `Gas`",
   "properties": {
-    "versionstruktur": {
+    "_version": {
       "default": "2",
-      "title": "Versionstruktur",
+      "title": " Version",
       "type": "string"
     },
-    "typ": {
+    "_typ": {
       "allOf": [
         {
           "$ref": "../enum/Typ.json#"

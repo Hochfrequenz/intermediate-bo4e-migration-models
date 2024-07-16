@@ -58,9 +58,9 @@
       "type": "string",
       "title": "Nachrichtenfunktion"
     },
-    "typ": {
+    "_typ": {
       "type": "string",
-      "title": "Typ"
+      "title": " Typ"
     },
     "datumsformat": {
       "type": "string",
