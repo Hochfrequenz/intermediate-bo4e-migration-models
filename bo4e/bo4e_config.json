@@ -240,6 +240,12 @@
     {
       "module": "enum",
       "schema": {
+        "$ref": "models/enum/InvoiceStatus.json"
+      }
+    },
+    {
+      "module": "enum",
+      "schema": {
         "$ref": "models/enum/Marktgebiet.json"
       }
     },
@@ -271,6 +277,12 @@
       "module": "enum",
       "schema": {
         "$ref": "models/enum/Prognosegrundlage.json"
+      }
+    },
+    {
+      "module": "enum",
+      "schema": {
+        "$ref": "models/enum/QuantitesStatus.json"
       }
     },
     {

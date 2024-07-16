@@ -1,0 +1,13 @@
+{
+  "description": "QuantitiesStatus describes the possible states of a quantity",
+  "enum": [
+    "received",
+    "ignored",
+    "declined",
+    "cancelled",
+    "accepted",
+    "manual_decision"
+  ],
+  "title": "InvoiceStatus",
+  "type": "string"
+}

@@ -1,5 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.quantities_status import QuantitiesStatus
 from ..enum.sparte import Sparte
 from ..enum.typ import Typ
 
@@ -28,4 +29,4 @@ class TransaktionsdatenQuantities(BaseModel):
     nachrichtenfunktion: str | None = Field(default=None, title="Nachrichtenfunktion")
     trans_typ: str | None = Field(default=None, title="TransTyp")
     datumsformat: str | None = Field(default=None, title="Datumsformat")
-    status: str | None = Field(default=None, title="Status")
+    status: QuantitiesStatus | None = Field(default=QuantitiesStatus.VALID, title="Status")

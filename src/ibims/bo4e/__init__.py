@@ -65,6 +65,7 @@ __all__ = [
     "Gueltigkeitstyp",
     "Hinweis",
     "HinweisThema",
+    "InvoiceStatus",
     "Kalkulationsmethode",
     "Kampagne",
     "Katasteradresse",
@@ -126,6 +127,7 @@ __all__ = [
     "Preistyp",
     "Profiltyp",
     "Prognosegrundlage",
+    "QuantitiesStatus",
     "Rechnung",
     "Rechnungslegung",
     "Rechnungsposition",
@@ -340,6 +342,7 @@ from .enum.geraetetyp import Geraetetyp
 from .enum.geschaeftspartnerrolle import Geschaeftspartnerrolle
 from .enum.gueltigkeitstyp import Gueltigkeitstyp
 from .enum.hinweis_thema import HinweisThema
+from .enum.invoice_status import InvoiceStatus
 from .enum.kalkulationsmethode import Kalkulationsmethode
 from .enum.kontaktart import Kontaktart
 from .enum.kostenklasse import Kostenklasse
@@ -373,6 +376,7 @@ from .enum.preisstatus import Preisstatus
 from .enum.preistyp import Preistyp
 from .enum.profiltyp import Profiltyp
 from .enum.prognosegrundlage import Prognosegrundlage
+from .enum.quantities_status import QuantitiesStatus
 from .enum.rechnungslegung import Rechnungslegung
 from .enum.rechnungsstatus import Rechnungsstatus
 from .enum.rechnungstyp import Rechnungstyp

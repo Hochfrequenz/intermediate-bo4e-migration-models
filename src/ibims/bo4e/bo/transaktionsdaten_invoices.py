@@ -1,5 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.invoice_status import InvoiceStatus
 from ..enum.sparte import Sparte
 
 
@@ -24,4 +25,4 @@ class TransaktionsdatenInvoices(BaseModel):
     lieferrichtung: str | None = Field(default=None, title="Lieferrichtung")
     referenznummer: str | None = Field(default=None, title="Referenznummer")
     duplikat: str | None = Field(default=None, title="Duplikat")
-    status: str | None = Field(default=None, title="Status")
+    status: InvoiceStatus | None = Field(default=InvoiceStatus.ACCEPTED, title="Status")

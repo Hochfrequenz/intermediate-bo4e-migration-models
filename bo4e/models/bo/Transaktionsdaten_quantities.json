@@ -76,7 +76,12 @@
       "title": "Datumsformat"
     },
     "status": {
-      "type": "string",
+      "allOf": [
+        {
+          "$ref": "../enum/QuantitiesStatus.json#"
+        }
+      ],
+      "default": "VALID",
       "title": "Status"
     }
   },
