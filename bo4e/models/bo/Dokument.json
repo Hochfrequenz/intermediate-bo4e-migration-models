@@ -2,9 +2,9 @@
   "additionalProperties": true,
   "description": "A generic document reference like for bills, order confirmations and cancellations",
   "properties": {
-    "versionstruktur": {
+    "version": {
       "default": "2",
-      "title": "Versionstruktur",
+      "title": "Version",
       "type": "string"
     },
     "typ": {

@@ -2,9 +2,9 @@
   "additionalProperties": true,
   "description": "Bilanzierung is a business object used for balancing. This object is no BO4E standard and a complete go\nimplementation can be found at\nhttps://github.com/Hochfrequenz/go-bo4e/blob/3414a1eac741542628df796d6beb43eaa27b0b3e/bo/bilanzierung.go",
   "properties": {
-    "versionstruktur": {
+    "version": {
       "default": "2",
-      "title": "Versionstruktur",
+      "title": "Version",
       "type": "string"
     },
     "typ": {

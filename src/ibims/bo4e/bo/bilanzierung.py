@@ -21,7 +21,7 @@ class Bilanzierung(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    version: str | None = Field(default="2", title="Version")
     typ: Typ | None = Typ.BILANZIERUNG
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="ZusatzAttribute"

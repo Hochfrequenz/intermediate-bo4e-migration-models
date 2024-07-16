@@ -28,8 +28,8 @@ class ZaehlerGas(BaseModel):
     )
     versionstruktur: str | None = Field(default="2", title="Versionstruktur")
     typ: Typ | None = Typ.ZAEHLER
-    externe_referenzen: list[ZusatzAttribut] | None = Field(
-        default=None, alias="externeReferenzen", title="Externereferenzen"
+    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+        default=None, alias="zusatzAttribute", title="Externereferenzen"
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
     zaehlernummer: str = Field(..., title="Zaehlernummer")
