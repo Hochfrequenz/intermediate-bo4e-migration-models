@@ -13,7 +13,7 @@
           "$ref": "../enum/Typ.json#"
         }
       ],
-      "default": "ZaehlerGas",
+      "default": "ZAEHLERGAS",
       "title": " Typ"
     },
     "zusatzAttribute": {

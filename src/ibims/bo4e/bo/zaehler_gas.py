@@ -27,7 +27,7 @@ class ZaehlerGas(BaseModel):
         populate_by_name=True,
     )
     version: str | None = Field(default="v202401.2.1", alias="_version", title=" Version")
-    typ: Typ | None = Field(default=Typ.ZAEHLER_GAS, alias="_typ", title=" Typ")
+    typ: Typ | None = Field(default=Typ.ZAEHLERGAS, alias="_typ", title=" Typ")
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Externereferenzen"
     )
