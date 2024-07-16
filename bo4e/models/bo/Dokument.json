@@ -2,9 +2,9 @@
   "additionalProperties": true,
   "description": "A generic document reference like for bills, order confirmations and cancellations",
   "properties": {
-    "version": {
+    "_version": {
       "default": "2",
-      "title": "Version",
+      "title": " Version",
       "type": "string"
     },
     "_typ": {
@@ -13,7 +13,8 @@
           "$ref": "../enum/Typ.json#"
         }
       ],
-      "default": "GESCHAEFTSOBJEKT"
+      "default": "GESCHAEFTSOBJEKT",
+        "title": " Typ"
     },
     "zusatzAttribute": {
       "anyOf": [
