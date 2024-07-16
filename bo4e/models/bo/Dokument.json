@@ -14,7 +14,7 @@
         }
       ],
       "default": "GESCHAEFTSOBJEKT",
-        "title": " Typ"
+      "title": " Typ"
     },
     "zusatzAttribute": {
       "anyOf": [

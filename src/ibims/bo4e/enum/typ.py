@@ -44,4 +44,5 @@ class Typ(str, Enum):
     FILE = "File"
     HINWEIS = "Hinweis"
     KAMPAGNE = "Kampagne"
+    TRANSAKTIONSDATENQUANTITIES = "TRANSAKTIONSDATENQUANTITIES"
     ZAEHLER_GAS = "ZaehlerGas"
