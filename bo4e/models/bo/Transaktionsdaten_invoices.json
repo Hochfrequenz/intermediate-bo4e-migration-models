@@ -75,7 +75,12 @@
       "title": "Duplikat"
     },
     "status": {
-      "type": "string",
+      "allOf": [
+        {
+          "$ref": "../enum/InvoiceStatus.json#"
+        }
+      ],
+      "default": "accepted",
       "title": "Status"
     }
   },

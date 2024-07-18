@@ -2,20 +2,21 @@
   "additionalProperties": true,
   "description": "A generic document reference like for bills, order confirmations and cancellations",
   "properties": {
-    "versionstruktur": {
+    "_version": {
       "default": "2",
-      "title": "Versionstruktur",
+      "title": " Version",
       "type": "string"
     },
-    "boTyp": {
+    "_typ": {
       "allOf": [
         {
           "$ref": "../enum/Typ.json#"
         }
       ],
-      "default": "GESCHAEFTSOBJEKT"
+      "default": "DOKUMENT",
+      "title": " Typ"
     },
-    "externeReferenzen": {
+    "zusatzAttribute": {
       "anyOf": [
         {
           "items": {
@@ -28,7 +29,7 @@
         }
       ],
       "default": null,
-      "title": "Externereferenzen"
+      "title": "ZusatzAttribute"
     },
     "_id": {
       "anyOf": [

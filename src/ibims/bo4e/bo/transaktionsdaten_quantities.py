@@ -1,6 +1,8 @@
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.quantities_status import QuantitiesStatus
 from ..enum.sparte import Sparte
+from ..enum.typ import Typ
 
 
 class TransaktionsdatenQuantities(BaseModel):
@@ -13,6 +15,7 @@ class TransaktionsdatenQuantities(BaseModel):
         populate_by_name=True,
     )
     migration_id: str | None = Field(default=None, title="Migration_id")
+    typ: Typ | None = Field(default=Typ.TRANSAKTIONSDATENQUANTITIES, alias="_typ", title=" Typ")
     import_fuer_storno_adhoc: str | None = Field(default=None, title="Import_fuer_storno_adhoc")
     sparte: Sparte | None = Field(default=None, title="Sparte")
     pruefidentifikator: str | None = Field(default=None, title="Pruefidentifikator")
@@ -24,6 +27,6 @@ class TransaktionsdatenQuantities(BaseModel):
     dokumentennummer: str | None = Field(default=None, title="Dokumentennummer")
     kategorie: str | None = Field(default=None, title="Kategorie")
     nachrichtenfunktion: str | None = Field(default=None, title="Nachrichtenfunktion")
-    typ: str | None = Field(default=None, title="Typ")
+    trans_typ: str | None = Field(default=None, title="TransTyp")
     datumsformat: str | None = Field(default=None, title="Datumsformat")
-    status: str | None = Field(default=None, title="Status")
+    status: QuantitiesStatus | None = Field(default=QuantitiesStatus.VALID, title="Status")
