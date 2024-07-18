@@ -13,7 +13,7 @@
           "$ref": "../enum/Typ.json#"
         }
       ],
-      "default": "GESCHAEFTSOBJEKT",
+      "default": "DOKUMENT",
       "title": " Typ"
     },
     "zusatzAttribute": {

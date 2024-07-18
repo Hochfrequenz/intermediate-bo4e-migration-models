@@ -3,7 +3,7 @@ from enum import Enum
 
 class InvoiceStatus(str, Enum):
     """
-    QuantitiesStatus describes the possible states of a quantity
+    InvoiceStatus describes the possible states of an invoice
     """
 
     RECEIVED = "received"

@@ -1,5 +1,5 @@
 {
-  "description": "QuantitiesStatus describes the possible states of a quantity",
+  "description": "InvoiceStatus describes the possible states of an invoice",
   "enum": [
     "received",
     "ignored",

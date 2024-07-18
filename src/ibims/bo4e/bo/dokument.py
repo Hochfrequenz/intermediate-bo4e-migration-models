@@ -16,7 +16,7 @@ class Dokument(BaseModel):
         populate_by_name=True,
     )
     version: str | None = Field(default="v202401.2.1", alias="_version", title=" Version")
-    typ: Typ | None = Field(default=Typ.GESCHAEFTSOBJEKT, alias="_typ", title=" Typ")
+    typ: Typ | None = Field(default=Typ.DOKUMENT, alias="_typ", title=" Typ")
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="ZusatzAttribute"
     )

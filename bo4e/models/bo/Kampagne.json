@@ -13,8 +13,8 @@
           "$ref": "../enum/Typ.json#"
         }
       ],
-      "default": "GESCHAEFTSOBJEKT",
-        "title": " Typ"
+      "default": "KAMPAGNE",
+      "title": " Typ"
     },
     "zusatzAttribute": {
       "anyOf": [
