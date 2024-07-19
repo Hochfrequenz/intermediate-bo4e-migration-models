@@ -24,81 +24,87 @@ class Ausschreibungsdetail(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
-        title=" Id",
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = None
+
+    # pylint: disable=duplicate-code
+    model_config = ConfigDict(
+        alias_generator=camelize,
+        populate_by_name=True,
+        extra="allow",
+        # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create
+        # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.
+        # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375
+        json_encoders={Decimal: str},
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
     ist_lastgang_vorhanden: bool | None = Field(
-        default=None,
-        alias="istLastgangVorhanden",
-        description="Prognosewert für die Jahresarbeit der ausgeschriebenen Lokation",
-        title="Istlastgangvorhanden",
+        default=None, alias="istLastgangVorhanden", title="Istlastgangvorhanden"
     )
-    kunde: str | None = Field(
-        default=None, description="Bezeichnung des Kunden, der die Marktlokation nutzt", title="Kunde"
-    )
-    lieferzeitraum: Zeitraum | None = Field(
-        default=None, description="Angefragter Zeitraum für die ausgeschriebene Belieferung"
-    )
-    marktlokations_id: str | None = Field(
-        default=None,
-        alias="marktlokationsId",
-        description="Identifikation einer ausgeschriebenen Marktlokation",
-        title="Marktlokationsid",
-    )
-    marktlokationsadresse: Adresse | None = Field(
-        default=None, description="Die Adresse an der die Marktlokation sich befindet"
-    )
-    marktlokationsbezeichnung: str | None = Field(
-        default=None,
-        description="Bezeichnung für die Lokation, z.B. 'Zentraler Einkauf, Hamburg'",
-        title="Marktlokationsbezeichnung",
-    )
-    netzbetreiber: str | None = Field(
-        default=None,
-        description="Bezeichnung des zuständigen Netzbetreibers, z.B. 'Stromnetz Hamburg GmbH'",
-        title="Netzbetreiber",
-    )
-    netzebene_lieferung: str | None = Field(
-        default=None,
-        alias="netzebeneLieferung",
-        description="In der angegebenen Netzebene wird die Marktlokation versorgt, z.B. MSP für Mittelspannung",
-        title="Netzebenelieferung",
-    )
-    netzebene_messung: str | None = Field(
-        default=None,
-        alias="netzebeneMessung",
-        description="In der angegebenen Netzebene wird die Lokation gemessen, z.B. NSP für Niederspannung",
-        title="Netzebenemessung",
-    )
-    prognose_arbeit_lieferzeitraum: Menge | None = Field(
-        default=None,
-        alias="prognoseArbeitLieferzeitraum",
-        description="Ein Prognosewert für die Arbeit innerhalb des angefragten Lieferzeitraums der ausgeschriebenen Lokation",
-    )
-    prognose_jahresarbeit: Menge | None = Field(
-        default=None,
-        alias="prognoseJahresarbeit",
-        description="Prognosewert für die Jahresarbeit der ausgeschriebenen Lokation",
-    )
-    prognose_leistung: Menge | None = Field(
-        default=None,
-        alias="prognoseLeistung",
-        description="Prognosewert für die abgenommene maximale Leistung der ausgeschriebenen Lokation",
-    )
-    rechnungsadresse: Adresse | None = Field(default=None, description="Die (evtl. abweichende) Rechnungsadresse")
-    zaehlernummer: str | None = Field(
-        default=None, description="Die Bezeichnung des Zählers an der Marktlokation", title="Zaehlernummer"
-    )
-    zaehlertechnik: Zaehlertyp | None = Field(
-        default=None,
-        description="Spezifikation, um welche Zählertechnik es sich im vorliegenden Fall handelt, z.B. Leistungsmessung",
-    )
+    """
+    Prognosewert für die Jahresarbeit der ausgeschriebenen Lokation
+    """
+    kunde: str | None = Field(default=None, title="Kunde")
+    """
+    Bezeichnung des Kunden, der die Marktlokation nutzt
+    """
+    lieferzeitraum: Zeitraum | None = None
+    """
+    Angefragter Zeitraum für die ausgeschriebene Belieferung
+    """
+    marktlokations_id: str | None = Field(default=None, alias="marktlokationsId", title="Marktlokationsid")
+    """
+    Identifikation einer ausgeschriebenen Marktlokation
+    """
+    marktlokationsadresse: Adresse | None = None
+    """
+    Die Adresse an der die Marktlokation sich befindet
+    """
+    marktlokationsbezeichnung: str | None = Field(default=None, title="Marktlokationsbezeichnung")
+    """
+    Bezeichnung für die Lokation, z.B. 'Zentraler Einkauf, Hamburg'
+    """
+    netzbetreiber: str | None = Field(default=None, title="Netzbetreiber")
+    """
+    Bezeichnung des zuständigen Netzbetreibers, z.B. 'Stromnetz Hamburg GmbH'
+    """
+    netzebene_lieferung: str | None = Field(default=None, alias="netzebeneLieferung", title="Netzebenelieferung")
+    """
+    In der angegebenen Netzebene wird die Marktlokation versorgt, z.B. MSP für Mittelspannung
+    """
+    netzebene_messung: str | None = Field(default=None, alias="netzebeneMessung", title="Netzebenemessung")
+    """
+    In der angegebenen Netzebene wird die Lokation gemessen, z.B. NSP für Niederspannung
+    """
+    prognose_arbeit_lieferzeitraum: Menge | None = Field(default=None, alias="prognoseArbeitLieferzeitraum")
+    """
+    Ein Prognosewert für die Arbeit innerhalb des angefragten Lieferzeitraums der ausgeschriebenen Lokation
+    """
+    prognose_jahresarbeit: Menge | None = Field(default=None, alias="prognoseJahresarbeit")
+    """
+    Prognosewert für die Jahresarbeit der ausgeschriebenen Lokation
+    """
+    prognose_leistung: Menge | None = Field(default=None, alias="prognoseLeistung")
+    """
+    Prognosewert für die abgenommene maximale Leistung der ausgeschriebenen Lokation
+    """
+    rechnungsadresse: Adresse | None = None
+    """
+    Die (evtl. abweichende) Rechnungsadresse
+    """
+    zaehlernummer: str | None = Field(default=None, title="Zaehlernummer")
+    """
+    Die Bezeichnung des Zählers an der Marktlokation
+    """
+    zaehlertechnik: Zaehlertyp | None = None
+    """
+    Spezifikation, um welche Zählertechnik es sich im vorliegenden Fall handelt, z.B. Leistungsmessung
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

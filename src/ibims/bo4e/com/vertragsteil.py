@@ -23,37 +23,49 @@ class Vertragsteil(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
-        title=" Id",
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = None
+
+    # pylint: disable=duplicate-code
+    model_config = ConfigDict(
+        alias_generator=camelize,
+        populate_by_name=True,
+        extra="allow",
+        # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create
+        # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.
+        # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375
+        json_encoders={Decimal: str},
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    lokation: str | None = Field(
-        default=None, description='vertraglich_fixierte_menge: Optional["Menge"] = None', title="Lokation"
-    )
-    maximale_abnahmemenge: Menge | None = Field(
-        default=None,
-        alias="maximaleAbnahmemenge",
-        description="Für die Lokation festgelegte maximale Abnahmemenge (exklusiv)",
-    )
-    minimale_abnahmemenge: Menge | None = Field(
-        default=None, alias="minimaleAbnahmemenge", description='maximale_abnahmemenge: Optional["Menge"] = None'
-    )
-    vertraglich_fixierte_menge: Menge | None = Field(
-        default=None, alias="vertraglichFixierteMenge", description='minimale_abnahmemenge: Optional["Menge"] = None'
-    )
-    vertragsteilbeginn: datetime | None = Field(
-        default=None,
-        description="vertragsteilende: Optional[pydantic.AwareDatetime] = None",
-        title="Vertragsteilbeginn",
-    )
-    vertragsteilende: datetime | None = Field(
-        default=None, description="lokation: Optional[str] = None", title="Vertragsteilende"
-    )
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    lokation: str | None = Field(default=None, title="Lokation")
+    """
+    vertraglich_fixierte_menge: Optional["Menge"] = None
+    """
+    maximale_abnahmemenge: Menge | None = Field(default=None, alias="maximaleAbnahmemenge")
+    """
+    Für die Lokation festgelegte maximale Abnahmemenge (exklusiv)
+    """
+    minimale_abnahmemenge: Menge | None = Field(default=None, alias="minimaleAbnahmemenge")
+    """
+    maximale_abnahmemenge: Optional["Menge"] = None
+    """
+    vertraglich_fixierte_menge: Menge | None = Field(default=None, alias="vertraglichFixierteMenge")
+    """
+    minimale_abnahmemenge: Optional["Menge"] = None
+    """
+    vertragsteilbeginn: datetime | None = Field(default=None, title="Vertragsteilbeginn")
+    """
+    vertragsteilende: Optional[pydantic.AwareDatetime] = None
+    """
+    vertragsteilende: datetime | None = Field(default=None, title="Vertragsteilende")
+    """
+    lokation: Optional[str] = None
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

@@ -21,29 +21,30 @@ class Region(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ", description="Bezeichnung der Region")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    bezeichnung: str | None = Field(default=None, description="Bezeichnung der Region", title="Bezeichnung")
-    negativ_liste: list[Regionskriterium] | None = Field(
-        default=None,
-        alias="negativListe",
-        description="Negativliste der Kriterien zur Definition der Region",
-        title="Negativliste",
-    )
-    positiv_liste: list[Regionskriterium] | None = Field(
-        default=None,
-        alias="positivListe",
-        description="Positivliste der Kriterien zur Definition der Region",
-        title="Positivliste",
-    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.REGION, alias="_typ")
+    """
+    Bezeichnung der Region
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    """
+    Bezeichnung der Region
+    """
+    negativ_liste: list[Regionskriterium] | None = Field(default=None, alias="negativListe", title="Negativliste")
+    """
+    Negativliste der Kriterien zur Definition der Region
+    """
+    positiv_liste: list[Regionskriterium] | None = Field(default=None, alias="positivListe", title="Positivliste")
+    """
+    Positivliste der Kriterien zur Definition der Region
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

@@ -27,37 +27,59 @@ class Person(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ", description="Mögliche Anrede der Person")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    adresse: Adresse | None = Field(
-        default=None, description="Adresse der Person, falls diese von der Adresse des Geschäftspartners abweicht"
-    )
-    anrede: Anrede | None = Field(default=None, description="Mögliche Anrede der Person")
-    geburtsdatum: datetime | None = Field(default=None, description="Geburtsdatum der Person", title="Geburtsdatum")
-    individuelle_anrede: str | None = Field(
-        default=None,
-        alias="individuelleAnrede",
-        description='Im Falle einer nicht standardisierten Anrede kann hier eine frei definierbare Anrede vorgegeben werden.\nBeispiel: "Vereinsgemeinschaft", "Pfarrer", "Hochwürdigster Herr Abt".',
-        title="Individuelleanrede",
-    )
-    kommentar: str | None = Field(default=None, description="Weitere Informationen zur Person", title="Kommentar")
-    kontaktwege: list[Kontaktweg] | None = Field(
-        default=None, description="Kontaktwege der Person", title="Kontaktwege"
-    )
-    nachname: str | None = Field(default=None, description="Nachname (Familienname) der Person", title="Nachname")
-    titel: Titel | None = Field(default=None, description="Möglicher Titel der Person")
-    vorname: str | None = Field(default=None, description="Vorname der Person", title="Vorname")
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.PERSON, alias="_typ")
+    """
+    Mögliche Anrede der Person
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    adresse: Adresse | None = None
+    """
+    Adresse der Person, falls diese von der Adresse des Geschäftspartners abweicht
+    """
+    anrede: Anrede | None = None
+    """
+    Mögliche Anrede der Person
+    """
+    geburtsdatum: datetime | None = Field(default=None, title="Geburtsdatum")
+    """
+    Geburtsdatum der Person
+    """
+    individuelle_anrede: str | None = Field(default=None, alias="individuelleAnrede", title="Individuelleanrede")
+    """
+    Im Falle einer nicht standardisierten Anrede kann hier eine frei definierbare Anrede vorgegeben werden.
+    Beispiel: "Vereinsgemeinschaft", "Pfarrer", "Hochwürdigster Herr Abt".
+    """
+    kommentar: str | None = Field(default=None, title="Kommentar")
+    """
+    Weitere Informationen zur Person
+    """
+    kontaktwege: list[Kontaktweg] | None = Field(default=None, title="Kontaktwege")
+    """
+    Kontaktwege der Person
+    """
+    nachname: str | None = Field(default=None, title="Nachname")
+    """
+    Nachname (Familienname) der Person
+    """
+    titel: Titel | None = None
+    """
+    Möglicher Titel der Person
+    """
+    vorname: str | None = Field(default=None, title="Vorname")
+    """
+    Vorname der Person
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
-    zustaendigkeiten: list[Zustaendigkeit] | None = Field(
-        default=None, description="Liste der Abteilungen und Zuständigkeiten der Person", title="Zustaendigkeiten"
-    )
+    zustaendigkeiten: list[Zustaendigkeit] | None = Field(default=None, title="Zustaendigkeiten")
+    """
+    Liste der Abteilungen und Zuständigkeiten der Person
+    """

@@ -28,39 +28,49 @@ class Angebotsteil(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
-        title=" Id",
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = None
+
+    # pylint: disable=duplicate-code
+    model_config = ConfigDict(
+        alias_generator=camelize,
+        populate_by_name=True,
+        extra="allow",
+        # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create
+        # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.
+        # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375
+        json_encoders={Decimal: str},
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    anfrage_subreferenz: str | None = Field(
-        default=None,
-        alias="anfrageSubreferenz",
-        description="Identifizierung eines Subkapitels einer Anfrage, beispielsweise das Los einer Ausschreibung",
-        title="Anfragesubreferenz",
-    )
-    gesamtkostenangebotsteil: Betrag | None = Field(
-        default=None, description="Summe der Jahresenergiekosten aller in diesem Angebotsteil enthaltenen Lieferstellen"
-    )
-    gesamtmengeangebotsteil: Menge | None = Field(
-        default=None, description="Summe der Verbräuche aller in diesem Angebotsteil eingeschlossenen Lieferstellen"
-    )
-    lieferstellenangebotsteil: list[Marktlokation] | None = Field(
-        default=None,
-        description="Summe der Verbräuche aller in diesem Angebotsteil eingeschlossenen Lieferstellen",
-        title="Lieferstellenangebotsteil",
-    )
-    lieferzeitraum: Zeitraum | None = Field(
-        default=None,
-        description="Hier kann der Belieferungszeitraum angegeben werden, für den dieser Angebotsteil gilt",
-    )
-    positionen: list[Angebotsposition] | None = Field(
-        default=None, description="Einzelne Positionen, die zu diesem Angebotsteil gehören", title="Positionen"
-    )
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    anfrage_subreferenz: str | None = Field(default=None, alias="anfrageSubreferenz", title="Anfragesubreferenz")
+    """
+    Identifizierung eines Subkapitels einer Anfrage, beispielsweise das Los einer Ausschreibung
+    """
+    gesamtkostenangebotsteil: Betrag | None = None
+    """
+    Summe der Jahresenergiekosten aller in diesem Angebotsteil enthaltenen Lieferstellen
+    """
+    gesamtmengeangebotsteil: Menge | None = None
+    """
+    Summe der Verbräuche aller in diesem Angebotsteil eingeschlossenen Lieferstellen
+    """
+    lieferstellenangebotsteil: list[Marktlokation] | None = Field(default=None, title="Lieferstellenangebotsteil")
+    """
+    Summe der Verbräuche aller in diesem Angebotsteil eingeschlossenen Lieferstellen
+    """
+    lieferzeitraum: Zeitraum | None = None
+    """
+    Hier kann der Belieferungszeitraum angegeben werden, für den dieser Angebotsteil gilt
+    """
+    positionen: list[Angebotsposition] | None = Field(default=None, title="Positionen")
+    """
+    Einzelne Positionen, die zu diesem Angebotsteil gehören
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

@@ -28,69 +28,81 @@ class Preisposition(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
-        title=" Id",
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = None
+
+    # pylint: disable=duplicate-code
+    model_config = ConfigDict(
+        alias_generator=camelize,
+        populate_by_name=True,
+        extra="allow",
+        # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create
+        # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.
+        # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375
+        json_encoders={Decimal: str},
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    bdew_artikelnummer: BDEWArtikelnummer | None = Field(
-        default=None,
-        alias="bdewArtikelnummer",
-        description="Mit der Menge der hier angegebenen Größe wird die Staffelung/Zonung durchgeführt. Z.B. Vollbenutzungsstunden",
-    )
-    berechnungsmethode: Kalkulationsmethode | None = Field(
-        default=None, description="Das Modell, das der Preisbildung zugrunde liegt"
-    )
-    bezugsgroesse: Mengeneinheit | None = Field(
-        default=None,
-        description="Hier wird festgelegt, auf welche Bezugsgrösse sich der Preis bezieht, z.B. kWh oder Stück",
-    )
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    bdew_artikelnummer: BDEWArtikelnummer | None = Field(default=None, alias="bdewArtikelnummer")
+    """
+    Mit der Menge der hier angegebenen Größe wird die Staffelung/Zonung durchgeführt. Z.B. Vollbenutzungsstunden
+    """
+    berechnungsmethode: Kalkulationsmethode | None = None
+    """
+    Das Modell, das der Preisbildung zugrunde liegt
+    """
+    bezugsgroesse: Mengeneinheit | None = None
+    """
+    Hier wird festgelegt, auf welche Bezugsgrösse sich der Preis bezieht, z.B. kWh oder Stück
+    """
     freimenge_blindarbeit: float | None = Field(
-        default=None,
-        alias="freimengeBlindarbeit",
-        description="Der Anteil der Menge der Blindarbeit in Prozent von der Wirkarbeit, für die keine Abrechnung erfolgt",
-        title="Freimengeblindarbeit",
+        default=None, alias="freimengeBlindarbeit", title="Freimengeblindarbeit"
     )
+    """
+    Der Anteil der Menge der Blindarbeit in Prozent von der Wirkarbeit, für die keine Abrechnung erfolgt
+    """
     freimenge_leistungsfaktor: float | None = Field(
-        default=None,
-        alias="freimengeLeistungsfaktor",
-        description="gruppenartikel_id: Optional[str] = None",
-        title="Freimengeleistungsfaktor",
+        default=None, alias="freimengeLeistungsfaktor", title="Freimengeleistungsfaktor"
     )
-    gruppenartikel_id: str | None = Field(
-        default=None,
-        alias="gruppenartikelId",
-        description="Übergeordnete Gruppen-ID, die sich ggf. auf die Artikel-ID in der Preisstaffel bezieht",
-        title="Gruppenartikelid",
-    )
-    leistungsbezeichnung: str | None = Field(
-        default=None,
-        description="Bezeichnung für die in der Position abgebildete Leistungserbringung",
-        title="Leistungsbezeichnung",
-    )
-    leistungstyp: Leistungstyp | None = Field(
-        default=None, description="Standardisierte Bezeichnung für die abgerechnete Leistungserbringung"
-    )
-    preiseinheit: Waehrungseinheit | None = Field(
-        default=None, description="Festlegung, mit welcher Preiseinheit abgerechnet wird, z.B. Ct. oder €"
-    )
-    preisstaffeln: list[Preisstaffel] = Field(
-        ..., description="Preisstaffeln, die zu dieser Preisposition gehören", title="Preisstaffeln"
-    )
-    tarifzeit: Tarifzeit | None = Field(
-        default=None, description="Festlegung, für welche Tarifzeit der Preis hier festgelegt ist"
-    )
-    zeitbasis: Mengeneinheit | None = Field(
-        default=None, description="Festlegung, für welche Tarifzeit der Preis hier festgelegt ist"
-    )
-    zonungsgroesse: Bemessungsgroesse | None = Field(
-        default=None,
-        description="Mit der Menge der hier angegebenen Größe wird die Staffelung/Zonung durchgeführt. Z.B. Vollbenutzungsstunden",
-    )
+    """
+    gruppenartikel_id: Optional[str] = None
+    """
+    gruppenartikel_id: str | None = Field(default=None, alias="gruppenartikelId", title="Gruppenartikelid")
+    """
+    Übergeordnete Gruppen-ID, die sich ggf. auf die Artikel-ID in der Preisstaffel bezieht
+    """
+    leistungsbezeichnung: str | None = Field(default=None, title="Leistungsbezeichnung")
+    """
+    Bezeichnung für die in der Position abgebildete Leistungserbringung
+    """
+    leistungstyp: Leistungstyp | None = None
+    """
+    Standardisierte Bezeichnung für die abgerechnete Leistungserbringung
+    """
+    preiseinheit: Waehrungseinheit | None = None
+    """
+    Festlegung, mit welcher Preiseinheit abgerechnet wird, z.B. Ct. oder €
+    """
+    preisstaffeln: list[Preisstaffel] = Field(..., title="Preisstaffeln")
+    """
+    Preisstaffeln, die zu dieser Preisposition gehören
+    """
+    tarifzeit: Tarifzeit | None = None
+    """
+    Festlegung, für welche Tarifzeit der Preis hier festgelegt ist
+    """
+    zeitbasis: Mengeneinheit | None = None
+    """
+    Festlegung, für welche Tarifzeit der Preis hier festgelegt ist
+    """
+    zonungsgroesse: Bemessungsgroesse | None = None
+    """
+    Mit der Menge der hier angegebenen Größe wird die Staffelung/Zonung durchgeführt. Z.B. Vollbenutzungsstunden
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

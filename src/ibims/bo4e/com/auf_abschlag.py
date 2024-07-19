@@ -25,39 +25,57 @@ class AufAbschlag(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
-        title=" Id",
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = None
+
+    # pylint: disable=duplicate-code
+    model_config = ConfigDict(
+        alias_generator=camelize,
+        populate_by_name=True,
+        extra="allow",
+        # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create
+        # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.
+        # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375
+        json_encoders={Decimal: str},
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    auf_abschlagstyp: AufAbschlagstyp | None = Field(
-        default=None, alias="aufAbschlagstyp", description="Typ des Aufabschlages (z.B. absolut oder prozentual)."
-    )
-    auf_abschlagsziel: AufAbschlagsziel | None = Field(
-        default=None,
-        alias="aufAbschlagsziel",
-        description="Diesem Preis oder den Kosten ist der Auf/Abschlag zugeordnet. Z.B. Arbeitspreis, Gesamtpreis etc..",
-    )
-    beschreibung: str | None = Field(default=None, description="Beschreibung zum Auf-/Abschlag", title="Beschreibung")
-    bezeichnung: str | None = Field(default=None, description="Bezeichnung des Auf-/Abschlags", title="Bezeichnung")
-    einheit: Waehrungseinheit | None = Field(
-        default=None, description="Internetseite, auf der die Informationen zum Auf-/Abschlag veröffentlicht sind."
-    )
-    gueltigkeitszeitraum: Zeitraum | None = Field(
-        default=None, description="Internetseite, auf der die Informationen zum Auf-/Abschlag veröffentlicht sind."
-    )
-    staffeln: list[Preisstaffel] | None = Field(
-        default=None, description="Werte für die gestaffelten Auf/Abschläge.", title="Staffeln"
-    )
-    website: str | None = Field(
-        default=None,
-        description="Internetseite, auf der die Informationen zum Auf-/Abschlag veröffentlicht sind.",
-        title="Website",
-    )
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    auf_abschlagstyp: AufAbschlagstyp | None = Field(default=None, alias="aufAbschlagstyp")
+    """
+    Typ des Aufabschlages (z.B. absolut oder prozentual).
+    """
+    auf_abschlagsziel: AufAbschlagsziel | None = Field(default=None, alias="aufAbschlagsziel")
+    """
+    Diesem Preis oder den Kosten ist der Auf/Abschlag zugeordnet. Z.B. Arbeitspreis, Gesamtpreis etc..
+    """
+    beschreibung: str | None = Field(default=None, title="Beschreibung")
+    """
+    Beschreibung zum Auf-/Abschlag
+    """
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    """
+    Bezeichnung des Auf-/Abschlags
+    """
+    einheit: Waehrungseinheit | None = None
+    """
+    Internetseite, auf der die Informationen zum Auf-/Abschlag veröffentlicht sind.
+    """
+    gueltigkeitszeitraum: Zeitraum | None = None
+    """
+    Internetseite, auf der die Informationen zum Auf-/Abschlag veröffentlicht sind.
+    """
+    staffeln: list[Preisstaffel] | None = Field(default=None, title="Staffeln")
+    """
+    Werte für die gestaffelten Auf/Abschläge.
+    """
+    website: str | None = Field(default=None, title="Website")
+    """
+    Internetseite, auf der die Informationen zum Auf-/Abschlag veröffentlicht sind.
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

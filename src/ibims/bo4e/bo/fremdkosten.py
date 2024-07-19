@@ -25,25 +25,30 @@ class Fremdkosten(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ", description="Für diesen Zeitraum wurden die Kosten ermittelt")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    gueltigkeit: Zeitraum | None = Field(default=None, description="Für diesen Zeitraum wurden die Kosten ermittelt")
-    kostenbloecke: list[Fremdkostenblock] | None = Field(
-        default=None,
-        description="In Kostenblöcken werden Kostenpositionen zusammengefasst. Beispiele: Netzkosten, Umlagen, Steuern etc",
-        title="Kostenbloecke",
-    )
-    summe_kosten: Betrag | None = Field(
-        default=None, alias="summeKosten", description="Die Gesamtsumme über alle Kostenblöcke und -positionen"
-    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.FREMDKOSTEN, alias="_typ")
+    """
+    Für diesen Zeitraum wurden die Kosten ermittelt
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    gueltigkeit: Zeitraum | None = None
+    """
+    Für diesen Zeitraum wurden die Kosten ermittelt
+    """
+    kostenbloecke: list[Fremdkostenblock] | None = Field(default=None, title="Kostenbloecke")
+    """
+    In Kostenblöcken werden Kostenpositionen zusammengefasst. Beispiele: Netzkosten, Umlagen, Steuern etc
+    """
+    summe_kosten: Betrag | None = Field(default=None, alias="summeKosten")
+    """
+    Die Gesamtsumme über alle Kostenblöcke und -positionen
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

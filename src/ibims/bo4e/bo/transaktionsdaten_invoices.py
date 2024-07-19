@@ -25,4 +25,4 @@ class TransaktionsdatenInvoices(BaseModel):
     lieferrichtung: str | None = Field(default=None, title="Lieferrichtung")
     referenznummer: str | None = Field(default=None, title="Referenznummer")
     duplikat: str | None = Field(default=None, title="Duplikat")
-    status: InvoiceStatus | None = Field(default=InvoiceStatus.ACCEPTED, title="Status")
+    status: InvoiceStatus = Field(default=InvoiceStatus.ACCEPTED, title="Status")

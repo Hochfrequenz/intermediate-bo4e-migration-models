@@ -22,27 +22,41 @@ class RegionalePreisgarantie(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
-        title=" Id",
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = None
+
+    # pylint: disable=duplicate-code
+    model_config = ConfigDict(
+        alias_generator=camelize,
+        populate_by_name=True,
+        extra="allow",
+        # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create
+        # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.
+        # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375
+        json_encoders={Decimal: str},
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    beschreibung: str | None = Field(
-        default=None, description="Freitext zur Beschreibung der Preisgarantie.", title="Beschreibung"
-    )
-    preisgarantietyp: Preisgarantietyp | None = Field(
-        default=None, description="Festlegung, auf welche Preisbestandteile die Garantie gewährt wird."
-    )
-    regionale_gueltigkeit: RegionaleGueltigkeit | None = Field(
-        default=None, alias="regionaleGueltigkeit", description="Regionale Eingrenzung der Preisgarantie."
-    )
-    zeitliche_gueltigkeit: Zeitraum | None = Field(
-        default=None, alias="zeitlicheGueltigkeit", description="Freitext zur Beschreibung der Preisgarantie."
-    )
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    beschreibung: str | None = Field(default=None, title="Beschreibung")
+    """
+    Freitext zur Beschreibung der Preisgarantie.
+    """
+    preisgarantietyp: Preisgarantietyp | None = None
+    """
+    Festlegung, auf welche Preisbestandteile die Garantie gewährt wird.
+    """
+    regionale_gueltigkeit: RegionaleGueltigkeit | None = Field(default=None, alias="regionaleGueltigkeit")
+    """
+    Regionale Eingrenzung der Preisgarantie.
+    """
+    zeitliche_gueltigkeit: Zeitraum | None = Field(default=None, alias="zeitlicheGueltigkeit")
+    """
+    Freitext zur Beschreibung der Preisgarantie.
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

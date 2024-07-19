@@ -17,5 +17,5 @@ class Lastprofil(BaseModel):
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
     bezeichnung: str | None = Field(default=None, title="Bezeichnung")
-    einspeisung: bool | None = Field(default=False, title="Einspeisung")
+    einspeisung: bool = Field(default=False, title="Einspeisung")
     profilart: Profiltyp | None = None

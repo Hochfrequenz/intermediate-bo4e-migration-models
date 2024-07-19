@@ -20,24 +20,37 @@ class Zaehlzeitregister(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
-        title=" Id",
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = None
+
+    # pylint: disable=duplicate-code
+    model_config = ConfigDict(
+        alias_generator=camelize,
+        populate_by_name=True,
+        extra="allow",
+        # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create
+        # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.
+        # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375
+        json_encoders={Decimal: str},
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    ist_schwachlastfaehig: bool | None = Field(
-        default=None, alias="istSchwachlastfaehig", description="Zählzeitregister", title="Istschwachlastfaehig"
-    )
-    zaehlzeit_definition: str | None = Field(
-        default=None, alias="zaehlzeitDefinition", description="Zählzeitdefinition", title="Zaehlzeitdefinition"
-    )
-    zaehlzeit_register: str | None = Field(
-        default=None, alias="zaehlzeitRegister", description="Zählzeitdefinition", title="Zaehlzeitregister"
-    )
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    ist_schwachlastfaehig: bool | None = Field(default=None, alias="istSchwachlastfaehig", title="Istschwachlastfaehig")
+    """
+    Zählzeitregister
+    """
+    zaehlzeit_definition: str | None = Field(default=None, alias="zaehlzeitDefinition", title="Zaehlzeitdefinition")
+    """
+    Zählzeitdefinition
+    """
+    zaehlzeit_register: str | None = Field(default=None, alias="zaehlzeitRegister", title="Zaehlzeitregister")
+    """
+    Zählzeitdefinition
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

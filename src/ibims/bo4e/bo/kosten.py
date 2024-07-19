@@ -25,29 +25,34 @@ class Kosten(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ", description="Klasse der Kosten, beispielsweise Fremdkosten")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    gueltigkeit: Zeitraum | None = Field(default=None, description="Für diesen Zeitraum wurden die Kosten ermittelt")
-    kostenbloecke: list[Kostenblock] | None = Field(
-        default=None,
-        description="In Kostenblöcken werden Kostenpositionen zusammengefasst. Beispiele: Netzkosten, Umlagen, Steuern etc",
-        title="Kostenbloecke",
-    )
-    kostenklasse: Kostenklasse | None = Field(default=None, description="Klasse der Kosten, beispielsweise Fremdkosten")
-    summe_kosten: list[Betrag] | None = Field(
-        default=None,
-        alias="summeKosten",
-        description="Die Gesamtsumme über alle Kostenblöcke und -positionen",
-        title="Summekosten",
-    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.KOSTEN, alias="_typ")
+    """
+    Klasse der Kosten, beispielsweise Fremdkosten
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    gueltigkeit: Zeitraum | None = None
+    """
+    Für diesen Zeitraum wurden die Kosten ermittelt
+    """
+    kostenbloecke: list[Kostenblock] | None = Field(default=None, title="Kostenbloecke")
+    """
+    In Kostenblöcken werden Kostenpositionen zusammengefasst. Beispiele: Netzkosten, Umlagen, Steuern etc
+    """
+    kostenklasse: Kostenklasse | None = None
+    """
+    Klasse der Kosten, beispielsweise Fremdkosten
+    """
+    summe_kosten: list[Betrag] | None = Field(default=None, alias="summeKosten", title="Summekosten")
+    """
+    Die Gesamtsumme über alle Kostenblöcke und -positionen
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

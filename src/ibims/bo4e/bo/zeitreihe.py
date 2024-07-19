@@ -27,34 +27,50 @@ class Zeitreihe(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ", description="Bezeichnung für die Zeitreihe")
-    beschreibung: str | None = Field(
-        default=None, description="Beschreibt die Verwendung der Zeitreihe", title="Beschreibung"
-    )
-    bezeichnung: str | None = Field(default=None, description="Bezeichnung für die Zeitreihe", title="Bezeichnung")
-    einheit: Mengeneinheit | None = Field(
-        default=None, description="Alle Werte in der Tabelle haben die Einheit, die hier angegeben ist"
-    )
-    medium: Medium | None = Field(
-        default=None, description="Medium, das gemessen wurde (z.B. Wasser, Dampf, Strom, Gas)"
-    )
-    messart: Messart | None = Field(
-        default=None, description="Beschreibt die Art der Messung (z.B. aktueller Wert, mittlerer Wert, maximaler Wert)"
-    )
-    messgroesse: Messgroesse | None = Field(
-        default=None, description="Beschreibt, was gemessen wurde (z.B. Strom, Spannung, Wirkleistung, Scheinleistung)"
-    )
-    version: str | None = Field(default=None, description="Version der Zeitreihe", title="Version")
-    werte: list[Zeitreihenwert] | None = Field(default=None, description="Hier liegen jeweils die Werte", title="Werte")
-    wertherkunft: Wertermittlungsverfahren | None = Field(
-        default=None, description="Kennzeichnung, wie die Werte entstanden sind, z.B. durch Messung"
-    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.ZEITREIHE, alias="_typ")
+    """
+    Bezeichnung für die Zeitreihe
+    """
+    beschreibung: str | None = Field(default=None, title="Beschreibung")
+    """
+    Beschreibt die Verwendung der Zeitreihe
+    """
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    """
+    Bezeichnung für die Zeitreihe
+    """
+    einheit: Mengeneinheit | None = None
+    """
+    Alle Werte in der Tabelle haben die Einheit, die hier angegeben ist
+    """
+    medium: Medium | None = None
+    """
+    Medium, das gemessen wurde (z.B. Wasser, Dampf, Strom, Gas)
+    """
+    messart: Messart | None = None
+    """
+    Beschreibt die Art der Messung (z.B. aktueller Wert, mittlerer Wert, maximaler Wert)
+    """
+    messgroesse: Messgroesse | None = None
+    """
+    Beschreibt, was gemessen wurde (z.B. Strom, Spannung, Wirkleistung, Scheinleistung)
+    """
+    version: str | None = Field(default=None, title="Version")
+    """
+    Version der Zeitreihe
+    """
+    werte: list[Zeitreihenwert] | None = Field(default=None, title="Werte")
+    """
+    Hier liegen jeweils die Werte
+    """
+    wertherkunft: Wertermittlungsverfahren | None = None
+    """
+    Kennzeichnung, wie die Werte entstanden sind, z.B. durch Messung
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

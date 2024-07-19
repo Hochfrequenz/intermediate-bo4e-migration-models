@@ -20,13 +20,11 @@ class ZusatzAttribut(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    name: str | None = Field(
-        ...,
-        description='Bezeichnung der externen Referenz (z.B. "microservice xyz" oder "SAP CRM GP-Nummer")',
-        title="Name",
-    )
-    wert: Any = Field(
-        ...,
-        description='Bezeichnung der externen Referenz (z.B. "microservice xyz" oder "SAP CRM GP-Nummer")',
-        title="Wert",
-    )
+    name: str | None = Field(..., title="Name")
+    """
+    Bezeichnung der externen Referenz (z.B. "microservice xyz" oder "SAP CRM GP-Nummer")
+    """
+    wert: Any = Field(..., title="Wert")
+    """
+    Bezeichnung der externen Referenz (z.B. "microservice xyz" oder "SAP CRM GP-Nummer")
+    """

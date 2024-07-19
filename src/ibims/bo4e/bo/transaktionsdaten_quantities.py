@@ -15,7 +15,7 @@ class TransaktionsdatenQuantities(BaseModel):
         populate_by_name=True,
     )
     migration_id: str | None = Field(default=None, title="Migration_id")
-    typ: Typ | None = Field(default=Typ.TRANSAKTIONSDATENQUANTITIES, alias="_typ", title=" Typ")
+    typ: Typ = Field(default=Typ.TRANSAKTIONSDATENQUANTITIES, alias="_typ", title=" Typ")
     import_fuer_storno_adhoc: str | None = Field(default=None, title="Import_fuer_storno_adhoc")
     sparte: Sparte | None = Field(default=None, title="Sparte")
     pruefidentifikator: str | None = Field(default=None, title="Pruefidentifikator")
@@ -29,4 +29,4 @@ class TransaktionsdatenQuantities(BaseModel):
     nachrichtenfunktion: str | None = Field(default=None, title="Nachrichtenfunktion")
     trans_typ: str | None = Field(default=None, title="TransTyp")
     datumsformat: str | None = Field(default=None, title="Datumsformat")
-    status: QuantitiesStatus | None = Field(default=QuantitiesStatus.VALID, title="Status")
+    status: QuantitiesStatus = Field(default=QuantitiesStatus.VALID, title="Status")

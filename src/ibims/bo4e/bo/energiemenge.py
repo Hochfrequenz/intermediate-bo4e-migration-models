@@ -22,32 +22,30 @@ class Energiemenge(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(
-        ...,
-        alias="_typ",
-        description="Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört",
-    )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    energieverbrauch: list[Verbrauch] = Field(
-        ..., description="Gibt den Verbrauch in einer Zeiteinheit an", title="Energieverbrauch"
-    )
-    lokations_id: str | None = Field(
-        default=None,
-        alias="lokationsId",
-        description="Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört",
-        title="Lokationsid",
-    )
-    lokationstyp: Lokationstyp | None = Field(
-        default=None, description="Gibt an, ob es sich um eine Markt- oder Messlokation handelt"
-    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.ENERGIEMENGE, alias="_typ")
+    """
+    Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    energieverbrauch: list[Verbrauch] = Field(..., title="Energieverbrauch")
+    """
+    Gibt den Verbrauch in einer Zeiteinheit an
+    """
+    lokations_id: str | None = Field(default=None, alias="lokationsId", title="Lokationsid")
+    """
+    Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört
+    """
+    lokationstyp: Lokationstyp | None = None
+    """
+    Gibt an, ob es sich um eine Markt- oder Messlokation handelt
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

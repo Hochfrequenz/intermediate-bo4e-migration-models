@@ -32,63 +32,80 @@ class Geschaeftspartner(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ", description="Mögliche Anrede der Person")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    adresse: Adresse | None = Field(default=None, description="Adresse des Geschäftspartners")
-    amtsgericht: str | None = Field(
-        default=None,
-        description="Amtsgericht bzw Handelsregistergericht, das die Handelsregisternummer herausgegeben hat",
-        title="Amtsgericht",
-    )
-    anrede: Anrede | None = Field(default=None, description="Mögliche Anrede der Person")
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.GESCHAEFTSPARTNER, alias="_typ")
+    """
+    Mögliche Anrede der Person
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    adresse: Adresse | None = None
+    """
+    Adresse des Geschäftspartners
+    """
+    amtsgericht: str | None = Field(default=None, title="Amtsgericht")
+    """
+    Amtsgericht bzw Handelsregistergericht, das die Handelsregisternummer herausgegeben hat
+    """
+    anrede: Anrede | None = None
+    """
+    Mögliche Anrede der Person
+    """
     ansprechpartner: list[Person] | None = Field(default=None, title="Ansprechpartner")
-    geschaeftspartnerrollen: list[Geschaeftspartnerrolle] | None = Field(
-        default=None,
-        description="Rollen, die die Geschäftspartner inne haben (z.B. Interessent, Kunde)",
-        title="Geschaeftspartnerrollen",
-    )
-    glaeubiger_id: str | None = Field(
-        default=None,
-        alias="glaeubigerId",
-        description='Die Gläubiger-ID welche im Zahlungsverkehr verwendet wird; Z.B. "DE 47116789"',
-        title="Glaeubigerid",
-    )
-    handelsregisternummer: str | None = Field(
-        default=None, description="Handelsregisternummer des Geschäftspartners", title="Handelsregisternummer"
-    )
-    individuelle_anrede: str | None = Field(
-        default=None,
-        alias="individuelleAnrede",
-        description='Im Falle einer nicht standardisierten Anrede kann hier eine frei definierbare Anrede vorgegeben werden.\nBeispiel: "Vereinsgemeinschaft", "Pfarrer", "Hochwürdigster Herr Abt".',
-        title="Individuelleanrede",
-    )
-    kontaktwege: list[Kontaktweg] | None = Field(
-        default=None, description="Kontaktwege des Geschäftspartners", title="Kontaktwege"
-    )
-    nachname: str | None = Field(default=None, description="Nachname (Familienname) der Person", title="Nachname")
-    organisationsname: str | None = Field(
-        default=None, description="Kontaktwege des Geschäftspartners", title="Organisationsname"
-    )
-    organisationstyp: Organisationstyp | None = Field(
-        default=None, description="organisationsname: Optional[str] = None"
-    )
-    titel: Titel | None = Field(default=None, description="Möglicher Titel der Person")
-    umsatzsteuer_id: str | None = Field(
-        default=None,
-        alias="umsatzsteuerId",
-        description='Die Steuer-ID des Geschäftspartners; Beispiel: "DE 813281825"',
-        title="Umsatzsteuerid",
-    )
-    vorname: str | None = Field(default=None, description="Vorname der Person", title="Vorname")
-    website: str | None = Field(default=None, description="Internetseite des Marktpartners", title="Website")
+    geschaeftspartnerrollen: list[Geschaeftspartnerrolle] | None = Field(default=None, title="Geschaeftspartnerrollen")
+    """
+    Rollen, die die Geschäftspartner inne haben (z.B. Interessent, Kunde)
+    """
+    glaeubiger_id: str | None = Field(default=None, alias="glaeubigerId", title="Glaeubigerid")
+    """
+    Die Gläubiger-ID welche im Zahlungsverkehr verwendet wird; Z.B. "DE 47116789"
+    """
+    handelsregisternummer: str | None = Field(default=None, title="Handelsregisternummer")
+    """
+    Handelsregisternummer des Geschäftspartners
+    """
+    individuelle_anrede: str | None = Field(default=None, alias="individuelleAnrede", title="Individuelleanrede")
+    """
+    Im Falle einer nicht standardisierten Anrede kann hier eine frei definierbare Anrede vorgegeben werden.
+    Beispiel: "Vereinsgemeinschaft", "Pfarrer", "Hochwürdigster Herr Abt".
+    """
+    kontaktwege: list[Kontaktweg] | None = Field(default=None, title="Kontaktwege")
+    """
+    Kontaktwege des Geschäftspartners
+    """
+    nachname: str | None = Field(default=None, title="Nachname")
+    """
+    Nachname (Familienname) der Person
+    """
+    organisationsname: str | None = Field(default=None, title="Organisationsname")
+    """
+    Kontaktwege des Geschäftspartners
+    """
+    organisationstyp: Organisationstyp | None = None
+    """
+    organisationsname: Optional[str] = None
+    """
+    titel: Titel | None = None
+    """
+    Möglicher Titel der Person
+    """
+    umsatzsteuer_id: str | None = Field(default=None, alias="umsatzsteuerId", title="Umsatzsteuerid")
+    """
+    Die Steuer-ID des Geschäftspartners; Beispiel: "DE 813281825"
+    """
+    vorname: str | None = Field(default=None, title="Vorname")
+    """
+    Vorname der Person
+    """
+    website: str | None = Field(default=None, title="Website")
+    """
+    Internetseite des Marktpartners
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

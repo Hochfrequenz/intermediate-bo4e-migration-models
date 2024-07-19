@@ -22,25 +22,28 @@ class Standorteigenschaften(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ", description="Eigenschaften zur Sparte Strom")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    eigenschaften_gas: StandorteigenschaftenGas | None = Field(
-        default=None, alias="eigenschaftenGas", description="Eigenschaften zur Sparte Gas"
-    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.STANDORTEIGENSCHAFTEN, alias="_typ")
+    """
+    Eigenschaften zur Sparte Strom
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    eigenschaften_gas: StandorteigenschaftenGas | None = Field(default=None, alias="eigenschaftenGas")
+    """
+    Eigenschaften zur Sparte Gas
+    """
     eigenschaften_strom: list[StandorteigenschaftenStrom] | None = Field(
-        default=None,
-        alias="eigenschaftenStrom",
-        description="Eigenschaften zur Sparte Strom",
-        title="Eigenschaftenstrom",
+        default=None, alias="eigenschaftenStrom", title="Eigenschaftenstrom"
     )
+    """
+    Eigenschaften zur Sparte Strom
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

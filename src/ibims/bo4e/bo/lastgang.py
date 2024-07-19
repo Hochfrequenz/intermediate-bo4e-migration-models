@@ -27,31 +27,42 @@ class Lastgang(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ", description="Angabe, ob es sich um einen Gas- oder Stromlastgang handelt")
-    marktlokation: Marktlokation | None = Field(default=None, description="Marktlokation, zu der der Lastgang gehört")
-    messgroesse: Mengeneinheit | None = Field(
-        default=None, description="Definition der gemessenen Größe anhand ihrer Einheit"
-    )
-    messlokation: Messlokation | None = Field(default=None, description="Marktlokation, zu der der Lastgang gehört")
-    obis_kennzahl: str | None = Field(
-        default=None,
-        alias="obisKennzahl",
-        description="Die OBIS-Kennzahl für den Wert, die festlegt, welche Größe mit dem Stand gemeldet wird, z.B. '1-0:1.8.1'",
-        title="Obiskennzahl",
-    )
-    sparte: Sparte | None = Field(
-        default=None, description="Angabe, ob es sich um einen Gas- oder Stromlastgang handelt"
-    )
-    version: str | None = Field(default=None, description="Versionsnummer des Lastgangs", title="Version")
-    werte: list[Zeitreihenwert] | None = Field(
-        default=None, description="Die im Lastgang enthaltenen Messwerte", title="Werte"
-    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.LASTGANG, alias="_typ")
+    """
+    Angabe, ob es sich um einen Gas- oder Stromlastgang handelt
+    """
+    marktlokation: Marktlokation | None = None
+    """
+    Marktlokation, zu der der Lastgang gehört
+    """
+    messgroesse: Mengeneinheit | None = None
+    """
+    Definition der gemessenen Größe anhand ihrer Einheit
+    """
+    messlokation: Messlokation | None = None
+    """
+    Marktlokation, zu der der Lastgang gehört
+    """
+    obis_kennzahl: str | None = Field(default=None, alias="obisKennzahl", title="Obiskennzahl")
+    """
+    Die OBIS-Kennzahl für den Wert, die festlegt, welche Größe mit dem Stand gemeldet wird, z.B. '1-0:1.8.1'
+    """
+    sparte: Sparte | None = None
+    """
+    Angabe, ob es sich um einen Gas- oder Stromlastgang handelt
+    """
+    version: str | None = Field(default=None, title="Version")
+    """
+    Versionsnummer des Lastgangs
+    """
+    werte: list[Zeitreihenwert] | None = Field(default=None, title="Werte")
+    """
+    Die im Lastgang enthaltenen Messwerte
+    """
     zeit_intervall_laenge: Menge | None = Field(..., alias="zeitIntervallLaenge")
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

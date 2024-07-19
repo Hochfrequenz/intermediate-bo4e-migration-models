@@ -34,61 +34,80 @@ class Regionaltarif(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    anbieter: Marktteilnehmer | None = Field(
-        default=None, description="Der Marktteilnehmer (Lieferant), der diesen Tarif anbietet"
-    )
-    anbietername: str | None = Field(
-        default=None, description="Der Name des Marktpartners, der den Tarif anbietet", title="Anbietername"
-    )
-    anwendung_von: datetime | None = Field(
-        default=None,
-        alias="anwendungVon",
-        description='Angabe des inklusiven Zeitpunkts, ab dem der Tarif bzw. der Preis angewendet und abgerechnet wird,\nz.B. "2021-07-20T18:31:48Z"',
-        title="Anwendungvon",
-    )
-    bemerkung: str | None = Field(default=None, description="Freitext", title="Bemerkung")
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.REGIONALTARIF, alias="_typ")
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    anbieter: Marktteilnehmer | None = None
+    """
+    Der Marktteilnehmer (Lieferant), der diesen Tarif anbietet
+    """
+    anbietername: str | None = Field(default=None, title="Anbietername")
+    """
+    Der Name des Marktpartners, der den Tarif anbietet
+    """
+    anwendung_von: datetime | None = Field(default=None, alias="anwendungVon", title="Anwendungvon")
+    """
+    Angabe des inklusiven Zeitpunkts, ab dem der Tarif bzw. der Preis angewendet und abgerechnet wird,
+    z.B. "2021-07-20T18:31:48Z"
+    """
+    bemerkung: str | None = Field(default=None, title="Bemerkung")
+    """
+    Freitext
+    """
     berechnungsparameter: Tarifberechnungsparameter | None = None
-    bezeichnung: str | None = Field(default=None, description="Name des Tarifs", title="Bezeichnung")
-    energiemix: Energiemix | None = Field(default=None, description="Der Energiemix, der für diesen Tarif gilt")
-    kundentypen: list[Kundentyp] | None = Field(
-        default=None, description="Kundentypen für den der Tarif gilt, z.B. Privatkunden", title="Kundentypen"
-    )
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    """
+    Name des Tarifs
+    """
+    energiemix: Energiemix | None = None
+    """
+    Der Energiemix, der für diesen Tarif gilt
+    """
+    kundentypen: list[Kundentyp] | None = Field(default=None, title="Kundentypen")
+    """
+    Kundentypen für den der Tarif gilt, z.B. Privatkunden
+    """
     preisgarantien: list[RegionalePreisgarantie] | None = Field(default=None, title="Preisgarantien")
     preisstand: datetime | None = Field(default=None, title="Preisstand")
-    registeranzahl: Registeranzahl | None = Field(
-        default=None, description="Die Art des Tarifes, z.B. Eintarif oder Mehrtarif"
-    )
-    sparte: Sparte | None = Field(default=None, description="Strom oder Gas, etc.")
+    registeranzahl: Registeranzahl | None = None
+    """
+    Die Art des Tarifes, z.B. Eintarif oder Mehrtarif
+    """
+    sparte: Sparte | None = None
+    """
+    Strom oder Gas, etc.
+    """
     tarif_auf_abschlaege: list[RegionalerAufAbschlag] | None = Field(
         default=None, alias="tarifAufAbschlaege", title="Tarifaufabschlaege"
     )
     tarifeinschraenkung: Tarifeinschraenkung | None = None
-    tarifmerkmale: list[Tarifmerkmal] | None = Field(
-        default=None, description="Weitere Merkmale des Tarifs, z.B. Festpreis oder Vorkasse", title="Tarifmerkmale"
-    )
+    tarifmerkmale: list[Tarifmerkmal] | None = Field(default=None, title="Tarifmerkmale")
+    """
+    Weitere Merkmale des Tarifs, z.B. Festpreis oder Vorkasse
+    """
     tarifpreise: list[RegionaleTarifpreisposition] | None = Field(default=None, title="Tarifpreise")
-    tariftyp: Tariftyp | None = Field(
-        default=None, description="Hinweis auf den Tariftyp, z.B. Grundversorgung oder Sondertarif"
-    )
-    vertragskonditionen: Vertragskonditionen | None = Field(
-        default=None, description="Mindestlaufzeiten und Kündigungsfristen zusammengefasst"
-    )
-    website: str | None = Field(
-        default=None, description="Internetseite auf dem der Tarif zu finden ist", title="Website"
-    )
-    zeitliche_gueltigkeit: Zeitraum | None = Field(
-        default=None, alias="zeitlicheGueltigkeit", description="Angabe, in welchem Zeitraum der Tarif gültig ist"
-    )
+    tariftyp: Tariftyp | None = None
+    """
+    Hinweis auf den Tariftyp, z.B. Grundversorgung oder Sondertarif
+    """
+    vertragskonditionen: Vertragskonditionen | None = None
+    """
+    Mindestlaufzeiten und Kündigungsfristen zusammengefasst
+    """
+    website: str | None = Field(default=None, title="Website")
+    """
+    Internetseite auf dem der Tarif zu finden ist
+    """
+    zeitliche_gueltigkeit: Zeitraum | None = Field(default=None, alias="zeitlicheGueltigkeit")
+    """
+    Angabe, in welchem Zeitraum der Tarif gültig ist
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

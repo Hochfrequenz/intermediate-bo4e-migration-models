@@ -28,62 +28,76 @@ class Messlokation(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(
-        ..., alias="_typ", description="Die Messlokations-Identifikation; Das ist die frühere Zählpunktbezeichnung"
-    )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    geoadresse: Geokoordinaten | None = Field(
-        default=None, description='katasterinformation: Optional["Katasteradresse"] = None'
-    )
-    geraete: list[Geraet] | None = Field(
-        default=None, description="Liste der Geräte, die zu dieser Messstelle gehört", title="Geraete"
-    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.MESSLOKATION, alias="_typ")
+    """
+    Die Messlokations-Identifikation; Das ist die frühere Zählpunktbezeichnung
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    geoadresse: Geokoordinaten | None = None
+    """
+    katasterinformation: Optional["Katasteradresse"] = None
+    """
+    geraete: list[Geraet] | None = Field(default=None, title="Geraete")
+    """
+    Liste der Geräte, die zu dieser Messstelle gehört
+    """
     grundzustaendiger_msb_codenr: str | None = Field(
         default=None,
         alias="grundzustaendigerMsbCodenr",
-        description="grundzustaendiger_msbim_codenr: Optional[str] = None",
         title="Grundzustaendigermsbcodenr",
     )
+    """
+    grundzustaendiger_msbim_codenr: Optional[str] = None
+    """
     grundzustaendiger_msbim_codenr: str | None = Field(
         default=None,
         alias="grundzustaendigerMsbimCodenr",
-        description='# only one of the following three optional address attributes can be set\nmessadresse: Optional["Adresse"] = None',
         title="Grundzustaendigermsbimcodenr",
     )
-    katasterinformation: Katasteradresse | None = Field(
-        default=None,
-        description="Alternativ zu einer postalischen Adresse und Geokoordinaten kann hier eine Ortsangabe mittels Gemarkung und\nFlurstück erfolgen.",
-    )
-    messadresse: Adresse | None = Field(default=None, description='geoadresse: Optional["Geokoordinaten"] = None')
-    messdienstleistung: list[Dienstleistung] | None = Field(
-        default=None,
-        description="Liste der Messdienstleistungen, die zu dieser Messstelle gehört",
-        title="Messdienstleistung",
-    )
-    messgebietnr: str | None = Field(
-        default=None, description="Die Nummer des Messgebietes in der ene't-Datenbank", title="Messgebietnr"
-    )
-    messlokations_id: str = Field(
-        ...,
-        alias="messlokationsId",
-        description="Die Messlokations-Identifikation; Das ist die frühere Zählpunktbezeichnung",
-        title="Messlokationsid",
-    )
-    messlokationszaehler: list[Zaehler] | None = Field(
-        default=None, description="Zähler, die zu dieser Messlokation gehören", title="Messlokationszaehler"
-    )
-    netzebene_messung: Netzebene | None = Field(
-        default=None, alias="netzebeneMessung", description="Spannungsebene der Messung"
-    )
-    sparte: Sparte | None = Field(default=None, description="Sparte der Messlokation, z.B. Gas oder Strom")
+    """
+    # only one of the following three optional address attributes can be set
+    messadresse: Optional["Adresse"] = None
+    """
+    katasterinformation: Katasteradresse | None = None
+    """
+    Alternativ zu einer postalischen Adresse und Geokoordinaten kann hier eine Ortsangabe mittels Gemarkung und
+    Flurstück erfolgen.
+    """
+    messadresse: Adresse | None = None
+    """
+    geoadresse: Optional["Geokoordinaten"] = None
+    """
+    messdienstleistung: list[Dienstleistung] | None = Field(default=None, title="Messdienstleistung")
+    """
+    Liste der Messdienstleistungen, die zu dieser Messstelle gehört
+    """
+    messgebietnr: str | None = Field(default=None, title="Messgebietnr")
+    """
+    Die Nummer des Messgebietes in der ene't-Datenbank
+    """
+    messlokations_id: str = Field(..., alias="messlokationsId", title="Messlokationsid")
+    """
+    Die Messlokations-Identifikation; Das ist die frühere Zählpunktbezeichnung
+    """
+    messlokationszaehler: list[Zaehler] | None = Field(default=None, title="Messlokationszaehler")
+    """
+    Zähler, die zu dieser Messlokation gehören
+    """
+    netzebene_messung: Netzebene | None = Field(default=None, alias="netzebeneMessung")
+    """
+    Spannungsebene der Messung
+    """
+    sparte: Sparte | None = None
+    """
+    Sparte der Messlokation, z.B. Gas oder Strom
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

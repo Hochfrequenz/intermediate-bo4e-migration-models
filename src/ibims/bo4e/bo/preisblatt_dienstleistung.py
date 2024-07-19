@@ -28,50 +28,62 @@ class PreisblattDienstleistung(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(
-        ..., alias="_typ", description="Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode"
-    )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    basisdienstleistung: Dienstleistungstyp | None = Field(
-        default=None, description="Dienstleistung, für die der Preis abgebildet wird, z.B. Sperrung/Entsperrung"
-    )
-    bezeichnung: str | None = Field(
-        default=None, description="Eine Bezeichnung für das Preisblatt", title="Bezeichnung"
-    )
-    bilanzierungsmethode: Bilanzierungsmethode | None = Field(
-        default=None, description="Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode"
-    )
-    geraetedetails: Geraet | None = Field(
-        default=None,
-        description="Hier kann der Preis auf bestimmte Geräte eingegrenzt werden. Z.B. auf die Zählergröße",
-    )
-    gueltigkeit: Zeitraum | None = Field(default=None, description="Der Zeitraum für den der Preis festgelegt ist")
-    herausgeber: Marktteilnehmer | None = Field(
-        default=None, description="Der Netzbetreiber, der die Preise veröffentlicht hat"
-    )
+    id: str | None = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.PREISBLATTDIENSTLEISTUNG, alias="_typ")
+    """
+    Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode
+    """
+    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    basisdienstleistung: Dienstleistungstyp | None = None
+    """
+    Dienstleistung, für die der Preis abgebildet wird, z.B. Sperrung/Entsperrung
+    """
+    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    """
+    Eine Bezeichnung für das Preisblatt
+    """
+    bilanzierungsmethode: Bilanzierungsmethode | None = None
+    """
+    Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode
+    """
+    geraetedetails: Geraet | None = None
+    """
+    Hier kann der Preis auf bestimmte Geräte eingegrenzt werden. Z.B. auf die Zählergröße
+    """
+    gueltigkeit: Zeitraum | None = None
+    """
+    Der Zeitraum für den der Preis festgelegt ist
+    """
+    herausgeber: Marktteilnehmer | None = None
+    """
+    Der Netzbetreiber, der die Preise veröffentlicht hat
+    """
     inklusive_dienstleistungen: list[Dienstleistungstyp] | None = Field(
         default=None,
         alias="inklusiveDienstleistungen",
-        description="Weitere Dienstleistungen, die im Preis enthalten sind",
         title="Inklusivedienstleistungen",
     )
-    preispositionen: list[Preisposition] | None = Field(
-        default=None,
-        description="Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden können. Z.B. Arbeitspreis, Grundpreis etc",
-        title="Preispositionen",
-    )
-    preisstatus: Preisstatus | None = Field(
-        default=None, description="Merkmal, das anzeigt, ob es sich um vorläufige oder endgültige Preise handelt"
-    )
-    sparte: Sparte | None = Field(default=None, description="Preisblatt gilt für angegebene Sparte")
+    """
+    Weitere Dienstleistungen, die im Preis enthalten sind
+    """
+    preispositionen: list[Preisposition] | None = Field(default=None, title="Preispositionen")
+    """
+    Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden können. Z.B. Arbeitspreis, Grundpreis etc
+    """
+    preisstatus: Preisstatus | None = None
+    """
+    Merkmal, das anzeigt, ob es sich um vorläufige oder endgültige Preise handelt
+    """
+    sparte: Sparte | None = None
+    """
+    Preisblatt gilt für angegebene Sparte
+    """
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
