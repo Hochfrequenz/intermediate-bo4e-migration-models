@@ -11,6 +11,7 @@ from typing import Any, Callable, Optional
 
 import click
 from bo4e_generator.__main__ import generate_bo4e_schemas
+from bo4e_generator.parser import OutputType
 from bost.__main__ import main as bost_main
 from bost.pull import get_source_repo, resolve_latest_version
 from dotenv import dotenv_values, set_key
@@ -94,7 +95,7 @@ def rebuild_bo4e(version: str, gh_access_token: str) -> Optional[Exception]:
             output_directory=REPO_ROOT / "src/ibims/bo4e",
             target_version=version,
             clear_output=True,
-            pydantic_v1=False,
+            output_type=OutputType.PYDANTIC_V2,
         )
         logger.info("Run isort on auto-generated code. Normally, this should not change anything.")
         isort_main(str(REPO_ROOT / "src/ibims/bo4e"))
