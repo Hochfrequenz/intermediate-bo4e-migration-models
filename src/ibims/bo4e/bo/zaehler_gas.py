@@ -29,7 +29,7 @@ class ZaehlerGas(BaseModel):
     version: str | None = Field(default="v202401.2.1", alias="_version", title=" Version")
     typ: Typ | None = Field(default=Typ.ZAEHLERGAS, alias="_typ", title=" Typ")
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
-        default=None, alias="zusatzAttribute", title="Externereferenzen"
+        default=None, alias="zusatzAttribute", title="ZusatzAttribute"
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
     zaehlernummer: str = Field(..., title="Zaehlernummer")
@@ -37,7 +37,7 @@ class ZaehlerGas(BaseModel):
     zaehlerauspraegung: Zaehlerauspraegung | None = None
     zaehlertyp: Zaehlertyp
     zaehlwerke: list[Zaehlwerk] = Field(..., title="Zaehlwerke")
-    tarifart: Registeranzahl | None = None
+    registeranzahl: Registeranzahl | None = None
     zaehlerkonstante: Decimal | None = Field(default=None, title="Zaehlerkonstante")
     eichung_bis: datetime | None = Field(default=None, alias="eichungBis", title="Eichungbis")
     letzte_eichung: datetime | None = Field(default=None, alias="letzteEichung", title="Letzteeichung")

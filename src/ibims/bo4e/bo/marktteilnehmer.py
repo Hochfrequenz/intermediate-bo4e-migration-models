@@ -34,8 +34,8 @@ class Marktteilnehmer(BaseModel):
     version: str = Field(
         ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
     )
-    geschaeftspartner: Geschaeftspartner | None = Field(
-        default=None, description="Der zu diesem Marktteilnehmer gehörende Geschäftspartner"
+    geschaeftspartner: Geschaeftspartner = Field(
+        ..., description="Der zu diesem Marktteilnehmer gehörende Geschäftspartner"
     )
     makoadresse: list[str] | None = Field(
         default=None,

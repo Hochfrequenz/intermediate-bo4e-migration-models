@@ -29,7 +29,7 @@
         }
       ],
       "default": null,
-      "title": "Externereferenzen"
+      "title": "ZusatzAttribute"
     },
     "_id": {
       "anyOf": [
@@ -95,7 +95,7 @@
       "default": null,
       "title": "Zaehlwerke"
     },
-    "tarifart": {
+    "registeranzahl": {
       "anyOf": [
         {
           "$ref": "../enum/Registeranzahl.json#"
