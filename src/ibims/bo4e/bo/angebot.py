@@ -3,11 +3,11 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field
 
 from ..com.angebotsvariante import Angebotsvariante
-from ..com.externe_referenz import ExterneReferenz
-from ..enum.bo_typ import BoTyp
 from ..enum.sparte import Sparte
-from .ansprechpartner import Ansprechpartner
+from ..enum.typ import Typ
+from ..zusatz_attribut import ZusatzAttribut
 from .geschaeftspartner import Geschaeftspartner
+from .person import Person
 
 
 class Angebot(BaseModel):
@@ -22,26 +22,58 @@ class Angebot(BaseModel):
         <object data="../_static/images/bo4e/bo/Angebot.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Angebot JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/Hochfrequenz/BO4E-python/main/json_schemas/bo/Angebot.json>`_
+        `Angebot JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/Angebot.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
-    anfragereferenz: str | None = Field(default=None, title="Anfragereferenz")
-    angebotsdatum: datetime | None = Field(default=None, title="Angebotsdatum")
-    angebotsgeber: Geschaeftspartner | None = None
-    angebotsnehmer: Geschaeftspartner | None = None
-    angebotsnummer: str | None = Field(default=None, title="Angebotsnummer")
-    bindefrist: datetime | None = Field(default=None, title="Bindefrist")
-    bo_typ: BoTyp | None = Field(default=BoTyp.ANGEBOT, alias="boTyp")
-    externe_referenzen: list[ExterneReferenz] | None = Field(
-        default=None, alias="externeReferenzen", title="Externereferenzen"
+    id: str | None = Field(
+        default=None,
+        alias="_id",
+        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
+        title=" Id",
     )
-    sparte: Sparte | None = None
-    unterzeichner_angebotsgeber: Ansprechpartner | None = Field(default=None, alias="unterzeichnerAngebotsgeber")
-    unterzeichner_angebotsnehmer: Ansprechpartner | None = Field(default=None, alias="unterzeichnerAngebotsnehmer")
-    varianten: list[Angebotsvariante] | None = Field(default=None, title="Varianten")
-    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    typ: Typ | None = Field(default=Typ.ANGEBOT, alias="_typ", description="Eindeutige Nummer des Angebotes")
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
+    )
+    anfragereferenz: str | None = Field(
+        default=None,
+        description="Bis zu diesem Zeitpunkt (Tag/Uhrzeit) inklusive gilt das Angebot",
+        title="Anfragereferenz",
+    )
+    angebotsdatum: datetime | None = Field(
+        default=None, description="Erstellungsdatum des Angebots", title="Angebotsdatum"
+    )
+    angebotsgeber: Geschaeftspartner | None = Field(default=None, description="Ersteller des Angebots")
+    angebotsnehmer: Geschaeftspartner | None = Field(default=None, description="Empfänger des Angebots")
+    angebotsnummer: str | None = Field(
+        default=None, description="Eindeutige Nummer des Angebotes", title="Angebotsnummer"
+    )
+    bindefrist: datetime | None = Field(
+        default=None, description="Bis zu diesem Zeitpunkt (Tag/Uhrzeit) inklusive gilt das Angebot", title="Bindefrist"
+    )
+    sparte: Sparte | None = Field(default=None, description="Sparte, für die das Angebot abgegeben wird (Strom/Gas)")
+    unterzeichner_angebotsgeber: Person | None = Field(
+        default=None,
+        alias="unterzeichnerAngebotsgeber",
+        description="Person, die als Angebotsgeber das Angebots ausgestellt hat",
+    )
+    unterzeichner_angebotsnehmer: Person | None = Field(
+        default=None,
+        alias="unterzeichnerAngebotsnehmer",
+        description="Person, die als Angebotsnehmer das Angebot angenommen hat",
+    )
+    varianten: list[Angebotsvariante] | None = Field(
+        default=None,
+        description="Eine oder mehrere Varianten des Angebots mit den Angebotsteilen;\nEin Angebot besteht mindestens aus einer Variante.",
+        title="Varianten",
+    )
+    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+        default=None, alias="zusatzAttribute", title="Zusatzattribute"
+    )

@@ -1,14 +1,14 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.externe_referenz import ExterneReferenz
-from ..com.geraeteeigenschaften import Geraeteeigenschaften
 from ..com.preisposition import Preisposition
 from ..com.zeitraum import Zeitraum
 from ..enum.bilanzierungsmethode import Bilanzierungsmethode
-from ..enum.bo_typ import BoTyp
 from ..enum.dienstleistungstyp import Dienstleistungstyp
 from ..enum.preisstatus import Preisstatus
 from ..enum.sparte import Sparte
+from ..enum.typ import Typ
+from ..zusatz_attribut import ZusatzAttribut
+from .geraet import Geraet
 from .marktteilnehmer import Marktteilnehmer
 
 
@@ -21,28 +21,62 @@ class PreisblattDienstleistung(BaseModel):
         <object data="../_static/images/bo4e/bo/PreisblattDienstleistung.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `PreisblattDienstleistung JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/Hochfrequenz/BO4E-python/main/json_schemas/bo/PreisblattDienstleistung.json>`_
+        `PreisblattDienstleistung JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/PreisblattDienstleistung.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
-    basisdienstleistung: Dienstleistungstyp | None = None
-    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
-    bilanzierungsmethode: Bilanzierungsmethode | None = None
-    bo_typ: BoTyp | None = Field(default=BoTyp.PREISBLATTDIENSTLEISTUNG, alias="boTyp")
-    externe_referenzen: list[ExterneReferenz] | None = Field(
-        default=None, alias="externeReferenzen", title="Externereferenzen"
+    id: str | None = Field(
+        default=None,
+        alias="_id",
+        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
+        title=" Id",
     )
-    geraetedetails: Geraeteeigenschaften | None = None
-    gueltigkeit: Zeitraum | None = None
-    herausgeber: Marktteilnehmer | None = None
+    typ: Typ | None = Field(
+        default=Typ.PREISBLATTDIENSTLEISTUNG,
+        alias="_typ",
+        description="Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode",
+    )
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
+    )
+    basisdienstleistung: Dienstleistungstyp | None = Field(
+        default=None, description="Dienstleistung, für die der Preis abgebildet wird, z.B. Sperrung/Entsperrung"
+    )
+    bezeichnung: str | None = Field(
+        default=None, description="Eine Bezeichnung für das Preisblatt", title="Bezeichnung"
+    )
+    bilanzierungsmethode: Bilanzierungsmethode | None = Field(
+        default=None, description="Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode"
+    )
+    geraetedetails: Geraet | None = Field(
+        default=None,
+        description="Hier kann der Preis auf bestimmte Geräte eingegrenzt werden. Z.B. auf die Zählergröße",
+    )
+    gueltigkeit: Zeitraum | None = Field(default=None, description="Der Zeitraum für den der Preis festgelegt ist")
+    herausgeber: Marktteilnehmer | None = Field(
+        default=None, description="Der Netzbetreiber, der die Preise veröffentlicht hat"
+    )
     inklusive_dienstleistungen: list[Dienstleistungstyp] | None = Field(
-        default=None, alias="inklusiveDienstleistungen", title="Inklusivedienstleistungen"
+        default=None,
+        alias="inklusiveDienstleistungen",
+        description="Weitere Dienstleistungen, die im Preis enthalten sind",
+        title="Inklusivedienstleistungen",
     )
-    preispositionen: list[Preisposition] | None = Field(default=None, title="Preispositionen")
-    preisstatus: Preisstatus | None = None
-    sparte: Sparte | None = None
-    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    preispositionen: list[Preisposition] | None = Field(
+        default=None,
+        description="Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden können. Z.B. Arbeitspreis, Grundpreis etc",
+        title="Preispositionen",
+    )
+    preisstatus: Preisstatus | None = Field(
+        default=None, description="Merkmal, das anzeigt, ob es sich um vorläufige oder endgültige Preise handelt"
+    )
+    sparte: Sparte | None = Field(default=None, description="Preisblatt gilt für angegebene Sparte")
+    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+        default=None, alias="zusatzAttribute", title="Zusatzattribute"
+    )
