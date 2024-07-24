@@ -40,9 +40,12 @@ class Zaehler(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ = Field(..., alias="_typ", description="Typisierung des Zählers")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    typ: Typ | None = Field(default=Typ.ZAEHLER, alias="_typ", description="Typisierung des Zählers")
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
     befestigungsart: Befestigungsart | None = Field(default=None, description="Besondere Spezifikation des Zählers")
     eichung_bis: datetime | None = Field(
@@ -62,21 +65,25 @@ class Zaehler(BaseModel):
     registeranzahl: Registeranzahl | None = Field(
         default=None, description="Spezifikation bezüglich unterstützter Tarif"
     )
-    sparte: Sparte = Field(..., description="Nummerierung des Zählers,vergeben durch den Messstellenbetreiber")
+    sparte: Sparte | None = Field(
+        default=None, description="Nummerierung des Zählers,vergeben durch den Messstellenbetreiber"
+    )
     zaehlerauspraegung: Zaehlerauspraegung | None = Field(default=None, description="Strom oder Gas")
     zaehlergroesse: Zaehlergroesse | None = Field(default=None, description="Befestigungsart")
     zaehlerhersteller: Geschaeftspartner | None = Field(default=None, description="Der Hersteller des Zählers")
     zaehlerkonstante: float | None = Field(
         default=None, description="Spezifikation bezüglich unterstützter Tarif", title="Zaehlerkonstante"
     )
-    zaehlernummer: str = Field(
-        ..., description="Nummerierung des Zählers,vergeben durch den Messstellenbetreiber", title="Zaehlernummer"
+    zaehlernummer: str | None = Field(
+        default=None,
+        description="Nummerierung des Zählers,vergeben durch den Messstellenbetreiber",
+        title="Zaehlernummer",
     )
     zaehlertyp: Zaehlertyp | None = Field(default=None, description="Spezifikation die Richtung des Zählers betreffend")
     zaehlertyp_spezifikation: ZaehlertypSpezifikation | None = Field(
         default=None, alias="zaehlertypSpezifikation", description="Messwerterfassung des Zählers"
     )
-    zaehlwerke: list[Zaehlwerk] = Field(..., description="Typisierung des Zählers", title="Zaehlwerke")
+    zaehlwerke: list[Zaehlwerk] | None = Field(default=None, description="Typisierung des Zählers", title="Zaehlwerke")
     zusatz_attribute: list[ZusatzAttribut] | None = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

@@ -38,9 +38,12 @@ class Tarifkosten(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ = Field(..., alias="_typ", description="Name des Tarifs")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    typ: Typ | None = Field(default=Typ.TARIFKOSTEN, alias="_typ", description="Name des Tarifs")
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
     anbieter: Marktteilnehmer | None = Field(
         default=None, description="Der Marktteilnehmer (Lieferant), der diesen Tarif anbietet"

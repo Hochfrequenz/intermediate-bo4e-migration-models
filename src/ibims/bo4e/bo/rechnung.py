@@ -40,16 +40,21 @@ class Rechnung(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ = Field(..., alias="_typ", description="Der Zeitraum der zugrunde liegenden Lieferung zur Rechnung")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    typ: Typ | None = Field(
+        default=Typ.RECHNUNG, alias="_typ", description="Der Zeitraum der zugrunde liegenden Lieferung zur Rechnung"
+    )
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
     faelligkeitsdatum: datetime | None = Field(
         default=None, description="Zu diesem Datum ist die Zahlung fällig", title="Faelligkeitsdatum"
     )
-    gesamtbrutto: Betrag = Field(..., description="Die Summe aus Netto- und Steuerbetrag")
+    gesamtbrutto: Betrag | None = Field(default=None, description="Die Summe aus Netto- und Steuerbetrag")
     gesamtnetto: Betrag | None = Field(default=None, description="Die Summe der Nettobeträge der Rechnungsteile")
-    gesamtsteuer: Betrag = Field(..., description="Die Summe der Steuerbeträge der Rechnungsteile")
+    gesamtsteuer: Betrag | None = Field(default=None, description="Die Summe der Steuerbeträge der Rechnungsteile")
     ist_original: bool | None = Field(
         default=None,
         alias="istOriginal",
@@ -117,7 +122,9 @@ class Rechnung(BaseModel):
     rechnungstitel: str | None = Field(
         default=None, description="Bezeichnung für die vorliegende Rechnung", title="Rechnungstitel"
     )
-    rechnungstyp: Rechnungstyp = Field(..., description="Ein kontextbezogender Rechnungstyp, z.B. Netznutzungsrechnung")
+    rechnungstyp: Rechnungstyp | None = Field(
+        default=None, description="Ein kontextbezogender Rechnungstyp, z.B. Netznutzungsrechnung"
+    )
     sparte: Sparte | None = Field(
         default=None, description="Sparte (Strom, Gas ...) für die die Rechnung ausgestellt ist"
     )

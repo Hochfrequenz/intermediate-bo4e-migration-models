@@ -31,9 +31,14 @@ class Fremdkosten(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ = Field(..., alias="_typ", description="Für diesen Zeitraum wurden die Kosten ermittelt")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    typ: Typ | None = Field(
+        default=Typ.FREMDKOSTEN, alias="_typ", description="Für diesen Zeitraum wurden die Kosten ermittelt"
+    )
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
     gueltigkeit: Zeitraum | None = Field(default=None, description="Für diesen Zeitraum wurden die Kosten ermittelt")
     kostenbloecke: list[Fremdkostenblock] | None = Field(

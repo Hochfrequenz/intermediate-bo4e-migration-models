@@ -7,6 +7,7 @@
     "bo\\.Marktlokation\\.marktlokationsId",
     "bo\\.Marktlokation\\.sparte",
     "bo\\.Marktteilnehmer\\.name1",
+    "bo\\.Marktteilnehmer\\.geschaeftspartner",
     "bo\\.Preisblatt\\.bezeichnung",
     "bo\\.Preisblatt\\.gueltigkeit",
     "bo\\.Preisblatt\\.preispositionen",

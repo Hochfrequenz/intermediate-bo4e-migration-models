@@ -32,11 +32,16 @@ class PreisblattKonzessionsabgabe(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ = Field(
-        ..., alias="_typ", description="Kundegruppe anhand derer die Höhe der Konzessionabgabe festgelegt ist"
+    typ: Typ | None = Field(
+        default=Typ.PREISBLATTKONZESSIONSABGABE,
+        alias="_typ",
+        description="Kundegruppe anhand derer die Höhe der Konzessionabgabe festgelegt ist",
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
     bezeichnung: str | None = Field(
         default=None, description="Eine Bezeichnung für das Preisblatt", title="Bezeichnung"

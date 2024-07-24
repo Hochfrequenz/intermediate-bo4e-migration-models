@@ -28,9 +28,16 @@ class Geraet(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ = Field(..., alias="_typ", description="Die auf dem Gerät aufgedruckte Nummer, die vom MSB vergeben wird.")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    typ: Typ | None = Field(
+        default=Typ.GERAET,
+        alias="_typ",
+        description="Die auf dem Gerät aufgedruckte Nummer, die vom MSB vergeben wird.",
+    )
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
     bezeichnung: str | None = Field(default=None, description="Bezeichnung des Geräts", title="Bezeichnung")
     geraeteklasse: Geraeteklasse | None = Field(

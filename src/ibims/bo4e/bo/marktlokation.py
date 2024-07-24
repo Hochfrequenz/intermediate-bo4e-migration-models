@@ -47,13 +47,16 @@ class Marktlokation(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ = Field(
-        ...,
+    typ: Typ | None = Field(
+        default=Typ.MARKTLOKATION,
         alias="_typ",
         description="Identifikationsnummer einer Marktlokation, an der Energie entweder verbraucht, oder erzeugt wird.",
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
     bilanzierungsgebiet: str | None = Field(
         default=None,
@@ -98,8 +101,8 @@ class Marktlokation(BaseModel):
         default=None, description="Die Adresse, an der die Energie-Lieferung oder -Einspeisung erfolgt"
     )
     marktgebiet: Marktgebiet | None = None
-    marktlokations_id: str = Field(
-        ...,
+    marktlokations_id: str | None = Field(
+        default=None,
         alias="marktlokationsId",
         description="Identifikationsnummer einer Marktlokation, an der Energie entweder verbraucht, oder erzeugt wird.",
         title="Marktlokationsid",
@@ -117,7 +120,7 @@ class Marktlokation(BaseModel):
         default=None, description="Die ID des Gebietes in der ene't-Datenbank", title="Netzgebietsnr"
     )
     regelzone: str | None = Field(default=None, description="Kundengruppen der Marktlokation", title="Regelzone")
-    sparte: Sparte = Field(..., description="Sparte der Marktlokation, z.B. Gas oder Strom")
+    sparte: Sparte | None = Field(default=None, description="Sparte der Marktlokation, z.B. Gas oder Strom")
     verbrauchsart: Verbrauchsart | None = Field(default=None, description="Verbrauchsart der Marktlokation.")
     verbrauchsmengen: list[Verbrauch] | None = Field(default=None, title="Verbrauchsmengen")
     zaehlwerke: list[Zaehlwerk] | None = Field(

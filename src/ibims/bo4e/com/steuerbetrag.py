@@ -29,17 +29,20 @@ class Steuerbetrag(BaseModel):
         description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
         title=" Id",
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
-    basiswert: float = Field(
-        ..., description="Nettobetrag für den die Steuer berechnet wurde. Z.B. 100", title="Basiswert"
+    basiswert: float | None = Field(
+        default=None, description="Nettobetrag für den die Steuer berechnet wurde. Z.B. 100", title="Basiswert"
     )
     steuerkennzeichen: Steuerkennzeichen | None = Field(
         default=None, description="Kennzeichnung des Steuersatzes, bzw. Verfahrens."
     )
-    steuerwert: float = Field(
-        ..., description="Aus dem Basiswert berechnete Steuer. Z.B. 19 (bei UST_19)", title="Steuerwert"
+    steuerwert: float | None = Field(
+        default=None, description="Aus dem Basiswert berechnete Steuer. Z.B. 19 (bei UST_19)", title="Steuerwert"
     )
     waehrung: Waehrungscode | None = Field(default=None, description="Währung. Z.B. Euro.")
     zusatz_attribute: list[ZusatzAttribut] | None = Field(

@@ -36,9 +36,12 @@ class Buendelvertrag(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ = Field(..., alias="_typ", description="Der Typ des Geschäftsobjektes")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    typ: Typ | None = Field(default=Typ.BUENDELVERTRAG, alias="_typ", description="Der Typ des Geschäftsobjektes")
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
     beschreibung: str | None = Field(default=None, description="Beschreibung zum Vertrag", title="Beschreibung")
     einzelvertraege: list[Vertrag] | None = Field(
