@@ -34,8 +34,11 @@ class Zaehlwerk(BaseModel):
         description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
         title=" Id",
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
     anzahl_ablesungen: int | None = Field(
         default=None, alias="anzahlAblesungen", description="Abrechnungsrelevant", title="Anzahlablesungen"
@@ -62,7 +65,7 @@ class Zaehlwerk(BaseModel):
     )
     konzessionsabgabe: Konzessionsabgabe | None = Field(default=None, description="Wärmenutzung Marktlokation")
     nachkommastelle: int | None = Field(default=None, description="Anzahl der Vorkommastellen", title="Nachkommastelle")
-    obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
+    obis_kennzahl: str | None = Field(default=None, alias="obisKennzahl", title="Obiskennzahl")
     richtung: Energierichtung | None = None
     verbrauchsart: str | None = Field(default=None, title="Verbrauchsart")
     verwendungszwecke: list[VerwendungszweckProMarktrolle] | None = Field(

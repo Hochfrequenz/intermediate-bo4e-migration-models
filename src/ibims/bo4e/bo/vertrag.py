@@ -36,9 +36,12 @@ class Vertrag(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ = Field(..., alias="_typ", description="Der Typ des Geschäftsobjektes")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    typ: Typ | None = Field(default=Typ.VERTRAG, alias="_typ", description="Der Typ des Geschäftsobjektes")
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
     beschreibung: str | None = Field(default=None, description="Beschreibung zum Vertrag", title="Beschreibung")
     sparte: Sparte | None = Field(default=None, description="Unterscheidungsmöglichkeiten für die Sparte")
@@ -51,8 +54,8 @@ class Vertrag(BaseModel):
     vertragsart: Vertragsart | None = Field(
         default=None, description="Hier ist festgelegt, um welche Art von Vertrag es sich handelt."
     )
-    vertragsbeginn: datetime = Field(
-        ..., description="Gibt an, wann der Vertrag beginnt (inklusiv)", title="Vertragsbeginn"
+    vertragsbeginn: datetime | None = Field(
+        default=None, description="Gibt an, wann der Vertrag beginnt (inklusiv)", title="Vertragsbeginn"
     )
     vertragsende: datetime | None = Field(
         default=None,
@@ -62,14 +65,16 @@ class Vertrag(BaseModel):
     vertragskonditionen: Vertragskonditionen | None = Field(
         default=None, description="Festlegungen zu Laufzeiten und Kündigungsfristen"
     )
-    vertragsnummer: str = Field(
-        ..., description="Eine im Verwendungskontext eindeutige Nummer für den Vertrag", title="Vertragsnummer"
+    vertragsnummer: str | None = Field(
+        default=None, description="Eine im Verwendungskontext eindeutige Nummer für den Vertrag", title="Vertragsnummer"
     )
-    vertragspartner1: Geschaeftspartner = Field(
-        ...,
+    vertragspartner1: Geschaeftspartner | None = Field(
+        default=None,
         description='Der "erstgenannte" Vertragspartner.\nIn der Regel der Aussteller des Vertrags.\nBeispiel: "Vertrag zwischen Vertragspartner 1 ..."',
     )
-    vertragspartner2: Geschaeftspartner = Field(..., description='vertragsteile: Optional[list["Vertragsteil"]] = None')
+    vertragspartner2: Geschaeftspartner | None = Field(
+        default=None, description='vertragsteile: Optional[list["Vertragsteil"]] = None'
+    )
     vertragsstatus: Vertragsstatus | None = Field(default=None, description="Gibt den Status des Vertrags an")
     vertragsteile: list[Vertragsteil] | None = Field(
         default=None, description="Beschreibung zum Vertrag", title="Vertragsteile"

@@ -36,17 +36,22 @@ class Preisblatt(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ = Field(..., alias="_typ", description="Eine Bezeichnung für das Preisblatt")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    typ: Typ | None = Field(default=Typ.PREISBLATT, alias="_typ", description="Eine Bezeichnung für das Preisblatt")
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
-    bezeichnung: str = Field(..., description="Eine Bezeichnung für das Preisblatt", title="Bezeichnung")
-    gueltigkeit: Zeitraum = Field(..., description="Der Zeitraum für den der Preis festgelegt ist")
+    bezeichnung: str | None = Field(
+        default=None, description="Eine Bezeichnung für das Preisblatt", title="Bezeichnung"
+    )
+    gueltigkeit: Zeitraum | None = Field(default=None, description="Der Zeitraum für den der Preis festgelegt ist")
     herausgeber: Marktteilnehmer | None = Field(
         default=None, description="Der Netzbetreiber, der die Preise veröffentlicht hat"
     )
-    preispositionen: list[Preisposition] = Field(
-        ...,
+    preispositionen: list[Preisposition] | None = Field(
+        default=None,
         description="Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden können. Z.B. Arbeitspreis, Grundpreis etc",
         title="Preispositionen",
     )

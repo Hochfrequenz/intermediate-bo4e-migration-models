@@ -30,8 +30,11 @@ class Messlokationszuordnung(BaseModel):
         description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
         title=" Id",
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
     )
     arithmetik: ArithmetischeOperation | None = None
     gueltig_bis: datetime | None = Field(
@@ -43,8 +46,8 @@ class Messlokationszuordnung(BaseModel):
         description="gueltig_bis: Optional[pydantic.AwareDatetime] = None",
         title="Gueltigseit",
     )
-    messlokations_id: str = Field(
-        ...,
+    messlokations_id: str | None = Field(
+        default=None,
         alias="messlokationsId",
         description='arithmetik: Optional["ArithmetischeOperation"] = None\n\ngueltig_seit: Optional[pydantic.AwareDatetime] = None',
         title="Messlokationsid",
