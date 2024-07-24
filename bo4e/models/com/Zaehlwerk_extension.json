@@ -29,7 +29,7 @@
     "fieldDef": {
       "anyOf": [
         {
-          "$ref": "../enum/Abgabeart.json#"
+          "$ref": "../enum/AbgabeArt.json#"
         },
         {
           "type": "null"

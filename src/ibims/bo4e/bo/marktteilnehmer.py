@@ -1,14 +1,11 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.adresse import Adresse
-from ..com.externe_referenz import ExterneReferenz
-from ..enum.anrede import Anrede
-from ..enum.bo_typ import BoTyp
-from ..enum.geschaeftspartnerrolle import Geschaeftspartnerrolle
-from ..enum.kontaktart import Kontaktart
 from ..enum.marktrolle import Marktrolle
 from ..enum.rollencodetyp import Rollencodetyp
 from ..enum.sparte import Sparte
+from ..enum.typ import Typ
+from ..zusatz_attribut import ZusatzAttribut
+from .geschaeftspartner import Geschaeftspartner
 
 
 class Marktteilnehmer(BaseModel):
@@ -20,35 +17,44 @@ class Marktteilnehmer(BaseModel):
         <object data="../_static/images/bo4e/bo/Marktteilnehmer.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Marktteilnehmer JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/Hochfrequenz/BO4E-python/main/json_schemas/bo/Marktteilnehmer.json>`_
+        `Marktteilnehmer JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/Marktteilnehmer.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
-    amtsgericht: str | None = Field(default=None, title="Amtsgericht")
-    anrede: Anrede | None = None
-    bo_typ: BoTyp | None = Field(default=BoTyp.MARKTTEILNEHMER, alias="boTyp")
-    e_mail_adresse: str | None = Field(default=None, alias="eMailAdresse", title="Emailadresse")
-    externe_referenzen: list[ExterneReferenz] | None = Field(
-        default=None, alias="externeReferenzen", title="Externereferenzen"
+    id: str | None = Field(
+        default=None,
+        alias="_id",
+        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
+        title=" Id",
     )
-    geschaeftspartnerrolle: list[Geschaeftspartnerrolle] | None = Field(default=None, title="Geschaeftspartnerrolle")
-    gewerbekennzeichnung: bool | None = Field(default=None, title="Gewerbekennzeichnung")
-    glaeubiger_id: str | None = Field(default=None, alias="glaeubigerId", title="Glaeubigerid")
-    hrnummer: str | None = Field(default=None, title="Hrnummer")
-    kontaktweg: list[Kontaktart] | None = Field(default=None, title="Kontaktweg")
-    makoadresse: str | None = Field(default=None, title="Makoadresse")
-    marktrolle: Marktrolle | None = None
-    name1: str = Field(..., title="Name1")
-    name2: str | None = Field(default=None, title="Name2")
-    name3: str | None = Field(default=None, title="Name3")
-    partneradresse: Adresse | None = None
-    rollencodenummer: str | None = Field(default=None, title="Rollencodenummer")
-    rollencodetyp: Rollencodetyp | None = None
-    sparte: Sparte | None = None
-    umsatzsteuer_id: str | None = Field(default=None, alias="umsatzsteuerId", title="Umsatzsteuerid")
-    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
-    website: str | None = Field(default=None, title="Website")
+    typ: Typ | None = Field(
+        default=Typ.MARKTTEILNEHMER, alias="_typ", description="Gibt im Klartext die Bezeichnung der Marktrolle an"
+    )
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
+    )
+    geschaeftspartner: Geschaeftspartner | None = Field(
+        default=None, description="Der zu diesem Marktteilnehmer gehörende Geschäftspartner"
+    )
+    makoadresse: list[str] | None = Field(
+        default=None,
+        description="Die 1:1-Kommunikationsadresse des Marktteilnehmers. Diese wird in der Marktkommunikation verwendet. Konkret kann dies eine eMail-Adresse oder ein AS4-Endpunkt sein.",
+        title="Makoadresse",
+    )
+    marktrolle: Marktrolle | None = Field(
+        default=None, description="Gibt im Klartext die Bezeichnung der Marktrolle an"
+    )
+    rollencodenummer: str | None = Field(
+        default=None, description="Gibt die Codenummer der Marktrolle an", title="Rollencodenummer"
+    )
+    rollencodetyp: Rollencodetyp | None = Field(default=None, description="Gibt den Typ des Codes an")
+    sparte: Sparte | None = Field(default=None, description="Sparte des Marktteilnehmers, z.B. Gas oder Strom")
+    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+        default=None, alias="zusatzAttribute", title="Zusatzattribute"
+    )

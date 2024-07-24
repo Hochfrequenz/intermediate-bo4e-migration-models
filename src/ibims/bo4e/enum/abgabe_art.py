@@ -1,10 +1,9 @@
 from enum import Enum
 
 
-class Abgabeart(str, Enum):
+class AbgabeArt(str, Enum):
     """
-    This AbgabeArt models the Konzessionsabgabentyp.
-    It contains concessionfee types needed for concessionFee mapping.
+    Art der Konzessionsabgabe
     """
 
     KAS = "KAS"

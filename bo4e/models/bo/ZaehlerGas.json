@@ -2,24 +2,25 @@
   "additionalProperties": true,
   "description": "Resolve some ambiguity of `Strom` and `Gas`",
   "properties": {
-    "versionstruktur": {
+    "_version": {
       "default": "2",
-      "title": "Versionstruktur",
+      "title": " Version",
       "type": "string"
     },
-    "boTyp": {
+    "_typ": {
       "allOf": [
         {
-          "$ref": "../enum/BoTyp.json#"
+          "$ref": "../enum/Typ.json#"
         }
       ],
-      "default": "ZAEHLER"
+      "default": "ZAEHLERGAS",
+      "title": " Typ"
     },
-    "externeReferenzen": {
+    "zusatzAttribute": {
       "anyOf": [
         {
           "items": {
-            "$ref": "../com/ExterneReferenz.json#"
+            "$ref": "../ZusatzAttribut.json#"
           },
           "type": "array"
         },
@@ -28,7 +29,7 @@
         }
       ],
       "default": null,
-      "title": "Externereferenzen"
+      "title": "ZusatzAttribute"
     },
     "_id": {
       "anyOf": [
@@ -94,10 +95,10 @@
       "default": null,
       "title": "Zaehlwerke"
     },
-    "tarifart": {
+    "registeranzahl": {
       "anyOf": [
         {
-          "$ref": "../enum/Tarifart.json#"
+          "$ref": "../enum/Registeranzahl.json#"
         },
         {
           "type": "null"
@@ -183,7 +184,7 @@
       "default": null
     },
     "zaehlergroesse": {
-      "$ref": "../enum/Geraetemerkmal.json#"
+      "$ref": "../enum/Zaehlergroesse.json#"
     },
     "druckniveau": {
       "$ref": "../enum/Netzebene.json#"

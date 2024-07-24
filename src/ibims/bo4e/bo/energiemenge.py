@@ -1,9 +1,9 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.externe_referenz import ExterneReferenz
 from ..com.verbrauch import Verbrauch
-from ..enum.bo_typ import BoTyp
 from ..enum.lokationstyp import Lokationstyp
+from ..enum.typ import Typ
+from ..zusatz_attribut import ZusatzAttribut
 
 
 class Energiemenge(BaseModel):
@@ -15,19 +15,42 @@ class Energiemenge(BaseModel):
         <object data="../_static/images/bo4e/bo/Energiemenge.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Energiemenge JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/Hochfrequenz/BO4E-python/main/json_schemas/bo/Energiemenge.json>`_
+        `Energiemenge JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/Energiemenge.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
-    bo_typ: BoTyp | None = Field(default=BoTyp.ENERGIEMENGE, alias="boTyp")
-    energieverbrauch: list[Verbrauch] = Field(..., title="Energieverbrauch")
-    externe_referenzen: list[ExterneReferenz] | None = Field(
-        default=None, alias="externeReferenzen", title="Externereferenzen"
+    id: str | None = Field(
+        default=None,
+        alias="_id",
+        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
+        title=" Id",
     )
-    lokations_id: str | None = Field(default=None, alias="lokationsId", title="Lokationsid")
-    lokationstyp: Lokationstyp | None = None
-    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
+    typ: Typ | None = Field(
+        default=Typ.ENERGIEMENGE,
+        alias="_typ",
+        description="Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört",
+    )
+    version: str | None = Field(
+        default="v202401.2.1",
+        alias="_version",
+        description='Version der BO-Struktur aka "fachliche Versionierung"',
+        title=" Version",
+    )
+    energieverbrauch: list[Verbrauch] | None = Field(
+        default=None, description="Gibt den Verbrauch in einer Zeiteinheit an", title="Energieverbrauch"
+    )
+    lokations_id: str | None = Field(
+        default=None,
+        alias="lokationsId",
+        description="Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört",
+        title="Lokationsid",
+    )
+    lokationstyp: Lokationstyp | None = Field(
+        default=None, description="Gibt an, ob es sich um eine Markt- oder Messlokation handelt"
+    )
+    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+        default=None, alias="zusatzAttribute", title="Zusatzattribute"
+    )
