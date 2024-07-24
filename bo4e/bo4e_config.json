@@ -7,6 +7,7 @@
     "bo\\.Marktlokation\\.marktlokationsId",
     "bo\\.Marktlokation\\.sparte",
     "bo\\.Marktteilnehmer\\.name1",
+    "bo\\.Marktteilnehmer\\.geschaeftspartner",
     "bo\\.Preisblatt\\.bezeichnung",
     "bo\\.Preisblatt\\.gueltigkeit",
     "bo\\.Preisblatt\\.preispositionen",
@@ -25,8 +26,8 @@
     "com\\.Adresse\\.ort",
     "com\\.Adresse\\.postleitzahl",
     "com\\.Betrag\\.wert",
-    "com\\.ExterneReferenz\\.exRefName",
-    "com\\.ExterneReferenz\\.exRefWert",
+    "ZusatzAttribut\\.name",
+    "ZusatzAttribut\\.wert",
     "com\\.Menge\\.wert",
     "com\\.Messlokationszuordnung\\.messlokationsId",
     "com\\.Preisgarantie\\.zeitlicheGueltigkeit",
@@ -86,14 +87,15 @@
       ]
     },
     {
-      "pattern": "enum\\.BoTyp",
+      "pattern": "enum\\.Typ",
       "items": [
-        "Bilanzierung",
-        "Dokument",
-        "File",
-        "Hinweis",
-        "Kampagne",
-        "ZaehlerGas"
+        "BILANZIERUNG",
+        "DOKUMENT",
+        "FILE",
+        "HINWEIS",
+        "KAMPAGNE",
+        "TRANSAKTIONSDATENQUANTITIES",
+        "ZAEHLERGAS"
       ]
     },
     {
@@ -215,12 +217,6 @@
     {
       "module": "enum",
       "schema": {
-        "$ref": "models/enum/Abgabeart.json"
-      }
-    },
-    {
-      "module": "enum",
-      "schema": {
         "$ref": "models/enum/AblesendeRolle.json"
       }
     },
@@ -240,6 +236,12 @@
       "module": "enum",
       "schema": {
         "$ref": "models/enum/HinweisThema.json"
+      }
+    },
+    {
+      "module": "enum",
+      "schema": {
+        "$ref": "models/enum/InvoiceStatus.json"
       }
     },
     {
@@ -276,6 +278,12 @@
       "module": "enum",
       "schema": {
         "$ref": "models/enum/Prognosegrundlage.json"
+      }
+    },
+    {
+      "module": "enum",
+      "schema": {
+        "$ref": "models/enum/QuantitesStatus.json"
       }
     },
     {

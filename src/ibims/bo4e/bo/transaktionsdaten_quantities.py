@@ -1,6 +1,8 @@
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.quantities_status import QuantitiesStatus
 from ..enum.sparte import Sparte
+from ..enum.typ import Typ
 
 
 class TransaktionsdatenQuantities(BaseModel):
@@ -13,17 +15,18 @@ class TransaktionsdatenQuantities(BaseModel):
         populate_by_name=True,
     )
     migration_id: str | None = Field(default=None, title="Migration_id")
-    import_fuer_storno_adhoc: str = Field(..., title="Import_fuer_storno_adhoc")
-    sparte: Sparte = Field(..., title="Sparte")
-    pruefidentifikator: str = Field(..., title="Pruefidentifikator")
-    datenaustauschreferenz: str = Field(..., title="Datenaustauschreferenz")
-    nachrichtendatum: str = Field(..., title="Nachrichtendatum")
-    nachrichten_referenznummer: str = Field(..., title="Nachrichten_referenznummer")
-    absender: str = Field(..., title="Absender")
-    empfaenger: str = Field(..., title="Empfaenger")
-    dokumentennummer: str = Field(..., title="Dokumentennummer")
-    kategorie: str = Field(..., title="Kategorie")
-    nachrichtenfunktion: str = Field(..., title="Nachrichtenfunktion")
-    typ: str = Field(..., title="Typ")
-    datumsformat: str = Field(..., title="Datumsformat")
-    status: str = Field(..., title="Status")
+    typ: Typ | None = Field(default=Typ.TRANSAKTIONSDATENQUANTITIES, alias="_typ", title=" Typ")
+    import_fuer_storno_adhoc: str | None = Field(default=None, title="Import_fuer_storno_adhoc")
+    sparte: Sparte | None = Field(default=None, title="Sparte")
+    pruefidentifikator: str | None = Field(default=None, title="Pruefidentifikator")
+    datenaustauschreferenz: str | None = Field(default=None, title="Datenaustauschreferenz")
+    nachrichtendatum: str | None = Field(default=None, title="Nachrichtendatum")
+    nachrichten_referenznummer: str | None = Field(default=None, title="Nachrichten_referenznummer")
+    absender: str | None = Field(default=None, title="Absender")
+    empfaenger: str | None = Field(default=None, title="Empfaenger")
+    dokumentennummer: str | None = Field(default=None, title="Dokumentennummer")
+    kategorie: str | None = Field(default=None, title="Kategorie")
+    nachrichtenfunktion: str | None = Field(default=None, title="Nachrichtenfunktion")
+    trans_typ: str | None = Field(default=None, title="TransTyp")
+    datumsformat: str | None = Field(default=None, title="Datumsformat")
+    status: QuantitiesStatus | None = Field(default=QuantitiesStatus.VALID, title="Status")

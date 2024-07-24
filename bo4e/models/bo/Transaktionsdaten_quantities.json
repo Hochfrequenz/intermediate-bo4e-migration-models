@@ -14,6 +14,15 @@
       "default": null,
       "title": "Migration_id"
     },
+    "_typ": {
+      "allOf": [
+        {
+          "$ref": "../enum/Typ.json#"
+        }
+      ],
+      "default": "TRANSAKTIONSDATENQUANTITIES",
+      "title": " Typ"
+    },
     "import_fuer_storno_adhoc": {
       "type": "string",
       "title": "Import_fuer_storno_adhoc"
@@ -58,35 +67,24 @@
       "type": "string",
       "title": "Nachrichtenfunktion"
     },
-    "typ": {
+    "trans_typ": {
       "type": "string",
-      "title": "Typ"
+      "title": "TransTyp"
     },
     "datumsformat": {
       "type": "string",
       "title": "Datumsformat"
     },
     "status": {
-      "type": "string",
+      "allOf": [
+        {
+          "$ref": "../enum/QuantitiesStatus.json#"
+        }
+      ],
+      "default": "VALID",
       "title": "Status"
     }
   },
-  "required": [
-    "import_fuer_storno_adhoc",
-    "sparte",
-    "pruefidentifikator",
-    "datenaustauschreferenz",
-    "nachrichtendatum",
-    "nachrichten_referenznummer",
-    "absender",
-    "empfaenger",
-    "dokumentennummer",
-    "kategorie",
-    "nachrichtenfunktion",
-    "typ",
-    "datumsformat",
-    "status"
-  ],
   "title": "TransaktionsdatenQuantities",
   "type": "object"
 }

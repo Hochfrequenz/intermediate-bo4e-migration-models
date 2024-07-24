@@ -75,22 +75,15 @@
       "title": "Duplikat"
     },
     "status": {
-      "type": "string",
+      "allOf": [
+        {
+          "$ref": "../enum/InvoiceStatus.json#"
+        }
+      ],
+      "default": "accepted",
       "title": "Status"
     }
   },
-  "required": [
-    "import_fuer_storno_adhoc",
-    "sparte",
-    "pruefidentifikator",
-    "datenaustauschreferenz",
-    "nachrichtendatum",
-    "nachrichten_referenznummer",
-    "absender",
-    "empfaenger",
-    "duplikat",
-    "status"
-    ],
   "title": "TransaktionsdatenInvoices",
   "type": "object"
 }

@@ -4,9 +4,8 @@ Contains the dataset for the invoice loader
 
 from typing import Optional
 
-from ibims.bo4e import Bilanzierung, Marktlokation, Marktteilnehmer, Rechnung, Vertrag
+from ibims.bo4e import Bilanzierung, Marktlokation, Marktteilnehmer, Rechnung, TransaktionsdatenInvoices, Vertrag
 from ibims.datasets import DataSetBaseModel
-from ibims.targetmodels import TransaktionsdatenInvoices
 
 
 class InvoiceLoaderDataSet(DataSetBaseModel):

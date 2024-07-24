@@ -3,17 +3,17 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.externe_referenz import ExterneReferenz
 from ..com.zaehlwerk import Zaehlwerk
 from ..com.zeitraum import Zeitraum
-from ..enum.bo_typ import BoTyp
-from ..enum.geraetemerkmal import Geraetemerkmal
 from ..enum.messwerterfassung import Messwerterfassung
 from ..enum.netzebene import Netzebene
+from ..enum.registeranzahl import Registeranzahl
 from ..enum.sparte import Sparte
-from ..enum.tarifart import Tarifart
+from ..enum.typ import Typ
 from ..enum.zaehlerauspraegung import Zaehlerauspraegung
+from ..enum.zaehlergroesse import Zaehlergroesse
 from ..enum.zaehlertyp import Zaehlertyp
+from ..zusatz_attribut import ZusatzAttribut
 from .geschaeftspartner import Geschaeftspartner
 
 
@@ -26,18 +26,18 @@ class ZaehlerGas(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    versionstruktur: str | None = Field(default="2", title="Versionstruktur")
-    bo_typ: BoTyp | None = Field(default=BoTyp.ZAEHLER, alias="boTyp")
-    externe_referenzen: list[ExterneReferenz] | None = Field(
-        default=None, alias="externeReferenzen", title="Externereferenzen"
+    version: str | None = Field(default="v202401.2.1", alias="_version", title=" Version")
+    typ: Typ | None = Field(default=Typ.ZAEHLERGAS, alias="_typ", title=" Typ")
+    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+        default=None, alias="zusatzAttribute", title="ZusatzAttribute"
     )
     id: str | None = Field(default=None, alias="_id", title=" Id")
-    zaehlernummer: str = Field(..., title="Zaehlernummer")
-    sparte: Sparte
+    zaehlernummer: str | None = Field(default=None, title="Zaehlernummer")
+    sparte: Sparte | None = None
     zaehlerauspraegung: Zaehlerauspraegung | None = None
     zaehlertyp: Zaehlertyp
-    zaehlwerke: list[Zaehlwerk] = Field(..., title="Zaehlwerke")
-    tarifart: Tarifart | None = None
+    zaehlwerke: list[Zaehlwerk] | None = Field(default=None, title="Zaehlwerke")
+    registeranzahl: Registeranzahl | None = None
     zaehlerkonstante: Decimal | None = Field(default=None, title="Zaehlerkonstante")
     eichung_bis: datetime | None = Field(default=None, alias="eichungBis", title="Eichungbis")
     letzte_eichung: datetime | None = Field(default=None, alias="letzteEichung", title="Letzteeichung")
@@ -47,5 +47,5 @@ class ZaehlerGas(BaseModel):
         default=None, alias="nachstesAblesedatum", title="Nachstesablesedatum"
     )
     aktiver_zeitraum: Zeitraum | None = Field(default=None, alias="aktiverZeitraum")
-    zaehlergroesse: Geraetemerkmal
+    zaehlergroesse: Zaehlergroesse
     druckniveau: Netzebene

@@ -1,3 +1,3 @@
 """ Contains information about the bo4e version """
 
-__version__ = "0.6.2"
+__version__ = "202401.2.1"
