@@ -77,6 +77,7 @@ class TripicaNetworkLoaderDataSet(DataSetBaseModel):
     - name1
     - rollencodetyp
     - rollencodenummer
+    - geschaeftspartner
     """
 
     zaehlpunkt: Zaehlpunkt
