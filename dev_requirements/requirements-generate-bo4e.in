@@ -1,5 +1,5 @@
 BO4E-Schema-Tool>=0.0.5
-BO4E-Python-Generator>=0.0.7,<0.0.8
+BO4E-Python-Generator>=0.0.7,<0.0.12
 requests
 python-dotenv
 GitPython
