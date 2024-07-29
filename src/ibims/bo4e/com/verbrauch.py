@@ -33,11 +33,8 @@ class Verbrauch(BaseModel):
         description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
         title=" Id",
     )
-    version: str | None = Field(
-        default="v202401.2.1",
-        alias="_version",
-        description='Version der BO-Struktur aka "fachliche Versionierung"',
-        title=" Version",
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
     )
     einheit: Mengeneinheit | None = Field(default=None, description="Gibt die Einheit zum jeweiligen Wert an")
     enddatum: datetime | None = Field(
@@ -46,8 +43,8 @@ class Verbrauch(BaseModel):
         title="Enddatum",
     )
     messwertstatus: Messwertstatus | None = None
-    obis_kennzahl: str | None = Field(
-        default=None,
+    obis_kennzahl: str = Field(
+        ...,
         alias="obisKennzahl",
         description="Die OBIS-Kennzahl für den Wert, die festlegt, welche Größe mit dem Stand gemeldet wird, z.B. '1-0:",
         title="Obiskennzahl",
@@ -57,7 +54,7 @@ class Verbrauch(BaseModel):
         description="Inklusiver Beginn des Zeitraumes, für den der Verbrauch angegeben wird",
         title="Startdatum",
     )
-    wert: float | None = Field(default=None, description="Gibt den absoluten Wert der Menge an", title="Wert")
+    wert: float = Field(..., description="Gibt den absoluten Wert der Menge an", title="Wert")
     wertermittlungsverfahren: Wertermittlungsverfahren | None = Field(
         default=None, description="Gibt an, ob es sich um eine PROGNOSE oder eine MESSUNG handelt"
     )

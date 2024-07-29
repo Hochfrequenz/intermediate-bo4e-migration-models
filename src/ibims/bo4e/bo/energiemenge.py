@@ -28,19 +28,16 @@ class Energiemenge(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ | None = Field(
-        default=Typ.ENERGIEMENGE,
+    typ: Typ = Field(
+        ...,
         alias="_typ",
         description="Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört",
     )
-    version: str | None = Field(
-        default="v202401.2.1",
-        alias="_version",
-        description='Version der BO-Struktur aka "fachliche Versionierung"',
-        title=" Version",
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
     )
-    energieverbrauch: list[Verbrauch] | None = Field(
-        default=None, description="Gibt den Verbrauch in einer Zeiteinheit an", title="Energieverbrauch"
+    energieverbrauch: list[Verbrauch] = Field(
+        ..., description="Gibt den Verbrauch in einer Zeiteinheit an", title="Energieverbrauch"
     )
     lokations_id: str | None = Field(
         default=None,

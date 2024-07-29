@@ -33,12 +33,9 @@ class Person(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ | None = Field(default=Typ.PERSON, alias="_typ", description="Mögliche Anrede der Person")
-    version: str | None = Field(
-        default="v202401.2.1",
-        alias="_version",
-        description='Version der BO-Struktur aka "fachliche Versionierung"',
-        title=" Version",
+    typ: Typ = Field(..., alias="_typ", description="Mögliche Anrede der Person")
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
     )
     adresse: Adresse | None = Field(
         default=None, description="Adresse der Person, falls diese von der Adresse des Geschäftspartners abweicht"

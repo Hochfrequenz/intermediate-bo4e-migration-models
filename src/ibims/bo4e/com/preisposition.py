@@ -34,11 +34,8 @@ class Preisposition(BaseModel):
         description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
         title=" Id",
     )
-    version: str | None = Field(
-        default="v202401.2.1",
-        alias="_version",
-        description='Version der BO-Struktur aka "fachliche Versionierung"',
-        title=" Version",
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
     )
     bdew_artikelnummer: BDEWArtikelnummer | None = Field(
         default=None,
@@ -81,8 +78,8 @@ class Preisposition(BaseModel):
     preiseinheit: Waehrungseinheit | None = Field(
         default=None, description="Festlegung, mit welcher Preiseinheit abgerechnet wird, z.B. Ct. oder €"
     )
-    preisstaffeln: list[Preisstaffel] | None = Field(
-        default=None, description="Preisstaffeln, die zu dieser Preisposition gehören", title="Preisstaffeln"
+    preisstaffeln: list[Preisstaffel] = Field(
+        ..., description="Preisstaffeln, die zu dieser Preisposition gehören", title="Preisstaffeln"
     )
     tarifzeit: Tarifzeit | None = Field(
         default=None, description="Festlegung, für welche Tarifzeit der Preis hier festgelegt ist"

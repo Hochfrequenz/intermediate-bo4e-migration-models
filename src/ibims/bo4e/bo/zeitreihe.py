@@ -33,7 +33,7 @@ class Zeitreihe(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ | None = Field(default=Typ.ZEITREIHE, alias="_typ", description="Bezeichnung für die Zeitreihe")
+    typ: Typ = Field(..., alias="_typ", description="Bezeichnung für die Zeitreihe")
     beschreibung: str | None = Field(
         default=None, description="Beschreibt die Verwendung der Zeitreihe", title="Beschreibung"
     )

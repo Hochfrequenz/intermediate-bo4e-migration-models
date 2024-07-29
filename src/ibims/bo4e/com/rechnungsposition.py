@@ -34,11 +34,8 @@ class Rechnungsposition(BaseModel):
         description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
         title=" Id",
     )
-    version: str | None = Field(
-        default="v202401.2.1",
-        alias="_version",
-        description='Version der BO-Struktur aka "fachliche Versionierung"',
-        title=" Version",
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
     )
     artikel_id: str | None = Field(
         default=None,
@@ -68,9 +65,7 @@ class Rechnungsposition(BaseModel):
         description="Marktlokation, die zu dieser Position gehört",
         title="Lokationsid",
     )
-    positions_menge: Menge | None = Field(
-        default=None, alias="positionsMenge", description="Die abgerechnete Menge mit Einheit"
-    )
+    positions_menge: Menge = Field(..., alias="positionsMenge", description="Die abgerechnete Menge mit Einheit")
     positionsnummer: int | None = Field(
         default=None, description="Fortlaufende Nummer für die Rechnungsposition", title="Positionsnummer"
     )
@@ -80,13 +75,13 @@ class Rechnungsposition(BaseModel):
     teilrabatt_netto: Betrag | None = Field(
         default=None, alias="teilrabattNetto", description="Nettobetrag für den Rabatt dieser Position"
     )
-    teilsumme_netto: Betrag | None = Field(
-        default=None,
+    teilsumme_netto: Betrag = Field(
+        ...,
         alias="teilsummeNetto",
         description='# the cross check in general doesn\'t work because Betrag and Preis use different enums to describe the currency\n# see https://github.com/Hochfrequenz/BO4E-python/issues/126\n\n#: Auf die Position entfallende Steuer, bestehend aus Steuersatz und Betrag\nteilsumme_steuer: Optional["Steuerbetrag"] = None\n\n#: Falls sich der Preis auf eine Zeit bezieht, steht hier die Einheit\nzeiteinheit: Optional["Mengeneinheit"] = None\n\n#: Kennzeichnung der Rechnungsposition mit der Standard-Artikelnummer des BDEW\nartikelnummer: Optional["BDEWArtikelnummer"] = None\n#: Marktlokation, die zu dieser Position gehört\nlokations_id: Optional[str] = None\n\nzeitbezogene_menge: Optional["Menge"] = None',
     )
-    teilsumme_steuer: Steuerbetrag | None = Field(
-        default=None,
+    teilsumme_steuer: Steuerbetrag = Field(
+        ...,
         alias="teilsummeSteuer",
         description="Auf die Position entfallende Steuer, bestehend aus Steuersatz und Betrag",
     )

@@ -34,16 +34,11 @@ class Messlokation(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ | None = Field(
-        default=Typ.MESSLOKATION,
-        alias="_typ",
-        description="Die Messlokations-Identifikation; Das ist die frühere Zählpunktbezeichnung",
+    typ: Typ = Field(
+        ..., alias="_typ", description="Die Messlokations-Identifikation; Das ist die frühere Zählpunktbezeichnung"
     )
-    version: str | None = Field(
-        default="v202401.2.1",
-        alias="_version",
-        description='Version der BO-Struktur aka "fachliche Versionierung"',
-        title=" Version",
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
     )
     geoadresse: Geokoordinaten | None = Field(
         default=None, description='katasterinformation: Optional["Katasteradresse"] = None'
@@ -76,8 +71,8 @@ class Messlokation(BaseModel):
     messgebietnr: str | None = Field(
         default=None, description="Die Nummer des Messgebietes in der ene't-Datenbank", title="Messgebietnr"
     )
-    messlokations_id: str | None = Field(
-        default=None,
+    messlokations_id: str = Field(
+        ...,
         alias="messlokationsId",
         description="Die Messlokations-Identifikation; Das ist die frühere Zählpunktbezeichnung",
         title="Messlokationsid",
