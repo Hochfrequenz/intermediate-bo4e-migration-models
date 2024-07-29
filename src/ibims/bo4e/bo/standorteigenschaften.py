@@ -28,14 +28,9 @@ class Standorteigenschaften(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ | None = Field(
-        default=Typ.STANDORTEIGENSCHAFTEN, alias="_typ", description="Eigenschaften zur Sparte Strom"
-    )
-    version: str | None = Field(
-        default="v202401.2.1",
-        alias="_version",
-        description='Version der BO-Struktur aka "fachliche Versionierung"',
-        title=" Version",
+    typ: Typ = Field(..., alias="_typ", description="Eigenschaften zur Sparte Strom")
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
     )
     eigenschaften_gas: StandorteigenschaftenGas | None = Field(
         default=None, alias="eigenschaftenGas", description="Eigenschaften zur Sparte Gas"
