@@ -127,8 +127,8 @@ class Rechnung(BaseModel):
     vorausgezahlt: Betrag | None = Field(
         default=None, description="Die Summe evtl. vorausgezahlter Beträge, z.B. Abschläge. Angabe als Bruttowert"
     )
-    zu_zahlen: Betrag | None = Field(
-        default=None,
+    zu_zahlen: Betrag = Field(
+        ...,
         alias="zuZahlen",
         description="Der zu zahlende Betrag, der sich aus (gesamtbrutto - vorausbezahlt - rabattBrutto) ergibt",
     )
