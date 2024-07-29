@@ -91,9 +91,7 @@ class Marktlokation(BaseModel):
         default=None,
         description="Alternativ zu einer postalischen Adresse und Geokoordinaten kann hier eine Ortsangabe mittels Gemarkung und\nFlurstück erfolgen.",
     )
-    kundengruppen: list[Kundentyp] | None = Field(
-        default=None, description="Kundengruppen der Marktlokation", title="Kundengruppen"
-    )
+    kundengruppen: list[Kundentyp] = Field(..., description="Kundengruppen der Marktlokation", title="Kundengruppen")
     lokationsadresse: Adresse | None = Field(
         default=None, description="Die Adresse, an der die Energie-Lieferung oder -Einspeisung erfolgt"
     )
