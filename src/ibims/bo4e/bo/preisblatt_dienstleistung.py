@@ -34,16 +34,11 @@ class PreisblattDienstleistung(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ | None = Field(
-        default=Typ.PREISBLATTDIENSTLEISTUNG,
-        alias="_typ",
-        description="Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode",
+    typ: Typ = Field(
+        ..., alias="_typ", description="Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode"
     )
-    version: str | None = Field(
-        default="v202401.2.1",
-        alias="_version",
-        description='Version der BO-Struktur aka "fachliche Versionierung"',
-        title=" Version",
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
     )
     basisdienstleistung: Dienstleistungstyp | None = Field(
         default=None, description="Dienstleistung, für die der Preis abgebildet wird, z.B. Sperrung/Entsperrung"

@@ -33,9 +33,7 @@ class Lastgang(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ | None = Field(
-        default=Typ.LASTGANG, alias="_typ", description="Angabe, ob es sich um einen Gas- oder Stromlastgang handelt"
-    )
+    typ: Typ = Field(..., alias="_typ", description="Angabe, ob es sich um einen Gas- oder Stromlastgang handelt")
     marktlokation: Marktlokation | None = Field(default=None, description="Marktlokation, zu der der Lastgang gehört")
     messgroesse: Mengeneinheit | None = Field(
         default=None, description="Definition der gemessenen Größe anhand ihrer Einheit"

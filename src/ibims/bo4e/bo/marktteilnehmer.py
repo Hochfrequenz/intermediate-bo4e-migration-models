@@ -30,17 +30,12 @@ class Marktteilnehmer(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ | None = Field(
-        default=Typ.MARKTTEILNEHMER, alias="_typ", description="Gibt im Klartext die Bezeichnung der Marktrolle an"
+    typ: Typ = Field(..., alias="_typ", description="Gibt im Klartext die Bezeichnung der Marktrolle an")
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
     )
-    version: str | None = Field(
-        default="v202401.2.1",
-        alias="_version",
-        description='Version der BO-Struktur aka "fachliche Versionierung"',
-        title=" Version",
-    )
-    geschaeftspartner: Geschaeftspartner | None = Field(
-        default=None, description="Der zu diesem Marktteilnehmer gehörende Geschäftspartner"
+    geschaeftspartner: Geschaeftspartner = Field(
+        ..., description="Der zu diesem Marktteilnehmer gehörende Geschäftspartner"
     )
     makoadresse: list[str] | None = Field(
         default=None,

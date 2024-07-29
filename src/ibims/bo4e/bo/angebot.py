@@ -35,12 +35,9 @@ class Angebot(BaseModel):
         description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
         title=" Id",
     )
-    typ: Typ | None = Field(default=Typ.ANGEBOT, alias="_typ", description="Eindeutige Nummer des Angebotes")
-    version: str | None = Field(
-        default="v202401.2.1",
-        alias="_version",
-        description='Version der BO-Struktur aka "fachliche Versionierung"',
-        title=" Version",
+    typ: Typ = Field(..., alias="_typ", description="Eindeutige Nummer des Angebotes")
+    version: str = Field(
+        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
     )
     anfragereferenz: str | None = Field(
         default=None,
