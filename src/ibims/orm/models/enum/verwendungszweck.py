@@ -1,0 +1,18 @@
+import uuid as uuid_pkg
+from enum import Enum
+
+from sqlmodel import Field, Relationship
+from sqlmodel._compat import SQLModelConfig
+
+
+class Verwendungszweck(str, Enum):
+    """
+    Verwendungszweck der Werte Marktlokation
+    """
+
+    NETZNUTZUNGSABRECHNUNG = "NETZNUTZUNGSABRECHNUNG"
+    BILANZKREISABRECHNUNG = "BILANZKREISABRECHNUNG"
+    MEHRMINDERMENGENABRECHNUNG = "MEHRMINDERMENGENABRECHNUNG"
+    ENDKUNDENABRECHNUNG = "ENDKUNDENABRECHNUNG"
+    UEBERMITTLUNG_AN_DAS_HKNR = "UEBERMITTLUNG_AN_DAS_HKNR"
+    ERMITTLUNG_AUSGEGLICHENHEIT_BILANZKREIS = "ERMITTLUNG_AUSGEGLICHENHEIT_BILANZKREIS"
