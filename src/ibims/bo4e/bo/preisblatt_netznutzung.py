@@ -25,7 +25,7 @@ class PreisblattNetznutzung(BaseModel):
         <object data="../_static/images/bo4e/bo/PreisblattNetznutzung.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `PreisblattNetznutzung JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/bo/PreisblattNetznutzung.json>`_
+        `PreisblattNetznutzung JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/bo/PreisblattNetznutzung.json>`_
     """
 
     model_config = ConfigDict(
@@ -40,7 +40,7 @@ class PreisblattNetznutzung(BaseModel):
     """
     Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode
     """
-    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """

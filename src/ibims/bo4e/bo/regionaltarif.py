@@ -42,7 +42,7 @@ class Regionaltarif(BaseModel):
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: "Typ" = Field(default=Typ.REGIONALTARIF, alias="_typ")
-    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """

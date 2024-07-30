@@ -19,7 +19,7 @@ class Geraet(BaseModel):
         <object data="../_static/images/bo4e/bo/Geraet.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Geraet JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/bo/Geraet.json>`_
+        `Geraet JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/bo/Geraet.json>`_
     """
 
     model_config = ConfigDict(
@@ -34,7 +34,7 @@ class Geraet(BaseModel):
     """
     Die auf dem Gerät aufgedruckte Nummer, die vom MSB vergeben wird.
     """
-    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """

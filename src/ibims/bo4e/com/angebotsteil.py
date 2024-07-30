@@ -24,7 +24,7 @@ class Angebotsteil(BaseModel):
         <object data="../_static/images/bo4e/com/Angebotsteil.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Angebotsteil JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/com/Angebotsteil.json>`_
+        `Angebotsteil JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/com/Angebotsteil.json>`_
     """
 
     model_config = ConfigDict(
@@ -36,7 +36,7 @@ class Angebotsteil(BaseModel):
     Eine generische ID, die für eigene Zwecke genutzt werden kann.
     Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
-    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """

@@ -1,5 +1,5 @@
 """
-BO4E v202401.3.1 - Generated Python implementation of the BO4E standard
+BO4E v202401.4.0 - Generated Python implementation of the BO4E standard
 
 BO4E is a standard for the exchange of business objects in the energy industry.
 All our software used to generate this BO4E-implementation is open-source and released under the Apache-2.0 license.

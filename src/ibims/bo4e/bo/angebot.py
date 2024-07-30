@@ -25,7 +25,7 @@ class Angebot(BaseModel):
         <object data="../_static/images/bo4e/bo/Angebot.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Angebot JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/bo/Angebot.json>`_
+        `Angebot JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/bo/Angebot.json>`_
     """
 
     model_config = ConfigDict(
@@ -40,7 +40,7 @@ class Angebot(BaseModel):
     """
     Eindeutige Nummer des Angebotes
     """
-    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """

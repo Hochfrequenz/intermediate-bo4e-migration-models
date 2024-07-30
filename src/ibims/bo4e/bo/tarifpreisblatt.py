@@ -32,7 +32,7 @@ class Tarifpreisblatt(BaseModel):
         <object data="../_static/images/bo4e/bo/Tarifpreisblatt.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Tarifpreisblatt JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/bo/Tarifpreisblatt.json>`_
+        `Tarifpreisblatt JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/bo/Tarifpreisblatt.json>`_
     """
 
     model_config = ConfigDict(
@@ -47,7 +47,7 @@ class Tarifpreisblatt(BaseModel):
     """
     Gibt an, wann der Preis zuletzt angepasst wurde
     """
-    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """

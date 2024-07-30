@@ -30,7 +30,7 @@ class Rechnung(BaseModel):
         <object data="../_static/images/bo4e/bo/Rechnung.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Rechnung JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/bo/Rechnung.json>`_
+        `Rechnung JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/bo/Rechnung.json>`_
     """
 
     model_config = ConfigDict(
@@ -45,7 +45,7 @@ class Rechnung(BaseModel):
     """
     Der Zeitraum der zugrunde liegenden Lieferung zur Rechnung
     """
-    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
@@ -151,7 +151,7 @@ class Rechnung(BaseModel):
     """
     Die Summe evtl. vorausgezahlter Beträge, z.B. Abschläge. Angabe als Bruttowert
     """
-    zu_zahlen: Optional["Betrag"] = Field(default=None, alias="zuZahlen")
+    zu_zahlen: "Betrag" = Field(..., alias="zuZahlen")
     """
     Der zu zahlende Betrag, der sich aus (gesamtbrutto - vorausbezahlt - rabattBrutto) ergibt
     """

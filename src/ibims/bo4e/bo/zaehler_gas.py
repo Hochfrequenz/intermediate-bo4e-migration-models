@@ -29,7 +29,7 @@ class ZaehlerGas(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     typ: "Typ" = Field(default=Typ.ZAEHLERGAS, alias="_typ", title=" Typ")
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="ZusatzAttribute"

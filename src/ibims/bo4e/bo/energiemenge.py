@@ -19,7 +19,7 @@ class Energiemenge(BaseModel):
         <object data="../_static/images/bo4e/bo/Energiemenge.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Energiemenge JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/bo/Energiemenge.json>`_
+        `Energiemenge JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/bo/Energiemenge.json>`_
     """
 
     model_config = ConfigDict(
@@ -34,7 +34,7 @@ class Energiemenge(BaseModel):
     """
     Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört
     """
-    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """

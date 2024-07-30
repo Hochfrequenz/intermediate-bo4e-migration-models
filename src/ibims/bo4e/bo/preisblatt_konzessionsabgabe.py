@@ -23,7 +23,7 @@ class PreisblattKonzessionsabgabe(BaseModel):
         <object data="../_static/images/bo4e/bo/PreisblattKonzessionsabgabe.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `PreisblattKonzessionsabgabe JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/bo/PreisblattKonzessionsabgabe.json>`_
+        `PreisblattKonzessionsabgabe JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/bo/PreisblattKonzessionsabgabe.json>`_
     """
 
     model_config = ConfigDict(
@@ -38,7 +38,7 @@ class PreisblattKonzessionsabgabe(BaseModel):
     """
     Kundegruppe anhand derer die Höhe der Konzessionabgabe festgelegt ist
     """
-    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """

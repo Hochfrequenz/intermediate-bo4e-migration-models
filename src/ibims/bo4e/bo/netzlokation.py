@@ -23,7 +23,7 @@ class Netzlokation(BaseModel):
         <object data="../_static/images/bo4e/bo/Netzlokation.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Netzlokation JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/bo/Netzlokation.json>`_
+        `Netzlokation JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/bo/Netzlokation.json>`_
     """
 
     model_config = ConfigDict(
@@ -38,7 +38,7 @@ class Netzlokation(BaseModel):
     """
     Identifikationsnummer einer Netzlokation, an der Energie entweder verbraucht, oder erzeugt wird
     """
-    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
