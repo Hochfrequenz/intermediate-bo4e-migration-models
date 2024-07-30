@@ -3,9 +3,8 @@ Contains the dataset for the resource loader.
 It also contains the validation logic for the resource loader dataset.
 """
 
-from ibims.bo4e import Messlokation, Vertrag, Zaehler
 from ibims.datasets import DataSetBaseModel
-from ibims.orm.models import Marktlokation
+from ibims.orm.models import Marktlokation, Messlokation, Vertrag, Zaehler
 
 
 class TripicaResourceLoaderDataSet(DataSetBaseModel):

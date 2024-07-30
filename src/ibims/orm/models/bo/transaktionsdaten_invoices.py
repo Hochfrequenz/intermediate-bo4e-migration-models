@@ -34,4 +34,4 @@ class TransaktionsdatenInvoices(SQLModel, table=True):
         default_factory=uuid_pkg.uuid4, primary_key=True, index=True, nullable=False
     )
     sparte: Sparte = Field(None)
-    status: InvoiceStatus = Field(InvoiceStatus.accepted)
+    status: InvoiceStatus = Field(InvoiceStatus.ACCEPTED)

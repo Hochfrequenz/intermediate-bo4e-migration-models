@@ -97,7 +97,7 @@ class Marktlokation(SQLModel, table=True):
     """
     Kundengruppen der Marktlokation
     """
-    community_id: str = Field(..., alias="communityId", title="Communityid")
+    community_id: str | None = Field(..., alias="communityId", title="Communityid")
     marktlokation_sqlid: uuid_pkg.UUID = Field(
         default_factory=uuid_pkg.uuid4, primary_key=True, index=True, nullable=False
     )
@@ -184,9 +184,9 @@ class Marktlokation(SQLModel, table=True):
         back_populates="marktlokation_zusatzattribute_link",
         link_model=MarktlokationzusatzAttributeLink,
     )
-    messtechnischeEinordnung: MesstechnischeEinordnung = Field(None)
+    messtechnischeEinordnung: MesstechnischeEinordnung | None = Field(None)
     uebertragungsnetzgebiet: Regelzone | None = Field(None)
-    variant: Variant = Field(None)
+    variant: Variant | None = Field(None)
     prognoseGrundlage: Prognosegrundlage | None = Field(None)
     prognoseGrundlageDetail: Profiltyp | None = Field(None)
     rechnung_marktlokation: List["Rechnung"] = Relationship(
