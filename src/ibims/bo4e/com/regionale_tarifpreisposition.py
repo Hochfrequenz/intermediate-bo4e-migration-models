@@ -1,10 +1,13 @@
+from typing import TYPE_CHECKING, Optional
+
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..enum.mengeneinheit import Mengeneinheit
-from ..enum.preistyp import Preistyp
-from ..enum.waehrungseinheit import Waehrungseinheit
-from ..zusatz_attribut import ZusatzAttribut
-from .regionale_preisstaffel import RegionalePreisstaffel
+if TYPE_CHECKING:
+    from ..enum.mengeneinheit import Mengeneinheit
+    from ..enum.preistyp import Preistyp
+    from ..enum.waehrungseinheit import Waehrungseinheit
+    from ..zusatz_attribut import ZusatzAttribut
+    from .regionale_preisstaffel import RegionalePreisstaffel
 
 
 class RegionaleTarifpreisposition(BaseModel):
@@ -17,52 +20,42 @@ class RegionaleTarifpreisposition(BaseModel):
         <object data="../_static/images/bo4e/com/RegionaleTarifpreisposition.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `RegionaleTarifpreisposition JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/com/RegionaleTarifpreisposition.json>`_
+        `RegionaleTarifpreisposition JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/com/RegionaleTarifpreisposition.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    zusatz_attribute: Optional[list["ZusatzAttribut"]] = None
-
-    # pylint: disable=duplicate-code
-    model_config = ConfigDict(
-        alias_generator=camelize,
-        populate_by_name=True,
-        extra="allow",
-        # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create
-        # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.
-        # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375
-        json_encoders={Decimal: str},
-    )
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
-    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    bezugseinheit: Mengeneinheit | None = None
+    bezugseinheit: Optional["Mengeneinheit"] = None
     """
     Größe, auf die sich die Einheit bezieht, beispielsweise kWh, Jahr
     """
-    einheit: Waehrungseinheit | None = None
+    einheit: Optional["Waehrungseinheit"] = None
     """
     Einheit des Preises (z.B. EURO)
     """
-    mengeneinheitstaffel: Mengeneinheit | None = None
+    mengeneinheitstaffel: Optional["Mengeneinheit"] = None
     """
     Gibt an, nach welcher Menge die vorgenannte Einschränkung erfolgt (z.B. Jahresstromverbrauch in kWh)
     """
-    preisstaffeln: list[RegionalePreisstaffel] | None = Field(default=None, title="Preisstaffeln")
+    preisstaffeln: Optional[list["RegionalePreisstaffel"]] = Field(default=None, title="Preisstaffeln")
     """
     Hier sind die Staffeln mit ihren Preisangaben und regionalen Gültigkeiten definiert
     """
-    preistyp: Preistyp | None = None
+    preistyp: Optional["Preistyp"] = None
     """
     Angabe des Preistypes (z.B. Grundpreis)
     """
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

@@ -1,14 +1,16 @@
 from datetime import datetime
 from decimal import Decimal
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..enum.ablesende_rolle import AblesendeRolle
-from ..enum.ablesungsstatus import Ablesungsstatus
-from ..enum.mengeneinheit import Mengeneinheit
-from ..enum.messwertstatus import Messwertstatus
-from ..enum.wertermittlungsverfahren import Wertermittlungsverfahren
-from ..zusatz_attribut import ZusatzAttribut
+if TYPE_CHECKING:
+    from ..enum.ablesende_rolle import AblesendeRolle
+    from ..enum.ablesungsstatus import Ablesungsstatus
+    from ..enum.mengeneinheit import Mengeneinheit
+    from ..enum.messwertstatus import Messwertstatus
+    from ..enum.wertermittlungsverfahren import Wertermittlungsverfahren
+    from ..zusatz_attribut import ZusatzAttribut
 
 
 class Verbrauch(BaseModel):
@@ -20,46 +22,36 @@ class Verbrauch(BaseModel):
         <object data="../_static/images/bo4e/com/Verbrauch.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Verbrauch JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/com/Verbrauch.json>`_
+        `Verbrauch JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/com/Verbrauch.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    zusatz_attribute: Optional[list["ZusatzAttribut"]] = None
-
-    # pylint: disable=duplicate-code
-    model_config = ConfigDict(
-        alias_generator=camelize,
-        populate_by_name=True,
-        extra="allow",
-        # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create
-        # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.
-        # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375
-        json_encoders={Decimal: str},
-    )
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
-    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    einheit: Mengeneinheit | None = None
+    einheit: Optional["Mengeneinheit"] = None
     """
     Gibt die Einheit zum jeweiligen Wert an
     """
-    enddatum: datetime | None = Field(default=None, title="Enddatum")
+    enddatum: Optional[datetime] = Field(default=None, title="Enddatum")
     """
     Exklusives Ende des Zeitraumes, für den der Verbrauch angegeben wird
     """
-    messwertstatus: Messwertstatus | None = None
+    messwertstatus: Optional["Messwertstatus"] = None
     obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
     """
     Die OBIS-Kennzahl für den Wert, die festlegt, welche Größe mit dem Stand gemeldet wird, z.B. '1-0:
     """
-    startdatum: datetime | None = Field(default=None, title="Startdatum")
+    startdatum: Optional[datetime] = Field(default=None, title="Startdatum")
     """
     Inklusiver Beginn des Zeitraumes, für den der Verbrauch angegeben wird
     """
@@ -67,44 +59,34 @@ class Verbrauch(BaseModel):
     """
     Gibt den absoluten Wert der Menge an
     """
-    wertermittlungsverfahren: Wertermittlungsverfahren | None = None
+    wertermittlungsverfahren: Optional["Wertermittlungsverfahren"] = None
     """
     Gibt an, ob es sich um eine PROGNOSE oder eine MESSUNG handelt
     """
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
-    ablesegrund: str | None = Field(default=None, title="Ablesegrund")
-    ablesebeschreibung: str | None = Field(default=None, title="Ablesebeschreibung")
-    periodenverbrauch: Decimal | None = Field(default=None, title="Periodenverbrauch")
-    periodenverbrauch_ursprung: str | None = Field(
-        default=None,
-        alias="periodenverbrauchUrsprung",
-        title="Periodenverbrauchursprung",
+    ablesegrund: Optional[str] = Field(default=None, title="Ablesegrund")
+    ablesebeschreibung: Optional[str] = Field(default=None, title="Ablesebeschreibung")
+    periodenverbrauch: Optional[Decimal] = Field(default=None, title="Periodenverbrauch")
+    periodenverbrauch_ursprung: Optional[str] = Field(
+        default=None, alias="periodenverbrauchUrsprung", title="Periodenverbrauchursprung"
     )
-    ableser: AblesendeRolle | None = None
-    status: Ablesungsstatus | None = None
-    energiegehalt_gas: Decimal | None = Field(default=None, alias="energiegehaltGas", title="Energiegehaltgas")
-    energiegehalt_gas_gueltig_von: datetime | None = Field(
-        default=None,
-        alias="energiegehaltGasGueltigVon",
-        title="Energiegehaltgasgueltigvon",
+    ableser: Optional["AblesendeRolle"] = None
+    status: Optional["Ablesungsstatus"] = None
+    energiegehalt_gas: Optional[Decimal] = Field(default=None, alias="energiegehaltGas", title="Energiegehaltgas")
+    energiegehalt_gas_gueltig_von: Optional[datetime] = Field(
+        default=None, alias="energiegehaltGasGueltigVon", title="Energiegehaltgasgueltigvon"
     )
-    energiegehalt_gas_gueltig_bis: datetime | None = Field(
-        default=None,
-        alias="energiegehaltGasGueltigBis",
-        title="Energiegehaltgasgueltigbis",
+    energiegehalt_gas_gueltig_bis: Optional[datetime] = Field(
+        default=None, alias="energiegehaltGasGueltigBis", title="Energiegehaltgasgueltigbis"
     )
-    umwandlungsfaktor_gas: Decimal | None = Field(
+    umwandlungsfaktor_gas: Optional[Decimal] = Field(
         default=None, alias="umwandlungsfaktorGas", title="Umwandlungsfaktorgas"
     )
-    umwandlungsfaktor_gas_gueltig_von: datetime | None = Field(
-        default=None,
-        alias="umwandlungsfaktorGasGueltigVon",
-        title="Umwandlungsfaktorgasgueltigvon",
+    umwandlungsfaktor_gas_gueltig_von: Optional[datetime] = Field(
+        default=None, alias="umwandlungsfaktorGasGueltigVon", title="Umwandlungsfaktorgasgueltigvon"
     )
-    umwandlungsfaktor_gas_gueltig_bis: datetime | None = Field(
-        default=None,
-        alias="umwandlungsfaktorGasGueltigBis",
-        title="Umwandlungsfaktorgasgueltigbis",
+    umwandlungsfaktor_gas_gueltig_bis: Optional[datetime] = Field(
+        default=None, alias="umwandlungsfaktorGasGueltigBis", title="Umwandlungsfaktorgasgueltigbis"
     )

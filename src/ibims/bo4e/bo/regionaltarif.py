@@ -1,23 +1,26 @@
 from datetime import datetime
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.energiemix import Energiemix
-from ..com.regionale_preisgarantie import RegionalePreisgarantie
-from ..com.regionale_tarifpreisposition import RegionaleTarifpreisposition
-from ..com.regionaler_auf_abschlag import RegionalerAufAbschlag
-from ..com.tarifberechnungsparameter import Tarifberechnungsparameter
-from ..com.tarifeinschraenkung import Tarifeinschraenkung
-from ..com.vertragskonditionen import Vertragskonditionen
-from ..com.zeitraum import Zeitraum
-from ..enum.kundentyp import Kundentyp
-from ..enum.registeranzahl import Registeranzahl
-from ..enum.sparte import Sparte
-from ..enum.tarifmerkmal import Tarifmerkmal
-from ..enum.tariftyp import Tariftyp
 from ..enum.typ import Typ
-from ..zusatz_attribut import ZusatzAttribut
-from .marktteilnehmer import Marktteilnehmer
+
+if TYPE_CHECKING:
+    from ..com.energiemix import Energiemix
+    from ..com.regionale_preisgarantie import RegionalePreisgarantie
+    from ..com.regionale_tarifpreisposition import RegionaleTarifpreisposition
+    from ..com.regionaler_auf_abschlag import RegionalerAufAbschlag
+    from ..com.tarifberechnungsparameter import Tarifberechnungsparameter
+    from ..com.tarifeinschraenkung import Tarifeinschraenkung
+    from ..com.vertragskonditionen import Vertragskonditionen
+    from ..com.zeitraum import Zeitraum
+    from ..enum.kundentyp import Kundentyp
+    from ..enum.registeranzahl import Registeranzahl
+    from ..enum.sparte import Sparte
+    from ..enum.tarifmerkmal import Tarifmerkmal
+    from ..enum.tariftyp import Tariftyp
+    from ..zusatz_attribut import ZusatzAttribut
+    from .marktteilnehmer import Marktteilnehmer
 
 
 class Regionaltarif(BaseModel):
@@ -34,80 +37,76 @@ class Regionaltarif(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: Typ = Field(default=Typ.REGIONALTARIF, alias="_typ")
-    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    typ: "Typ" = Field(default=Typ.REGIONALTARIF, alias="_typ")
+    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    anbieter: Marktteilnehmer | None = None
+    anbieter: Optional["Marktteilnehmer"] = None
     """
     Der Marktteilnehmer (Lieferant), der diesen Tarif anbietet
     """
-    anbietername: str | None = Field(default=None, title="Anbietername")
+    anbietername: Optional[str] = Field(default=None, title="Anbietername")
     """
     Der Name des Marktpartners, der den Tarif anbietet
     """
-    anwendung_von: datetime | None = Field(default=None, alias="anwendungVon", title="Anwendungvon")
-    """
-    Angabe des inklusiven Zeitpunkts, ab dem der Tarif bzw. der Preis angewendet und abgerechnet wird,
-    z.B. "2021-07-20T18:31:48Z"
-    """
-    bemerkung: str | None = Field(default=None, title="Bemerkung")
+    anwendung_von: Optional[datetime] = Field(default=None, alias="anwendungVon", title="Anwendungvon")
+    bemerkung: Optional[str] = Field(default=None, title="Bemerkung")
     """
     Freitext
     """
-    berechnungsparameter: Tarifberechnungsparameter | None = None
-    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
+    berechnungsparameter: Optional["Tarifberechnungsparameter"] = None
+    bezeichnung: Optional[str] = Field(default=None, title="Bezeichnung")
     """
     Name des Tarifs
     """
-    energiemix: Energiemix | None = None
+    energiemix: Optional["Energiemix"] = None
     """
     Der Energiemix, der für diesen Tarif gilt
     """
-    kundentypen: list[Kundentyp] | None = Field(default=None, title="Kundentypen")
+    kundentypen: Optional[list["Kundentyp"]] = Field(default=None, title="Kundentypen")
     """
     Kundentypen für den der Tarif gilt, z.B. Privatkunden
     """
-    preisgarantien: list[RegionalePreisgarantie] | None = Field(default=None, title="Preisgarantien")
-    preisstand: datetime | None = Field(default=None, title="Preisstand")
-    registeranzahl: Registeranzahl | None = None
+    preisgarantien: Optional[list["RegionalePreisgarantie"]] = Field(default=None, title="Preisgarantien")
+    preisstand: Optional[datetime] = Field(default=None, title="Preisstand")
+    registeranzahl: Optional["Registeranzahl"] = None
     """
     Die Art des Tarifes, z.B. Eintarif oder Mehrtarif
     """
-    sparte: Sparte | None = None
+    sparte: Optional["Sparte"] = None
     """
     Strom oder Gas, etc.
     """
-    tarif_auf_abschlaege: list[RegionalerAufAbschlag] | None = Field(
+    tarif_auf_abschlaege: Optional[list["RegionalerAufAbschlag"]] = Field(
         default=None, alias="tarifAufAbschlaege", title="Tarifaufabschlaege"
     )
-    tarifeinschraenkung: Tarifeinschraenkung | None = None
-    tarifmerkmale: list[Tarifmerkmal] | None = Field(default=None, title="Tarifmerkmale")
+    tarifeinschraenkung: Optional["Tarifeinschraenkung"] = None
+    tarifmerkmale: Optional[list["Tarifmerkmal"]] = Field(default=None, title="Tarifmerkmale")
     """
     Weitere Merkmale des Tarifs, z.B. Festpreis oder Vorkasse
     """
-    tarifpreise: list[RegionaleTarifpreisposition] | None = Field(default=None, title="Tarifpreise")
-    tariftyp: Tariftyp | None = None
+    tarifpreise: Optional[list["RegionaleTarifpreisposition"]] = Field(default=None, title="Tarifpreise")
+    tariftyp: Optional["Tariftyp"] = None
     """
     Hinweis auf den Tariftyp, z.B. Grundversorgung oder Sondertarif
     """
-    vertragskonditionen: Vertragskonditionen | None = None
+    vertragskonditionen: Optional["Vertragskonditionen"] = None
     """
     Mindestlaufzeiten und Kündigungsfristen zusammengefasst
     """
-    website: str | None = Field(default=None, title="Website")
+    website: Optional[str] = Field(default=None, title="Website")
     """
     Internetseite auf dem der Tarif zu finden ist
     """
-    zeitliche_gueltigkeit: Zeitraum | None = Field(default=None, alias="zeitlicheGueltigkeit")
+    zeitliche_gueltigkeit: Optional["Zeitraum"] = Field(default=None, alias="zeitlicheGueltigkeit")
     """
     Angabe, in welchem Zeitraum der Tarif gültig ist
     """
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

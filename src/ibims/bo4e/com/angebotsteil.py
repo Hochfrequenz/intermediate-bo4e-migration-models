@@ -1,11 +1,14 @@
+from typing import TYPE_CHECKING, Optional
+
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..bo.marktlokation import Marktlokation
-from ..zusatz_attribut import ZusatzAttribut
-from .angebotsposition import Angebotsposition
-from .betrag import Betrag
-from .menge import Menge
-from .zeitraum import Zeitraum
+if TYPE_CHECKING:
+    from ..bo.marktlokation import Marktlokation
+    from ..zusatz_attribut import ZusatzAttribut
+    from .angebotsposition import Angebotsposition
+    from .betrag import Betrag
+    from .menge import Menge
+    from .zeitraum import Zeitraum
 
 
 class Angebotsteil(BaseModel):
@@ -21,56 +24,47 @@ class Angebotsteil(BaseModel):
         <object data="../_static/images/bo4e/com/Angebotsteil.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Angebotsteil JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/com/Angebotsteil.json>`_
+        `Angebotsteil JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/com/Angebotsteil.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    zusatz_attribute: Optional[list["ZusatzAttribut"]] = None
-
-    # pylint: disable=duplicate-code
-    model_config = ConfigDict(
-        alias_generator=camelize,
-        populate_by_name=True,
-        extra="allow",
-        # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create
-        # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.
-        # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375
-        json_encoders={Decimal: str},
-    )
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
-    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    anfrage_subreferenz: str | None = Field(default=None, alias="anfrageSubreferenz", title="Anfragesubreferenz")
+    anfrage_subreferenz: Optional[str] = Field(default=None, alias="anfrageSubreferenz", title="Anfragesubreferenz")
     """
     Identifizierung eines Subkapitels einer Anfrage, beispielsweise das Los einer Ausschreibung
     """
-    gesamtkostenangebotsteil: Betrag | None = None
+    gesamtkostenangebotsteil: Optional["Betrag"] = None
     """
     Summe der Jahresenergiekosten aller in diesem Angebotsteil enthaltenen Lieferstellen
     """
-    gesamtmengeangebotsteil: Menge | None = None
+    gesamtmengeangebotsteil: Optional["Menge"] = None
     """
     Summe der Verbräuche aller in diesem Angebotsteil eingeschlossenen Lieferstellen
     """
-    lieferstellenangebotsteil: list[Marktlokation] | None = Field(default=None, title="Lieferstellenangebotsteil")
+    lieferstellenangebotsteil: Optional[list["Marktlokation"]] = Field(default=None, title="Lieferstellenangebotsteil")
     """
-    Summe der Verbräuche aller in diesem Angebotsteil eingeschlossenen Lieferstellen
+    Marktlokationen, für die dieses Angebotsteil gilt, falls vorhanden.
+    Durch die Marktlokation ist auch die Lieferadresse festgelegt
     """
-    lieferzeitraum: Zeitraum | None = None
+    lieferzeitraum: Optional["Zeitraum"] = None
     """
     Hier kann der Belieferungszeitraum angegeben werden, für den dieser Angebotsteil gilt
     """
-    positionen: list[Angebotsposition] | None = Field(default=None, title="Positionen")
+    positionen: Optional[list["Angebotsposition"]] = Field(default=None, title="Positionen")
     """
     Einzelne Positionen, die zu diesem Angebotsteil gehören
     """
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

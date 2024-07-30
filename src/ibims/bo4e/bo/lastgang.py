@@ -1,13 +1,17 @@
+from typing import TYPE_CHECKING, Optional
+
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.menge import Menge
-from ..com.zeitreihenwert import Zeitreihenwert
-from ..enum.mengeneinheit import Mengeneinheit
-from ..enum.sparte import Sparte
 from ..enum.typ import Typ
-from ..zusatz_attribut import ZusatzAttribut
-from .marktlokation import Marktlokation
-from .messlokation import Messlokation
+
+if TYPE_CHECKING:
+    from ..com.menge import Menge
+    from ..com.zeitreihenwert import Zeitreihenwert
+    from ..enum.mengeneinheit import Mengeneinheit
+    from ..enum.sparte import Sparte
+    from ..zusatz_attribut import ZusatzAttribut
+    from .marktlokation import Marktlokation
+    from .messlokation import Messlokation
 
 
 class Lastgang(BaseModel):
@@ -20,50 +24,50 @@ class Lastgang(BaseModel):
         <object data="../_static/images/bo4e/bo/Lastgang.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Lastgang JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/Lastgang.json>`_
+        `Lastgang JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/bo/Lastgang.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: Typ = Field(default=Typ.LASTGANG, alias="_typ")
+    typ: "Typ" = Field(default=Typ.LASTGANG, alias="_typ")
     """
     Angabe, ob es sich um einen Gas- oder Stromlastgang handelt
     """
-    marktlokation: Marktlokation | None = None
+    marktlokation: Optional["Marktlokation"] = None
     """
     Marktlokation, zu der der Lastgang gehört
     """
-    messgroesse: Mengeneinheit | None = None
+    messgroesse: Optional["Mengeneinheit"] = None
     """
     Definition der gemessenen Größe anhand ihrer Einheit
     """
-    messlokation: Messlokation | None = None
+    messlokation: Optional["Messlokation"] = None
     """
     Marktlokation, zu der der Lastgang gehört
     """
-    obis_kennzahl: str | None = Field(default=None, alias="obisKennzahl", title="Obiskennzahl")
+    obis_kennzahl: Optional[str] = Field(default=None, alias="obisKennzahl", title="Obiskennzahl")
     """
     Die OBIS-Kennzahl für den Wert, die festlegt, welche Größe mit dem Stand gemeldet wird, z.B. '1-0:1.8.1'
     """
-    sparte: Sparte | None = None
+    sparte: Optional["Sparte"] = None
     """
     Angabe, ob es sich um einen Gas- oder Stromlastgang handelt
     """
-    version: str | None = Field(default=None, title="Version")
+    version: Optional[str] = Field(default=None, title="Version")
     """
     Versionsnummer des Lastgangs
     """
-    werte: list[Zeitreihenwert] | None = Field(default=None, title="Werte")
+    werte: Optional[list["Zeitreihenwert"]] = Field(default=None, title="Werte")
     """
     Die im Lastgang enthaltenen Messwerte
     """
-    zeit_intervall_laenge: Menge | None = Field(..., alias="zeitIntervallLaenge")
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    zeit_intervall_laenge: Optional["Menge"] = Field(..., alias="zeitIntervallLaenge")
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

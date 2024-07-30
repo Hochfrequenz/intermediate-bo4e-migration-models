@@ -1,15 +1,18 @@
 from datetime import datetime
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.ausschreibungslos import Ausschreibungslos
-from ..com.zeitraum import Zeitraum
-from ..enum.ausschreibungsportal import Ausschreibungsportal
-from ..enum.ausschreibungsstatus import Ausschreibungsstatus
-from ..enum.ausschreibungstyp import Ausschreibungstyp
 from ..enum.typ import Typ
-from ..zusatz_attribut import ZusatzAttribut
-from .geschaeftspartner import Geschaeftspartner
+
+if TYPE_CHECKING:
+    from ..com.ausschreibungslos import Ausschreibungslos
+    from ..com.zeitraum import Zeitraum
+    from ..enum.ausschreibungsportal import Ausschreibungsportal
+    from ..enum.ausschreibungsstatus import Ausschreibungsstatus
+    from ..enum.ausschreibungstyp import Ausschreibungstyp
+    from ..zusatz_attribut import ZusatzAttribut
+    from .geschaeftspartner import Geschaeftspartner
 
 
 class Ausschreibung(BaseModel):
@@ -21,69 +24,63 @@ class Ausschreibung(BaseModel):
         <object data="../_static/images/bo4e/bo/Ausschreibung.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Ausschreibung JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/Ausschreibung.json>`_
+        `Ausschreibung JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/bo/Ausschreibung.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: Typ = Field(default=Typ.AUSSCHREIBUNG, alias="_typ")
+    typ: "Typ" = Field(default=Typ.AUSSCHREIBUNG, alias="_typ")
     """
     Vom Herausgeber der Ausschreibung vergebene eindeutige Nummer
     """
-    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    abgabefrist: Zeitraum | None = None
-    """
-    bindefrist: Optional["Zeitraum"] = None
-    """
-    ausschreibender: Geschaeftspartner | None = None
-    """
     abgabefrist: Optional["Zeitraum"] = None
-    """
-    ausschreibungportal: Ausschreibungsportal | None = None
+    ausschreibender: Optional["Geschaeftspartner"] = None
+    ausschreibungportal: Optional["Ausschreibungsportal"] = None
     """
     Aufzählung der unterstützten Ausschreibungsportale
     """
-    ausschreibungsnummer: str | None = Field(default=None, title="Ausschreibungsnummer")
+    ausschreibungsnummer: Optional[str] = Field(default=None, title="Ausschreibungsnummer")
     """
     Vom Herausgeber der Ausschreibung vergebene eindeutige Nummer
     """
-    ausschreibungsstatus: Ausschreibungsstatus | None = None
+    ausschreibungsstatus: Optional["Ausschreibungsstatus"] = None
     """
     Bezeichnungen für die Ausschreibungsphasen
     """
-    ausschreibungstyp: Ausschreibungstyp | None = None
+    ausschreibungstyp: Optional["Ausschreibungstyp"] = None
     """
     Aufzählung für die Typisierung von Ausschreibungen
     """
-    bindefrist: Zeitraum | None = None
+    bindefrist: Optional["Zeitraum"] = None
     """
     Die einzelnen Lose, aus denen sich die Ausschreibung zusammensetzt
     """
-    ist_kostenpflichtig: bool | None = Field(default=None, alias="istKostenpflichtig", title="Istkostenpflichtig")
+    ist_kostenpflichtig: Optional[bool] = Field(default=None, alias="istKostenpflichtig", title="Istkostenpflichtig")
     """
     Kennzeichen, ob die Ausschreibung kostenpflichtig ist
     """
-    lose: list[Ausschreibungslos] | None = Field(default=None, title="Lose")
+    lose: Optional[list["Ausschreibungslos"]] = Field(default=None, title="Lose")
     """
     Die einzelnen Lose, aus denen sich die Ausschreibung zusammensetzt
     """
-    veroeffentlichungszeitpunkt: datetime | None = Field(default=None, title="Veroeffentlichungszeitpunkt")
+    veroeffentlichungszeitpunkt: Optional[datetime] = Field(default=None, title="Veroeffentlichungszeitpunkt")
     """
     Gibt den Veröffentlichungszeitpunkt der Ausschreibung an
     """
-    webseite: str | None = Field(default=None, title="Webseite")
+    webseite: Optional[str] = Field(default=None, title="Webseite")
     """
     Internetseite, auf der die Ausschreibung veröffentlicht wurde (falls vorhanden)
     """
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

@@ -1,21 +1,24 @@
 from datetime import datetime
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.zaehlwerk import Zaehlwerk
-from ..com.zeitraum import Zeitraum
-from ..enum.befestigungsart import Befestigungsart
-from ..enum.messwerterfassung import Messwerterfassung
-from ..enum.registeranzahl import Registeranzahl
-from ..enum.sparte import Sparte
 from ..enum.typ import Typ
-from ..enum.zaehlerauspraegung import Zaehlerauspraegung
-from ..enum.zaehlergroesse import Zaehlergroesse
-from ..enum.zaehlertyp import Zaehlertyp
-from ..enum.zaehlertyp_spezifikation import ZaehlertypSpezifikation
-from ..zusatz_attribut import ZusatzAttribut
-from .geraet import Geraet
-from .geschaeftspartner import Geschaeftspartner
+
+if TYPE_CHECKING:
+    from ..com.zaehlwerk import Zaehlwerk
+    from ..com.zeitraum import Zeitraum
+    from ..enum.befestigungsart import Befestigungsart
+    from ..enum.messwerterfassung import Messwerterfassung
+    from ..enum.registeranzahl import Registeranzahl
+    from ..enum.sparte import Sparte
+    from ..enum.zaehlerauspraegung import Zaehlerauspraegung
+    from ..enum.zaehlergroesse import Zaehlergroesse
+    from ..enum.zaehlertyp import Zaehlertyp
+    from ..enum.zaehlertyp_spezifikation import ZaehlertypSpezifikation
+    from ..zusatz_attribut import ZusatzAttribut
+    from .geraet import Geraet
+    from .geschaeftspartner import Geschaeftspartner
 
 
 class Zaehler(BaseModel):
@@ -27,67 +30,67 @@ class Zaehler(BaseModel):
         <object data="../_static/images/bo4e/bo/Zaehler.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Zaehler JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/Zaehler.json>`_
+        `Zaehler JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/bo/Zaehler.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: Typ = Field(default=Typ.ZAEHLER, alias="_typ")
+    typ: "Typ" = Field(default=Typ.ZAEHLER, alias="_typ")
     """
     Typisierung des Zählers
     """
-    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    befestigungsart: Befestigungsart | None = None
+    befestigungsart: Optional["Befestigungsart"] = None
     """
     Besondere Spezifikation des Zählers
     """
-    eichung_bis: datetime | None = Field(default=None, alias="eichungBis", title="Eichungbis")
+    eichung_bis: Optional[datetime] = Field(default=None, alias="eichungBis", title="Eichungbis")
     """
     Zählerkonstante auf dem Zähler
     """
-    geraete: list[Geraet] | None = Field(default=None, title="Geraete")
+    geraete: Optional[list["Geraet"]] = Field(default=None, title="Geraete")
     """
     Größe des Zählers
     """
-    ist_fernschaltbar: bool | None = Field(default=None, alias="istFernschaltbar", title="Istfernschaltbar")
+    ist_fernschaltbar: Optional[bool] = Field(default=None, alias="istFernschaltbar", title="Istfernschaltbar")
     """
     Der Hersteller des Zählers
     """
-    letzte_eichung: datetime | None = Field(default=None, alias="letzteEichung", title="Letzteeichung")
+    letzte_eichung: Optional[datetime] = Field(default=None, alias="letzteEichung", title="Letzteeichung")
     """
     Bis zu diesem Datum (exklusiv) ist der Zähler geeicht.
     """
-    messwerterfassung: Messwerterfassung | None = Field(default=None, title="Messwerterfassung")
-    registeranzahl: Registeranzahl | None = None
+    messwerterfassung: Optional["Messwerterfassung"] = Field(default=None, title="Messwerterfassung")
+    registeranzahl: Optional["Registeranzahl"] = None
     """
     Spezifikation bezüglich unterstützter Tarif
     """
-    sparte: Sparte
+    sparte: "Sparte"
     """
     Nummerierung des Zählers,vergeben durch den Messstellenbetreiber
     """
-    zaehlerauspraegung: Zaehlerauspraegung | None = None
+    zaehlerauspraegung: Optional["Zaehlerauspraegung"] = None
     """
     Strom oder Gas
     """
-    zaehlergroesse: Zaehlergroesse | None = None
+    zaehlergroesse: Optional["Zaehlergroesse"] = None
     """
     Befestigungsart
     """
-    zaehlerhersteller: Geschaeftspartner | None = None
+    zaehlerhersteller: Optional["Geschaeftspartner"] = None
     """
     Der Hersteller des Zählers
     """
-    zaehlerkonstante: float | None = Field(default=None, title="Zaehlerkonstante")
+    zaehlerkonstante: Optional[float] = Field(default=None, title="Zaehlerkonstante")
     """
     Spezifikation bezüglich unterstützter Tarif
     """
@@ -95,22 +98,22 @@ class Zaehler(BaseModel):
     """
     Nummerierung des Zählers,vergeben durch den Messstellenbetreiber
     """
-    zaehlertyp: Zaehlertyp | None = None
+    zaehlertyp: Optional["Zaehlertyp"] = None
     """
     Spezifikation die Richtung des Zählers betreffend
     """
-    zaehlertyp_spezifikation: ZaehlertypSpezifikation | None = Field(default=None, alias="zaehlertypSpezifikation")
+    zaehlertyp_spezifikation: Optional["ZaehlertypSpezifikation"] = Field(default=None, alias="zaehlertypSpezifikation")
     """
     Messwerterfassung des Zählers
     """
-    zaehlwerke: list[Zaehlwerk] = Field(..., title="Zaehlwerke")
+    zaehlwerke: list["Zaehlwerk"] = Field(..., title="Zaehlwerke")
     """
     Typisierung des Zählers
     """
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
-    nachstes_ablesedatum: datetime | None = Field(
+    nachstes_ablesedatum: Optional[datetime] = Field(
         default=None, alias="nachstesAblesedatum", title="Nachstesablesedatum"
     )
-    aktiver_zeitraum: Zeitraum | None = Field(default=None, alias="aktiverZeitraum")
+    aktiver_zeitraum: Optional["Zeitraum"] = Field(default=None, alias="aktiverZeitraum")

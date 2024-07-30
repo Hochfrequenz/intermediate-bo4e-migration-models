@@ -1,11 +1,13 @@
 from datetime import datetime
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..zusatz_attribut import ZusatzAttribut
-from .betrag import Betrag
-from .menge import Menge
-from .preis import Preis
+if TYPE_CHECKING:
+    from ..zusatz_attribut import ZusatzAttribut
+    from .betrag import Betrag
+    from .menge import Menge
+    from .preis import Preis
 
 
 class Fremdkostenposition(BaseModel):
@@ -17,85 +19,76 @@ class Fremdkostenposition(BaseModel):
         <object data="../_static/images/bo4e/com/Fremdkostenposition.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Fremdkostenposition JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/com/Fremdkostenposition.json>`_
+        `Fremdkostenposition JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.3.1/src/bo4e_schemas/com/Fremdkostenposition.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    zusatz_attribute: Optional[list["ZusatzAttribut"]] = None
-
-    # pylint: disable=duplicate-code
-    model_config = ConfigDict(
-        alias_generator=camelize,
-        populate_by_name=True,
-        extra="allow",
-        # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create
-        # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.
-        # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375
-        json_encoders={Decimal: str},
-    )
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
-    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
+    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    artikelbezeichnung: str | None = Field(default=None, title="Artikelbezeichnung")
+    artikelbezeichnung: Optional[str] = Field(default=None, title="Artikelbezeichnung")
     """
     Bezeichnung für den Artikel für den die Kosten ermittelt wurden. Beispiel: Arbeitspreis HT
     """
-    artikeldetail: str | None = Field(default=None, title="Artikeldetail")
+    artikeldetail: Optional[str] = Field(default=None, title="Artikeldetail")
     """
     Detaillierung des Artikels (optional). Beispiel: 'Drehstromzähler'
     """
-    betrag_kostenposition: Betrag | None = Field(default=None, alias="betragKostenposition")
+    betrag_kostenposition: Optional["Betrag"] = Field(default=None, alias="betragKostenposition")
     """
     Der errechnete Gesamtbetrag der Position als Ergebnis der Berechnung <Menge * Einzelpreis> oder
     <Einzelpreis / (Anzahl Tage Jahr) * zeitmenge>
     """
-    bis: datetime | None = Field(default=None, title="Bis")
+    bis: Optional[datetime] = Field(default=None, title="Bis")
     """
     exklusiver bis-Zeitpunkt der Kostenzeitscheibe
     """
-    einzelpreis: Preis | None = None
+    einzelpreis: Optional["Preis"] = None
     """
     Der Preis für eine Einheit. Beispiele: 5,8200 ct/kWh oder 55 €/Jahr.
     """
-    gebietcode_eic: str | None = Field(default=None, alias="gebietcodeEic", title="Gebietcodeeic")
+    gebietcode_eic: Optional[str] = Field(default=None, alias="gebietcodeEic", title="Gebietcodeeic")
     """
     EIC-Code des Regel- oder Marktgebietes eingetragen. Z.B. '10YDE-EON------1' für die Regelzone TenneT
     """
-    link_preisblatt: str | None = Field(default=None, alias="linkPreisblatt", title="Linkpreisblatt")
+    link_preisblatt: Optional[str] = Field(default=None, alias="linkPreisblatt", title="Linkpreisblatt")
     """
     Link zum veröffentlichten Preisblatt
     """
-    marktpartnercode: str | None = Field(default=None, title="Marktpartnercode")
+    marktpartnercode: Optional[str] = Field(default=None, title="Marktpartnercode")
     """
     Die Codenummer (z.B. BDEW-Codenummer) des Marktpartners, der die Preise festlegt / die Kosten in Rechnung stellt
     """
-    marktpartnername: str | None = Field(default=None, title="Marktpartnername")
+    marktpartnername: Optional[str] = Field(default=None, title="Marktpartnername")
     """
     Der Name des Marktpartners, der die Preise festlegt, bzw. die Kosten in Rechnung stellt
     """
-    menge: Menge | None = None
+    menge: Optional["Menge"] = None
     """
     Die Menge, die in die Kostenberechnung eingeflossen ist. Beispiel: 3.660 kWh
     """
-    positionstitel: str | None = Field(default=None, title="Positionstitel")
+    positionstitel: Optional[str] = Field(default=None, title="Positionstitel")
     """
     Ein Titel für die Zeile. Hier kann z.B. der Netzbetreiber eingetragen werden, wenn es sich um Netzkosten handelt.
     """
-    von: datetime | None = Field(default=None, title="Von")
+    von: Optional[datetime] = Field(default=None, title="Von")
     """
     inklusiver von-Zeitpunkt der Kostenzeitscheibe
     """
-    zeitmenge: Menge | None = None
+    zeitmenge: Optional["Menge"] = None
     """
-    Detaillierung des Artikels (optional). Beispiel: 'Drehstromzähler'
+    Wenn es einen zeitbasierten Preis gibt (z.B. €/Jahr), dann ist hier die Menge angegeben mit der die Kosten berechnet
+    wurden. Z.B. 138 Tage.
     """
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

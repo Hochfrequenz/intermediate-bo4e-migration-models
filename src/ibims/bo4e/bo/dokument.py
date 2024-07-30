@@ -1,9 +1,12 @@
 from datetime import datetime
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
 from ..enum.typ import Typ
-from ..zusatz_attribut import ZusatzAttribut
+
+if TYPE_CHECKING:
+    from ..zusatz_attribut import ZusatzAttribut
 
 
 class Dokument(BaseModel):
@@ -15,12 +18,12 @@ class Dokument(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    version: str = Field(default="v202401.2.1", alias="_version", title=" Version")
-    typ: Typ = Field(default=Typ.DOKUMENT, alias="_typ", title=" Typ")
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    version: str = Field(default="v202401.3.1", alias="_version", title=" Version")
+    typ: "Typ" = Field(default=Typ.DOKUMENT, alias="_typ", title=" Typ")
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="ZusatzAttribute"
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     erstellungsdatum: datetime = Field(..., title="Erstellungsdatum")
     has_been_sent: bool = Field(..., alias="hasBeenSent", title="Hasbeensent")
     dokumentenname: str = Field(..., title="Dokumentenname")
