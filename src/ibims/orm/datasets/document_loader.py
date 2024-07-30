@@ -5,8 +5,8 @@ It also contains the validation logic for the document loader dataset.
 
 from typing import Optional
 
-from ibims.bo4e import Dokument, File, Geschaeftspartner, Rechnung, Vertrag
-from ibims.datasets import DataSetBaseModel
+from ibims.orm.datasets import DataSetBaseModel
+from ibims.orm.models import Dokument, File, Geschaeftspartner, Rechnung, Vertrag
 
 
 class TripicaDocumentLoaderDataSet(DataSetBaseModel):

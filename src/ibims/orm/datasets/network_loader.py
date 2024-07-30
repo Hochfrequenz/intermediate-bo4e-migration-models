@@ -5,7 +5,8 @@ It also contains the validation logic for the network loader dataset.
 
 from typing import Optional
 
-from ibims.bo4e import (
+from ibims.orm.datasets import DataSetBaseModel
+from ibims.orm.models import (
     Adresse,
     Bilanzierung,
     ConcessionFee,
@@ -17,7 +18,6 @@ from ibims.bo4e import (
     ZaehlerGas,
     Zaehlpunkt,
 )
-from ibims.datasets import DataSetBaseModel
 
 
 class TripicaNetworkLoaderDataSet(DataSetBaseModel):

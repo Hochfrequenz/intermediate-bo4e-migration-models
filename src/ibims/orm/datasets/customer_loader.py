@@ -3,8 +3,8 @@ Contains the dataset for the customer loader.
 It also contains the validation logic for the customer loader dataset.
 """
 
-from ibims.bo4e import Adresse, Bankverbindung, Geschaeftspartner, VertragskontoMBA
-from ibims.datasets import DataSetBaseModel
+from ibims.orm.datasets import DataSetBaseModel
+from ibims.orm.models import Adresse, Bankverbindung, Geschaeftspartner, VertragskontoMBA
 
 
 class TripicaCustomerLoaderDataSet(DataSetBaseModel):

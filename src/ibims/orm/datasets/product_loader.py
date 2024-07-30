@@ -7,7 +7,8 @@ from datetime import datetime
 from decimal import Decimal
 from typing import Optional
 
-from ibims.bo4e import (
+from ibims.orm.datasets import DataSetBaseModel
+from ibims.orm.models import (
     Adresse,
     Kampagne,
     Messlokation,
@@ -17,7 +18,6 @@ from ibims.bo4e import (
     Vertragskonditionen,
     VertragskontoCBA,
 )
-from ibims.datasets import DataSetBaseModel
 
 
 class TripicaProductLoaderDataSet(DataSetBaseModel):

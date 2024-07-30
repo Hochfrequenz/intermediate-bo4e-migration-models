@@ -5,7 +5,7 @@ It also contains the validation logic for the usage loader dataset.
 
 from bomf.model import Bo4eDataSet
 
-from ibims.bo4e import Energiemenge, Messlokation, Zaehler, ZaehlerGas
+from ibims.orm.models import Energiemenge, Messlokation, Zaehler, ZaehlerGas
 
 
 class TripicaUsageLoaderDataSet(Bo4eDataSet):

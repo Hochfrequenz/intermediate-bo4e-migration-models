@@ -2,8 +2,8 @@
 Contains the dataset for the agent hint loader.
 """
 
-from ibims.bo4e import Geschaeftspartner, Hinweis, Vertrag
-from ibims.datasets.base import DataSetBaseModel
+from ibims.orm.datasets.base import DataSetBaseModel
+from ibims.orm.models import Geschaeftspartner, Hinweis, Vertrag
 
 
 class ED4AgentHintLoaderDataSet(DataSetBaseModel):
