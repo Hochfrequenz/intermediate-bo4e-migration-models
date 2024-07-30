@@ -2,10 +2,11 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.oekolabel import Oekolabel
+from ..enum.oekozertifikat import Oekozertifikat
+from ..enum.sparte import Sparte
+
 if TYPE_CHECKING:
-    from ..enum.oekolabel import Oekolabel
-    from ..enum.oekozertifikat import Oekozertifikat
-    from ..enum.sparte import Sparte
     from ..zusatz_attribut import ZusatzAttribut
     from .energieherkunft import Energieherkunft
 
@@ -55,7 +56,7 @@ class Energiemix(BaseModel):
     """
     Höhe des erzeugten CO2-Ausstosses in g/kWh
     """
-    energieart: Optional["Sparte"] = None
+    energieart: Optional[Sparte] = None
     """
     Strom oder Gas etc.
     """
@@ -71,11 +72,11 @@ class Energiemix(BaseModel):
     """
     Kennzeichen, ob der Versorger zu den Öko Top Ten gehört
     """
-    oekolabel: Optional[list["Oekolabel"]] = Field(default=None, title="Oekolabel")
+    oekolabel: Optional[list[Oekolabel]] = Field(default=None, title="Oekolabel")
     """
     Ökolabel für den Energiemix
     """
-    oekozertifikate: Optional[list["Oekozertifikat"]] = Field(default=None, title="Oekozertifikate")
+    oekozertifikate: Optional[list[Oekozertifikat]] = Field(default=None, title="Oekozertifikate")
     """
     Zertifikate für den Energiemix
     """

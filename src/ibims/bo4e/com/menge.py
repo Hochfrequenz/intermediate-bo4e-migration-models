@@ -2,8 +2,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.mengeneinheit import Mengeneinheit
+
 if TYPE_CHECKING:
-    from ..enum.mengeneinheit import Mengeneinheit
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -32,7 +33,7 @@ class Menge(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    einheit: Optional["Mengeneinheit"] = None
+    einheit: Optional[Mengeneinheit] = None
     """
     Gibt die Einheit zum jeweiligen Wert an
     """

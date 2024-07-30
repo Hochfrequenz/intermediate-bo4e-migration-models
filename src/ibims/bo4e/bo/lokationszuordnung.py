@@ -35,7 +35,7 @@ class Lokationszuordnung(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.LOKATIONSZUORDNUNG, alias="_typ")
+    typ: Typ = Field(default=Typ.LOKATIONSZUORDNUNG, alias="_typ")
     """
     Liste mit referenzierten Marktlokationen
     """

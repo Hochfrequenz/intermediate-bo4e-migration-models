@@ -2,11 +2,12 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.mengeneinheit import Mengeneinheit
+from ..enum.preisstatus import Preisstatus
+from ..enum.preistyp import Preistyp
+from ..enum.waehrungseinheit import Waehrungseinheit
+
 if TYPE_CHECKING:
-    from ..enum.mengeneinheit import Mengeneinheit
-    from ..enum.preisstatus import Preisstatus
-    from ..enum.preistyp import Preistyp
-    from ..enum.waehrungseinheit import Waehrungseinheit
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -39,19 +40,19 @@ class Tarifpreis(BaseModel):
     """
     Beschreibung des Preises. Hier können z.B. Preisdetails angegeben sein, beispielsweise "Drehstromzähler".
     """
-    bezugswert: Optional["Mengeneinheit"] = None
+    bezugswert: Optional[Mengeneinheit] = None
     """
     Angabe, für welche Bezugsgröße der Preis gilt. Z.B. kWh.
     """
-    einheit: Optional["Waehrungseinheit"] = None
+    einheit: Optional[Waehrungseinheit] = None
     """
     Währungseinheit für den Preis, z.B. Euro oder Ct.
     """
-    preistyp: Optional["Preistyp"] = None
+    preistyp: Optional[Preistyp] = None
     """
     Angabe des Preistypes (z.B. Grundpreis)
     """
-    status: Optional["Preisstatus"] = None
+    status: Optional[Preisstatus] = None
     """
     Gibt den Status des veröffentlichten Preises an
     """

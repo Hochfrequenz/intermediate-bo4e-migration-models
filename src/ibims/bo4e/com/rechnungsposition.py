@@ -3,9 +3,10 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.bdew_artikelnummer import BDEWArtikelnummer
+from ..enum.mengeneinheit import Mengeneinheit
+
 if TYPE_CHECKING:
-    from ..enum.bdew_artikelnummer import BDEWArtikelnummer
-    from ..enum.mengeneinheit import Mengeneinheit
     from ..zusatz_attribut import ZusatzAttribut
     from .betrag import Betrag
     from .menge import Menge
@@ -43,7 +44,7 @@ class Rechnungsposition(BaseModel):
     """
     Standardisierte vom BDEW herausgegebene Liste, welche im Strommarkt die BDEW-Artikelnummer ablöst
     """
-    artikelnummer: Optional["BDEWArtikelnummer"] = None
+    artikelnummer: Optional[BDEWArtikelnummer] = None
     """
     Kennzeichnung der Rechnungsposition mit der Standard-Artikelnummer des BDEW
     """
@@ -94,7 +95,7 @@ class Rechnungsposition(BaseModel):
     Z.B. bei einem Jahrespreis, 3 Monate oder 146 Tage.
     Basierend darauf wird der Preis aufgeteilt.
     """
-    zeiteinheit: Optional["Mengeneinheit"] = None
+    zeiteinheit: Optional[Mengeneinheit] = None
     """
     Falls sich der Preis auf eine Zeit bezieht, steht hier die Einheit
     """

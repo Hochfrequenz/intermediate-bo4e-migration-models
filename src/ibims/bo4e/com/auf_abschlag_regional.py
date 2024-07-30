@@ -2,10 +2,11 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.auf_abschlagstyp import AufAbschlagstyp
+from ..enum.auf_abschlagsziel import AufAbschlagsziel
+from ..enum.waehrungseinheit import Waehrungseinheit
+
 if TYPE_CHECKING:
-    from ..enum.auf_abschlagstyp import AufAbschlagstyp
-    from ..enum.auf_abschlagsziel import AufAbschlagsziel
-    from ..enum.waehrungseinheit import Waehrungseinheit
     from ..zusatz_attribut import ZusatzAttribut
     from .auf_abschlag_pro_ort import AufAbschlagProOrt
     from .energiemix import Energiemix
@@ -43,11 +44,11 @@ class AufAbschlagRegional(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    auf_abschlagstyp: Optional["AufAbschlagstyp"] = Field(default=None, alias="aufAbschlagstyp")
+    auf_abschlagstyp: Optional[AufAbschlagstyp] = Field(default=None, alias="aufAbschlagstyp")
     """
     Typ des Aufabschlages (z.B. absolut oder prozentual)
     """
-    auf_abschlagsziel: Optional["AufAbschlagsziel"] = Field(default=None, alias="aufAbschlagsziel")
+    auf_abschlagsziel: Optional[AufAbschlagsziel] = Field(default=None, alias="aufAbschlagsziel")
     """
     Diesem Preis oder den Kosten ist der Auf/Abschlag zugeordnet. Z.B. Arbeitspreis, Gesamtpreis etc.
     """
@@ -63,7 +64,7 @@ class AufAbschlagRegional(BaseModel):
     """
     Bezeichnung des Auf-/Abschlags
     """
-    einheit: Optional["Waehrungseinheit"] = None
+    einheit: Optional[Waehrungseinheit] = None
     """
     Gibt an in welcher Währungseinheit der Auf/Abschlag berechnet wird. Euro oder Ct.
     """

@@ -3,11 +3,12 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.abgabe_art import AbgabeArt
+from ..enum.energierichtung import Energierichtung
+from ..enum.mengeneinheit import Mengeneinheit
+from ..enum.waermenutzung import Waermenutzung
+
 if TYPE_CHECKING:
-    from ..enum.abgabe_art import AbgabeArt
-    from ..enum.energierichtung import Energierichtung
-    from ..enum.mengeneinheit import Mengeneinheit
-    from ..enum.waermenutzung import Waermenutzung
     from ..zusatz_attribut import ZusatzAttribut
     from .konzessionsabgabe import Konzessionsabgabe
     from .verwendungszweck_pro_marktrolle import VerwendungszweckProMarktrolle
@@ -44,7 +45,7 @@ class Zaehlwerk(BaseModel):
     Abrechnungsrelevant
     """
     bezeichnung: Optional[str] = Field(default=None, title="Bezeichnung")
-    einheit: Optional["Mengeneinheit"] = None
+    einheit: Optional[Mengeneinheit] = None
     ist_abrechnungsrelevant: Optional[bool] = Field(
         default=None, alias="istAbrechnungsrelevant", title="Istabrechnungsrelevant"
     )
@@ -74,7 +75,7 @@ class Zaehlwerk(BaseModel):
     Anzahl der Vorkommastellen
     """
     obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
-    richtung: Optional["Energierichtung"] = None
+    richtung: Optional[Energierichtung] = None
     verbrauchsart: Optional[str] = Field(default=None, title="Verbrauchsart")
     verwendungszwecke: Optional[list["VerwendungszweckProMarktrolle"]] = Field(default=None, title="Verwendungszwecke")
     """
@@ -84,7 +85,7 @@ class Zaehlwerk(BaseModel):
     """
     Steuerbefreiung
     """
-    waermenutzung: Optional["Waermenutzung"] = None
+    waermenutzung: Optional[Waermenutzung] = None
     """
     Unterbrechbarkeit Marktlokation
     """
@@ -100,7 +101,7 @@ class Zaehlwerk(BaseModel):
     vorkommastellen: int = Field(..., title="Vorkommastellen")
     nachkommastellen: int = Field(..., title="Nachkommastellen")
     schwachlastfaehig: bool = Field(..., title="Schwachlastfaehig")
-    konzessionsabgaben_typ: Optional["AbgabeArt"] = Field(default=None, alias="konzessionsabgabenTyp")
+    konzessionsabgaben_typ: Optional[AbgabeArt] = Field(default=None, alias="konzessionsabgabenTyp")
     active_from: datetime = Field(..., alias="activeFrom", title="Activefrom")
     active_until: Optional[datetime] = Field(default=None, alias="activeUntil", title="Activeuntil")
     description: Optional[str] = Field(default=None, title="Description")

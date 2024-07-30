@@ -2,9 +2,10 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.auf_abschlagstyp import AufAbschlagstyp
+from ..enum.waehrungseinheit import Waehrungseinheit
+
 if TYPE_CHECKING:
-    from ..enum.auf_abschlagstyp import AufAbschlagstyp
-    from ..enum.waehrungseinheit import Waehrungseinheit
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -36,11 +37,11 @@ class PositionsAufAbschlag(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    auf_abschlagstyp: Optional["AufAbschlagstyp"] = Field(default=None, alias="aufAbschlagstyp")
+    auf_abschlagstyp: Optional[AufAbschlagstyp] = Field(default=None, alias="aufAbschlagstyp")
     """
     Typ des AufAbschlages
     """
-    auf_abschlagswaehrung: Optional["Waehrungseinheit"] = Field(default=None, alias="aufAbschlagswaehrung")
+    auf_abschlagswaehrung: Optional[Waehrungseinheit] = Field(default=None, alias="aufAbschlagswaehrung")
     """
     Einheit, in der der Auf-/Abschlag angegeben ist (z.B. ct/kWh).
     """

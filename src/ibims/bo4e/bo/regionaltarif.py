@@ -3,6 +3,11 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.kundentyp import Kundentyp
+from ..enum.registeranzahl import Registeranzahl
+from ..enum.sparte import Sparte
+from ..enum.tarifmerkmal import Tarifmerkmal
+from ..enum.tariftyp import Tariftyp
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
@@ -14,11 +19,6 @@ if TYPE_CHECKING:
     from ..com.tarifeinschraenkung import Tarifeinschraenkung
     from ..com.vertragskonditionen import Vertragskonditionen
     from ..com.zeitraum import Zeitraum
-    from ..enum.kundentyp import Kundentyp
-    from ..enum.registeranzahl import Registeranzahl
-    from ..enum.sparte import Sparte
-    from ..enum.tarifmerkmal import Tarifmerkmal
-    from ..enum.tariftyp import Tariftyp
     from ..zusatz_attribut import ZusatzAttribut
     from .marktteilnehmer import Marktteilnehmer
 
@@ -41,7 +41,7 @@ class Regionaltarif(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.REGIONALTARIF, alias="_typ")
+    typ: Typ = Field(default=Typ.REGIONALTARIF, alias="_typ")
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
     Version der BO-Struktur aka "fachliche Versionierung"
@@ -68,17 +68,17 @@ class Regionaltarif(BaseModel):
     """
     Der Energiemix, der für diesen Tarif gilt
     """
-    kundentypen: Optional[list["Kundentyp"]] = Field(default=None, title="Kundentypen")
+    kundentypen: Optional[list[Kundentyp]] = Field(default=None, title="Kundentypen")
     """
     Kundentypen für den der Tarif gilt, z.B. Privatkunden
     """
     preisgarantien: Optional[list["RegionalePreisgarantie"]] = Field(default=None, title="Preisgarantien")
     preisstand: Optional[datetime] = Field(default=None, title="Preisstand")
-    registeranzahl: Optional["Registeranzahl"] = None
+    registeranzahl: Optional[Registeranzahl] = None
     """
     Die Art des Tarifes, z.B. Eintarif oder Mehrtarif
     """
-    sparte: Optional["Sparte"] = None
+    sparte: Optional[Sparte] = None
     """
     Strom oder Gas, etc.
     """
@@ -86,12 +86,12 @@ class Regionaltarif(BaseModel):
         default=None, alias="tarifAufAbschlaege", title="Tarifaufabschlaege"
     )
     tarifeinschraenkung: Optional["Tarifeinschraenkung"] = None
-    tarifmerkmale: Optional[list["Tarifmerkmal"]] = Field(default=None, title="Tarifmerkmale")
+    tarifmerkmale: Optional[list[Tarifmerkmal]] = Field(default=None, title="Tarifmerkmale")
     """
     Weitere Merkmale des Tarifs, z.B. Festpreis oder Vorkasse
     """
     tarifpreise: Optional[list["RegionaleTarifpreisposition"]] = Field(default=None, title="Tarifpreise")
-    tariftyp: Optional["Tariftyp"] = None
+    tariftyp: Optional[Tariftyp] = None
     """
     Hinweis auf den Tariftyp, z.B. Grundversorgung oder Sondertarif
     """

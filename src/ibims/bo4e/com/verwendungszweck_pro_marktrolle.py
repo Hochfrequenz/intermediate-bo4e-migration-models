@@ -2,9 +2,10 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.marktrolle import Marktrolle
+from ..enum.verwendungszweck import Verwendungszweck
+
 if TYPE_CHECKING:
-    from ..enum.marktrolle import Marktrolle
-    from ..enum.verwendungszweck import Verwendungszweck
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -33,14 +34,14 @@ class VerwendungszweckProMarktrolle(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    marktrolle: Optional["Marktrolle"] = None
+    marktrolle: Optional[Marktrolle] = None
     """
     Marktrolle, für die die Daten relevant sind
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
-    zwecke: Optional[list["Verwendungszweck"]] = Field(default=None, title="Zwecke")
+    zwecke: Optional[list[Verwendungszweck]] = Field(default=None, title="Zwecke")
     """
     Verwendungszwecke
     """

@@ -2,16 +2,16 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.bilanzierungsmethode import Bilanzierungsmethode
+from ..enum.dienstleistungstyp import Dienstleistungstyp
+from ..enum.netzebene import Netzebene
+from ..enum.preisstatus import Preisstatus
+from ..enum.sparte import Sparte
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.preisposition import Preisposition
     from ..com.zeitraum import Zeitraum
-    from ..enum.bilanzierungsmethode import Bilanzierungsmethode
-    from ..enum.dienstleistungstyp import Dienstleistungstyp
-    from ..enum.netzebene import Netzebene
-    from ..enum.preisstatus import Preisstatus
-    from ..enum.sparte import Sparte
     from ..zusatz_attribut import ZusatzAttribut
     from .geraet import Geraet
     from .marktteilnehmer import Marktteilnehmer
@@ -37,7 +37,7 @@ class PreisblattHardware(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.PREISBLATTHARDWARE, alias="_typ")
+    typ: Typ = Field(default=Typ.PREISBLATTHARDWARE, alias="_typ")
     """
     Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode
     """
@@ -53,7 +53,7 @@ class PreisblattHardware(BaseModel):
     """
     Eine Bezeichnung für das Preisblatt
     """
-    bilanzierungsmethode: Optional["Bilanzierungsmethode"] = None
+    bilanzierungsmethode: Optional[Bilanzierungsmethode] = None
     """
     Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode
     """
@@ -65,7 +65,7 @@ class PreisblattHardware(BaseModel):
     """
     Der Netzbetreiber, der die Preise veröffentlicht hat
     """
-    inklusive_dienstleistungen: Optional[list["Dienstleistungstyp"]] = Field(
+    inklusive_dienstleistungen: Optional[list[Dienstleistungstyp]] = Field(
         default=None, alias="inklusiveDienstleistungen", title="Inklusivedienstleistungen"
     )
     """
@@ -77,7 +77,7 @@ class PreisblattHardware(BaseModel):
     """
     Im Preis sind die hier angegebenen Geräte mit enthalten, z.B. ein Wandler
     """
-    messebene: Optional["Netzebene"] = None
+    messebene: Optional[Netzebene] = None
     """
     Die Preise gelten für Messlokationen in der angebebenen Netzebene
     """
@@ -85,11 +85,11 @@ class PreisblattHardware(BaseModel):
     """
     Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden können. Z.B. Arbeitspreis, Grundpreis etc
     """
-    preisstatus: Optional["Preisstatus"] = None
+    preisstatus: Optional[Preisstatus] = None
     """
     Merkmal, das anzeigt, ob es sich um vorläufige oder endgültige Preise handelt
     """
-    sparte: Optional["Sparte"] = None
+    sparte: Optional[Sparte] = None
     """
     Preisblatt gilt für angegebene Sparte
     """

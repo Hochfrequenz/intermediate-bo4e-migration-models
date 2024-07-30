@@ -2,10 +2,11 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.mengeneinheit import Mengeneinheit
+from ..enum.preisstatus import Preisstatus
+from ..enum.waehrungseinheit import Waehrungseinheit
+
 if TYPE_CHECKING:
-    from ..enum.mengeneinheit import Mengeneinheit
-    from ..enum.preisstatus import Preisstatus
-    from ..enum.waehrungseinheit import Waehrungseinheit
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -34,15 +35,15 @@ class Preis(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    bezugswert: Optional["Mengeneinheit"] = None
+    bezugswert: Optional[Mengeneinheit] = None
     """
     Angabe, für welche Bezugsgröße der Preis gilt. Z.B. kWh.
     """
-    einheit: Optional["Waehrungseinheit"] = None
+    einheit: Optional[Waehrungseinheit] = None
     """
     Währungseinheit für den Preis, z.B. Euro oder Ct.
     """
-    status: Optional["Preisstatus"] = None
+    status: Optional[Preisstatus] = None
     """
     Gibt den Status des veröffentlichten Preises an
     """

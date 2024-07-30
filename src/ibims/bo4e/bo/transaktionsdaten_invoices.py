@@ -2,9 +2,8 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-if TYPE_CHECKING:
-    from ..enum.invoice_status import InvoiceStatus
-    from ..enum.sparte import Sparte
+from ..enum.invoice_status import InvoiceStatus
+from ..enum.sparte import Sparte
 
 
 class TransaktionsdatenInvoices(BaseModel):
@@ -18,7 +17,7 @@ class TransaktionsdatenInvoices(BaseModel):
     )
     migration_id: Optional[str] = Field(default=None, title="Migration_id")
     import_fuer_storno_adhoc: Optional[str] = Field(default=None, title="Import_fuer_storno_adhoc")
-    sparte: Optional["Sparte"] = Field(default=None, title="Sparte")
+    sparte: Optional[Sparte] = Field(default=None, title="Sparte")
     pruefidentifikator: Optional[str] = Field(default=None, title="Pruefidentifikator")
     datenaustauschreferenz: Optional[str] = Field(default=None, title="Datenaustauschreferenz")
     nachrichtendatum: Optional[str] = Field(default=None, title="Nachrichtendatum")
@@ -28,4 +27,4 @@ class TransaktionsdatenInvoices(BaseModel):
     lieferrichtung: Optional[str] = Field(default=None, title="Lieferrichtung")
     referenznummer: Optional[str] = Field(default=None, title="Referenznummer")
     duplikat: Optional[str] = Field(default=None, title="Duplikat")
-    status: "InvoiceStatus" = Field(default=InvoiceStatus.ACCEPTED, title="Status")
+    status: InvoiceStatus = Field(default=InvoiceStatus.ACCEPTED, title="Status")

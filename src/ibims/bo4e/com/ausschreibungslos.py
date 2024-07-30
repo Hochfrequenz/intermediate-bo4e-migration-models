@@ -2,11 +2,12 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.preismodell import Preismodell
+from ..enum.rechnungslegung import Rechnungslegung
+from ..enum.sparte import Sparte
+from ..enum.vertragsform import Vertragsform
+
 if TYPE_CHECKING:
-    from ..enum.preismodell import Preismodell
-    from ..enum.rechnungslegung import Rechnungslegung
-    from ..enum.sparte import Sparte
-    from ..enum.vertragsform import Vertragsform
     from ..zusatz_attribut import ZusatzAttribut
     from .ausschreibungsdetail import Ausschreibungsdetail
     from .menge import Menge
@@ -54,7 +55,7 @@ class Ausschreibungslos(BaseModel):
     """
     Bezeichnung der Ausschreibung
     """
-    energieart: Optional["Sparte"] = None
+    energieart: Optional[Sparte] = None
     """
     Unterscheidungsmöglichkeiten für die Sparte
     """
@@ -74,7 +75,7 @@ class Ausschreibungslos(BaseModel):
     """
     Laufende Nummer des Loses
     """
-    preismodell: Optional["Preismodell"] = None
+    preismodell: Optional[Preismodell] = None
     """
     Bezeichnung der Preismodelle in Ausschreibungen für die Energielieferung
     """
@@ -95,11 +96,11 @@ class Ausschreibungslos(BaseModel):
     """
     Mindesmenge Toleranzband (kWh, %)
     """
-    wunsch_rechnungslegung: Optional["Rechnungslegung"] = Field(default=None, alias="wunschRechnungslegung")
+    wunsch_rechnungslegung: Optional[Rechnungslegung] = Field(default=None, alias="wunschRechnungslegung")
     """
     Aufzählung der Möglichkeiten zur Rechnungslegung in Ausschreibungen
     """
-    wunsch_vertragsform: Optional["Vertragsform"] = Field(default=None, alias="wunschVertragsform")
+    wunsch_vertragsform: Optional[Vertragsform] = Field(default=None, alias="wunschVertragsform")
     """
     Aufzählung der Möglichkeiten zu Vertragsformen in Ausschreibungen
     """

@@ -2,14 +2,14 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.kundengruppe_ka import KundengruppeKA
+from ..enum.preisstatus import Preisstatus
+from ..enum.sparte import Sparte
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.preisposition import Preisposition
     from ..com.zeitraum import Zeitraum
-    from ..enum.kundengruppe_ka import KundengruppeKA
-    from ..enum.preisstatus import Preisstatus
-    from ..enum.sparte import Sparte
     from ..zusatz_attribut import ZusatzAttribut
     from .marktteilnehmer import Marktteilnehmer
 
@@ -34,7 +34,7 @@ class PreisblattKonzessionsabgabe(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.PREISBLATTKONZESSIONSABGABE, alias="_typ")
+    typ: Typ = Field(default=Typ.PREISBLATTKONZESSIONSABGABE, alias="_typ")
     """
     Kundegruppe anhand derer die Höhe der Konzessionabgabe festgelegt ist
     """
@@ -54,7 +54,7 @@ class PreisblattKonzessionsabgabe(BaseModel):
     """
     Der Netzbetreiber, der die Preise veröffentlicht hat
     """
-    kundengruppe_ka: Optional["KundengruppeKA"] = Field(default=None, alias="kundengruppeKA")
+    kundengruppe_ka: Optional[KundengruppeKA] = Field(default=None, alias="kundengruppeKA")
     """
     Kundegruppe anhand derer die Höhe der Konzessionabgabe festgelegt ist
     """
@@ -62,11 +62,11 @@ class PreisblattKonzessionsabgabe(BaseModel):
     """
     Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden können. Z.B. Arbeitspreis, Grundpreis etc
     """
-    preisstatus: Optional["Preisstatus"] = None
+    preisstatus: Optional[Preisstatus] = None
     """
     Merkmal, das anzeigt, ob es sich um vorläufige oder endgültige Preise handelt
     """
-    sparte: Optional["Sparte"] = None
+    sparte: Optional[Sparte] = None
     """
     Preisblatt gilt für angegebene Sparte
     """

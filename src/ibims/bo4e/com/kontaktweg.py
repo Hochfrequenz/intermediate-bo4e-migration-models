@@ -2,8 +2,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.kontaktart import Kontaktart
+
 if TYPE_CHECKING:
-    from ..enum.kontaktart import Kontaktart
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -42,7 +43,7 @@ class Kontaktweg(BaseModel):
     """
     Gibt an, ob es sich um den bevorzugten Kontaktweg handelt.
     """
-    kontaktart: Optional["Kontaktart"] = None
+    kontaktart: Optional[Kontaktart] = None
     """
     Gibt die Kontaktart des Kontaktes an.
     """

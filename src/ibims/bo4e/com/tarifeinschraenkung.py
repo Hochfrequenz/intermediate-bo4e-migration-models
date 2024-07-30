@@ -2,9 +2,10 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.voraussetzungen import Voraussetzungen
+
 if TYPE_CHECKING:
     from ..bo.geraet import Geraet
-    from ..enum.voraussetzungen import Voraussetzungen
     from ..zusatz_attribut import ZusatzAttribut
     from .menge import Menge
 
@@ -44,7 +45,7 @@ class Tarifeinschraenkung(BaseModel):
     Liste der Zähler/Geräte, die erforderlich sind, damit dieser Tarif zur Anwendung gelangen kann.
     (Falls keine Zähler angegeben sind, ist der Tarif nicht an das Vorhandensein bestimmter Zähler gebunden.)
     """
-    voraussetzungen: Optional[list["Voraussetzungen"]] = Field(default=None, title="Voraussetzungen")
+    voraussetzungen: Optional[list[Voraussetzungen]] = Field(default=None, title="Voraussetzungen")
     """
     Voraussetzungen, die erfüllt sein müssen, damit dieser Tarif zur Anwendung kommen kann
     """

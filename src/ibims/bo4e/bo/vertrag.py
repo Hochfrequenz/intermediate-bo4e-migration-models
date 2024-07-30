@@ -3,15 +3,15 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.sparte import Sparte
 from ..enum.typ import Typ
+from ..enum.vertragsart import Vertragsart
+from ..enum.vertragsstatus import Vertragsstatus
 
 if TYPE_CHECKING:
     from ..com.unterschrift import Unterschrift
     from ..com.vertragskonditionen import Vertragskonditionen
     from ..com.vertragsteil import Vertragsteil
-    from ..enum.sparte import Sparte
-    from ..enum.vertragsart import Vertragsart
-    from ..enum.vertragsstatus import Vertragsstatus
     from ..zusatz_attribut import ZusatzAttribut
     from .geschaeftspartner import Geschaeftspartner
 
@@ -37,7 +37,7 @@ class Vertrag(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.VERTRAG, alias="_typ")
+    typ: Typ = Field(default=Typ.VERTRAG, alias="_typ")
     """
     Der Typ des Geschäftsobjektes
     """
@@ -49,7 +49,7 @@ class Vertrag(BaseModel):
     """
     Beschreibung zum Vertrag
     """
-    sparte: Optional["Sparte"] = None
+    sparte: Optional[Sparte] = None
     """
     Unterscheidungsmöglichkeiten für die Sparte
     """
@@ -61,7 +61,7 @@ class Vertrag(BaseModel):
     """
     Unterzeichner des Vertragspartners 2
     """
-    vertragsart: Optional["Vertragsart"] = None
+    vertragsart: Optional[Vertragsart] = None
     """
     Hier ist festgelegt, um welche Art von Vertrag es sich handelt.
     """
@@ -83,7 +83,7 @@ class Vertrag(BaseModel):
     """
     vertragspartner1: "Geschaeftspartner"
     vertragspartner2: "Geschaeftspartner"
-    vertragsstatus: Optional["Vertragsstatus"] = None
+    vertragsstatus: Optional[Vertragsstatus] = None
     """
     Gibt den Status des Vertrags an
     """

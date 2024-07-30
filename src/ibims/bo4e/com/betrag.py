@@ -2,8 +2,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.waehrungscode import Waehrungscode
+
 if TYPE_CHECKING:
-    from ..enum.waehrungscode import Waehrungscode
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -33,7 +34,7 @@ class Betrag(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    waehrung: Optional["Waehrungscode"] = None
+    waehrung: Optional[Waehrungscode] = None
     """
     Gibt den Betrag des Preises an.
     """

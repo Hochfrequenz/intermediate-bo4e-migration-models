@@ -30,7 +30,7 @@ class Standorteigenschaften(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.STANDORTEIGENSCHAFTEN, alias="_typ")
+    typ: Typ = Field(default=Typ.STANDORTEIGENSCHAFTEN, alias="_typ")
     """
     Eigenschaften zur Sparte Strom
     """

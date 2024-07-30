@@ -3,9 +3,10 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.steuerkennzeichen import Steuerkennzeichen
+from ..enum.waehrungscode import Waehrungscode
+
 if TYPE_CHECKING:
-    from ..enum.steuerkennzeichen import Steuerkennzeichen
-    from ..enum.waehrungscode import Waehrungscode
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -38,7 +39,7 @@ class Steuerbetrag(BaseModel):
     """
     Nettobetrag für den die Steuer berechnet wurde. Z.B. 100
     """
-    steuerkennzeichen: Optional["Steuerkennzeichen"] = None
+    steuerkennzeichen: Optional[Steuerkennzeichen] = None
     """
     Kennzeichnung des Steuersatzes, bzw. Verfahrens.
     """
@@ -46,7 +47,7 @@ class Steuerbetrag(BaseModel):
     """
     Aus dem Basiswert berechnete Steuer. Z.B. 19 (bei UST_19)
     """
-    waehrung: Optional["Waehrungscode"] = None
+    waehrung: Optional[Waehrungscode] = None
     """
     Währung. Z.B. Euro.
     """

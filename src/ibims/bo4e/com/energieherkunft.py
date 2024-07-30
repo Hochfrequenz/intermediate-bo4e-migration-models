@@ -2,8 +2,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.erzeugungsart import Erzeugungsart
+
 if TYPE_CHECKING:
-    from ..enum.erzeugungsart import Erzeugungsart
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -36,7 +37,7 @@ class Energieherkunft(BaseModel):
     """
     Prozentualer Anteil der jeweiligen Erzeugungsart.
     """
-    erzeugungsart: Optional["Erzeugungsart"] = None
+    erzeugungsart: Optional[Erzeugungsart] = None
     """
     Art der Erzeugung der Energie.
     """

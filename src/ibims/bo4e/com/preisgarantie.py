@@ -3,8 +3,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.preisgarantietyp import Preisgarantietyp
+
 if TYPE_CHECKING:
-    from ..enum.preisgarantietyp import Preisgarantietyp
     from ..zusatz_attribut import ZusatzAttribut
     from .zeitraum import Zeitraum
 
@@ -38,7 +39,7 @@ class Preisgarantie(BaseModel):
     """
     Freitext zur Beschreibung der Preisgarantie.
     """
-    preisgarantietyp: Optional["Preisgarantietyp"] = None
+    preisgarantietyp: Optional[Preisgarantietyp] = None
     """
     Festlegung, auf welche Preisbestandteile die Garantie gewährt wird.
     """

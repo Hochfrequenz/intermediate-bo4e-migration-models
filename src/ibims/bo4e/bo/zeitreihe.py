@@ -2,15 +2,15 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.medium import Medium
+from ..enum.mengeneinheit import Mengeneinheit
+from ..enum.messart import Messart
+from ..enum.messgroesse import Messgroesse
 from ..enum.typ import Typ
+from ..enum.wertermittlungsverfahren import Wertermittlungsverfahren
 
 if TYPE_CHECKING:
     from ..com.zeitreihenwert import Zeitreihenwert
-    from ..enum.medium import Medium
-    from ..enum.mengeneinheit import Mengeneinheit
-    from ..enum.messart import Messart
-    from ..enum.messgroesse import Messgroesse
-    from ..enum.wertermittlungsverfahren import Wertermittlungsverfahren
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -35,7 +35,7 @@ class Zeitreihe(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.ZEITREIHE, alias="_typ")
+    typ: Typ = Field(default=Typ.ZEITREIHE, alias="_typ")
     """
     Bezeichnung für die Zeitreihe
     """
@@ -47,19 +47,19 @@ class Zeitreihe(BaseModel):
     """
     Bezeichnung für die Zeitreihe
     """
-    einheit: Optional["Mengeneinheit"] = None
+    einheit: Optional[Mengeneinheit] = None
     """
     Alle Werte in der Tabelle haben die Einheit, die hier angegeben ist
     """
-    medium: Optional["Medium"] = None
+    medium: Optional[Medium] = None
     """
     Medium, das gemessen wurde (z.B. Wasser, Dampf, Strom, Gas)
     """
-    messart: Optional["Messart"] = None
+    messart: Optional[Messart] = None
     """
     Beschreibt die Art der Messung (z.B. aktueller Wert, mittlerer Wert, maximaler Wert)
     """
-    messgroesse: Optional["Messgroesse"] = None
+    messgroesse: Optional[Messgroesse] = None
     """
     Beschreibt, was gemessen wurde (z.B. Strom, Spannung, Wirkleistung, Scheinleistung)
     """
@@ -71,7 +71,7 @@ class Zeitreihe(BaseModel):
     """
     Hier liegen jeweils die Werte
     """
-    wertherkunft: Optional["Wertermittlungsverfahren"] = None
+    wertherkunft: Optional[Wertermittlungsverfahren] = None
     """
     Kennzeichnung, wie die Werte entstanden sind, z.B. durch Messung
     """

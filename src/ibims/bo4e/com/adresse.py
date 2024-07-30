@@ -45,7 +45,7 @@ class Adresse(BaseModel):
     """
     Hausnummer inkl. Zusatz; z.B. "3", "4a"
     """
-    landescode: Optional["Landescode"] = Landescode.DE
+    landescode: Optional[Landescode] = Landescode.DE
     """
     Offizieller ISO-Landescode
     """

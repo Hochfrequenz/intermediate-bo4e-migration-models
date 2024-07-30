@@ -3,8 +3,7 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-if TYPE_CHECKING:
-    from ..enum.mengeneinheit import Mengeneinheit
+from ..enum.mengeneinheit import Mengeneinheit
 
 
 class Zaehlpunkt(BaseModel):
@@ -21,8 +20,8 @@ class Zaehlpunkt(BaseModel):
     periodenverbrauch_vorhersage: Decimal = Field(
         ..., alias="periodenverbrauchVorhersage", title="Periodenverbrauchvorhersage"
     )
-    einheit_vorhersage: "Mengeneinheit" = Field(default=Mengeneinheit.KWH, alias="einheitVorhersage")
+    einheit_vorhersage: Mengeneinheit = Field(default=Mengeneinheit.KWH, alias="einheitVorhersage")
     zeitreihentyp: str = Field(default="Z21", title="Zeitreihentyp")
     kunden_wert: Optional[Decimal] = Field(..., alias="kundenWert", title="Kundenwert")
-    einheit_kunde: Optional["Mengeneinheit"] = Field(default=None, alias="einheitKunde")
+    einheit_kunde: Optional[Mengeneinheit] = Field(default=None, alias="einheitKunde")
     grundzustaendiger: bool = Field(default=True, title="Grundzustaendiger")

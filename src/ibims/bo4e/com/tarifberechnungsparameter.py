@@ -2,9 +2,10 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.messpreistyp import Messpreistyp
+from ..enum.tarifkalkulationsmethode import Tarifkalkulationsmethode
+
 if TYPE_CHECKING:
-    from ..enum.messpreistyp import Messpreistyp
-    from ..enum.tarifkalkulationsmethode import Tarifkalkulationsmethode
     from ..zusatz_attribut import ZusatzAttribut
     from .preis import Preis
     from .tarifpreis import Tarifpreis
@@ -34,7 +35,7 @@ class Tarifberechnungsparameter(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    berechnungsmethode: Optional["Tarifkalkulationsmethode"] = None
+    berechnungsmethode: Optional[Tarifkalkulationsmethode] = None
     """
     Gibt an, wie die Einzelpreise des Tarifes zu verarbeiten sind
     """
@@ -67,7 +68,7 @@ class Tarifberechnungsparameter(BaseModel):
     """
     Intervall, indem die über "kwInklusive" hinaus abgenommene Leistung kostenpflichtig wird (z.B. je 5 kW 20 EURO)
     """
-    messpreistyp: Optional["Messpreistyp"] = None
+    messpreistyp: Optional[Messpreistyp] = None
     """
     Typ des Messpreises
     """

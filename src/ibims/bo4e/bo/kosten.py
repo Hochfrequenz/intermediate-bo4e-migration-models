@@ -2,13 +2,13 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.kostenklasse import Kostenklasse
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.betrag import Betrag
     from ..com.kostenblock import Kostenblock
     from ..com.zeitraum import Zeitraum
-    from ..enum.kostenklasse import Kostenklasse
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -33,7 +33,7 @@ class Kosten(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.KOSTEN, alias="_typ")
+    typ: Typ = Field(default=Typ.KOSTEN, alias="_typ")
     """
     Klasse der Kosten, beispielsweise Fremdkosten
     """
@@ -49,7 +49,7 @@ class Kosten(BaseModel):
     """
     In Kostenblöcken werden Kostenpositionen zusammengefasst. Beispiele: Netzkosten, Umlagen, Steuern etc
     """
-    kostenklasse: Optional["Kostenklasse"] = None
+    kostenklasse: Optional[Kostenklasse] = None
     """
     Klasse der Kosten, beispielsweise Fremdkosten
     """

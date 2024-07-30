@@ -2,16 +2,16 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.e_mobilitaetsart import EMobilitaetsart
+from ..enum.erzeugungsart import Erzeugungsart
+from ..enum.speicherart import Speicherart
+from ..enum.technische_ressource_nutzung import TechnischeRessourceNutzung
+from ..enum.technische_ressource_verbrauchsart import TechnischeRessourceVerbrauchsart
 from ..enum.typ import Typ
+from ..enum.waermenutzung import Waermenutzung
 
 if TYPE_CHECKING:
     from ..com.menge import Menge
-    from ..enum.e_mobilitaetsart import EMobilitaetsart
-    from ..enum.erzeugungsart import Erzeugungsart
-    from ..enum.speicherart import Speicherart
-    from ..enum.technische_ressource_nutzung import TechnischeRessourceNutzung
-    from ..enum.technische_ressource_verbrauchsart import TechnischeRessourceVerbrauchsart
-    from ..enum.waermenutzung import Waermenutzung
     from ..zusatz_attribut import ZusatzAttribut
     from .lokationszuordnung import Lokationszuordnung
 
@@ -36,7 +36,7 @@ class TechnischeRessource(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.TECHNISCHERESSOURCE, alias="_typ")
+    typ: Typ = Field(default=Typ.TECHNISCHERESSOURCE, alias="_typ")
     """
     Identifikationsnummer einer technischen Ressource
     """
@@ -44,11 +44,11 @@ class TechnischeRessource(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    emobilitaetsart: Optional["EMobilitaetsart"] = None
+    emobilitaetsart: Optional[EMobilitaetsart] = None
     """
     Art der E-Mobilität
     """
-    erzeugungsart: Optional["Erzeugungsart"] = None
+    erzeugungsart: Optional[Erzeugungsart] = None
     """
     Art der Erzeugung der Energie
     """
@@ -70,7 +70,7 @@ class TechnischeRessource(BaseModel):
     """
     Nennleistung (Aufnahme)
     """
-    speicherart: Optional["Speicherart"] = None
+    speicherart: Optional[Speicherart] = None
     """
     Art des Speichers
     """
@@ -84,13 +84,13 @@ class TechnischeRessource(BaseModel):
     """
     Identifikationsnummer einer technischen Ressource
     """
-    technische_ressource_nutzung: Optional["TechnischeRessourceNutzung"] = Field(
+    technische_ressource_nutzung: Optional[TechnischeRessourceNutzung] = Field(
         default=None, alias="technischeRessourceNutzung"
     )
     """
     Art und Nutzung der technischen Ressource
     """
-    technische_ressource_verbrauchsart: Optional["TechnischeRessourceVerbrauchsart"] = Field(
+    technische_ressource_verbrauchsart: Optional[TechnischeRessourceVerbrauchsart] = Field(
         default=None, alias="technischeRessourceVerbrauchsart"
     )
     """
@@ -102,7 +102,7 @@ class TechnischeRessource(BaseModel):
     """
     Vorgelagerte Messlokation ID
     """
-    waermenutzung: Optional["Waermenutzung"] = None
+    waermenutzung: Optional[Waermenutzung] = None
     """
     Wärmenutzung
     """

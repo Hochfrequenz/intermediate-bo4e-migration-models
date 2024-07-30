@@ -3,8 +3,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.mengeneinheit import Mengeneinheit
+
 if TYPE_CHECKING:
-    from ..enum.mengeneinheit import Mengeneinheit
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -38,7 +39,7 @@ class Zeitraum(BaseModel):
     Version der BO-Struktur aka "fachliche Versionierung"
     """
     dauer: Optional[float] = Field(default=None, title="Dauer")
-    einheit: Optional["Mengeneinheit"] = None
+    einheit: Optional[Mengeneinheit] = None
     enddatum: Optional[datetime] = Field(default=None, title="Enddatum")
     endzeitpunkt: Optional[datetime] = Field(default=None, title="Endzeitpunkt")
     startdatum: Optional[datetime] = Field(default=None, title="Startdatum")

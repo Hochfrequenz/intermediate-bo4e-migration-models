@@ -3,14 +3,14 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.ausschreibungsportal import Ausschreibungsportal
+from ..enum.ausschreibungsstatus import Ausschreibungsstatus
+from ..enum.ausschreibungstyp import Ausschreibungstyp
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.ausschreibungslos import Ausschreibungslos
     from ..com.zeitraum import Zeitraum
-    from ..enum.ausschreibungsportal import Ausschreibungsportal
-    from ..enum.ausschreibungsstatus import Ausschreibungsstatus
-    from ..enum.ausschreibungstyp import Ausschreibungstyp
     from ..zusatz_attribut import ZusatzAttribut
     from .geschaeftspartner import Geschaeftspartner
 
@@ -35,7 +35,7 @@ class Ausschreibung(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.AUSSCHREIBUNG, alias="_typ")
+    typ: Typ = Field(default=Typ.AUSSCHREIBUNG, alias="_typ")
     """
     Vom Herausgeber der Ausschreibung vergebene eindeutige Nummer
     """
@@ -45,7 +45,7 @@ class Ausschreibung(BaseModel):
     """
     abgabefrist: Optional["Zeitraum"] = None
     ausschreibender: Optional["Geschaeftspartner"] = None
-    ausschreibungportal: Optional["Ausschreibungsportal"] = None
+    ausschreibungportal: Optional[Ausschreibungsportal] = None
     """
     Aufzählung der unterstützten Ausschreibungsportale
     """
@@ -53,11 +53,11 @@ class Ausschreibung(BaseModel):
     """
     Vom Herausgeber der Ausschreibung vergebene eindeutige Nummer
     """
-    ausschreibungsstatus: Optional["Ausschreibungsstatus"] = None
+    ausschreibungsstatus: Optional[Ausschreibungsstatus] = None
     """
     Bezeichnungen für die Ausschreibungsphasen
     """
-    ausschreibungstyp: Optional["Ausschreibungstyp"] = None
+    ausschreibungstyp: Optional[Ausschreibungstyp] = None
     """
     Aufzählung für die Typisierung von Ausschreibungen
     """

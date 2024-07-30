@@ -2,11 +2,11 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.lokationstyp import Lokationstyp
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.verbrauch import Verbrauch
-    from ..enum.lokationstyp import Lokationstyp
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -30,7 +30,7 @@ class Energiemenge(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.ENERGIEMENGE, alias="_typ")
+    typ: Typ = Field(default=Typ.ENERGIEMENGE, alias="_typ")
     """
     Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört
     """
@@ -46,7 +46,7 @@ class Energiemenge(BaseModel):
     """
     Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört
     """
-    lokationstyp: Optional["Lokationstyp"] = None
+    lokationstyp: Optional[Lokationstyp] = None
     """
     Gibt an, ob es sich um eine Markt- oder Messlokation handelt
     """

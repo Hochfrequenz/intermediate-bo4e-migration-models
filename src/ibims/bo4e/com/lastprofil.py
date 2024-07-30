@@ -2,8 +2,7 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-if TYPE_CHECKING:
-    from ..enum.profiltyp import Profiltyp
+from ..enum.profiltyp import Profiltyp
 
 
 class Lastprofil(BaseModel):
@@ -21,4 +20,4 @@ class Lastprofil(BaseModel):
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     bezeichnung: Optional[str] = Field(default=None, title="Bezeichnung")
     einspeisung: bool = Field(default=False, title="Einspeisung")
-    profilart: Optional["Profiltyp"] = None
+    profilart: Optional[Profiltyp] = None

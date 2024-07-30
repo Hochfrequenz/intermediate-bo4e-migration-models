@@ -3,14 +3,14 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.anrede import Anrede
+from ..enum.titel import Titel
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.adresse import Adresse
     from ..com.kontaktweg import Kontaktweg
     from ..com.zustaendigkeit import Zustaendigkeit
-    from ..enum.anrede import Anrede
-    from ..enum.titel import Titel
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -34,7 +34,7 @@ class Person(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.PERSON, alias="_typ")
+    typ: Typ = Field(default=Typ.PERSON, alias="_typ")
     """
     Mögliche Anrede der Person
     """
@@ -46,7 +46,7 @@ class Person(BaseModel):
     """
     Adresse der Person, falls diese von der Adresse des Geschäftspartners abweicht
     """
-    anrede: Optional["Anrede"] = None
+    anrede: Optional[Anrede] = None
     """
     Mögliche Anrede der Person
     """
@@ -67,7 +67,7 @@ class Person(BaseModel):
     """
     Nachname (Familienname) der Person
     """
-    titel: Optional["Titel"] = None
+    titel: Optional[Titel] = None
     """
     Möglicher Titel der Person
     """

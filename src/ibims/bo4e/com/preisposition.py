@@ -2,15 +2,16 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.bdew_artikelnummer import BDEWArtikelnummer
+from ..enum.bemessungsgroesse import Bemessungsgroesse
+from ..enum.kalkulationsmethode import Kalkulationsmethode
+from ..enum.leistungstyp import Leistungstyp
+from ..enum.mengeneinheit import Mengeneinheit
+from ..enum.steuerkennzeichen import Steuerkennzeichen
+from ..enum.tarifzeit import Tarifzeit
+from ..enum.waehrungseinheit import Waehrungseinheit
+
 if TYPE_CHECKING:
-    from ..enum.bdew_artikelnummer import BDEWArtikelnummer
-    from ..enum.bemessungsgroesse import Bemessungsgroesse
-    from ..enum.kalkulationsmethode import Kalkulationsmethode
-    from ..enum.leistungstyp import Leistungstyp
-    from ..enum.mengeneinheit import Mengeneinheit
-    from ..enum.steuerkennzeichen import Steuerkennzeichen
-    from ..enum.tarifzeit import Tarifzeit
-    from ..enum.waehrungseinheit import Waehrungseinheit
     from ..zusatz_attribut import ZusatzAttribut
     from .preisstaffel import Preisstaffel
 
@@ -40,16 +41,16 @@ class Preisposition(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    bdew_artikelnummer: Optional["BDEWArtikelnummer"] = Field(default=None, alias="bdewArtikelnummer")
+    bdew_artikelnummer: Optional[BDEWArtikelnummer] = Field(default=None, alias="bdewArtikelnummer")
     """
     Eine vom BDEW standardisierte Bezeichnug für die abgerechnete Leistungserbringung;
     Diese Artikelnummer wird auch im Rechnungsteil der INVOIC verwendet.
     """
-    berechnungsmethode: Optional["Kalkulationsmethode"] = None
+    berechnungsmethode: Optional[Kalkulationsmethode] = None
     """
     Das Modell, das der Preisbildung zugrunde liegt
     """
-    bezugsgroesse: Optional["Mengeneinheit"] = None
+    bezugsgroesse: Optional[Mengeneinheit] = None
     """
     Hier wird festgelegt, auf welche Bezugsgrösse sich der Preis bezieht, z.B. kWh oder Stück
     """
@@ -74,11 +75,11 @@ class Preisposition(BaseModel):
     """
     Bezeichnung für die in der Position abgebildete Leistungserbringung
     """
-    leistungstyp: Optional["Leistungstyp"] = None
+    leistungstyp: Optional[Leistungstyp] = None
     """
     Standardisierte Bezeichnung für die abgerechnete Leistungserbringung
     """
-    preiseinheit: Optional["Waehrungseinheit"] = None
+    preiseinheit: Optional[Waehrungseinheit] = None
     """
     Festlegung, mit welcher Preiseinheit abgerechnet wird, z.B. Ct. oder €
     """
@@ -86,20 +87,20 @@ class Preisposition(BaseModel):
     """
     Preisstaffeln, die zu dieser Preisposition gehören
     """
-    tarifzeit: Optional["Tarifzeit"] = None
+    tarifzeit: Optional[Tarifzeit] = None
     """
     Festlegung, für welche Tarifzeit der Preis hier festgelegt ist
     """
-    zeitbasis: Optional["Mengeneinheit"] = None
+    zeitbasis: Optional[Mengeneinheit] = None
     """
     Die Zeit(dauer) auf die sich der Preis bezieht.
     Z.B. ein Jahr für einen Leistungspreis der in €/kW/Jahr ausgegeben wird
     """
-    zonungsgroesse: Optional["Bemessungsgroesse"] = None
+    zonungsgroesse: Optional[Bemessungsgroesse] = None
     """
     Mit der Menge der hier angegebenen Größe wird die Staffelung/Zonung durchgeführt. Z.B. Vollbenutzungsstunden
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
-    steuersatz: "Steuerkennzeichen"
+    steuersatz: Steuerkennzeichen

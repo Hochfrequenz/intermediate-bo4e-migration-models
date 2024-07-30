@@ -3,11 +3,11 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.sparte import Sparte
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.angebotsvariante import Angebotsvariante
-    from ..enum.sparte import Sparte
     from ..zusatz_attribut import ZusatzAttribut
     from .geschaeftspartner import Geschaeftspartner
     from .person import Person
@@ -36,7 +36,7 @@ class Angebot(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.ANGEBOT, alias="_typ")
+    typ: Typ = Field(default=Typ.ANGEBOT, alias="_typ")
     """
     Eindeutige Nummer des Angebotes
     """
@@ -68,7 +68,7 @@ class Angebot(BaseModel):
     """
     Bis zu diesem Zeitpunkt (Tag/Uhrzeit) inklusive gilt das Angebot
     """
-    sparte: Optional["Sparte"] = None
+    sparte: Optional[Sparte] = None
     """
     Sparte, für die das Angebot abgegeben wird (Strom/Gas)
     """

@@ -2,12 +2,12 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.marktrolle import Marktrolle
+from ..enum.steuerkanal_leistungsbeschreibung import SteuerkanalLeistungsbeschreibung
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.konfigurationsprodukt import Konfigurationsprodukt
-    from ..enum.marktrolle import Marktrolle
-    from ..enum.steuerkanal_leistungsbeschreibung import SteuerkanalLeistungsbeschreibung
     from ..zusatz_attribut import ZusatzAttribut
     from .lokationszuordnung import Lokationszuordnung
 
@@ -32,7 +32,7 @@ class SteuerbareRessource(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.STEUERBARERESSOURCE, alias="_typ")
+    typ: Typ = Field(default=Typ.STEUERBARERESSOURCE, alias="_typ")
     """
     Id der steuerbaren Ressource
     """
@@ -40,7 +40,7 @@ class SteuerbareRessource(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    eigenschaft_msb_lokation: Optional["Marktrolle"] = Field(default=None, alias="eigenschaftMsbLokation")
+    eigenschaft_msb_lokation: Optional[Marktrolle] = Field(default=None, alias="eigenschaftMsbLokation")
     """
     Eigenschaft des Messstellenbetreibers an der Lokation
     """
@@ -66,7 +66,7 @@ class SteuerbareRessource(BaseModel):
     """
     Id der steuerbaren Ressource
     """
-    steuerkanal_leistungsbeschreibung: Optional["SteuerkanalLeistungsbeschreibung"] = Field(
+    steuerkanal_leistungsbeschreibung: Optional[SteuerkanalLeistungsbeschreibung] = Field(
         default=None, alias="steuerkanalLeistungsbeschreibung"
     )
     """

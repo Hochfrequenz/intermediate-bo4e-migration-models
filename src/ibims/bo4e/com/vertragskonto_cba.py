@@ -3,9 +3,10 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.kontaktart import Kontaktart
+
 if TYPE_CHECKING:
     from ..bo.vertrag import Vertrag
-    from ..enum.kontaktart import Kontaktart
     from .adresse import Adresse
 
 
@@ -25,7 +26,7 @@ class VertragskontoCBA(BaseModel):
     ouid: int = Field(..., title="Ouid")
     vertrags_adresse: "Adresse" = Field(..., alias="vertragsAdresse")
     vertragskontonummer: str = Field(..., title="Vertragskontonummer")
-    rechnungsstellung: "Kontaktart"
+    rechnungsstellung: Kontaktart
     vertrag: "Vertrag"
     erstellungsdatum: datetime = Field(..., title="Erstellungsdatum")
     enddatum: Optional[datetime] = Field(default=None, title="Enddatum")

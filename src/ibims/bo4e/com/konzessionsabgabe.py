@@ -2,8 +2,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.abgabe_art import AbgabeArt
+
 if TYPE_CHECKING:
-    from ..enum.abgabe_art import AbgabeArt
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -40,7 +41,7 @@ class Konzessionsabgabe(BaseModel):
     """
     Konzessionsabgabe in E/kWh
     """
-    satz: Optional["AbgabeArt"] = None
+    satz: Optional[AbgabeArt] = None
     """
     Art der Abgabe
     """

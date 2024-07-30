@@ -3,17 +3,17 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.kundentyp import Kundentyp
+from ..enum.registeranzahl import Registeranzahl
+from ..enum.sparte import Sparte
+from ..enum.tarifmerkmal import Tarifmerkmal
+from ..enum.tariftyp import Tariftyp
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.energiemix import Energiemix
     from ..com.vertragskonditionen import Vertragskonditionen
     from ..com.zeitraum import Zeitraum
-    from ..enum.kundentyp import Kundentyp
-    from ..enum.registeranzahl import Registeranzahl
-    from ..enum.sparte import Sparte
-    from ..enum.tarifmerkmal import Tarifmerkmal
-    from ..enum.tariftyp import Tariftyp
     from ..zusatz_attribut import ZusatzAttribut
     from .kosten import Kosten
     from .marktteilnehmer import Marktteilnehmer
@@ -39,7 +39,7 @@ class Tarifkosten(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.TARIFKOSTEN, alias="_typ")
+    typ: Typ = Field(default=Typ.TARIFKOSTEN, alias="_typ")
     """
     Name des Tarifs
     """
@@ -69,23 +69,23 @@ class Tarifkosten(BaseModel):
     Der Energiemix, der für diesen Tarif gilt
     """
     kosten: Optional["Kosten"] = None
-    kundentypen: Optional[list["Kundentyp"]] = Field(default=None, title="Kundentypen")
+    kundentypen: Optional[list[Kundentyp]] = Field(default=None, title="Kundentypen")
     """
     Kundentypen für den der Tarif gilt, z.B. Privatkunden
     """
-    registeranzahl: Optional["Registeranzahl"] = None
+    registeranzahl: Optional[Registeranzahl] = None
     """
     Die Art des Tarifes, z.B. Eintarif oder Mehrtarif
     """
-    sparte: Optional["Sparte"] = None
+    sparte: Optional[Sparte] = None
     """
     Strom oder Gas, etc.
     """
-    tarifmerkmale: Optional[list["Tarifmerkmal"]] = Field(default=None, title="Tarifmerkmale")
+    tarifmerkmale: Optional[list[Tarifmerkmal]] = Field(default=None, title="Tarifmerkmale")
     """
     Weitere Merkmale des Tarifs, z.B. Festpreis oder Vorkasse
     """
-    tariftyp: Optional["Tariftyp"] = None
+    tariftyp: Optional[Tariftyp] = None
     """
     Hinweis auf den Tariftyp, z.B. Grundversorgung oder Sondertarif
     """

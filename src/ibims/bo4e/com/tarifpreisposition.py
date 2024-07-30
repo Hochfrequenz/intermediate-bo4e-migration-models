@@ -2,10 +2,11 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.mengeneinheit import Mengeneinheit
+from ..enum.preistyp import Preistyp
+from ..enum.waehrungseinheit import Waehrungseinheit
+
 if TYPE_CHECKING:
-    from ..enum.mengeneinheit import Mengeneinheit
-    from ..enum.preistyp import Preistyp
-    from ..enum.waehrungseinheit import Waehrungseinheit
     from ..zusatz_attribut import ZusatzAttribut
     from .preisstaffel import Preisstaffel
 
@@ -35,15 +36,15 @@ class Tarifpreisposition(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    bezugseinheit: Optional["Mengeneinheit"] = None
+    bezugseinheit: Optional[Mengeneinheit] = None
     """
     Größe, auf die sich die Einheit bezieht, beispielsweise kWh, Jahr
     """
-    einheit: Optional["Waehrungseinheit"] = None
+    einheit: Optional[Waehrungseinheit] = None
     """
     Einheit des Preises (z.B. EURO)
     """
-    mengeneinheitstaffel: Optional["Mengeneinheit"] = None
+    mengeneinheitstaffel: Optional[Mengeneinheit] = None
     """
     Gibt an, nach welcher Menge die vorgenannte Einschränkung erfolgt (z.B. Jahresstromverbrauch in kWh)
     """
@@ -51,7 +52,7 @@ class Tarifpreisposition(BaseModel):
     """
     Hier sind die Staffeln mit ihren Preisenangaben definiert
     """
-    preistyp: Optional["Preistyp"] = None
+    preistyp: Optional[Preistyp] = None
     """
     Angabe des Preistypes (z.B. Grundpreis)
     """

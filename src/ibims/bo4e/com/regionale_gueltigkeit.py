@@ -2,8 +2,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.gueltigkeitstyp import Gueltigkeitstyp
+
 if TYPE_CHECKING:
-    from ..enum.gueltigkeitstyp import Gueltigkeitstyp
     from ..zusatz_attribut import ZusatzAttribut
     from .kriterium_wert import KriteriumWert
 
@@ -33,7 +34,7 @@ class RegionaleGueltigkeit(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    gueltigkeitstyp: Optional["Gueltigkeitstyp"] = None
+    gueltigkeitstyp: Optional[Gueltigkeitstyp] = None
     """
     Unterscheidung ob Positivliste oder Negativliste übertragen wird
     """

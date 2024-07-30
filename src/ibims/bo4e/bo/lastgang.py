@@ -2,13 +2,13 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.mengeneinheit import Mengeneinheit
+from ..enum.sparte import Sparte
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.menge import Menge
     from ..com.zeitreihenwert import Zeitreihenwert
-    from ..enum.mengeneinheit import Mengeneinheit
-    from ..enum.sparte import Sparte
     from ..zusatz_attribut import ZusatzAttribut
     from .marktlokation import Marktlokation
     from .messlokation import Messlokation
@@ -35,7 +35,7 @@ class Lastgang(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.LASTGANG, alias="_typ")
+    typ: Typ = Field(default=Typ.LASTGANG, alias="_typ")
     """
     Angabe, ob es sich um einen Gas- oder Stromlastgang handelt
     """
@@ -43,7 +43,7 @@ class Lastgang(BaseModel):
     """
     Marktlokation, zu der der Lastgang gehört
     """
-    messgroesse: Optional["Mengeneinheit"] = None
+    messgroesse: Optional[Mengeneinheit] = None
     """
     Definition der gemessenen Größe anhand ihrer Einheit
     """
@@ -55,7 +55,7 @@ class Lastgang(BaseModel):
     """
     Die OBIS-Kennzahl für den Wert, die festlegt, welche Größe mit dem Stand gemeldet wird, z.B. '1-0:1.8.1'
     """
-    sparte: Optional["Sparte"] = None
+    sparte: Optional[Sparte] = None
     """
     Angabe, ob es sich um einen Gas- oder Stromlastgang handelt
     """

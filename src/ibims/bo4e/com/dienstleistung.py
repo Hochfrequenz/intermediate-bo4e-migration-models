@@ -2,8 +2,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.dienstleistungstyp import Dienstleistungstyp
+
 if TYPE_CHECKING:
-    from ..enum.dienstleistungstyp import Dienstleistungstyp
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -36,7 +37,7 @@ class Dienstleistung(BaseModel):
     """
     Bezeichnung der Dienstleistung
     """
-    dienstleistungstyp: Optional["Dienstleistungstyp"] = None
+    dienstleistungstyp: Optional[Dienstleistungstyp] = None
     """
     Kennzeichnung der Dienstleistung
     """

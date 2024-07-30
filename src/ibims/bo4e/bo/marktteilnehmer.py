@@ -2,12 +2,12 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.marktrolle import Marktrolle
+from ..enum.rollencodetyp import Rollencodetyp
+from ..enum.sparte import Sparte
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
-    from ..enum.marktrolle import Marktrolle
-    from ..enum.rollencodetyp import Rollencodetyp
-    from ..enum.sparte import Sparte
     from ..zusatz_attribut import ZusatzAttribut
     from .geschaeftspartner import Geschaeftspartner
 
@@ -32,7 +32,7 @@ class Marktteilnehmer(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.MARKTTEILNEHMER, alias="_typ")
+    typ: Typ = Field(default=Typ.MARKTTEILNEHMER, alias="_typ")
     """
     Gibt im Klartext die Bezeichnung der Marktrolle an
     """
@@ -48,7 +48,7 @@ class Marktteilnehmer(BaseModel):
     """
     Die 1:1-Kommunikationsadresse des Marktteilnehmers. Diese wird in der Marktkommunikation verwendet. Konkret kann dies eine eMail-Adresse oder ein AS4-Endpunkt sein.
     """
-    marktrolle: Optional["Marktrolle"] = None
+    marktrolle: Optional[Marktrolle] = None
     """
     Gibt im Klartext die Bezeichnung der Marktrolle an
     """
@@ -56,11 +56,11 @@ class Marktteilnehmer(BaseModel):
     """
     Gibt die Codenummer der Marktrolle an
     """
-    rollencodetyp: Optional["Rollencodetyp"] = None
+    rollencodetyp: Optional[Rollencodetyp] = None
     """
     Gibt den Typ des Codes an
     """
-    sparte: Optional["Sparte"] = None
+    sparte: Optional[Sparte] = None
     """
     Sparte des Marktteilnehmers, z.B. Gas oder Strom
     """

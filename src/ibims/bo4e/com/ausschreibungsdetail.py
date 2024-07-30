@@ -2,8 +2,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.zaehlertyp import Zaehlertyp
+
 if TYPE_CHECKING:
-    from ..enum.zaehlertyp import Zaehlertyp
     from ..zusatz_attribut import ZusatzAttribut
     from .adresse import Adresse
     from .menge import Menge
@@ -95,7 +96,7 @@ class Ausschreibungsdetail(BaseModel):
     """
     Die Bezeichnung des Zählers an der Marktlokation
     """
-    zaehlertechnik: Optional["Zaehlertyp"] = None
+    zaehlertechnik: Optional[Zaehlertyp] = None
     """
     Spezifikation, um welche Zählertechnik es sich im vorliegenden Fall handelt, z.B. Leistungsmessung
     """

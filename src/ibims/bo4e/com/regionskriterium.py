@@ -2,9 +2,10 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.gueltigkeitstyp import Gueltigkeitstyp
+from ..enum.regionskriteriumtyp import Regionskriteriumtyp
+
 if TYPE_CHECKING:
-    from ..enum.gueltigkeitstyp import Gueltigkeitstyp
-    from ..enum.regionskriteriumtyp import Regionskriteriumtyp
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -33,11 +34,11 @@ class Regionskriterium(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    gueltigkeitstyp: Optional["Gueltigkeitstyp"] = None
+    gueltigkeitstyp: Optional[Gueltigkeitstyp] = None
     """
     Hier wird festgelegt, ob es sich um ein einschließendes oder ausschließendes Kriterium handelt.
     """
-    regionskriteriumtyp: Optional["Regionskriteriumtyp"] = None
+    regionskriteriumtyp: Optional[Regionskriteriumtyp] = None
     """
     Hier wird das Kriterium selbst angegeben, z.B. Bundesland.
     """

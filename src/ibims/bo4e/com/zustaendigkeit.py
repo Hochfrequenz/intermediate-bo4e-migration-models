@@ -2,8 +2,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.themengebiet import Themengebiet
+
 if TYPE_CHECKING:
-    from ..enum.themengebiet import Themengebiet
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -40,7 +41,7 @@ class Zustaendigkeit(BaseModel):
     """
     Berufliche Rolle des Ansprechpartners/ der Person
     """
-    themengebiet: Optional["Themengebiet"] = None
+    themengebiet: Optional[Themengebiet] = None
     """
     Hier kann eine thematische Zuordnung des Ansprechpartners bzw. der Person angegeben werden
     """

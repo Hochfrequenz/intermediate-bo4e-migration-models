@@ -2,9 +2,10 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.messwertstatus import Messwertstatus
+from ..enum.messwertstatuszusatz import Messwertstatuszusatz
+
 if TYPE_CHECKING:
-    from ..enum.messwertstatus import Messwertstatus
-    from ..enum.messwertstatuszusatz import Messwertstatuszusatz
     from ..zusatz_attribut import ZusatzAttribut
     from .zeitspanne import Zeitspanne
 
@@ -34,11 +35,11 @@ class Zeitreihenwert(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    status: Optional["Messwertstatus"] = None
+    status: Optional[Messwertstatus] = None
     """
     Der Status gibt an, wie der Wert zu interpretieren ist, z.B. in Berechnungen.
     """
-    statuszusatz: Optional["Messwertstatuszusatz"] = None
+    statuszusatz: Optional[Messwertstatuszusatz] = None
     """
     Eine Zusatzinformation zum Status, beispielsweise ein Grund für einen fehlenden Wert.
     """

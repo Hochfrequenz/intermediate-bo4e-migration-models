@@ -2,14 +2,14 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.marktrolle import Marktrolle
+from ..enum.sparte import Sparte
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.konfigurationsprodukt import Konfigurationsprodukt
     from ..com.menge import Menge
     from ..com.verwendungszweck_pro_marktrolle import VerwendungszweckProMarktrolle
-    from ..enum.marktrolle import Marktrolle
-    from ..enum.sparte import Sparte
     from ..zusatz_attribut import ZusatzAttribut
     from .lokationszuordnung import Lokationszuordnung
 
@@ -34,7 +34,7 @@ class Netzlokation(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.NETZLOKATION, alias="_typ")
+    typ: Typ = Field(default=Typ.NETZLOKATION, alias="_typ")
     """
     Identifikationsnummer einer Netzlokation, an der Energie entweder verbraucht, oder erzeugt wird
     """
@@ -42,7 +42,7 @@ class Netzlokation(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    eigenschaft_msb_lokation: Optional["Marktrolle"] = Field(default=None, alias="eigenschaftMsbLokation")
+    eigenschaft_msb_lokation: Optional[Marktrolle] = Field(default=None, alias="eigenschaftMsbLokation")
     """
     Eigenschaft des Messstellenbetreibers an der Lokation
     """
@@ -80,7 +80,7 @@ class Netzlokation(BaseModel):
     """
     Die OBIS-Kennzahl für die Netzlokation
     """
-    sparte: Optional["Sparte"] = None
+    sparte: Optional[Sparte] = None
     """
     Sparte der Netzlokation, z.B. Gas oder Strom.
     """

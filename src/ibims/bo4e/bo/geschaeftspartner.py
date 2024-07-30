@@ -3,15 +3,15 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.anrede import Anrede
+from ..enum.geschaeftspartnerrolle import Geschaeftspartnerrolle
+from ..enum.organisationstyp import Organisationstyp
+from ..enum.titel import Titel
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
     from ..com.adresse import Adresse
     from ..com.kontaktweg import Kontaktweg
-    from ..enum.anrede import Anrede
-    from ..enum.geschaeftspartnerrolle import Geschaeftspartnerrolle
-    from ..enum.organisationstyp import Organisationstyp
-    from ..enum.titel import Titel
     from ..zusatz_attribut import ZusatzAttribut
     from .person import Person
 
@@ -39,7 +39,7 @@ class Geschaeftspartner(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.GESCHAEFTSPARTNER, alias="_typ")
+    typ: Typ = Field(default=Typ.GESCHAEFTSPARTNER, alias="_typ")
     """
     Mögliche Anrede der Person
     """
@@ -55,12 +55,12 @@ class Geschaeftspartner(BaseModel):
     """
     Amtsgericht bzw Handelsregistergericht, das die Handelsregisternummer herausgegeben hat
     """
-    anrede: Optional["Anrede"] = None
+    anrede: Optional[Anrede] = None
     """
     Mögliche Anrede der Person
     """
     ansprechpartner: Optional[list["Person"]] = Field(default=None, title="Ansprechpartner")
-    geschaeftspartnerrollen: Optional[list["Geschaeftspartnerrolle"]] = Field(
+    geschaeftspartnerrollen: Optional[list[Geschaeftspartnerrolle]] = Field(
         default=None, title="Geschaeftspartnerrollen"
     )
     """
@@ -87,8 +87,8 @@ class Geschaeftspartner(BaseModel):
     """
     Kontaktwege des Geschäftspartners
     """
-    organisationstyp: Optional["Organisationstyp"] = None
-    titel: Optional["Titel"] = None
+    organisationstyp: Optional[Organisationstyp] = None
+    titel: Optional[Titel] = None
     """
     Möglicher Titel der Person
     """

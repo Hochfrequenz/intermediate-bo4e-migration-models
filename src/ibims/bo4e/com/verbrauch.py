@@ -4,12 +4,13 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.ablesende_rolle import AblesendeRolle
+from ..enum.ablesungsstatus import Ablesungsstatus
+from ..enum.mengeneinheit import Mengeneinheit
+from ..enum.messwertstatus import Messwertstatus
+from ..enum.wertermittlungsverfahren import Wertermittlungsverfahren
+
 if TYPE_CHECKING:
-    from ..enum.ablesende_rolle import AblesendeRolle
-    from ..enum.ablesungsstatus import Ablesungsstatus
-    from ..enum.mengeneinheit import Mengeneinheit
-    from ..enum.messwertstatus import Messwertstatus
-    from ..enum.wertermittlungsverfahren import Wertermittlungsverfahren
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -38,7 +39,7 @@ class Verbrauch(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    einheit: Optional["Mengeneinheit"] = None
+    einheit: Optional[Mengeneinheit] = None
     """
     Gibt die Einheit zum jeweiligen Wert an
     """
@@ -46,7 +47,7 @@ class Verbrauch(BaseModel):
     """
     Exklusives Ende des Zeitraumes, für den der Verbrauch angegeben wird
     """
-    messwertstatus: Optional["Messwertstatus"] = None
+    messwertstatus: Optional[Messwertstatus] = None
     obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
     """
     Die OBIS-Kennzahl für den Wert, die festlegt, welche Größe mit dem Stand gemeldet wird, z.B. '1-0:
@@ -59,7 +60,7 @@ class Verbrauch(BaseModel):
     """
     Gibt den absoluten Wert der Menge an
     """
-    wertermittlungsverfahren: Optional["Wertermittlungsverfahren"] = None
+    wertermittlungsverfahren: Optional[Wertermittlungsverfahren] = None
     """
     Gibt an, ob es sich um eine PROGNOSE oder eine MESSUNG handelt
     """
@@ -72,8 +73,8 @@ class Verbrauch(BaseModel):
     periodenverbrauch_ursprung: Optional[str] = Field(
         default=None, alias="periodenverbrauchUrsprung", title="Periodenverbrauchursprung"
     )
-    ableser: Optional["AblesendeRolle"] = None
-    status: Optional["Ablesungsstatus"] = None
+    ableser: Optional[AblesendeRolle] = None
+    status: Optional[Ablesungsstatus] = None
     energiegehalt_gas: Optional[Decimal] = Field(default=None, alias="energiegehaltGas", title="Energiegehaltgas")
     energiegehalt_gas_gueltig_von: Optional[datetime] = Field(
         default=None, alias="energiegehaltGasGueltigVon", title="Energiegehaltgasgueltigvon"

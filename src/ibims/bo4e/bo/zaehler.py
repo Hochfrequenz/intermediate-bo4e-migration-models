@@ -3,19 +3,19 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.befestigungsart import Befestigungsart
+from ..enum.messwerterfassung import Messwerterfassung
+from ..enum.registeranzahl import Registeranzahl
+from ..enum.sparte import Sparte
 from ..enum.typ import Typ
+from ..enum.zaehlerauspraegung import Zaehlerauspraegung
+from ..enum.zaehlergroesse import Zaehlergroesse
+from ..enum.zaehlertyp import Zaehlertyp
+from ..enum.zaehlertyp_spezifikation import ZaehlertypSpezifikation
 
 if TYPE_CHECKING:
     from ..com.zaehlwerk import Zaehlwerk
     from ..com.zeitraum import Zeitraum
-    from ..enum.befestigungsart import Befestigungsart
-    from ..enum.messwerterfassung import Messwerterfassung
-    from ..enum.registeranzahl import Registeranzahl
-    from ..enum.sparte import Sparte
-    from ..enum.zaehlerauspraegung import Zaehlerauspraegung
-    from ..enum.zaehlergroesse import Zaehlergroesse
-    from ..enum.zaehlertyp import Zaehlertyp
-    from ..enum.zaehlertyp_spezifikation import ZaehlertypSpezifikation
     from ..zusatz_attribut import ZusatzAttribut
     from .geraet import Geraet
     from .geschaeftspartner import Geschaeftspartner
@@ -41,7 +41,7 @@ class Zaehler(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.ZAEHLER, alias="_typ")
+    typ: Typ = Field(default=Typ.ZAEHLER, alias="_typ")
     """
     Typisierung des Zählers
     """
@@ -49,7 +49,7 @@ class Zaehler(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    befestigungsart: Optional["Befestigungsart"] = None
+    befestigungsart: Optional[Befestigungsart] = None
     """
     Besondere Spezifikation des Zählers
     """
@@ -69,20 +69,20 @@ class Zaehler(BaseModel):
     """
     Bis zu diesem Datum (exklusiv) ist der Zähler geeicht.
     """
-    messwerterfassung: Optional["Messwerterfassung"] = Field(default=None, title="Messwerterfassung")
-    registeranzahl: Optional["Registeranzahl"] = None
+    messwerterfassung: Optional[Messwerterfassung] = Field(default=None, title="Messwerterfassung")
+    registeranzahl: Optional[Registeranzahl] = None
     """
     Spezifikation bezüglich unterstützter Tarif
     """
-    sparte: "Sparte"
+    sparte: Sparte
     """
     Nummerierung des Zählers,vergeben durch den Messstellenbetreiber
     """
-    zaehlerauspraegung: Optional["Zaehlerauspraegung"] = None
+    zaehlerauspraegung: Optional[Zaehlerauspraegung] = None
     """
     Strom oder Gas
     """
-    zaehlergroesse: Optional["Zaehlergroesse"] = None
+    zaehlergroesse: Optional[Zaehlergroesse] = None
     """
     Befestigungsart
     """
@@ -98,11 +98,11 @@ class Zaehler(BaseModel):
     """
     Nummerierung des Zählers,vergeben durch den Messstellenbetreiber
     """
-    zaehlertyp: Optional["Zaehlertyp"] = None
+    zaehlertyp: Optional[Zaehlertyp] = None
     """
     Spezifikation die Richtung des Zählers betreffend
     """
-    zaehlertyp_spezifikation: Optional["ZaehlertypSpezifikation"] = Field(default=None, alias="zaehlertypSpezifikation")
+    zaehlertyp_spezifikation: Optional[ZaehlertypSpezifikation] = Field(default=None, alias="zaehlertypSpezifikation")
     """
     Messwerterfassung des Zählers
     """

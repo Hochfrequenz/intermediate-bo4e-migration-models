@@ -2,6 +2,8 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.netzebene import Netzebene
+from ..enum.sparte import Sparte
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
@@ -9,8 +11,6 @@ if TYPE_CHECKING:
     from ..com.dienstleistung import Dienstleistung
     from ..com.geokoordinaten import Geokoordinaten
     from ..com.katasteradresse import Katasteradresse
-    from ..enum.netzebene import Netzebene
-    from ..enum.sparte import Sparte
     from ..zusatz_attribut import ZusatzAttribut
     from .geraet import Geraet
     from .lokationszuordnung import Lokationszuordnung
@@ -37,7 +37,7 @@ class Messlokation(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.MESSLOKATION, alias="_typ")
+    typ: Typ = Field(default=Typ.MESSLOKATION, alias="_typ")
     """
     Die Messlokations-Identifikation; Das ist die frühere Zählpunktbezeichnung
     """
@@ -87,11 +87,11 @@ class Messlokation(BaseModel):
     """
     Zähler, die zu dieser Messlokation gehören
     """
-    netzebene_messung: Optional["Netzebene"] = Field(default=None, alias="netzebeneMessung")
+    netzebene_messung: Optional[Netzebene] = Field(default=None, alias="netzebeneMessung")
     """
     Spannungsebene der Messung
     """
-    sparte: Optional["Sparte"] = None
+    sparte: Optional[Sparte] = None
     """
     Sparte der Messlokation, z.B. Gas oder Strom
     """

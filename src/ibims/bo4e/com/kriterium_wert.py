@@ -2,8 +2,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.tarifregionskriterium import Tarifregionskriterium
+
 if TYPE_CHECKING:
-    from ..enum.tarifregionskriterium import Tarifregionskriterium
     from ..zusatz_attribut import ZusatzAttribut
 
 
@@ -32,7 +33,7 @@ class KriteriumWert(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    kriterium: Optional["Tarifregionskriterium"] = None
+    kriterium: Optional[Tarifregionskriterium] = None
     """
     Hier steht, für welches Kriterium der Wert gilt. Z.B. Postleitzahlen
     """

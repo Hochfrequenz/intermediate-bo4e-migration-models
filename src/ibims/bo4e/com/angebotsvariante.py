@@ -3,8 +3,9 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.angebotsstatus import Angebotsstatus
+
 if TYPE_CHECKING:
-    from ..enum.angebotsstatus import Angebotsstatus
     from ..zusatz_attribut import ZusatzAttribut
     from .angebotsteil import Angebotsteil
     from .betrag import Betrag
@@ -36,7 +37,7 @@ class Angebotsvariante(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    angebotsstatus: Optional["Angebotsstatus"] = None
+    angebotsstatus: Optional[Angebotsstatus] = None
     """
     Gibt den Status eines Angebotes an.
     """

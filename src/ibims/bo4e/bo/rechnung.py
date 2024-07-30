@@ -3,6 +3,11 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..enum.netznutzung_rechnungsart import NetznutzungRechnungsart
+from ..enum.netznutzung_rechnungstyp import NetznutzungRechnungstyp
+from ..enum.rechnungsstatus import Rechnungsstatus
+from ..enum.rechnungstyp import Rechnungstyp
+from ..enum.sparte import Sparte
 from ..enum.typ import Typ
 
 if TYPE_CHECKING:
@@ -10,11 +15,6 @@ if TYPE_CHECKING:
     from ..com.rechnungsposition import Rechnungsposition
     from ..com.steuerbetrag import Steuerbetrag
     from ..com.zeitraum import Zeitraum
-    from ..enum.netznutzung_rechnungsart import NetznutzungRechnungsart
-    from ..enum.netznutzung_rechnungstyp import NetznutzungRechnungstyp
-    from ..enum.rechnungsstatus import Rechnungsstatus
-    from ..enum.rechnungstyp import Rechnungstyp
-    from ..enum.sparte import Sparte
     from ..zusatz_attribut import ZusatzAttribut
     from .geschaeftspartner import Geschaeftspartner
     from .marktlokation import Marktlokation
@@ -41,7 +41,7 @@ class Rechnung(BaseModel):
     """
     Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
-    typ: "Typ" = Field(default=Typ.RECHNUNG, alias="_typ")
+    typ: Typ = Field(default=Typ.RECHNUNG, alias="_typ")
     """
     Der Zeitraum der zugrunde liegenden Lieferung zur Rechnung
     """
@@ -85,11 +85,11 @@ class Rechnung(BaseModel):
     """
     Messlokation, auf die sich die Rechnung bezieht
     """
-    netznutzungrechnungsart: Optional["NetznutzungRechnungsart"] = None
+    netznutzungrechnungsart: Optional[NetznutzungRechnungsart] = None
     """
     Aus der INVOIC entnommen, befüllt wenn es sich um eine Netznutzungsrechnung handelt
     """
-    netznutzungrechnungstyp: Optional["NetznutzungRechnungstyp"] = None
+    netznutzungrechnungstyp: Optional[NetznutzungRechnungstyp] = None
     """
     Aus der INVOIC entnommen, befüllt wenn es sich um eine Netznutzungsrechnung handelt
     """
@@ -127,7 +127,7 @@ class Rechnung(BaseModel):
     """
     Die Rechnungspositionen
     """
-    rechnungsstatus: Optional["Rechnungsstatus"] = None
+    rechnungsstatus: Optional[Rechnungsstatus] = None
     """
     Status der Rechnung zur Kennzeichnung des Bearbeitungsstandes
     """
@@ -135,11 +135,11 @@ class Rechnung(BaseModel):
     """
     Bezeichnung für die vorliegende Rechnung
     """
-    rechnungstyp: "Rechnungstyp"
+    rechnungstyp: Rechnungstyp
     """
     Ein kontextbezogender Rechnungstyp, z.B. Netznutzungsrechnung
     """
-    sparte: Optional["Sparte"] = None
+    sparte: Optional[Sparte] = None
     """
     Sparte (Strom, Gas ...) für die die Rechnung ausgestellt ist
     """
