@@ -91,7 +91,7 @@ class Marktlokation(BaseModel):
     Gibt an, ob es sich um eine unterbrechbare Belieferung handelt
     """
     katasterinformation: Optional["Katasteradresse"] = None
-    kundengruppen: Optional[list["Kundentyp"]] = Field(default=None, title="Kundengruppen")
+    kundengruppen: list["Kundentyp"] = Field(..., title="Kundengruppen")
     """
     Kundengruppen der Marktlokation
     """
