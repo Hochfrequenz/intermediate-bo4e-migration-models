@@ -1,16 +1,19 @@
 from datetime import datetime
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.unterschrift import Unterschrift
-from ..com.vertragskonditionen import Vertragskonditionen
 from ..enum.sparte import Sparte
 from ..enum.typ import Typ
 from ..enum.vertragsart import Vertragsart
 from ..enum.vertragsstatus import Vertragsstatus
-from ..zusatz_attribut import ZusatzAttribut
-from .geschaeftspartner import Geschaeftspartner
-from .vertrag import Vertrag
+
+if TYPE_CHECKING:
+    from ..com.unterschrift import Unterschrift
+    from ..com.vertragskonditionen import Vertragskonditionen
+    from ..zusatz_attribut import ZusatzAttribut
+    from .geschaeftspartner import Geschaeftspartner
+    from .vertrag import Vertrag
 
 
 class Buendelvertrag(BaseModel):
@@ -23,59 +26,77 @@ class Buendelvertrag(BaseModel):
         <object data="../_static/images/bo4e/bo/Buendelvertrag.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Buendelvertrag JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/Buendelvertrag.json>`_
+        `Buendelvertrag JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/bo/Buendelvertrag.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ", description="Der Typ des Geschäftsobjektes")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    beschreibung: str | None = Field(default=None, description="Beschreibung zum Vertrag", title="Beschreibung")
-    einzelvertraege: list[Vertrag] | None = Field(
-        default=None, description="Die Liste mit den Einzelverträgen zu den Abnahmestellen", title="Einzelvertraege"
-    )
-    sparte: Sparte | None = Field(default=None, description="Unterscheidungsmöglichkeiten für die Sparte")
-    unterzeichnervp1: list[Unterschrift] | None = Field(
-        default=None, description="Unterzeichner des Vertragspartners1", title="Unterzeichnervp1"
-    )
-    unterzeichnervp2: list[Unterschrift] | None = Field(
-        default=None, description="Unterzeichner des Vertragspartners2", title="Unterzeichnervp2"
-    )
-    vertragsart: Vertragsart | None = Field(
-        default=None,
-        description="Hier ist festgelegt, um welche Art von Vertrag es sich handelt. Z.B. Netznutzungvertrag",
-    )
-    vertragsbeginn: datetime | None = Field(
-        default=None, description="Gibt an, wann der Vertrag beginnt (inklusiv)", title="Vertragsbeginn"
-    )
-    vertragsende: datetime | None = Field(
-        default=None,
-        description="Gibt an, wann der Vertrag (voraussichtlich) endet oder beendet wurde (exklusiv)",
-        title="Vertragsende",
-    )
-    vertragskonditionen: list[Vertragskonditionen] | None = Field(
-        default=None, description="Festlegungen zu Laufzeiten und Kündigungsfristen", title="Vertragskonditionen"
-    )
-    vertragsnummer: str | None = Field(
-        default=None, description="Eine im Verwendungskontext eindeutige Nummer für den Vertrag", title="Vertragsnummer"
-    )
-    vertragspartner1: Geschaeftspartner | None = Field(
-        default=None, description='Beispiel: "Vertrag zwischen Vertagspartner 1 ..."'
-    )
-    vertragspartner2: Geschaeftspartner | None = Field(
-        default=None, description='Beispiel "Vertrag zwischen Vertagspartner 1 und Vertragspartner 2"'
-    )
-    vertragsstatus: Vertragsstatus | None = Field(default=None, description="Gibt den Status des Vertrages an")
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.BUENDELVERTRAG, alias="_typ")
+    """
+    Der Typ des Geschäftsobjektes
+    """
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    beschreibung: Optional[str] = Field(default=None, title="Beschreibung")
+    """
+    Beschreibung zum Vertrag
+    """
+    einzelvertraege: Optional[list["Vertrag"]] = Field(default=None, title="Einzelvertraege")
+    """
+    Die Liste mit den Einzelverträgen zu den Abnahmestellen
+    """
+    sparte: Optional[Sparte] = None
+    """
+    Unterscheidungsmöglichkeiten für die Sparte
+    """
+    unterzeichnervp1: Optional[list["Unterschrift"]] = Field(default=None, title="Unterzeichnervp1")
+    """
+    Unterzeichner des Vertragspartners1
+    """
+    unterzeichnervp2: Optional[list["Unterschrift"]] = Field(default=None, title="Unterzeichnervp2")
+    """
+    Unterzeichner des Vertragspartners2
+    """
+    vertragsart: Optional[Vertragsart] = None
+    """
+    Hier ist festgelegt, um welche Art von Vertrag es sich handelt. Z.B. Netznutzungvertrag
+    """
+    vertragsbeginn: Optional[datetime] = Field(default=None, title="Vertragsbeginn")
+    """
+    Gibt an, wann der Vertrag beginnt (inklusiv)
+    """
+    vertragsende: Optional[datetime] = Field(default=None, title="Vertragsende")
+    """
+    Gibt an, wann der Vertrag (voraussichtlich) endet oder beendet wurde (exklusiv)
+    """
+    vertragskonditionen: Optional[list["Vertragskonditionen"]] = Field(default=None, title="Vertragskonditionen")
+    """
+    Festlegungen zu Laufzeiten und Kündigungsfristen
+    """
+    vertragsnummer: Optional[str] = Field(default=None, title="Vertragsnummer")
+    """
+    Eine im Verwendungskontext eindeutige Nummer für den Vertrag
+    """
+    vertragspartner1: Optional["Geschaeftspartner"] = None
+    """
+    Beispiel: "Vertrag zwischen Vertagspartner 1 ..."
+    """
+    vertragspartner2: Optional["Geschaeftspartner"] = None
+    """
+    Beispiel "Vertrag zwischen Vertagspartner 1 und Vertragspartner 2"
+    """
+    vertragsstatus: Optional[Vertragsstatus] = None
+    """
+    Gibt den Status des Vertrages an
+    """
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

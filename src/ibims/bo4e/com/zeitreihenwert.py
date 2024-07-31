@@ -1,9 +1,13 @@
+from typing import TYPE_CHECKING, Optional
+
 from pydantic import BaseModel, ConfigDict, Field
 
 from ..enum.messwertstatus import Messwertstatus
 from ..enum.messwertstatuszusatz import Messwertstatuszusatz
-from ..zusatz_attribut import ZusatzAttribut
-from .zeitspanne import Zeitspanne
+
+if TYPE_CHECKING:
+    from ..zusatz_attribut import ZusatzAttribut
+    from .zeitspanne import Zeitspanne
 
 
 class Zeitreihenwert(BaseModel):
@@ -15,31 +19,38 @@ class Zeitreihenwert(BaseModel):
         <object data="../_static/images/bo4e/com/Zeitreihenwert.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Zeitreihenwert JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/com/Zeitreihenwert.json>`_
+        `Zeitreihenwert JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/com/Zeitreihenwert.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
-        title=" Id",
-    )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    status: Messwertstatus | None = Field(
-        default=None, description="Der Status gibt an, wie der Wert zu interpretieren ist, z.B. in Berechnungen."
-    )
-    statuszusatz: Messwertstatuszusatz | None = Field(
-        default=None,
-        description="Eine Zusatzinformation zum Status, beispielsweise ein Grund für einen fehlenden Wert.",
-    )
-    wert: float | None = Field(default=None, description="Zeitespanne für das Messintervall", title="Wert")
-    zeitspanne: Zeitspanne | None = Field(default=None, description="Zeitespanne für das Messintervall")
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
+    """
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    """
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    status: Optional[Messwertstatus] = None
+    """
+    Der Status gibt an, wie der Wert zu interpretieren ist, z.B. in Berechnungen.
+    """
+    statuszusatz: Optional[Messwertstatuszusatz] = None
+    """
+    Eine Zusatzinformation zum Status, beispielsweise ein Grund für einen fehlenden Wert.
+    """
+    wert: Optional[float] = Field(default=None, title="Wert")
+    """
+    Zeitespanne für das Messintervall
+    """
+    zeitspanne: Optional["Zeitspanne"] = None
+    """
+    Zeitespanne für das Messintervall
+    """
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

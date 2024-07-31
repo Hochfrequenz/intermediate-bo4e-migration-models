@@ -1,5 +1,5 @@
 """
-BO4E v202401.2.1 - Generated Python implementation of the BO4E standard
+BO4E v202401.4.0 - Generated Python implementation of the BO4E standard
 
 BO4E is a standard for the exchange of business objects in the energy industry.
 All our software used to generate this BO4E-implementation is open-source and released under the Apache-2.0 license.
@@ -45,6 +45,7 @@ __all__ = [
     "Dienstleistung",
     "Dienstleistungstyp",
     "Dokument",
+    "EMobilitaetsart",
     "Energieherkunft",
     "Energiemenge",
     "Energiemix",
@@ -69,6 +70,7 @@ __all__ = [
     "Kalkulationsmethode",
     "Kampagne",
     "Katasteradresse",
+    "Konfigurationsprodukt",
     "Kontaktart",
     "Kontaktweg",
     "Konzessionsabgabe",
@@ -85,6 +87,7 @@ __all__ = [
     "Lastprofil",
     "Leistungstyp",
     "Lokationstyp",
+    "Lokationszuordnung",
     "Marktgebiet",
     "MarktgebietInfo",
     "Marktlokation",
@@ -97,13 +100,13 @@ __all__ = [
     "Messart",
     "Messgroesse",
     "Messlokation",
-    "Messlokationszuordnung",
     "Messpreistyp",
     "MesstechnischeEinordnung",
     "Messwerterfassung",
     "Messwertstatus",
     "Messwertstatuszusatz",
     "Netzebene",
+    "Netzlokation",
     "NetznutzungRechnungsart",
     "NetznutzungRechnungstyp",
     "Oekolabel",
@@ -148,10 +151,13 @@ __all__ = [
     "SepaInfo",
     "Sigmoidparameter",
     "Sparte",
+    "Speicherart",
     "Standorteigenschaften",
     "StandorteigenschaftenGas",
     "StandorteigenschaftenStrom",
+    "SteuerbareRessource",
     "Steuerbetrag",
+    "SteuerkanalLeistungsbeschreibung",
     "Steuerkennzeichen",
     "Tarif",
     "Tarifberechnungsparameter",
@@ -168,6 +174,9 @@ __all__ = [
     "Tarifregionskriterium",
     "Tariftyp",
     "Tarifzeit",
+    "TechnischeRessource",
+    "TechnischeRessourceNutzung",
+    "TechnischeRessourceVerbrauchsart",
     "Themengebiet",
     "Titel",
     "TransaktionsdatenInvoices",
@@ -210,6 +219,8 @@ __all__ = [
     "__version__",
 ]
 
+from pydantic import BaseModel as _PydanticBaseModel
+
 from .__version__ import __version__
 from .bo.angebot import Angebot
 from .bo.ausschreibung import Ausschreibung
@@ -225,9 +236,11 @@ from .bo.hinweis import Hinweis
 from .bo.kampagne import Kampagne
 from .bo.kosten import Kosten
 from .bo.lastgang import Lastgang
+from .bo.lokationszuordnung import Lokationszuordnung
 from .bo.marktlokation import Marktlokation
 from .bo.marktteilnehmer import Marktteilnehmer
 from .bo.messlokation import Messlokation
+from .bo.netzlokation import Netzlokation
 from .bo.person import Person
 from .bo.preisblatt import Preisblatt
 from .bo.preisblatt_dienstleistung import PreisblattDienstleistung
@@ -239,10 +252,12 @@ from .bo.rechnung import Rechnung
 from .bo.region import Region
 from .bo.regionaltarif import Regionaltarif
 from .bo.standorteigenschaften import Standorteigenschaften
+from .bo.steuerbare_ressource import SteuerbareRessource
 from .bo.tarif import Tarif
 from .bo.tarifinfo import Tarifinfo
 from .bo.tarifkosten import Tarifkosten
 from .bo.tarifpreisblatt import Tarifpreisblatt
+from .bo.technische_ressource import TechnischeRessource
 from .bo.transaktionsdaten_invoices import TransaktionsdatenInvoices
 from .bo.transaktionsdaten_quantities import TransaktionsdatenQuantities
 from .bo.vertrag import Vertrag
@@ -269,6 +284,7 @@ from .com.fremdkostenblock import Fremdkostenblock
 from .com.fremdkostenposition import Fremdkostenposition
 from .com.geokoordinaten import Geokoordinaten
 from .com.katasteradresse import Katasteradresse
+from .com.konfigurationsprodukt import Konfigurationsprodukt
 from .com.kontaktweg import Kontaktweg
 from .com.konzessionsabgabe import Konzessionsabgabe
 from .com.kostenblock import Kostenblock
@@ -277,7 +293,6 @@ from .com.kriterium_wert import KriteriumWert
 from .com.lastprofil import Lastprofil
 from .com.marktgebiet_info import MarktgebietInfo
 from .com.menge import Menge
-from .com.messlokationszuordnung import Messlokationszuordnung
 from .com.positions_auf_abschlag import PositionsAufAbschlag
 from .com.preis import Preis
 from .com.preisgarantie import Preisgarantie
@@ -333,6 +348,7 @@ from .enum.befestigungsart import Befestigungsart
 from .enum.bemessungsgroesse import Bemessungsgroesse
 from .enum.bilanzierungsmethode import Bilanzierungsmethode
 from .enum.dienstleistungstyp import Dienstleistungstyp
+from .enum.e_mobilitaetsart import EMobilitaetsart
 from .enum.energierichtung import Energierichtung
 from .enum.erzeugungsart import Erzeugungsart
 from .enum.gasqualitaet import Gasqualitaet
@@ -385,12 +401,16 @@ from .enum.regionskriteriumtyp import Regionskriteriumtyp
 from .enum.registeranzahl import Registeranzahl
 from .enum.rollencodetyp import Rollencodetyp
 from .enum.sparte import Sparte
+from .enum.speicherart import Speicherart
+from .enum.steuerkanal_leistungsbeschreibung import SteuerkanalLeistungsbeschreibung
 from .enum.steuerkennzeichen import Steuerkennzeichen
 from .enum.tarifkalkulationsmethode import Tarifkalkulationsmethode
 from .enum.tarifmerkmal import Tarifmerkmal
 from .enum.tarifregionskriterium import Tarifregionskriterium
 from .enum.tariftyp import Tariftyp
 from .enum.tarifzeit import Tarifzeit
+from .enum.technische_ressource_nutzung import TechnischeRessourceNutzung
+from .enum.technische_ressource_verbrauchsart import TechnischeRessourceVerbrauchsart
 from .enum.themengebiet import Themengebiet
 from .enum.titel import Titel
 from .enum.typ import Typ
@@ -410,3 +430,10 @@ from .enum.zaehlergroesse import Zaehlergroesse
 from .enum.zaehlertyp import Zaehlertyp
 from .enum.zaehlertyp_spezifikation import ZaehlertypSpezifikation
 from .zusatz_attribut import ZusatzAttribut
+
+# Resolve all ForwardReferences. This design prevents circular import errors.
+for cls_name in __all__:
+    cls = globals().get(cls_name, None)
+    if cls is None or not isinstance(cls, type) or not issubclass(cls, _PydanticBaseModel):
+        continue
+    cls.model_rebuild(force=True)

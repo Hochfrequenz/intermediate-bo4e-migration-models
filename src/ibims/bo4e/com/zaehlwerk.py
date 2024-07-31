@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -6,10 +7,12 @@ from ..enum.abgabe_art import AbgabeArt
 from ..enum.energierichtung import Energierichtung
 from ..enum.mengeneinheit import Mengeneinheit
 from ..enum.waermenutzung import Waermenutzung
-from ..zusatz_attribut import ZusatzAttribut
-from .konzessionsabgabe import Konzessionsabgabe
-from .verwendungszweck_pro_marktrolle import VerwendungszweckProMarktrolle
-from .zaehlzeitregister import Zaehlzeitregister
+
+if TYPE_CHECKING:
+    from ..zusatz_attribut import ZusatzAttribut
+    from .konzessionsabgabe import Konzessionsabgabe
+    from .verwendungszweck_pro_marktrolle import VerwendungszweckProMarktrolle
+    from .zaehlzeitregister import Zaehlzeitregister
 
 
 class Zaehlwerk(BaseModel):
@@ -21,65 +24,84 @@ class Zaehlwerk(BaseModel):
         <object data="../_static/images/bo4e/com/Zaehlwerk.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Zaehlwerk JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/com/Zaehlwerk.json>`_
+        `Zaehlwerk JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/com/Zaehlwerk.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description='zusatz_attribute: Optional[list["ZusatzAttribut"]] = None\n\n# pylint: disable=duplicate-code\nmodel_config = ConfigDict(\n    alias_generator=camelize,\n    populate_by_name=True,\n    extra="allow",\n    # json_encoders is deprecated, but there is no easy-to-use alternative. The best way would be to create\n    # an annotated version of Decimal, but you would have to use it everywhere in the pydantic models.\n    # See this issue for more info: https://github.com/pydantic/pydantic/issues/6375\n    json_encoders={Decimal: str},\n)',
-        title=" Id",
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
+    """
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    """
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    anzahl_ablesungen: Optional[int] = Field(default=None, alias="anzahlAblesungen", title="Anzahlablesungen")
+    """
+    Abrechnungsrelevant
+    """
+    bezeichnung: Optional[str] = Field(default=None, title="Bezeichnung")
+    einheit: Optional[Mengeneinheit] = None
+    ist_abrechnungsrelevant: Optional[bool] = Field(
+        default=None, alias="istAbrechnungsrelevant", title="Istabrechnungsrelevant"
     )
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
+    """
+    Anzahl der Nachkommastellen
+    """
+    ist_schwachlastfaehig: Optional[bool] = Field(
+        default=None, alias="istSchwachlastfaehig", title="Istschwachlastfaehig"
     )
-    anzahl_ablesungen: int | None = Field(
-        default=None, alias="anzahlAblesungen", description="Abrechnungsrelevant", title="Anzahlablesungen"
-    )
-    bezeichnung: str | None = Field(default=None, title="Bezeichnung")
-    einheit: Mengeneinheit | None = None
-    ist_abrechnungsrelevant: bool | None = Field(
-        default=None,
-        alias="istAbrechnungsrelevant",
-        description="Anzahl der Nachkommastellen",
-        title="Istabrechnungsrelevant",
-    )
-    ist_schwachlastfaehig: bool | None = Field(
-        default=None, alias="istSchwachlastfaehig", description="Schwachlastfaehigkeit", title="Istschwachlastfaehig"
-    )
-    ist_steuerbefreit: bool | None = Field(
-        default=None, alias="istSteuerbefreit", description="Konzessionsabgabe", title="Iststeuerbefreit"
-    )
-    ist_unterbrechbar: bool | None = Field(
-        default=None,
-        alias="istUnterbrechbar",
-        description="Stromverbrauchsart/Verbrauchsart Marktlokation",
-        title="Istunterbrechbar",
-    )
-    konzessionsabgabe: Konzessionsabgabe | None = Field(default=None, description="Wärmenutzung Marktlokation")
-    nachkommastelle: int | None = Field(default=None, description="Anzahl der Vorkommastellen", title="Nachkommastelle")
+    """
+    Schwachlastfaehigkeit
+    """
+    ist_steuerbefreit: Optional[bool] = Field(default=None, alias="istSteuerbefreit", title="Iststeuerbefreit")
+    """
+    Konzessionsabgabe
+    """
+    ist_unterbrechbar: Optional[bool] = Field(default=None, alias="istUnterbrechbar", title="Istunterbrechbar")
+    """
+    Stromverbrauchsart/Verbrauchsart Marktlokation
+    """
+    konzessionsabgabe: Optional["Konzessionsabgabe"] = None
+    """
+    Wärmenutzung Marktlokation
+    """
+    nachkommastelle: Optional[int] = Field(default=None, title="Nachkommastelle")
+    """
+    Anzahl der Vorkommastellen
+    """
     obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
-    richtung: Energierichtung | None = None
-    verbrauchsart: str | None = Field(default=None, title="Verbrauchsart")
-    verwendungszwecke: list[VerwendungszweckProMarktrolle] | None = Field(
-        default=None, description="Schwachlastfaehigkeit", title="Verwendungszwecke"
-    )
-    vorkommastelle: int | None = Field(default=None, description="Steuerbefreiung", title="Vorkommastelle")
-    waermenutzung: Waermenutzung | None = Field(default=None, description="Unterbrechbarkeit Marktlokation")
-    wandlerfaktor: float | None = Field(default=None, title="Wandlerfaktor")
-    zaehlwerk_id: str | None = Field(default=None, alias="zaehlwerkId", title="Zaehlwerkid")
-    zaehlzeitregister: Zaehlzeitregister | None = Field(default=None, description="Anzahl Ablesungen pro Jahr")
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    richtung: Optional[Energierichtung] = None
+    verbrauchsart: Optional[str] = Field(default=None, title="Verbrauchsart")
+    verwendungszwecke: Optional[list["VerwendungszweckProMarktrolle"]] = Field(default=None, title="Verwendungszwecke")
+    """
+    Schwachlastfaehigkeit
+    """
+    vorkommastelle: Optional[int] = Field(default=None, title="Vorkommastelle")
+    """
+    Steuerbefreiung
+    """
+    waermenutzung: Optional[Waermenutzung] = None
+    """
+    Unterbrechbarkeit Marktlokation
+    """
+    wandlerfaktor: Optional[float] = Field(default=None, title="Wandlerfaktor")
+    zaehlwerk_id: Optional[str] = Field(default=None, alias="zaehlwerkId", title="Zaehlwerkid")
+    zaehlzeitregister: Optional["Zaehlzeitregister"] = None
+    """
+    Anzahl Ablesungen pro Jahr
+    """
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
     vorkommastellen: int = Field(..., title="Vorkommastellen")
     nachkommastellen: int = Field(..., title="Nachkommastellen")
     schwachlastfaehig: bool = Field(..., title="Schwachlastfaehig")
-    konzessionsabgaben_typ: AbgabeArt | None = Field(default=None, alias="konzessionsabgabenTyp")
+    konzessionsabgaben_typ: Optional[AbgabeArt] = Field(default=None, alias="konzessionsabgabenTyp")
     active_from: datetime = Field(..., alias="activeFrom", title="Activefrom")
-    active_until: datetime | None = Field(default=None, alias="activeUntil", title="Activeuntil")
-    description: str | None = Field(default=None, title="Description")
+    active_until: Optional[datetime] = Field(default=None, alias="activeUntil", title="Activeuntil")
+    description: Optional[str] = Field(default=None, title="Description")

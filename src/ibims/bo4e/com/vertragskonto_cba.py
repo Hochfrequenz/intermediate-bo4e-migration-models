@@ -1,10 +1,13 @@
 from datetime import datetime
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..bo.vertrag import Vertrag
 from ..enum.kontaktart import Kontaktart
-from .adresse import Adresse
+
+if TYPE_CHECKING:
+    from ..bo.vertrag import Vertrag
+    from .adresse import Adresse
 
 
 class VertragskontoCBA(BaseModel):
@@ -19,13 +22,13 @@ class VertragskontoCBA(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     ouid: int = Field(..., title="Ouid")
-    vertrags_adresse: Adresse = Field(..., alias="vertragsAdresse")
+    vertrags_adresse: "Adresse" = Field(..., alias="vertragsAdresse")
     vertragskontonummer: str = Field(..., title="Vertragskontonummer")
     rechnungsstellung: Kontaktart
-    vertrag: Vertrag
+    vertrag: "Vertrag"
     erstellungsdatum: datetime = Field(..., title="Erstellungsdatum")
-    enddatum: datetime | None = Field(default=None, title="Enddatum")
+    enddatum: Optional[datetime] = Field(default=None, title="Enddatum")
     rechnungsdatum_start: datetime = Field(..., alias="rechnungsdatumStart", title="Rechnungsdatumstart")
     rechnungsdatum_naechstes: datetime = Field(..., alias="rechnungsdatumNaechstes", title="Rechnungsdatumnaechstes")
