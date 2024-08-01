@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -37,7 +38,7 @@ class Konzessionsabgabe(BaseModel):
     """
     Gebührenkategorie der Konzessionsabgabe
     """
-    kosten: Optional[float] = Field(default=None, title="Kosten")
+    kosten: Optional[Decimal] = Field(default=None, title="Kosten")
     """
     Konzessionsabgabe in E/kWh
     """

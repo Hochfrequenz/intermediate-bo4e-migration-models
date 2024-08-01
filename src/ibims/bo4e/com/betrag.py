@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -38,7 +39,7 @@ class Betrag(BaseModel):
     """
     Gibt den Betrag des Preises an.
     """
-    wert: float = Field(..., title="Wert")
+    wert: Decimal = Field(..., title="Wert")
     """
     Gibt den Betrag des Preises an.
     """

@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -54,13 +55,13 @@ class Preisposition(BaseModel):
     """
     Hier wird festgelegt, auf welche Bezugsgrösse sich der Preis bezieht, z.B. kWh oder Stück
     """
-    freimenge_blindarbeit: Optional[float] = Field(
+    freimenge_blindarbeit: Optional[Decimal] = Field(
         default=None, alias="freimengeBlindarbeit", title="Freimengeblindarbeit"
     )
     """
     Der Anteil der Menge der Blindarbeit in Prozent von der Wirkarbeit, für die keine Abrechnung erfolgt
     """
-    freimenge_leistungsfaktor: Optional[float] = Field(
+    freimenge_leistungsfaktor: Optional[Decimal] = Field(
         default=None, alias="freimengeLeistungsfaktor", title="Freimengeleistungsfaktor"
     )
     """

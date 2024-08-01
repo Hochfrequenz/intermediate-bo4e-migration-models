@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -31,8 +32,8 @@ class Geokoordinaten(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    breitengrad: Optional[float] = Field(default=None, title="Breitengrad")
-    laengengrad: Optional[float] = Field(default=None, title="Laengengrad")
+    breitengrad: Optional[Decimal] = Field(default=None, title="Breitengrad")
+    laengengrad: Optional[Decimal] = Field(default=None, title="Laengengrad")
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

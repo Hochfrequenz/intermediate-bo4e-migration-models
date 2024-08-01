@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -37,7 +38,7 @@ class Menge(BaseModel):
     """
     Gibt die Einheit zum jeweiligen Wert an
     """
-    wert: float = Field(..., title="Wert")
+    wert: Decimal = Field(..., title="Wert")
     """
     Gibt den absoluten Wert der Menge an
     """

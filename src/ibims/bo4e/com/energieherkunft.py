@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -33,7 +34,7 @@ class Energieherkunft(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    anteil_prozent: Optional[float] = Field(default=None, alias="anteilProzent", title="Anteilprozent")
+    anteil_prozent: Optional[Decimal] = Field(default=None, alias="anteilProzent", title="Anteilprozent")
     """
     Prozentualer Anteil der jeweiligen Erzeugungsart.
     """

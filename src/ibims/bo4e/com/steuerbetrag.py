@@ -35,7 +35,7 @@ class Steuerbetrag(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    basiswert: float = Field(..., title="Basiswert")
+    basiswert: Decimal = Field(..., title="Basiswert")
     """
     Nettobetrag für den die Steuer berechnet wurde. Z.B. 100
     """
@@ -43,7 +43,7 @@ class Steuerbetrag(BaseModel):
     """
     Kennzeichnung des Steuersatzes, bzw. Verfahrens.
     """
-    steuerwert: float = Field(..., title="Steuerwert")
+    steuerwert: Decimal = Field(..., title="Steuerwert")
     """
     Aus dem Basiswert berechnete Steuer. Z.B. 19 (bei UST_19)
     """

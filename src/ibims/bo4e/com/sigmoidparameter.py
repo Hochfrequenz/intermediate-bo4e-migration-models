@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -23,19 +24,19 @@ class Sigmoidparameter(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    a: Optional[float] = Field(default=None, alias="A", title="A")
+    a: Optional[Decimal] = Field(default=None, alias="A", title="A")
     """
     Briefmarke Ortsverteilnetz (EUR/kWh)
     """
-    b: Optional[float] = Field(default=None, alias="B", title="B")
+    b: Optional[Decimal] = Field(default=None, alias="B", title="B")
     """
     Briefmarke Ortsverteilnetz (EUR/kWh)
     """
-    c: Optional[float] = Field(default=None, alias="C", title="C")
+    c: Optional[Decimal] = Field(default=None, alias="C", title="C")
     """
     Wendepunkt für die bepreiste Menge (kW)
     """
-    d: Optional[float] = Field(default=None, alias="D", title="D")
+    d: Optional[Decimal] = Field(default=None, alias="D", title="D")
     """
     Exponent (einheitenlos)
     """

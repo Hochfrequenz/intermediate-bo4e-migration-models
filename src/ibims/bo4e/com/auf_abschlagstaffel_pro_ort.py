@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -31,15 +32,15 @@ class AufAbschlagstaffelProOrt(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    staffelgrenze_bis: Optional[float] = Field(default=None, alias="staffelgrenzeBis", title="Staffelgrenzebis")
+    staffelgrenze_bis: Optional[Decimal] = Field(default=None, alias="staffelgrenzeBis", title="Staffelgrenzebis")
     """
     Oberer Wert, bis zu dem die Staffel gilt.
     """
-    staffelgrenze_von: Optional[float] = Field(default=None, alias="staffelgrenzeVon", title="Staffelgrenzevon")
+    staffelgrenze_von: Optional[Decimal] = Field(default=None, alias="staffelgrenzeVon", title="Staffelgrenzevon")
     """
     Unterer Wert, ab dem die Staffel gilt.
     """
-    wert: Optional[float] = Field(default=None, title="Wert")
+    wert: Optional[Decimal] = Field(default=None, title="Wert")
     """
     Der Wert für den Auf- oder Abschlag.
     """

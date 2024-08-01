@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -36,7 +37,7 @@ class Vertragskonditionen(BaseModel):
     """
     In diesen Zyklen werden Abschläge gestellt. Alternativ kann auch die Anzahl in den Konditionen angeben werden.
     """
-    anzahl_abschlaege: Optional[float] = Field(default=None, alias="anzahlAbschlaege", title="Anzahlabschlaege")
+    anzahl_abschlaege: Optional[Decimal] = Field(default=None, alias="anzahlAbschlaege", title="Anzahlabschlaege")
     """
     Anzahl der vereinbarten Abschläge pro Jahr, z.B. 12
     """

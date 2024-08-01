@@ -56,7 +56,7 @@ class Verbrauch(BaseModel):
     """
     Inklusiver Beginn des Zeitraumes, für den der Verbrauch angegeben wird
     """
-    wert: float = Field(..., title="Wert")
+    wert: Decimal = Field(..., title="Wert")
     """
     Gibt den absoluten Wert der Menge an
     """

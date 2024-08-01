@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -40,7 +41,7 @@ class Energiemix(BaseModel):
     """
     Anteile der jeweiligen Erzeugungsart
     """
-    atommuell: Optional[float] = Field(default=None, title="Atommuell")
+    atommuell: Optional[Decimal] = Field(default=None, title="Atommuell")
     """
     Höhe des erzeugten Atommülls in g/kWh
     """
@@ -52,7 +53,7 @@ class Energiemix(BaseModel):
     """
     Bezeichnung des Energiemix
     """
-    co2_emission: Optional[float] = Field(default=None, alias="co2Emission", title="Co2Emission")
+    co2_emission: Optional[Decimal] = Field(default=None, alias="co2Emission", title="Co2Emission")
     """
     Höhe des erzeugten CO2-Ausstosses in g/kWh
     """
