@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -45,7 +46,7 @@ class PositionsAufAbschlag(BaseModel):
     """
     Einheit, in der der Auf-/Abschlag angegeben ist (z.B. ct/kWh).
     """
-    auf_abschlagswert: Optional[float] = Field(default=None, alias="aufAbschlagswert", title="Aufabschlagswert")
+    auf_abschlagswert: Optional[Decimal] = Field(default=None, alias="aufAbschlagswert", title="Aufabschlagswert")
     """
     Höhe des Auf-/Abschlages
     """

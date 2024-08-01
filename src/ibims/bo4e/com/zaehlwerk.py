@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -89,7 +90,7 @@ class Zaehlwerk(BaseModel):
     """
     Unterbrechbarkeit Marktlokation
     """
-    wandlerfaktor: Optional[float] = Field(default=None, title="Wandlerfaktor")
+    wandlerfaktor: Optional[Decimal] = Field(default=None, title="Wandlerfaktor")
     zaehlwerk_id: Optional[str] = Field(default=None, alias="zaehlwerkId", title="Zaehlwerkid")
     zaehlzeitregister: Optional["Zaehlzeitregister"] = None
     """

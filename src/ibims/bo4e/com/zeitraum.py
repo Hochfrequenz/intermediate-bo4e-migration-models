@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -38,7 +39,7 @@ class Zeitraum(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    dauer: Optional[float] = Field(default=None, title="Dauer")
+    dauer: Optional[Decimal] = Field(default=None, title="Dauer")
     einheit: Optional[Mengeneinheit] = None
     enddatum: Optional[datetime] = Field(default=None, title="Enddatum")
     endzeitpunkt: Optional[datetime] = Field(default=None, title="Endzeitpunkt")

@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -43,7 +44,7 @@ class Zeitreihenwert(BaseModel):
     """
     Eine Zusatzinformation zum Status, beispielsweise ein Grund für einen fehlenden Wert.
     """
-    wert: Optional[float] = Field(default=None, title="Wert")
+    wert: Optional[Decimal] = Field(default=None, title="Wert")
     """
     Zeitespanne für das Messintervall
     """

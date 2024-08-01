@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -56,7 +57,7 @@ class Tarifpreis(BaseModel):
     """
     Gibt den Status des veröffentlichten Preises an
     """
-    wert: Optional[float] = Field(default=None, title="Wert")
+    wert: Optional[Decimal] = Field(default=None, title="Wert")
     """
     Gibt die nominale Höhe des Preises an.
     """

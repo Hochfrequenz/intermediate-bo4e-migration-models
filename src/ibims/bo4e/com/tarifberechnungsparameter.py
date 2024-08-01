@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -60,11 +61,11 @@ class Tarifberechnungsparameter(BaseModel):
     True, falls bei der Bildung des Durchschnittspreises für die Höchst- und Mindestpreisbetrachtung der Messpreis mit
     berücksichtigt wird
     """
-    kw_inklusive: Optional[float] = Field(default=None, alias="kwInklusive", title="Kwinklusive")
+    kw_inklusive: Optional[Decimal] = Field(default=None, alias="kwInklusive", title="Kwinklusive")
     """
     Im Preis bereits eingeschlossene Leistung (für Gas)
     """
-    kw_weitere_mengen: Optional[float] = Field(default=None, alias="kwWeitereMengen", title="Kwweiteremengen")
+    kw_weitere_mengen: Optional[Decimal] = Field(default=None, alias="kwWeitereMengen", title="Kwweiteremengen")
     """
     Intervall, indem die über "kwInklusive" hinaus abgenommene Leistung kostenpflichtig wird (z.B. je 5 kW 20 EURO)
     """

@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -90,7 +91,7 @@ class Zaehler(BaseModel):
     """
     Der Hersteller des Zählers
     """
-    zaehlerkonstante: Optional[float] = Field(default=None, title="Zaehlerkonstante")
+    zaehlerkonstante: Optional[Decimal] = Field(default=None, title="Zaehlerkonstante")
     """
     Spezifikation bezüglich unterstützter Tarif
     """

@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -33,7 +34,7 @@ class RegionalePreisstaffel(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    einheitspreis: Optional[float] = Field(default=None, title="Einheitspreis")
+    einheitspreis: Optional[Decimal] = Field(default=None, title="Einheitspreis")
     """
     Preis pro abgerechneter Mengeneinheit
     """
@@ -45,11 +46,11 @@ class RegionalePreisstaffel(BaseModel):
     """
     Parameter zur Berechnung des Preises anhand der Jahresmenge und weiterer netzbezogener Parameter
     """
-    staffelgrenze_bis: Optional[float] = Field(default=None, alias="staffelgrenzeBis", title="Staffelgrenzebis")
+    staffelgrenze_bis: Optional[Decimal] = Field(default=None, alias="staffelgrenzeBis", title="Staffelgrenzebis")
     """
     Exklusiver oberer Wert, bis zu dem die Staffel gilt
     """
-    staffelgrenze_von: Optional[float] = Field(default=None, alias="staffelgrenzeVon", title="Staffelgrenzevon")
+    staffelgrenze_von: Optional[Decimal] = Field(default=None, alias="staffelgrenzeVon", title="Staffelgrenzevon")
     """
     Inklusiver unterer Wert, ab dem die Staffel gilt
     """

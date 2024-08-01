@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -31,23 +32,23 @@ class TarifpreisstaffelProOrt(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    arbeitspreis: Optional[float] = Field(default=None, title="Arbeitspreis")
+    arbeitspreis: Optional[Decimal] = Field(default=None, title="Arbeitspreis")
     """
     Der Arbeitspreis in ct/kWh
     """
-    arbeitspreis_nt: Optional[float] = Field(default=None, alias="arbeitspreisNT", title="Arbeitspreisnt")
+    arbeitspreis_nt: Optional[Decimal] = Field(default=None, alias="arbeitspreisNT", title="Arbeitspreisnt")
     """
     Der Arbeitspreis für Verbräuche in der Niedertarifzeit in ct/kWh
     """
-    grundpreis: Optional[float] = Field(default=None, title="Grundpreis")
+    grundpreis: Optional[Decimal] = Field(default=None, title="Grundpreis")
     """
     Der Grundpreis in Euro/Jahr
     """
-    staffelgrenze_bis: Optional[float] = Field(default=None, alias="staffelgrenzeBis", title="Staffelgrenzebis")
+    staffelgrenze_bis: Optional[Decimal] = Field(default=None, alias="staffelgrenzeBis", title="Staffelgrenzebis")
     """
     Oberer Wert, bis zu dem die Staffel gilt (exklusive)
     """
-    staffelgrenze_von: Optional[float] = Field(default=None, alias="staffelgrenzeVon", title="Staffelgrenzevon")
+    staffelgrenze_von: Optional[Decimal] = Field(default=None, alias="staffelgrenzeVon", title="Staffelgrenzevon")
     """
     Unterer Wert, ab dem die Staffel gilt (inklusive)
     """
