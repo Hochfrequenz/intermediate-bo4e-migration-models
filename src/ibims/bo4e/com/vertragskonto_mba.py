@@ -1,8 +1,12 @@
+from typing import TYPE_CHECKING, Optional
+
 from pydantic import BaseModel, ConfigDict, Field
 
 from ..enum.kontaktart import Kontaktart
-from .adresse import Adresse
-from .vertragskonto_cba import VertragskontoCBA
+
+if TYPE_CHECKING:
+    from .adresse import Adresse
+    from .vertragskonto_cba import VertragskontoCBA
 
 
 class VertragskontoMBA(BaseModel):
@@ -16,9 +20,9 @@ class VertragskontoMBA(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     ouid: int = Field(..., title="Ouid")
-    vertrags_adresse: Adresse = Field(..., alias="vertragsAdresse")
+    vertrags_adresse: "Adresse" = Field(..., alias="vertragsAdresse")
     vertragskontonummer: str = Field(..., title="Vertragskontonummer")
     rechnungsstellung: Kontaktart
-    cbas: list[VertragskontoCBA] = Field(..., title="Cbas")
+    cbas: list["VertragskontoCBA"] = Field(..., title="Cbas")

@@ -1,8 +1,10 @@
 from datetime import datetime
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from .sepa_info import SepaInfo
+if TYPE_CHECKING:
+    from .sepa_info import SepaInfo
 
 
 class Bankverbindung(BaseModel):
@@ -14,12 +16,12 @@ class Bankverbindung(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(default=None, alias="_id", title=" Id")
-    iban: str | None = Field(default=None, title="Iban")
-    bic: str | None = Field(default=None, title="Bic")
-    gueltig_seit: datetime | None = Field(default=None, alias="gueltigSeit", title="Gueltigseit")
-    gueltig_bis: datetime | None = Field(default=None, alias="gueltigBis", title="Gueltigbis")
-    bankname: str | None = Field(default=None, title="Bankname")
-    sepa_info: SepaInfo | None = Field(default=None, alias="sepaInfo")
-    kontoinhaber: str | None = Field(default=None, title="Kontoinhaber")
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
+    iban: Optional[str] = Field(default=None, title="Iban")
+    bic: Optional[str] = Field(default=None, title="Bic")
+    gueltig_seit: Optional[datetime] = Field(default=None, alias="gueltigSeit", title="Gueltigseit")
+    gueltig_bis: Optional[datetime] = Field(default=None, alias="gueltigBis", title="Gueltigbis")
+    bankname: Optional[str] = Field(default=None, title="Bankname")
+    sepa_info: Optional["SepaInfo"] = Field(default=None, alias="sepaInfo")
+    kontoinhaber: Optional[str] = Field(default=None, title="Kontoinhaber")
     ouid: int = Field(..., title="Ouid")

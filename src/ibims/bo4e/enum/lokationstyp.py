@@ -8,3 +8,6 @@ class Lokationstyp(str, Enum):
 
     MALO = "MALO"
     MELO = "MELO"
+    NELO = "NELO"
+    SR = "SR"
+    TR = "TR"

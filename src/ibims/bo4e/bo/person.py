@@ -1,14 +1,17 @@
 from datetime import datetime
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.adresse import Adresse
-from ..com.kontaktweg import Kontaktweg
-from ..com.zustaendigkeit import Zustaendigkeit
 from ..enum.anrede import Anrede
 from ..enum.titel import Titel
 from ..enum.typ import Typ
-from ..zusatz_attribut import ZusatzAttribut
+
+if TYPE_CHECKING:
+    from ..com.adresse import Adresse
+    from ..com.kontaktweg import Kontaktweg
+    from ..com.zustaendigkeit import Zustaendigkeit
+    from ..zusatz_attribut import ZusatzAttribut
 
 
 class Person(BaseModel):
@@ -20,44 +23,62 @@ class Person(BaseModel):
         <object data="../_static/images/bo4e/bo/Person.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Person JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/Person.json>`_
+        `Person JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/bo/Person.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ", description="Mögliche Anrede der Person")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    adresse: Adresse | None = Field(
-        default=None, description="Adresse der Person, falls diese von der Adresse des Geschäftspartners abweicht"
-    )
-    anrede: Anrede | None = Field(default=None, description="Mögliche Anrede der Person")
-    geburtsdatum: datetime | None = Field(default=None, description="Geburtsdatum der Person", title="Geburtsdatum")
-    individuelle_anrede: str | None = Field(
-        default=None,
-        alias="individuelleAnrede",
-        description='Im Falle einer nicht standardisierten Anrede kann hier eine frei definierbare Anrede vorgegeben werden.\nBeispiel: "Vereinsgemeinschaft", "Pfarrer", "Hochwürdigster Herr Abt".',
-        title="Individuelleanrede",
-    )
-    kommentar: str | None = Field(default=None, description="Weitere Informationen zur Person", title="Kommentar")
-    kontaktwege: list[Kontaktweg] | None = Field(
-        default=None, description="Kontaktwege der Person", title="Kontaktwege"
-    )
-    nachname: str | None = Field(default=None, description="Nachname (Familienname) der Person", title="Nachname")
-    titel: Titel | None = Field(default=None, description="Möglicher Titel der Person")
-    vorname: str | None = Field(default=None, description="Vorname der Person", title="Vorname")
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.PERSON, alias="_typ")
+    """
+    Mögliche Anrede der Person
+    """
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    adresse: Optional["Adresse"] = None
+    """
+    Adresse der Person, falls diese von der Adresse des Geschäftspartners abweicht
+    """
+    anrede: Optional[Anrede] = None
+    """
+    Mögliche Anrede der Person
+    """
+    geburtsdatum: Optional[datetime] = Field(default=None, title="Geburtsdatum")
+    """
+    Geburtsdatum der Person
+    """
+    individuelle_anrede: Optional[str] = Field(default=None, alias="individuelleAnrede", title="Individuelleanrede")
+    kommentar: Optional[str] = Field(default=None, title="Kommentar")
+    """
+    Weitere Informationen zur Person
+    """
+    kontaktwege: Optional[list["Kontaktweg"]] = Field(default=None, title="Kontaktwege")
+    """
+    Kontaktwege der Person
+    """
+    nachname: Optional[str] = Field(default=None, title="Nachname")
+    """
+    Nachname (Familienname) der Person
+    """
+    titel: Optional[Titel] = None
+    """
+    Möglicher Titel der Person
+    """
+    vorname: Optional[str] = Field(default=None, title="Vorname")
+    """
+    Vorname der Person
+    """
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
-    zustaendigkeiten: list[Zustaendigkeit] | None = Field(
-        default=None, description="Liste der Abteilungen und Zuständigkeiten der Person", title="Zustaendigkeiten"
-    )
+    zustaendigkeiten: Optional[list["Zustaendigkeit"]] = Field(default=None, title="Zustaendigkeiten")
+    """
+    Liste der Abteilungen und Zuständigkeiten der Person
+    """

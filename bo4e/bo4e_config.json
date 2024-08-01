@@ -1,5 +1,5 @@
 {
-  "requiredFields": [
+  "nonNullableFields": [
     "\\w+\\.\\w+\\._(version|typ)",
     "bo\\.Energiemenge\\.energieverbrauch",
     "bo\\.Geschaeftspartner\\.name1",

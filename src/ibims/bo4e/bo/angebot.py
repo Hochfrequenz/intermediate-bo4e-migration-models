@@ -1,13 +1,16 @@
 from datetime import datetime
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..com.angebotsvariante import Angebotsvariante
 from ..enum.sparte import Sparte
 from ..enum.typ import Typ
-from ..zusatz_attribut import ZusatzAttribut
-from .geschaeftspartner import Geschaeftspartner
-from .person import Person
+
+if TYPE_CHECKING:
+    from ..com.angebotsvariante import Angebotsvariante
+    from ..zusatz_attribut import ZusatzAttribut
+    from .geschaeftspartner import Geschaeftspartner
+    from .person import Person
 
 
 class Angebot(BaseModel):
@@ -22,55 +25,62 @@ class Angebot(BaseModel):
         <object data="../_static/images/bo4e/bo/Angebot.svg" type="image/svg+xml"></object>
 
     .. HINT::
-        `Angebot JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.2.1/src/bo4e_schemas/bo/Angebot.json>`_
+        `Angebot JSON Schema <https://json-schema.app/view/%23?url=https://raw.githubusercontent.com/BO4E/BO4E-Schemas/v202401.4.0/src/bo4e_schemas/bo/Angebot.json>`_
     """
 
     model_config = ConfigDict(
         extra="allow",
         populate_by_name=True,
     )
-    id: str | None = Field(
-        default=None,
-        alias="_id",
-        description="Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)",
-        title=" Id",
-    )
-    typ: Typ = Field(..., alias="_typ", description="Eindeutige Nummer des Angebotes")
-    version: str = Field(
-        ..., alias="_version", description='Version der BO-Struktur aka "fachliche Versionierung"', title=" Version"
-    )
-    anfragereferenz: str | None = Field(
-        default=None,
-        description="Bis zu diesem Zeitpunkt (Tag/Uhrzeit) inklusive gilt das Angebot",
-        title="Anfragereferenz",
-    )
-    angebotsdatum: datetime | None = Field(
-        default=None, description="Erstellungsdatum des Angebots", title="Angebotsdatum"
-    )
-    angebotsgeber: Geschaeftspartner | None = Field(default=None, description="Ersteller des Angebots")
-    angebotsnehmer: Geschaeftspartner | None = Field(default=None, description="Empfänger des Angebots")
-    angebotsnummer: str | None = Field(
-        default=None, description="Eindeutige Nummer des Angebotes", title="Angebotsnummer"
-    )
-    bindefrist: datetime | None = Field(
-        default=None, description="Bis zu diesem Zeitpunkt (Tag/Uhrzeit) inklusive gilt das Angebot", title="Bindefrist"
-    )
-    sparte: Sparte | None = Field(default=None, description="Sparte, für die das Angebot abgegeben wird (Strom/Gas)")
-    unterzeichner_angebotsgeber: Person | None = Field(
-        default=None,
-        alias="unterzeichnerAngebotsgeber",
-        description="Person, die als Angebotsgeber das Angebots ausgestellt hat",
-    )
-    unterzeichner_angebotsnehmer: Person | None = Field(
-        default=None,
-        alias="unterzeichnerAngebotsnehmer",
-        description="Person, die als Angebotsnehmer das Angebot angenommen hat",
-    )
-    varianten: list[Angebotsvariante] | None = Field(
-        default=None,
-        description="Eine oder mehrere Varianten des Angebots mit den Angebotsteilen;\nEin Angebot besteht mindestens aus einer Variante.",
-        title="Varianten",
-    )
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    id: Optional[str] = Field(default=None, alias="_id", title=" Id")
+    """
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    """
+    typ: Typ = Field(default=Typ.ANGEBOT, alias="_typ")
+    """
+    Eindeutige Nummer des Angebotes
+    """
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
+    """
+    Version der BO-Struktur aka "fachliche Versionierung"
+    """
+    anfragereferenz: Optional[str] = Field(default=None, title="Anfragereferenz")
+    """
+    Bis zu diesem Zeitpunkt (Tag/Uhrzeit) inklusive gilt das Angebot
+    """
+    angebotsdatum: Optional[datetime] = Field(default=None, title="Angebotsdatum")
+    """
+    Erstellungsdatum des Angebots
+    """
+    angebotsgeber: Optional["Geschaeftspartner"] = None
+    """
+    Ersteller des Angebots
+    """
+    angebotsnehmer: Optional["Geschaeftspartner"] = None
+    """
+    Empfänger des Angebots
+    """
+    angebotsnummer: Optional[str] = Field(default=None, title="Angebotsnummer")
+    """
+    Eindeutige Nummer des Angebotes
+    """
+    bindefrist: Optional[datetime] = Field(default=None, title="Bindefrist")
+    """
+    Bis zu diesem Zeitpunkt (Tag/Uhrzeit) inklusive gilt das Angebot
+    """
+    sparte: Optional[Sparte] = None
+    """
+    Sparte, für die das Angebot abgegeben wird (Strom/Gas)
+    """
+    unterzeichner_angebotsgeber: Optional["Person"] = Field(default=None, alias="unterzeichnerAngebotsgeber")
+    """
+    Person, die als Angebotsgeber das Angebots ausgestellt hat
+    """
+    unterzeichner_angebotsnehmer: Optional["Person"] = Field(default=None, alias="unterzeichnerAngebotsnehmer")
+    """
+    Person, die als Angebotsnehmer das Angebot angenommen hat
+    """
+    varianten: Optional[list["Angebotsvariante"]] = Field(default=None, title="Varianten")
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )

@@ -1,7 +1,11 @@
+from typing import TYPE_CHECKING, Optional
+
 from pydantic import BaseModel, ConfigDict, Field
 
 from ..enum.typ import Typ
-from ..zusatz_attribut import ZusatzAttribut
+
+if TYPE_CHECKING:
+    from ..zusatz_attribut import ZusatzAttribut
 
 
 class Kampagne(BaseModel):
@@ -13,9 +17,9 @@ class Kampagne(BaseModel):
         extra="allow",
         populate_by_name=True,
     )
-    version: str | None = Field(default="v202401.2.1", alias="_version", title=" Version")
-    typ: Typ | None = Field(default=Typ.KAMPAGNE, alias="_typ", title=" Typ")
-    zusatz_attribute: list[ZusatzAttribut] | None = Field(
+    version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
+    typ: Typ = Field(default=Typ.KAMPAGNE, alias="_typ", title=" Typ")
+    zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="ZusatzAttribute"
     )
     id: str = Field(..., title="Id")
