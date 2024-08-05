@@ -40,7 +40,7 @@ class Marktteilnehmer(BaseModel):
     """
     Version der BO-Struktur aka "fachliche Versionierung"
     """
-    geschaeftspartner: "Geschaeftspartner"
+    geschaeftspartner: Optional["Geschaeftspartner"] = None
     """
     Der zu diesem Marktteilnehmer gehörende Geschäftspartner
     """
