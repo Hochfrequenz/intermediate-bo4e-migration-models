@@ -14,7 +14,7 @@
     "bo\\.Rechnung\\.gesamtbrutto",
     "bo\\.Rechnung\\.gesamtsteuer",
     "bo\\.Rechnung\\.rechnungstyp",
-    "bo\\.Rechnung\\.storno",
+    "bo\\.Rechnung\\.istStorno",
     "bo\\.Rechnung\\.zuZahlen",
     "bo\\.Vertrag\\.vertragsbeginn",
     "bo\\.Vertrag\\.vertragsnummer",

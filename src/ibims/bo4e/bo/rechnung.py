@@ -73,7 +73,7 @@ class Rechnung(BaseModel):
     """
     Kennzeichen, ob es sich um eine simulierte Rechnung, z.B. zur Rechnungsprüfung handelt
     """
-    ist_storno: Optional[bool] = Field(default=None, alias="istStorno", title="Iststorno")
+    ist_storno: bool = Field(..., alias="istStorno", title="Iststorno")
     """
     Eine im Verwendungskontext eindeutige Nummer für die Rechnung
     """
