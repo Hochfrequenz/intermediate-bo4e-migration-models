@@ -10,5 +10,6 @@ class QuantitiesStatus(str, Enum):
     DECISION = "DECISION"
     IGNORED = "IGNORED"
     OBJECTED = "OBJECTED"
+    REJECTED = "REJECTED"
     RECEIVED = "RECEIVED"
     VALID = "VALID"

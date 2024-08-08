@@ -5,6 +5,7 @@
     "DECISION",
     "IGNORED",
     "OBJECTED",
+    "REJECTED",
     "RECEIVED",
     "VALID"
   ],
