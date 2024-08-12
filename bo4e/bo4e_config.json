@@ -28,7 +28,6 @@
     "com\\.Rechnungsposition\\.teilsummeNetto",
     "com\\.Rechnungsposition\\.teilsummeSteuer",
     "com\\.Steuerbetrag\\.basiswert",
-    "com\\.Verbrauch\\.obisKennzahl",
     "com\\.Verbrauch\\.wert"
   ],
   "additionalFields": [
