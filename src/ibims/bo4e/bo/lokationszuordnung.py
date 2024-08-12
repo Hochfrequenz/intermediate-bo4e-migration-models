@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 class Lokationszuordnung(BaseModel):
     """
-    Modell fÃ¼r die Abbildung der Referenz auf die LokationsbÃ¼ndelstruktur. Diese gibt an welche Marktlokationen,
+    Modell für die Abbildung der Referenz auf die Lokationsbündelstruktur. Diese gibt an welche Marktlokationen,
     Messlokationen, Netzlokationen, technische/steuerbaren Ressourcen an einer Lokation vorhanden sind.
 
     .. raw:: html
@@ -33,7 +33,7 @@ class Lokationszuordnung(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.LOKATIONSZUORDNUNG, alias="_typ")
     """
@@ -45,11 +45,11 @@ class Lokationszuordnung(BaseModel):
     """
     gueltigkeit: Optional["Zeitspanne"] = None
     """
-    Zeitspanne der GÃ¼ltigkeit
+    Zeitspanne der Gültigkeit
     """
     lokationsbuendelcode: Optional[str] = Field(default=None, title="Lokationsbuendelcode")
     """
-    Code, der angibt wie die LokationsbÃ¼ndelstruktur zusammengesetzt ist (zu finden unter "Codeliste der LokationsbÃ¼ndelstrukturen" auf https://www.edi-energy.de/index.php?id=38)
+    Code, der angibt wie die Lokationsbündelstruktur zusammengesetzt ist (zu finden unter "Codeliste der Lokationsbündelstrukturen" auf https://www.edi-energy.de/index.php?id=38)
     """
     marktlokationen: Optional[list["Marktlokation"]] = Field(default=None, title="Marktlokationen")
     """
@@ -77,7 +77,7 @@ class Lokationszuordnung(BaseModel):
     """
     zuordnungstyp: Optional[str] = Field(default=None, title="Zuordnungstyp")
     """
-    VerknÃ¼pfungsrichtung z.B. Malo-Melo [TODO: Eventuell anderer Datentyp]
+    Verknüpfungsrichtung z.B. Malo-Melo [TODO: Eventuell anderer Datentyp]
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

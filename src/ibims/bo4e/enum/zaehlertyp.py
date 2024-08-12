@@ -3,7 +3,7 @@ from enum import Enum
 
 class Zaehlertyp(str, Enum):
     """
-    Bei diesem Enum handelt es sich um die Abbildung von ZÃ¤hlertypen der Sparten Strom und Gas.
+    Bei diesem Enum handelt es sich um die Abbildung von Zählertypen der Sparten Strom und Gas.
     """
 
     DREHSTROMZAEHLER = "DREHSTROMZAEHLER"

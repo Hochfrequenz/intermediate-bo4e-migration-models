@@ -27,8 +27,8 @@ class Regionskriterium(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -36,7 +36,7 @@ class Regionskriterium(BaseModel):
     """
     gueltigkeitstyp: Optional[Gueltigkeitstyp] = None
     """
-    Hier wird festgelegt, ob es sich um ein einschlieÃŸendes oder ausschlieÃŸendes Kriterium handelt.
+    Hier wird festgelegt, ob es sich um ein einschließendes oder ausschließendes Kriterium handelt.
     """
     regionskriteriumtyp: Optional[Regionskriteriumtyp] = None
     """

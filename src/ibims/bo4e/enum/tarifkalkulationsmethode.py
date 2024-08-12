@@ -3,7 +3,7 @@ from enum import Enum
 
 class Tarifkalkulationsmethode(str, Enum):
     """
-    Auflistung der verschiedenen Berechnungsmethoden fÃ¼r ein Preisblatt.
+    Auflistung der verschiedenen Berechnungsmethoden für ein Preisblatt.
     """
 
     KEINE = "KEINE"

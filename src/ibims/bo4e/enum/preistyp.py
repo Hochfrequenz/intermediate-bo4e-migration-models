@@ -3,7 +3,7 @@ from enum import Enum
 
 class Preistyp(str, Enum):
     """
-    AufschlÃ¼sselung der Preistypen in Tarifen.
+    Aufschlüsselung der Preistypen in Tarifen.
     """
 
     GRUNDPREIS = "GRUNDPREIS"

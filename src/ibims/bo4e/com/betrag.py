@@ -11,8 +11,8 @@ if TYPE_CHECKING:
 
 class Betrag(BaseModel):
     """
-    Die Komponente wird dazu verwendet, SummenbetrÃ¤ge (beispielsweise in Angeboten und Rechnungen) als GeldbetrÃ¤ge
-    abzubilden. Die Einheit ist dabei immer die HauptwÃ¤hrung also Euro, Dollar etcâ€¦
+    Die Komponente wird dazu verwendet, Summenbeträge (beispielsweise in Angeboten und Rechnungen) als Geldbeträge
+    abzubilden. Die Einheit ist dabei immer die Hauptwährung also Euro, Dollar etc…
 
     .. raw:: html
 
@@ -28,8 +28,8 @@ class Betrag(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """

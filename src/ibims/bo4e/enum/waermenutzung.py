@@ -3,7 +3,7 @@ from enum import Enum
 
 class Waermenutzung(str, Enum):
     """
-    WÃ¤rmenutzung Marktlokation
+    Wärmenutzung Marktlokation
     """
 
     SPEICHERHEIZUNG = "SPEICHERHEIZUNG"

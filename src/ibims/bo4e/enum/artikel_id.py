@@ -3,8 +3,8 @@ from enum import Enum
 
 class ArtikelId(str, Enum):
     """
-    Liste von Artikel-IDs, z.B. fÃ¼r standardisierte vom BDEW herausgegebene Artikel,
-    die im Strommarkt die BDEW-Artikelnummer ablÃ¶sen
+    Liste von Artikel-IDs, z.B. für standardisierte vom BDEW herausgegebene Artikel,
+    die im Strommarkt die BDEW-Artikelnummer ablösen
     """
 
     FIELD_2_01_7_001 = "2-01-7-001"

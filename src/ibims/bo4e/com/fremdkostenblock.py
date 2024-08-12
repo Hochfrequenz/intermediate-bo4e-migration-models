@@ -26,8 +26,8 @@ class Fremdkostenblock(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -35,13 +35,13 @@ class Fremdkostenblock(BaseModel):
     """
     kostenblockbezeichnung: Optional[str] = Field(default=None, title="Kostenblockbezeichnung")
     """
-    Bezeichnung fÃ¼r einen Kostenblock. Z.B. Netzkosten, Messkosten, Umlagen, etc.
+    Bezeichnung für einen Kostenblock. Z.B. Netzkosten, Messkosten, Umlagen, etc.
     """
     kostenpositionen: Optional[list["Fremdkostenposition"]] = Field(default=None, title="Kostenpositionen")
     """
-    Hier sind die Details zu einer Kostenposition aufgefÃ¼hrt. Z.B.:
+    Hier sind die Details zu einer Kostenposition aufgeführt. Z.B.:
     Alliander Netz Heinsberg GmbH, 2018-02-01, 2019-01-01, Arbeitspreis HT, 3.660 kWh,
-    5,8200 ct/kWh, 213,01 â‚¬
+    5,8200 ct/kWh, 213,01 €
     """
     summe_kostenblock: Optional["Betrag"] = Field(default=None, alias="summeKostenblock")
     """

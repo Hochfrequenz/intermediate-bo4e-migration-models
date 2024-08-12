@@ -3,7 +3,7 @@ from enum import Enum
 
 class Geraetetyp(str, Enum):
     """
-    Auflistung mÃ¶glicher abzurechnender GerÃ¤tetypen.
+    Auflistung möglicher abzurechnender Gerätetypen.
     """
 
     MULTIPLEXANLAGE = "MULTIPLEXANLAGE"

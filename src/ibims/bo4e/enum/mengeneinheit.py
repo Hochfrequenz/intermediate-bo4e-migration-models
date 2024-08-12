@@ -3,7 +3,7 @@ from enum import Enum
 
 class Mengeneinheit(str, Enum):
     """
-    Einheit: MessgrÃ¶ÃŸen, die per Messung oder Vorgabe ermittelt werden kÃ¶nnen.
+    Einheit: Messgrößen, die per Messung oder Vorgabe ermittelt werden können.
     """
 
     W = "W"

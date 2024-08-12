@@ -36,11 +36,11 @@ class PreisblattMessung(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.PREISBLATTMESSUNG, alias="_typ")
     """
-    Die Preise gelten fÃ¼r Marktlokationen der angebebenen Bilanzierungsmethode
+    Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -48,51 +48,51 @@ class PreisblattMessung(BaseModel):
     """
     bezeichnung: Optional[str] = Field(default=None, title="Bezeichnung")
     """
-    Eine Bezeichnung fÃ¼r das Preisblatt
+    Eine Bezeichnung für das Preisblatt
     """
     bilanzierungsmethode: Optional[Bilanzierungsmethode] = None
     """
-    Die Preise gelten fÃ¼r Marktlokationen der angebebenen Bilanzierungsmethode
+    Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode
     """
     gueltigkeit: Optional["Zeitraum"] = None
     """
-    Der Zeitraum fÃ¼r den der Preis festgelegt ist
+    Der Zeitraum für den der Preis festgelegt ist
     """
     herausgeber: Optional["Marktteilnehmer"] = None
     """
-    Der Netzbetreiber, der die Preise verÃ¶ffentlicht hat
+    Der Netzbetreiber, der die Preise veröffentlicht hat
     """
     inklusive_dienstleistungen: Optional[list[Dienstleistungstyp]] = Field(
         default=None, alias="inklusiveDienstleistungen", title="Inklusivedienstleistungen"
     )
     """
-    Im Preis sind die hier angegebenen Dienstleistungen enthalten, z.B. JÃ¤hrliche Ablesung
+    Im Preis sind die hier angegebenen Dienstleistungen enthalten, z.B. Jährliche Ablesung
     """
     inklusive_geraete: Optional[list["Geraet"]] = Field(
         default=None, alias="inklusiveGeraete", title="Inklusivegeraete"
     )
     """
-    Im Preis sind die hier angegebenen GerÃ¤te mit enthalten, z.B. ein Wandler
+    Im Preis sind die hier angegebenen Geräte mit enthalten, z.B. ein Wandler
     """
     messebene: Optional[Netzebene] = None
     """
-    Die Preise gelten fÃ¼r Messlokationen in der angebebenen Netzebene
+    Die Preise gelten für Messlokationen in der angebebenen Netzebene
     """
     preispositionen: Optional[list["Preisposition"]] = Field(default=None, title="Preispositionen")
     """
-    Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden kÃ¶nnen. Z.B. Arbeitspreis, Grundpreis etc
+    Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden können. Z.B. Arbeitspreis, Grundpreis etc
     """
     preisstatus: Optional[Preisstatus] = None
     """
-    Merkmal, das anzeigt, ob es sich um vorlÃ¤ufige oder endgÃ¼ltige Preise handelt
+    Merkmal, das anzeigt, ob es sich um vorläufige oder endgültige Preise handelt
     """
     sparte: Optional[Sparte] = None
     """
-    Preisblatt gilt fÃ¼r angegebene Sparte
+    Preisblatt gilt für angegebene Sparte
     """
     zaehler: Optional["Zaehler"] = None
     """
-    Der Preis betrifft den hier angegebenen ZÃ¤hler, z.B. einen DrehstromzÃ¤hler
+    Der Preis betrifft den hier angegebenen Zähler, z.B. einen Drehstromzähler
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

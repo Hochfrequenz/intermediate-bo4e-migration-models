@@ -35,11 +35,11 @@ class Messlokation(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.MESSLOKATION, alias="_typ")
     """
-    Die Messlokations-Identifikation; Das ist die frÃ¼here ZÃ¤hlpunktbezeichnung
+    Die Messlokations-Identifikation; Das ist die frühere Zählpunktbezeichnung
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -48,7 +48,7 @@ class Messlokation(BaseModel):
     geoadresse: Optional["Geokoordinaten"] = None
     geraete: Optional[list["Geraet"]] = Field(default=None, title="Geraete")
     """
-    Liste der GerÃ¤te, die zu dieser Messstelle gehÃ¶rt
+    Liste der Geräte, die zu dieser Messstelle gehört
     """
     grundzustaendiger_msb_codenr: Optional[str] = Field(
         default=None, alias="grundzustaendigerMsbCodenr", title="Grundzustaendigermsbcodenr"
@@ -58,7 +58,7 @@ class Messlokation(BaseModel):
     )
     katasterinformation: Optional["Katasteradresse"] = None
     """
-    Lokationszuordnung, um bspw. die zugehÃ¶rigen Marktlokationen anzugeben
+    Lokationszuordnung, um bspw. die zugehörigen Marktlokationen anzugeben
     """
     lokationsbuendel_objektcode: Optional[str] = Field(
         default=None, alias="lokationsbuendelObjektcode", title="Lokationsbuendelobjektcode"
@@ -68,12 +68,12 @@ class Messlokation(BaseModel):
     """
     lokationszuordnungen: Optional[list["Lokationszuordnung"]] = Field(default=None, title="Lokationszuordnungen")
     """
-    Lokationszuordnung, um bspw. die zugehÃ¶rigen Marktlokationen anzugeben
+    Lokationszuordnung, um bspw. die zugehörigen Marktlokationen anzugeben
     """
     messadresse: Optional["Adresse"] = None
     messdienstleistung: Optional[list["Dienstleistung"]] = Field(default=None, title="Messdienstleistung")
     """
-    Liste der Messdienstleistungen, die zu dieser Messstelle gehÃ¶rt
+    Liste der Messdienstleistungen, die zu dieser Messstelle gehört
     """
     messgebietnr: Optional[str] = Field(default=None, title="Messgebietnr")
     """
@@ -81,11 +81,11 @@ class Messlokation(BaseModel):
     """
     messlokations_id: str = Field(..., alias="messlokationsId", title="Messlokationsid")
     """
-    Die Messlokations-Identifikation; Das ist die frÃ¼here ZÃ¤hlpunktbezeichnung
+    Die Messlokations-Identifikation; Das ist die frühere Zählpunktbezeichnung
     """
     messlokationszaehler: Optional[list["Zaehler"]] = Field(default=None, title="Messlokationszaehler")
     """
-    ZÃ¤hler, die zu dieser Messlokation gehÃ¶ren
+    Zähler, die zu dieser Messlokation gehören
     """
     netzebene_messung: Optional[Netzebene] = Field(default=None, alias="netzebeneMessung")
     """

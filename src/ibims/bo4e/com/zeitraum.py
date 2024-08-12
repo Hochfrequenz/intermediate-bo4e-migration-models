@@ -12,8 +12,8 @@ if TYPE_CHECKING:
 
 class Zeitraum(BaseModel):
     """
-    Diese Komponente wird zur Abbildung von ZeitrÃ¤umen in Form von Dauern oder der Angabe von Start und Ende verwendet.
-    Es muss daher eine der drei MÃ¶glichkeiten angegeben sein:
+    Diese Komponente wird zur Abbildung von Zeiträumen in Form von Dauern oder der Angabe von Start und Ende verwendet.
+    Es muss daher eine der drei Möglichkeiten angegeben sein:
     - Einheit und Dauer oder
     - Zeitraum: Startdatum bis Enddatum oder
     - Zeitraum: Startzeitpunkt (Datum und Uhrzeit) bis Endzeitpunkt (Datum und Uhrzeit)
@@ -32,8 +32,8 @@ class Zeitraum(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """

@@ -3,7 +3,7 @@ from enum import Enum
 
 class Sparte(str, Enum):
     """
-    UnterscheidungsmÃ¶glichkeiten fÃ¼r die Sparte.
+    Unterscheidungsmöglichkeiten für die Sparte.
     """
 
     STROM = "STROM"

@@ -3,7 +3,7 @@ from enum import Enum
 
 class Zaehlergroesse(str, Enum):
     """
-    Auflistung mÃ¶glicher GrÃ¶ÃŸen von ZÃ¤hlern
+    Auflistung möglicher Größen von Zählern
     """
 
     G2_KOMMA5 = "G2KOMMA5"

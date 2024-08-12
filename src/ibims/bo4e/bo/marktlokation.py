@@ -47,7 +47,7 @@ class Marktlokation(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.MARKTLOKATION, alias="_typ")
     """
@@ -67,7 +67,7 @@ class Marktlokation(BaseModel):
     """
     endkunde: Optional["Geschaeftspartner"] = None
     """
-    GeschÃ¤ftspartner, dem diese Marktlokation gehÃ¶rt
+    Geschäftspartner, dem diese Marktlokation gehört
     """
     energierichtung: Optional[Energierichtung] = None
     """
@@ -75,7 +75,7 @@ class Marktlokation(BaseModel):
     """
     gasqualitaet: Optional[Gasqualitaet] = None
     """
-    Die GasqualitÃ¤t in diesem Netzgebiet. H-Gas oder L-Gas. Im Falle eines Gas-Netzes
+    Die Gasqualität in diesem Netzgebiet. H-Gas oder L-Gas. Im Falle eines Gas-Netzes
     """
     gebietstyp: Optional[Gebiettyp] = None
     """
@@ -84,7 +84,7 @@ class Marktlokation(BaseModel):
     geoadresse: Optional["Geokoordinaten"] = None
     grundversorgercodenr: Optional[str] = Field(default=None, title="Grundversorgercodenr")
     """
-    Codenummer des Grundversorgers, der fÃ¼r diese Marktlokation zustÃ¤ndig ist
+    Codenummer des Grundversorgers, der für diese Marktlokation zuständig ist
     """
     ist_unterbrechbar: Optional[bool] = Field(default=None, alias="istUnterbrechbar", title="Istunterbrechbar")
     """
@@ -107,7 +107,7 @@ class Marktlokation(BaseModel):
     """
     lokationszuordnungen: Optional[list["Lokationszuordnung"]] = Field(default=None, title="Lokationszuordnungen")
     """
-    Lokationszuordnung, um bspw. die zugehÃ¶rigen Messlokationen anzugeben
+    Lokationszuordnung, um bspw. die zugehörigen Messlokationen anzugeben
     """
     marktgebiet: Optional[Marktgebiet] = None
     marktlokations_id: str = Field(..., alias="marktlokationsId", title="Marktlokationsid")
@@ -138,13 +138,13 @@ class Marktlokation(BaseModel):
     verbrauchsmengen: Optional[list["Verbrauch"]] = Field(default=None, title="Verbrauchsmengen")
     zaehlwerke: Optional[list["Zaehlwerk"]] = Field(default=None, title="Zaehlwerke")
     """
-    fÃ¼r Gas. Code vom EIC, https://www.entsog.eu/data/data-portal/codes-list
+    für Gas. Code vom EIC, https://www.entsog.eu/data/data-portal/codes-list
     """
     zaehlwerke_der_beteiligten_marktrolle: Optional[list["Zaehlwerk"]] = Field(
         default=None, alias="zaehlwerkeDerBeteiligtenMarktrolle", title="Zaehlwerkederbeteiligtenmarktrolle"
     )
     """
-    Lokationszuordnung, um bspw. die zugehÃ¶rigen Messlokationen anzugeben
+    Lokationszuordnung, um bspw. die zugehörigen Messlokationen anzugeben
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

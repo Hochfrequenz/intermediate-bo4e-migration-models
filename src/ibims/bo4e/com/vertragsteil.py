@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class Vertragsteil(BaseModel):
     """
-    Abbildung fÃ¼r einen Vertragsteil. Der Vertragsteil wird dazu verwendet,
+    Abbildung für einen Vertragsteil. Der Vertragsteil wird dazu verwendet,
     eine vertragliche Leistung in Bezug zu einer Lokation (Markt- oder Messlokation) festzulegen.
 
     .. raw:: html
@@ -27,8 +27,8 @@ class Vertragsteil(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -36,28 +36,28 @@ class Vertragsteil(BaseModel):
     """
     lokation: Optional[str] = Field(default=None, title="Lokation")
     """
-    Der Identifier fÃ¼r diejenigen Markt- oder Messlokation, die zu diesem Vertragsteil gehÃ¶ren.
-    VertrÃ¤ge fÃ¼r mehrere Lokationen werden mit mehreren Vertragsteilen abgebildet
+    Der Identifier für diejenigen Markt- oder Messlokation, die zu diesem Vertragsteil gehören.
+    Verträge für mehrere Lokationen werden mit mehreren Vertragsteilen abgebildet
     """
     maximale_abnahmemenge: Optional["Menge"] = Field(default=None, alias="maximaleAbnahmemenge")
     """
-    FÃ¼r die Lokation festgelegte maximale Abnahmemenge (exklusiv)
+    Für die Lokation festgelegte maximale Abnahmemenge (exklusiv)
     """
     minimale_abnahmemenge: Optional["Menge"] = Field(default=None, alias="minimaleAbnahmemenge")
     """
-    FÃ¼r die Lokation festgelegte Mindestabnahmemenge (inklusiv)
+    Für die Lokation festgelegte Mindestabnahmemenge (inklusiv)
     """
     vertraglich_fixierte_menge: Optional["Menge"] = Field(default=None, alias="vertraglichFixierteMenge")
     """
-    FÃ¼r die Lokation festgeschriebene Abnahmemenge
+    Für die Lokation festgeschriebene Abnahmemenge
     """
     vertragsteilbeginn: Optional[datetime] = Field(default=None, title="Vertragsteilbeginn")
     """
-    Start der GÃ¼ltigkeit des Vertragsteils (inklusiv)
+    Start der Gültigkeit des Vertragsteils (inklusiv)
     """
     vertragsteilende: Optional[datetime] = Field(default=None, title="Vertragsteilende")
     """
-    Ende der GÃ¼ltigkeit des Vertragsteils (exklusiv)
+    Ende der Gültigkeit des Vertragsteils (exklusiv)
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

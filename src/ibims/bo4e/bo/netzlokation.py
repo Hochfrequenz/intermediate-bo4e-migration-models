@@ -32,7 +32,7 @@ class Netzlokation(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.NETZLOKATION, alias="_typ")
     """
@@ -50,7 +50,7 @@ class Netzlokation(BaseModel):
         default=None, alias="grundzustaendigerMsbCodenr", title="Grundzustaendigermsbcodenr"
     )
     """
-    Codenummer des grundzustÃ¤ndigen Messstellenbetreibers, der fÃ¼r diese Netzlokation zustÃ¤ndig ist.
+    Codenummer des grundzuständigen Messstellenbetreibers, der für diese Netzlokation zuständig ist.
     """
     konfigurationsprodukte: Optional[list["Konfigurationsprodukt"]] = Field(
         default=None, title="Konfigurationsprodukte"
@@ -66,7 +66,7 @@ class Netzlokation(BaseModel):
     """
     lokationszuordnungen: Optional[list["Lokationszuordnung"]] = Field(default=None, title="Lokationszuordnungen")
     """
-    Lokationszuordnung, um bspw. die zugehÃ¶rigen Messlokationen anzugeben
+    Lokationszuordnung, um bspw. die zugehörigen Messlokationen anzugeben
     """
     netzanschlussleistung: Optional["Menge"] = None
     """
@@ -78,7 +78,7 @@ class Netzlokation(BaseModel):
     """
     obiskennzahl: Optional[str] = Field(default=None, title="Obiskennzahl")
     """
-    Die OBIS-Kennzahl fÃ¼r die Netzlokation
+    Die OBIS-Kennzahl für die Netzlokation
     """
     sparte: Optional[Sparte] = None
     """

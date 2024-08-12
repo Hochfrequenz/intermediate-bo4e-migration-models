@@ -30,7 +30,7 @@ class Marktteilnehmer(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.MARKTTEILNEHMER, alias="_typ")
     """
@@ -42,7 +42,7 @@ class Marktteilnehmer(BaseModel):
     """
     geschaeftspartner: Optional["Geschaeftspartner"] = None
     """
-    Der zu diesem Marktteilnehmer gehÃ¶rende GeschÃ¤ftspartner
+    Der zu diesem Marktteilnehmer gehörende Geschäftspartner
     """
     makoadresse: Optional[list[str]] = Field(default=None, title="Makoadresse")
     """

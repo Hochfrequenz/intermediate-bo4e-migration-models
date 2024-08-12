@@ -26,8 +26,8 @@ class Adresse(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -51,7 +51,7 @@ class Adresse(BaseModel):
     """
     ort: str = Field(..., title="Ort")
     """
-    Bezeichnung der Stadt; z.B. "HÃ¼ckelhoven"
+    Bezeichnung der Stadt; z.B. "Hückelhoven"
     """
     ortsteil: Optional[str] = Field(default=None, title="Ortsteil")
     """
@@ -59,7 +59,7 @@ class Adresse(BaseModel):
     """
     postfach: Optional[str] = Field(default=None, title="Postfach")
     """
-    Im Falle einer Postfachadresse das Postfach; Damit werden StraÃŸe und Hausnummer nicht berÃ¼cksichtigt
+    Im Falle einer Postfachadresse das Postfach; Damit werden Straße und Hausnummer nicht berücksichtigt
     """
     postleitzahl: str = Field(..., title="Postleitzahl")
     """
@@ -67,7 +67,7 @@ class Adresse(BaseModel):
     """
     strasse: Optional[str] = Field(default=None, title="Strasse")
     """
-    Bezeichnung der StraÃŸe; z.B. "WeserstraÃŸe"
+    Bezeichnung der Straße; z.B. "Weserstraße"
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

@@ -18,8 +18,8 @@ if TYPE_CHECKING:
 
 class Geschaeftspartner(BaseModel):
     """
-    Mit diesem Objekt kÃ¶nnen GeschÃ¤ftspartner Ã¼bertragen werden.
-    Sowohl Unternehmen, als auch Privatpersonen kÃ¶nnen GeschÃ¤ftspartner sein.
+    Mit diesem Objekt können Geschäftspartner übertragen werden.
+    Sowohl Unternehmen, als auch Privatpersonen können Geschäftspartner sein.
     Hinweis: "Marktteilnehmer" haben ein eigenes BO, welches sich von diesem BO ableitet.
     Hier sollte daher keine Zuordnung zu Marktrollen erfolgen.
 
@@ -37,11 +37,11 @@ class Geschaeftspartner(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.GESCHAEFTSPARTNER, alias="_typ")
     """
-    MÃ¶gliche Anrede der Person
+    Mögliche Anrede der Person
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -49,7 +49,7 @@ class Geschaeftspartner(BaseModel):
     """
     adresse: Optional["Adresse"] = None
     """
-    Adresse des GeschÃ¤ftspartners
+    Adresse des Geschäftspartners
     """
     amtsgericht: Optional[str] = Field(default=None, title="Amtsgericht")
     """
@@ -57,27 +57,27 @@ class Geschaeftspartner(BaseModel):
     """
     anrede: Optional[Anrede] = None
     """
-    MÃ¶gliche Anrede der Person
+    Mögliche Anrede der Person
     """
     ansprechpartner: Optional[list["Person"]] = Field(default=None, title="Ansprechpartner")
     geschaeftspartnerrollen: Optional[list[Geschaeftspartnerrolle]] = Field(
         default=None, title="Geschaeftspartnerrollen"
     )
     """
-    Rollen, die die GeschÃ¤ftspartner inne haben (z.B. Interessent, Kunde)
+    Rollen, die die Geschäftspartner inne haben (z.B. Interessent, Kunde)
     """
     glaeubiger_id: Optional[str] = Field(default=None, alias="glaeubigerId", title="Glaeubigerid")
     """
-    Die GlÃ¤ubiger-ID welche im Zahlungsverkehr verwendet wird; Z.B. "DE 47116789"
+    Die Gläubiger-ID welche im Zahlungsverkehr verwendet wird; Z.B. "DE 47116789"
     """
     handelsregisternummer: Optional[str] = Field(default=None, title="Handelsregisternummer")
     """
-    Handelsregisternummer des GeschÃ¤ftspartners
+    Handelsregisternummer des Geschäftspartners
     """
     individuelle_anrede: Optional[str] = Field(default=None, alias="individuelleAnrede", title="Individuelleanrede")
     kontaktwege: Optional[list["Kontaktweg"]] = Field(default=None, title="Kontaktwege")
     """
-    Kontaktwege des GeschÃ¤ftspartners
+    Kontaktwege des Geschäftspartners
     """
     nachname: str = Field(..., title="Nachname")
     """
@@ -85,16 +85,16 @@ class Geschaeftspartner(BaseModel):
     """
     organisationsname: Optional[str] = Field(default=None, title="Organisationsname")
     """
-    Kontaktwege des GeschÃ¤ftspartners
+    Kontaktwege des Geschäftspartners
     """
     organisationstyp: Optional[Organisationstyp] = None
     titel: Optional[Titel] = None
     """
-    MÃ¶glicher Titel der Person
+    Möglicher Titel der Person
     """
     umsatzsteuer_id: Optional[str] = Field(default=None, alias="umsatzsteuerId", title="Umsatzsteuerid")
     """
-    Die Steuer-ID des GeschÃ¤ftspartners; Beispiel: "DE 813281825"
+    Die Steuer-ID des Geschäftspartners; Beispiel: "DE 813281825"
     """
     vorname: Optional[str] = Field(default=None, title="Vorname")
     """

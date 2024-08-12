@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 class AufAbschlag(BaseModel):
     """
-    Modell fÃ¼r die preiserhÃ¶henden (Aufschlag) bzw. preisvermindernden (Abschlag) Zusatzvereinbarungen,
+    Modell für die preiserhöhenden (Aufschlag) bzw. preisvermindernden (Abschlag) Zusatzvereinbarungen,
     die individuell zu einem neuen oder bestehenden Liefervertrag abgeschlossen wurden.
 
     .. raw:: html
@@ -31,8 +31,8 @@ class AufAbschlag(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -56,20 +56,20 @@ class AufAbschlag(BaseModel):
     """
     einheit: Optional[Waehrungseinheit] = None
     """
-    Gibt an in welcher WÃ¤hrungseinheit der Auf/Abschlag berechnet wird. Euro oder Ct..
+    Gibt an in welcher Währungseinheit der Auf/Abschlag berechnet wird. Euro oder Ct..
     (Nur im Falle absoluter Aufschlagstypen).
     """
     gueltigkeitszeitraum: Optional["Zeitraum"] = None
     """
-    Internetseite, auf der die Informationen zum Auf-/Abschlag verÃ¶ffentlicht sind.
+    Internetseite, auf der die Informationen zum Auf-/Abschlag veröffentlicht sind.
     """
     staffeln: Optional[list["Preisstaffel"]] = Field(default=None, title="Staffeln")
     """
-    Werte fÃ¼r die gestaffelten Auf/AbschlÃ¤ge.
+    Werte für die gestaffelten Auf/Abschläge.
     """
     website: Optional[str] = Field(default=None, title="Website")
     """
-    Internetseite, auf der die Informationen zum Auf-/Abschlag verÃ¶ffentlicht sind.
+    Internetseite, auf der die Informationen zum Auf-/Abschlag veröffentlicht sind.
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

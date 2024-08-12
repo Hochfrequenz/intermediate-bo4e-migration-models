@@ -3,7 +3,7 @@ from enum import Enum
 
 class Regionskriteriumtyp(str, Enum):
     """
-    Klassifizierung der Kriterien fÃ¼r eine regionale Eingrenzung.
+    Klassifizierung der Kriterien für eine regionale Eingrenzung.
     """
 
     BUNDESLANDKENNZIFFER = "BUNDESLANDKENNZIFFER"

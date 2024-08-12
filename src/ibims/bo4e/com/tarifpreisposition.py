@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 class Tarifpreisposition(BaseModel):
     """
-    Mit dieser Komponente kÃ¶nnen Tarifpreise verschiedener Typen abgebildet werden.
+    Mit dieser Komponente können Tarifpreise verschiedener Typen abgebildet werden.
 
     .. raw:: html
 
@@ -29,8 +29,8 @@ class Tarifpreisposition(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -38,7 +38,7 @@ class Tarifpreisposition(BaseModel):
     """
     bezugseinheit: Optional[Mengeneinheit] = None
     """
-    GrÃ¶ÃŸe, auf die sich die Einheit bezieht, beispielsweise kWh, Jahr
+    Größe, auf die sich die Einheit bezieht, beispielsweise kWh, Jahr
     """
     einheit: Optional[Waehrungseinheit] = None
     """
@@ -46,7 +46,7 @@ class Tarifpreisposition(BaseModel):
     """
     mengeneinheitstaffel: Optional[Mengeneinheit] = None
     """
-    Gibt an, nach welcher Menge die vorgenannte EinschrÃ¤nkung erfolgt (z.B. Jahresstromverbrauch in kWh)
+    Gibt an, nach welcher Menge die vorgenannte Einschränkung erfolgt (z.B. Jahresstromverbrauch in kWh)
     """
     preisstaffeln: Optional[list["Preisstaffel"]] = Field(default=None, title="Preisstaffeln")
     """

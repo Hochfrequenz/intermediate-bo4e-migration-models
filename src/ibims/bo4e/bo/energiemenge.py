@@ -28,11 +28,11 @@ class Energiemenge(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.ENERGIEMENGE, alias="_typ")
     """
-    Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehÃ¶rt
+    Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -44,7 +44,7 @@ class Energiemenge(BaseModel):
     """
     lokations_id: Optional[str] = Field(default=None, alias="lokationsId", title="Lokationsid")
     """
-    Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehÃ¶rt
+    Eindeutige Nummer der Marktlokation bzw. der Messlokation, zu der die Energiemenge gehört
     """
     lokationstyp: Optional[Lokationstyp] = None
     """

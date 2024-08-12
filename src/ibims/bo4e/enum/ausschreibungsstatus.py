@@ -3,7 +3,7 @@ from enum import Enum
 
 class Ausschreibungsstatus(str, Enum):
     """
-    Bezeichnungen fÃ¼r die Ausschreibungsphasen
+    Bezeichnungen für die Ausschreibungsphasen
     """
 
     PHASE1 = "PHASE1"

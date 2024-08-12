@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 class RegionalerAufAbschlag(BaseModel):
     """
-    Mit dieser Komponente kÃ¶nnen Auf- und AbschlÃ¤ge verschiedener Typen im Zusammenhang mit regionalen GÃ¼ltigkeiten
+    Mit dieser Komponente können Auf- und Abschläge verschiedener Typen im Zusammenhang mit regionalen Gültigkeiten
     abgebildet werden.
     Hier sind auch die Auswirkungen auf verschiedene Tarifparameter modelliert, die sich durch die Auswahl eines Auf-
     oder Abschlags ergeben.
@@ -37,8 +37,8 @@ class RegionalerAufAbschlag(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -62,22 +62,22 @@ class RegionalerAufAbschlag(BaseModel):
     """
     einheit: Optional[Waehrungseinheit] = None
     """
-    Gibt an in welcher WÃ¤hrungseinheit der Auf/Abschlag berechnet wird (nur im Falle absoluter Aufschlagstypen).
+    Gibt an in welcher Währungseinheit der Auf/Abschlag berechnet wird (nur im Falle absoluter Aufschlagstypen).
     """
     einschraenkungsaenderung: Optional["Tarifeinschraenkung"] = None
     """
-    Ã„nderungen in den EinschrÃ¤nkungen zum Tarif;
-    Falls in dieser Komponenten angegeben, werden die Tarifparameter hiermit Ã¼berschrieben.
+    Änderungen in den Einschränkungen zum Tarif;
+    Falls in dieser Komponenten angegeben, werden die Tarifparameter hiermit überschrieben.
     """
     energiemixaenderung: Optional["Energiemix"] = None
     """
-    Der Energiemix kann sich durch einen AufAbschlag Ã¤ndern (z.B. zwei Cent Aufschlag fÃ¼r Ã–kostrom).
+    Der Energiemix kann sich durch einen AufAbschlag ändern (z.B. zwei Cent Aufschlag für Ökostrom).
     Sollte dies der Fall sein, wird hier die neue Zusammensetzung des Energiemix angegeben.
     """
     garantieaenderung: Optional["Preisgarantie"] = None
     """
-    Ã„nderungen in den Garantievereinbarungen;
-    Falls in dieser Komponenten angegeben, werden die Tarifparameter hiermit Ã¼berschrieben.
+    Änderungen in den Garantievereinbarungen;
+    Falls in dieser Komponenten angegeben, werden die Tarifparameter hiermit überschrieben.
     """
     gueltigkeitszeitraum: Optional["Zeitraum"] = None
     """
@@ -85,29 +85,29 @@ class RegionalerAufAbschlag(BaseModel):
     """
     staffeln: Optional[list["RegionalePreisstaffel"]] = Field(default=None, title="Staffeln")
     """
-    Werte fÃ¼r die gestaffelten Auf/AbschlÃ¤ge mit regionaler Eingrenzung
+    Werte für die gestaffelten Auf/Abschläge mit regionaler Eingrenzung
     """
     tarifnamensaenderungen: Optional[str] = Field(default=None, title="Tarifnamensaenderungen")
     """
-    Durch die Anwendung des Auf/Abschlags kann eine Ã„nderung des Tarifnamens auftreten
+    Durch die Anwendung des Auf/Abschlags kann eine Änderung des Tarifnamens auftreten
     """
     vertagskonditionsaenderung: Optional["Vertragskonditionen"] = None
     """
-    Ã„nderungen in den Vertragskonditionen;
-    Falls in dieser Komponenten angegeben, werden die Tarifparameter hiermit Ã¼berschrieben.
+    Änderungen in den Vertragskonditionen;
+    Falls in dieser Komponenten angegeben, werden die Tarifparameter hiermit überschrieben.
     """
     voraussetzungen: Optional[list[str]] = Field(default=None, title="Voraussetzungen")
     """
-    Voraussetzungen, die erfÃ¼llt sein mÃ¼ssen, damit dieser AufAbschlag zur Anwendung kommen kann
+    Voraussetzungen, die erfüllt sein müssen, damit dieser AufAbschlag zur Anwendung kommen kann
     """
     website: Optional[str] = Field(default=None, title="Website")
     """
-    Internetseite, auf der die Informationen zum Auf-/Abschlag verÃ¶ffentlicht sind
+    Internetseite, auf der die Informationen zum Auf-/Abschlag veröffentlicht sind
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
     zusatzprodukte: Optional[list[str]] = Field(default=None, title="Zusatzprodukte")
     """
-    Zusatzprodukte, die nur in Kombination mit diesem AufAbschlag erhÃ¤ltlich sind
+    Zusatzprodukte, die nur in Kombination mit diesem AufAbschlag erhältlich sind
     """

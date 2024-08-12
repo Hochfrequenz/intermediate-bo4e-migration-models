@@ -3,7 +3,7 @@ from enum import Enum
 
 class Geschaeftspartnerrolle(str, Enum):
     """
-    Diese Rollen kann ein GeschÃ¤ftspartner einnehmen.
+    Diese Rollen kann ein Geschäftspartner einnehmen.
     """
 
     LIEFERANT = "LIEFERANT"

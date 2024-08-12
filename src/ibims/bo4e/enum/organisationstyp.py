@@ -3,7 +3,7 @@ from enum import Enum
 
 class Organisationstyp(str, Enum):
     """
-    Hier wird festgelegt, ob der GeschÃ¤ftspartner eine Person, eine Firma oder etwas anderes ist.
+    Hier wird festgelegt, ob der Geschäftspartner eine Person, eine Firma oder etwas anderes ist.
     """
 
     PRIVATPERSON = "PRIVATPERSON"

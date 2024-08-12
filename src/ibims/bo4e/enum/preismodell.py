@@ -3,7 +3,7 @@ from enum import Enum
 
 class Preismodell(str, Enum):
     """
-    Bezeichnung der Preismodelle in Ausschreibungen fÃ¼r die Energielieferung.
+    Bezeichnung der Preismodelle in Ausschreibungen für die Energielieferung.
     """
 
     FESTPREIS = "FESTPREIS"

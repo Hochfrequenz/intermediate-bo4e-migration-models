@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 class Angebotsposition(BaseModel):
     """
     Unterhalb von Angebotsteilen sind die Angebotspositionen eingebunden.
-    Hier werden die angebotenen Bestandteile einzeln aufgefÃ¼hrt. Beispiel:
+    Hier werden die angebotenen Bestandteile einzeln aufgeführt. Beispiel:
     Positionsmenge: 4000 kWh
     Positionspreis: 24,56 ct/kWh
     Positionskosten: 982,40 EUR
@@ -31,8 +31,8 @@ class Angebotsposition(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -44,7 +44,7 @@ class Angebotsposition(BaseModel):
     """
     positionskosten: Optional["Betrag"] = None
     """
-    Kosten (positionspreis * positionsmenge) fÃ¼r diese Angebotsposition
+    Kosten (positionspreis * positionsmenge) für diese Angebotsposition
     """
     positionsmenge: Optional["Menge"] = None
     """
@@ -52,7 +52,7 @@ class Angebotsposition(BaseModel):
     """
     positionspreis: Optional["Preis"] = None
     """
-    Preis pro Einheit/StÃ¼ckpreis des angebotenen Artikels.
+    Preis pro Einheit/Stückpreis des angebotenen Artikels.
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

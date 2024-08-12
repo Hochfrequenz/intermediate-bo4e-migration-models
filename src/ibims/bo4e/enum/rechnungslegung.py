@@ -3,7 +3,7 @@ from enum import Enum
 
 class Rechnungslegung(str, Enum):
     """
-    AufzÃ¤hlung der MÃ¶glichkeiten zur Rechnungslegung in Ausschreibungen.
+    Aufzählung der Möglichkeiten zur Rechnungslegung in Ausschreibungen.
     """
 
     MONATSRECHN = "MONATSRECHN"

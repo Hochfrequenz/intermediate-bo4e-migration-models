@@ -3,7 +3,7 @@ from enum import Enum
 
 class Preisstatus(str, Enum):
     """
-    Statusinformation fÃ¼r Preise
+    Statusinformation für Preise
     """
 
     VORLAEUFIG = "VORLAEUFIG"

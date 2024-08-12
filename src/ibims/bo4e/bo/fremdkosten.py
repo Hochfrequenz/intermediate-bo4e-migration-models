@@ -13,9 +13,9 @@ if TYPE_CHECKING:
 
 class Fremdkosten(BaseModel):
     """
-    Mit diesem BO werden die Fremdkosten, beispielsweise fÃ¼r eine Angebotserstellung oder eine RechnungsprÃ¼fung,
-    Ã¼bertragen.
-    Die Fremdkosten enthalten dabei alle KostenblÃ¶cke, die von anderen Marktteilnehmern oder Instanzen erhoben werden.
+    Mit diesem BO werden die Fremdkosten, beispielsweise für eine Angebotserstellung oder eine Rechnungsprüfung,
+    übertragen.
+    Die Fremdkosten enthalten dabei alle Kostenblöcke, die von anderen Marktteilnehmern oder Instanzen erhoben werden.
 
     .. raw:: html
 
@@ -31,11 +31,11 @@ class Fremdkosten(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.FREMDKOSTEN, alias="_typ")
     """
-    FÃ¼r diesen Zeitraum wurden die Kosten ermittelt
+    Für diesen Zeitraum wurden die Kosten ermittelt
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -43,15 +43,15 @@ class Fremdkosten(BaseModel):
     """
     gueltigkeit: Optional["Zeitraum"] = None
     """
-    FÃ¼r diesen Zeitraum wurden die Kosten ermittelt
+    Für diesen Zeitraum wurden die Kosten ermittelt
     """
     kostenbloecke: Optional[list["Fremdkostenblock"]] = Field(default=None, title="Kostenbloecke")
     """
-    In KostenblÃ¶cken werden Kostenpositionen zusammengefasst. Beispiele: Netzkosten, Umlagen, Steuern etc
+    In Kostenblöcken werden Kostenpositionen zusammengefasst. Beispiele: Netzkosten, Umlagen, Steuern etc
     """
     summe_kosten: Optional["Betrag"] = Field(default=None, alias="summeKosten")
     """
-    Die Gesamtsumme Ã¼ber alle KostenblÃ¶cke und -positionen
+    Die Gesamtsumme über alle Kostenblöcke und -positionen
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

@@ -3,7 +3,7 @@ from enum import Enum
 
 class Vertragsart(str, Enum):
     """
-    AufzÃ¤hlung der Vertragsarten.
+    Aufzählung der Vertragsarten.
     """
 
     ENERGIELIEFERVERTRAG = "ENERGIELIEFERVERTRAG"

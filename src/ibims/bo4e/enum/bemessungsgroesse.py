@@ -3,7 +3,7 @@ from enum import Enum
 
 class Bemessungsgroesse(str, Enum):
     """
-    Zur Abbildung von MessgrÃ¶ssen und zur Verwendung in energiewirtschaftlichen Berechnungen.
+    Zur Abbildung von Messgrössen und zur Verwendung in energiewirtschaftlichen Berechnungen.
     """
 
     WIRKARBEIT_EL = "WIRKARBEIT_EL"

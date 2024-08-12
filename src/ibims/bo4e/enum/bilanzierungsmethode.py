@@ -3,7 +3,7 @@ from enum import Enum
 
 class Bilanzierungsmethode(str, Enum):
     """
-    Mit dieser AufzÃ¤hlung kann zwischen den Bilanzierungsmethoden bzw. -grundlagen unterschieden werden.
+    Mit dieser Aufzählung kann zwischen den Bilanzierungsmethoden bzw. -grundlagen unterschieden werden.
     """
 
     RLM = "RLM"

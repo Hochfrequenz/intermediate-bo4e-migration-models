@@ -15,7 +15,7 @@ class Angebotsteil(BaseModel):
     """
     Mit dieser Komponente wird ein Teil einer Angebotsvariante abgebildet.
     Hier werden alle Angebotspositionen aggregiert.
-    Angebotsteile werden im einfachsten Fall fÃ¼r eine Marktlokation oder Lieferstellenadresse erzeugt.
+    Angebotsteile werden im einfachsten Fall für eine Marktlokation oder Lieferstellenadresse erzeugt.
     Hier werden die Mengen und Gesamtkosten aller Angebotspositionen zusammengefasst.
     Eine Variante besteht mindestens aus einem Angebotsteil.
 
@@ -33,8 +33,8 @@ class Angebotsteil(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -50,20 +50,20 @@ class Angebotsteil(BaseModel):
     """
     gesamtmengeangebotsteil: Optional["Menge"] = None
     """
-    Summe der VerbrÃ¤uche aller in diesem Angebotsteil eingeschlossenen Lieferstellen
+    Summe der Verbräuche aller in diesem Angebotsteil eingeschlossenen Lieferstellen
     """
     lieferstellenangebotsteil: Optional[list["Marktlokation"]] = Field(default=None, title="Lieferstellenangebotsteil")
     """
-    Marktlokationen, fÃ¼r die dieses Angebotsteil gilt, falls vorhanden.
+    Marktlokationen, für die dieses Angebotsteil gilt, falls vorhanden.
     Durch die Marktlokation ist auch die Lieferadresse festgelegt
     """
     lieferzeitraum: Optional["Zeitraum"] = None
     """
-    Hier kann der Belieferungszeitraum angegeben werden, fÃ¼r den dieser Angebotsteil gilt
+    Hier kann der Belieferungszeitraum angegeben werden, für den dieser Angebotsteil gilt
     """
     positionen: Optional[list["Angebotsposition"]] = Field(default=None, title="Positionen")
     """
-    Einzelne Positionen, die zu diesem Angebotsteil gehÃ¶ren
+    Einzelne Positionen, die zu diesem Angebotsteil gehören
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

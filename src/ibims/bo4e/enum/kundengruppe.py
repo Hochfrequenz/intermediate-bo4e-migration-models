@@ -3,7 +3,7 @@ from enum import Enum
 
 class Kundengruppe(str, Enum):
     """
-    Kundengruppe fÃ¼r eine Marktlokation (orientiert sich an den Standard-Lastprofilen).
+    Kundengruppe für eine Marktlokation (orientiert sich an den Standard-Lastprofilen).
     """
 
     RLM = "RLM"

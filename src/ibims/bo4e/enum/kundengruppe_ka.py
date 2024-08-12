@@ -3,7 +3,7 @@ from enum import Enum
 
 class KundengruppeKA(str, Enum):
     """
-    Eine AufzÃ¤hlung zur Einordnung fÃ¼r die HÃ¶he der Konzessionsabgabe.
+    Eine Aufzählung zur Einordnung für die Höhe der Konzessionsabgabe.
     """
 
     S_SCHWACHLAST = "S_SCHWACHLAST"

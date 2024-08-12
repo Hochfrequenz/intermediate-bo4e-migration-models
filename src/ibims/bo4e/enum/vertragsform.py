@@ -3,7 +3,7 @@ from enum import Enum
 
 class Vertragsform(str, Enum):
     """
-    AufzÃ¤hlung der MÃ¶glichkeiten zu Vertragsformen in Ausschreibungen.
+    Aufzählung der Möglichkeiten zu Vertragsformen in Ausschreibungen.
     """
 
     ONLINE = "ONLINE"

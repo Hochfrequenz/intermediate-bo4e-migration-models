@@ -31,7 +31,7 @@ class Bilanzierung(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     bilanzierungsbeginn: datetime = Field(..., title="Bilanzierungsbeginn")
-    bilanzierungsende: datetime = Field(..., title="Bilanzierungsende")
+    bilanzierungsende: Optional[datetime] = Field(default=None, title="Bilanzierungsende")
     bilanzkreis: Optional[str] = Field(default=None, title="Bilanzkreis")
     aggregationsverantwortung: Optional[Aggregationsverantwortung] = None
     lastprofile: Optional[list["Lastprofil"]] = Field(default=None, title="Lastprofile")

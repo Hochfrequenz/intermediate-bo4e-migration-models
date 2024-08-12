@@ -18,8 +18,8 @@ if TYPE_CHECKING:
 
 class Vertrag(BaseModel):
     """
-    Modell fÃ¼r die Abbildung von Vertragsbeziehungen;
-    Das Objekt dient dazu, alle Arten von VertrÃ¤gen, die in der Energiewirtschaft Verwendung finden, abzubilden.
+    Modell für die Abbildung von Vertragsbeziehungen;
+    Das Objekt dient dazu, alle Arten von Verträgen, die in der Energiewirtschaft Verwendung finden, abzubilden.
 
     .. raw:: html
 
@@ -35,11 +35,11 @@ class Vertrag(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.VERTRAG, alias="_typ")
     """
-    Der Typ des GeschÃ¤ftsobjektes
+    Der Typ des Geschäftsobjektes
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -51,7 +51,7 @@ class Vertrag(BaseModel):
     """
     sparte: Optional[Sparte] = None
     """
-    UnterscheidungsmÃ¶glichkeiten fÃ¼r die Sparte
+    Unterscheidungsmöglichkeiten für die Sparte
     """
     unterzeichnervp1: Optional[list["Unterschrift"]] = Field(default=None, title="Unterzeichnervp1")
     """
@@ -75,11 +75,11 @@ class Vertrag(BaseModel):
     """
     vertragskonditionen: Optional["Vertragskonditionen"] = None
     """
-    Festlegungen zu Laufzeiten und KÃ¼ndigungsfristen
+    Festlegungen zu Laufzeiten und Kündigungsfristen
     """
     vertragsnummer: str = Field(..., title="Vertragsnummer")
     """
-    Eine im Verwendungskontext eindeutige Nummer fÃ¼r den Vertrag
+    Eine im Verwendungskontext eindeutige Nummer für den Vertrag
     """
     vertragspartner1: Optional["Geschaeftspartner"] = None
     vertragspartner2: Optional["Geschaeftspartner"] = None

@@ -3,7 +3,7 @@ from enum import Enum
 
 class Preisgarantietyp(str, Enum):
     """
-    AufzÃ¤hlung der MÃ¶glichkeiten fÃ¼r die Vergabe von Preisgarantien
+    Aufzählung der Möglichkeiten für die Vergabe von Preisgarantien
     """
 
     ALLE_PREISBESTANDTEILE_BRUTTO = "ALLE_PREISBESTANDTEILE_BRUTTO"

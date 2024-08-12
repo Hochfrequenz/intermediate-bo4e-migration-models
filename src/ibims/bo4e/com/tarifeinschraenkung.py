@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class Tarifeinschraenkung(BaseModel):
     """
-    Mit dieser Komponente werden EinschrÃ¤nkungen fÃ¼r die Anwendung von Tarifen modelliert.
+    Mit dieser Komponente werden Einschränkungen für die Anwendung von Tarifen modelliert.
 
     .. raw:: html
 
@@ -28,8 +28,8 @@ class Tarifeinschraenkung(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -37,22 +37,22 @@ class Tarifeinschraenkung(BaseModel):
     """
     einschraenkungleistung: Optional[list["Menge"]] = Field(default=None, title="Einschraenkungleistung")
     """
-    Die vereinbarte Leistung, die (nÃ¤herungsweise) abgenommen wird.
-    Insbesondere Gastarife kÃ¶nnen daran gebunden sein, dass die Leistung einer vereinbarten HÃ¶he entspricht.
+    Die vereinbarte Leistung, die (näherungsweise) abgenommen wird.
+    Insbesondere Gastarife können daran gebunden sein, dass die Leistung einer vereinbarten Höhe entspricht.
     """
     einschraenkungzaehler: Optional[list["Geraet"]] = Field(default=None, title="Einschraenkungzaehler")
     """
-    Liste der ZÃ¤hler/GerÃ¤te, die erforderlich sind, damit dieser Tarif zur Anwendung gelangen kann.
-    (Falls keine ZÃ¤hler angegeben sind, ist der Tarif nicht an das Vorhandensein bestimmter ZÃ¤hler gebunden.)
+    Liste der Zähler/Geräte, die erforderlich sind, damit dieser Tarif zur Anwendung gelangen kann.
+    (Falls keine Zähler angegeben sind, ist der Tarif nicht an das Vorhandensein bestimmter Zähler gebunden.)
     """
     voraussetzungen: Optional[list[Voraussetzungen]] = Field(default=None, title="Voraussetzungen")
     """
-    Voraussetzungen, die erfÃ¼llt sein mÃ¼ssen, damit dieser Tarif zur Anwendung kommen kann
+    Voraussetzungen, die erfüllt sein müssen, damit dieser Tarif zur Anwendung kommen kann
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
     zusatzprodukte: Optional[list[str]] = Field(default=None, title="Zusatzprodukte")
     """
-    Weitere Produkte, die gemeinsam mit diesem Tarif bestellt werden kÃ¶nnen
+    Weitere Produkte, die gemeinsam mit diesem Tarif bestellt werden können
     """

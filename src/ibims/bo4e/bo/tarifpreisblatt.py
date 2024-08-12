@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 
 class Tarifpreisblatt(BaseModel):
     """
-    Tarifinformation mit Preisen, AufschlÃ¤gen und Berechnungssystematik
+    Tarifinformation mit Preisen, Aufschlägen und Berechnungssystematik
 
     .. raw:: html
 
@@ -41,7 +41,7 @@ class Tarifpreisblatt(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.TARIFPREISBLATT, alias="_typ")
     """
@@ -66,7 +66,7 @@ class Tarifpreisblatt(BaseModel):
     """
     berechnungsparameter: Optional["Tarifberechnungsparameter"] = None
     """
-    FÃ¼r die Berechnung der Kosten sind die hier abgebildeten Parameter heranzuziehen
+    Für die Berechnung der Kosten sind die hier abgebildeten Parameter heranzuziehen
     """
     bezeichnung: Optional[str] = Field(default=None, title="Bezeichnung")
     """
@@ -74,15 +74,15 @@ class Tarifpreisblatt(BaseModel):
     """
     energiemix: Optional["Energiemix"] = None
     """
-    Der Energiemix, der fÃ¼r diesen Tarif gilt
+    Der Energiemix, der für diesen Tarif gilt
     """
     kundentypen: Optional[list[Kundentyp]] = Field(default=None, title="Kundentypen")
     """
-    Kundentypen fÃ¼r den der Tarif gilt, z.B. Privatkunden
+    Kundentypen für den der Tarif gilt, z.B. Privatkunden
     """
     preisgarantie: Optional["Preisgarantie"] = None
     """
-    Festlegung von Garantien fÃ¼r bestimmte Preisanteile
+    Festlegung von Garantien für bestimmte Preisanteile
     """
     preisstand: Optional[datetime] = Field(default=None, title="Preisstand")
     """
@@ -100,11 +100,11 @@ class Tarifpreisblatt(BaseModel):
         default=None, alias="tarifAufAbschlaege", title="Tarifaufabschlaege"
     )
     """
-    Auf- und AbschlÃ¤ge auf die Preise oder Kosten
+    Auf- und Abschläge auf die Preise oder Kosten
     """
     tarifeinschraenkung: Optional["Tarifeinschraenkung"] = None
     """
-    Die Bedingungen und EinschrÃ¤nkungen unter denen ein Tarif angewendet werden kann
+    Die Bedingungen und Einschränkungen unter denen ein Tarif angewendet werden kann
     """
     tarifmerkmale: Optional[list[Tarifmerkmal]] = Field(default=None, title="Tarifmerkmale")
     """
@@ -112,7 +112,7 @@ class Tarifpreisblatt(BaseModel):
     """
     tarifpreise: Optional[list["Tarifpreisposition"]] = Field(default=None, title="Tarifpreise")
     """
-    Die festgelegten Preise, z.B. fÃ¼r Arbeitspreis, Grundpreis etc.
+    Die festgelegten Preise, z.B. für Arbeitspreis, Grundpreis etc.
     """
     tariftyp: Optional[Tariftyp] = None
     """
@@ -120,7 +120,7 @@ class Tarifpreisblatt(BaseModel):
     """
     vertragskonditionen: Optional["Vertragskonditionen"] = None
     """
-    Mindestlaufzeiten und KÃ¼ndigungsfristen zusammengefasst
+    Mindestlaufzeiten und Kündigungsfristen zusammengefasst
     """
     website: Optional[str] = Field(default=None, title="Website")
     """
@@ -128,7 +128,7 @@ class Tarifpreisblatt(BaseModel):
     """
     zeitliche_gueltigkeit: Optional["Zeitraum"] = Field(default=None, alias="zeitlicheGueltigkeit")
     """
-    Angabe, in welchem Zeitraum der Tarif gÃ¼ltig ist
+    Angabe, in welchem Zeitraum der Tarif gültig ist
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

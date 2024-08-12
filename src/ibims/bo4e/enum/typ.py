@@ -3,7 +3,7 @@ from enum import Enum
 
 class Typ(str, Enum):
     """
-    Auflistung sÃ¤mtlicher existierender GeschÃ¤ftsobjekte.
+    Auflistung sämtlicher existierender Geschäftsobjekte.
     """
 
     ANGEBOT = "ANGEBOT"

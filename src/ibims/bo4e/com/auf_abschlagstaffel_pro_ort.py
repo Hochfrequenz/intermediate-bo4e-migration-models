@@ -25,8 +25,8 @@ class AufAbschlagstaffelProOrt(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -42,7 +42,7 @@ class AufAbschlagstaffelProOrt(BaseModel):
     """
     wert: Optional[Decimal] = Field(default=None, title="Wert")
     """
-    Der Wert fÃ¼r den Auf- oder Abschlag.
+    Der Wert für den Auf- oder Abschlag.
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

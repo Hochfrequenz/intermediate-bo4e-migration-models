@@ -32,8 +32,8 @@ class Ausschreibungslos(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -57,7 +57,7 @@ class Ausschreibungslos(BaseModel):
     """
     energieart: Optional[Sparte] = None
     """
-    UnterscheidungsmÃ¶glichkeiten fÃ¼r die Sparte
+    Unterscheidungsmöglichkeiten für die Sparte
     """
     gesamt_menge: Optional["Menge"] = Field(default=None, alias="gesamtMenge")
     """
@@ -69,7 +69,7 @@ class Ausschreibungslos(BaseModel):
     """
     lieferzeitraum: Optional["Zeitraum"] = None
     """
-    Zeitraum, fÃ¼r den die in diesem Los enthaltenen Lieferstellen beliefert werden sollen
+    Zeitraum, für den die in diesem Los enthaltenen Lieferstellen beliefert werden sollen
     """
     losnummer: Optional[str] = Field(default=None, title="Losnummer")
     """
@@ -77,16 +77,16 @@ class Ausschreibungslos(BaseModel):
     """
     preismodell: Optional[Preismodell] = None
     """
-    Bezeichnung der Preismodelle in Ausschreibungen fÃ¼r die Energielieferung
+    Bezeichnung der Preismodelle in Ausschreibungen für die Energielieferung
     """
     wiederholungsintervall: Optional["Zeitraum"] = None
     """
     In welchem Intervall die Angebotsabgabe wiederholt werden darf.
-    Angabe nur gesetzt fÃ¼r die 2. Phase bei Ã¶ffentlich-rechtlichen Ausschreibungen
+    Angabe nur gesetzt für die 2. Phase bei öffentlich-rechtlichen Ausschreibungen
     """
     wunsch_kuendingungsfrist: Optional["Zeitraum"] = Field(default=None, alias="wunschKuendingungsfrist")
     """
-    Kundenwunsch zur KÃ¼ndigungsfrist in der Ausschreibung
+    Kundenwunsch zur Kündigungsfrist in der Ausschreibung
     """
     wunsch_maximalmenge: Optional["Menge"] = Field(default=None, alias="wunschMaximalmenge")
     """
@@ -98,11 +98,11 @@ class Ausschreibungslos(BaseModel):
     """
     wunsch_rechnungslegung: Optional[Rechnungslegung] = Field(default=None, alias="wunschRechnungslegung")
     """
-    AufzÃ¤hlung der MÃ¶glichkeiten zur Rechnungslegung in Ausschreibungen
+    Aufzählung der Möglichkeiten zur Rechnungslegung in Ausschreibungen
     """
     wunsch_vertragsform: Optional[Vertragsform] = Field(default=None, alias="wunschVertragsform")
     """
-    AufzÃ¤hlung der MÃ¶glichkeiten zu Vertragsformen in Ausschreibungen
+    Aufzählung der Möglichkeiten zu Vertragsformen in Ausschreibungen
     """
     wunsch_zahlungsziel: Optional["Zeitraum"] = Field(default=None, alias="wunschZahlungsziel")
     """

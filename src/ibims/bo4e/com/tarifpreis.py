@@ -30,8 +30,8 @@ class Tarifpreis(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
-    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die für eigene Zwecke genutzt werden kann.
+    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -39,15 +39,15 @@ class Tarifpreis(BaseModel):
     """
     beschreibung: Optional[str] = Field(default=None, title="Beschreibung")
     """
-    Beschreibung des Preises. Hier kÃ¶nnen z.B. Preisdetails angegeben sein, beispielsweise "DrehstromzÃ¤hler".
+    Beschreibung des Preises. Hier können z.B. Preisdetails angegeben sein, beispielsweise "Drehstromzähler".
     """
     bezugswert: Optional[Mengeneinheit] = None
     """
-    Angabe, fÃ¼r welche BezugsgrÃ¶ÃŸe der Preis gilt. Z.B. kWh.
+    Angabe, für welche Bezugsgröße der Preis gilt. Z.B. kWh.
     """
     einheit: Optional[Waehrungseinheit] = None
     """
-    WÃ¤hrungseinheit fÃ¼r den Preis, z.B. Euro oder Ct.
+    Währungseinheit für den Preis, z.B. Euro oder Ct.
     """
     preistyp: Optional[Preistyp] = None
     """
@@ -55,11 +55,11 @@ class Tarifpreis(BaseModel):
     """
     status: Optional[Preisstatus] = None
     """
-    Gibt den Status des verÃ¶ffentlichten Preises an
+    Gibt den Status des veröffentlichten Preises an
     """
     wert: Optional[Decimal] = Field(default=None, title="Wert")
     """
-    Gibt die nominale HÃ¶he des Preises an.
+    Gibt die nominale Höhe des Preises an.
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

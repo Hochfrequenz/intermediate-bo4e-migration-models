@@ -3,7 +3,7 @@ from enum import Enum
 
 class Messgroesse(str, Enum):
     """
-    Gibt die physikalische GrÃ¶ÃŸe an, die gemessen wurde.
+    Gibt die physikalische Größe an, die gemessen wurde.
     """
 
     STROM = "STROM"

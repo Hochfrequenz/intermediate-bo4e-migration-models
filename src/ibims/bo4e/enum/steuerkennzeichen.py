@@ -3,7 +3,7 @@ from enum import Enum
 
 class Steuerkennzeichen(str, Enum):
     """
-    Zur Kennzeichnung verschiedener SteuersÃ¤tze und Verfahren.
+    Zur Kennzeichnung verschiedener Steuersätze und Verfahren.
     """
 
     UST_0 = "UST_0"

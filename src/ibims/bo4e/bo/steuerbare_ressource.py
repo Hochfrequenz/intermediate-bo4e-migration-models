@@ -30,7 +30,7 @@ class SteuerbareRessource(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.STEUERBARERESSOURCE, alias="_typ")
     """
@@ -58,7 +58,7 @@ class SteuerbareRessource(BaseModel):
     """
     lokationszuordnungen: Optional[list["Lokationszuordnung"]] = Field(default=None, title="Lokationszuordnungen")
     """
-    Lokationszuordnung, um bspw. die zugehÃ¶rigen Messlokationen anzugeben
+    Lokationszuordnung, um bspw. die zugehörigen Messlokationen anzugeben
     """
     steuerbare_ressource_id: Optional[str] = Field(
         default=None, alias="steuerbareRessourceId", title="Steuerbareressourceid"

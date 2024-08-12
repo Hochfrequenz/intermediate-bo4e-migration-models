@@ -3,7 +3,7 @@ from enum import Enum
 
 class Netzebene(str, Enum):
     """
-    Auflistung mÃ¶glicher Netzebenen innerhalb der Energiearten Strom und Gas.
+    Auflistung möglicher Netzebenen innerhalb der Energiearten Strom und Gas.
     """
 
     NSP = "NSP"
