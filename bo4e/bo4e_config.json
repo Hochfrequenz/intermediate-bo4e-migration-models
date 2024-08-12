@@ -2,7 +2,6 @@
   "nonNullableFields": [
     "\\w+\\.\\w+\\._(version|typ)",
     "bo\\.Energiemenge\\.energieverbrauch",
-    "bo\\.Geschaeftspartner\\.nachname",
     "bo\\.Messlokation\\.messlokationsId",
     "bo\\.Marktlokation\\.marktlokationsId",
     "bo\\.Marktlokation\\.sparte",
