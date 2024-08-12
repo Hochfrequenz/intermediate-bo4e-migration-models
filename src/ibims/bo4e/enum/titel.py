@@ -3,7 +3,7 @@ from enum import Enum
 
 class Titel(str, Enum):
     """
-    Übersicht möglicher Titel, z.B. eines Geschäftspartners.
+    Ãœbersicht mÃ¶glicher Titel, z.B. eines GeschÃ¤ftspartners.
     """
 
     DR = "DR"

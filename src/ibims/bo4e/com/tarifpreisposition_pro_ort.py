@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class TarifpreispositionProOrt(BaseModel):
     """
-    Mit dieser Komponente können Tarifpreise verschiedener Typen abgebildet werden
+    Mit dieser Komponente kÃ¶nnen Tarifpreise verschiedener Typen abgebildet werden
 
     .. raw:: html
 
@@ -25,8 +25,8 @@ class TarifpreispositionProOrt(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -38,11 +38,11 @@ class TarifpreispositionProOrt(BaseModel):
     """
     ort: Optional[str] = Field(default=None, title="Ort")
     """
-    Ort für den der Preis gilt
+    Ort fÃ¼r den der Preis gilt
     """
     postleitzahl: Optional[str] = Field(default=None, title="Postleitzahl")
     """
-    Postleitzahl des Ortes für den der Preis gilt
+    Postleitzahl des Ortes fÃ¼r den der Preis gilt
     """
     preisstaffeln: Optional[list["TarifpreisstaffelProOrt"]] = Field(default=None, title="Preisstaffeln")
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(

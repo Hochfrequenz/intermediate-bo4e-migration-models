@@ -14,8 +14,8 @@ if TYPE_CHECKING:
 
 class Kosten(BaseModel):
     """
-    Dieses BO wird zur Übertagung von hierarchischen Kostenstrukturen verwendet.
-    Die Kosten werden dabei in Kostenblöcke und diese wiederum in Kostenpositionen strukturiert.
+    Dieses BO wird zur Ãœbertagung von hierarchischen Kostenstrukturen verwendet.
+    Die Kosten werden dabei in KostenblÃ¶cke und diese wiederum in Kostenpositionen strukturiert.
 
     .. raw:: html
 
@@ -31,7 +31,7 @@ class Kosten(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.KOSTEN, alias="_typ")
     """
@@ -43,11 +43,11 @@ class Kosten(BaseModel):
     """
     gueltigkeit: Optional["Zeitraum"] = None
     """
-    Für diesen Zeitraum wurden die Kosten ermittelt
+    FÃ¼r diesen Zeitraum wurden die Kosten ermittelt
     """
     kostenbloecke: Optional[list["Kostenblock"]] = Field(default=None, title="Kostenbloecke")
     """
-    In Kostenblöcken werden Kostenpositionen zusammengefasst. Beispiele: Netzkosten, Umlagen, Steuern etc
+    In KostenblÃ¶cken werden Kostenpositionen zusammengefasst. Beispiele: Netzkosten, Umlagen, Steuern etc
     """
     kostenklasse: Optional[Kostenklasse] = None
     """
@@ -55,7 +55,7 @@ class Kosten(BaseModel):
     """
     summe_kosten: Optional[list["Betrag"]] = Field(default=None, alias="summeKosten", title="Summekosten")
     """
-    Die Gesamtsumme über alle Kostenblöcke und -positionen
+    Die Gesamtsumme Ã¼ber alle KostenblÃ¶cke und -positionen
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

@@ -40,11 +40,11 @@ class Zaehler(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.ZAEHLER, alias="_typ")
     """
-    Typisierung des Zählers
+    Typisierung des ZÃ¤hlers
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -52,32 +52,32 @@ class Zaehler(BaseModel):
     """
     befestigungsart: Optional[Befestigungsart] = None
     """
-    Besondere Spezifikation des Zählers
+    Besondere Spezifikation des ZÃ¤hlers
     """
     eichung_bis: Optional[datetime] = Field(default=None, alias="eichungBis", title="Eichungbis")
     """
-    Zählerkonstante auf dem Zähler
+    ZÃ¤hlerkonstante auf dem ZÃ¤hler
     """
     geraete: Optional[list["Geraet"]] = Field(default=None, title="Geraete")
     """
-    Größe des Zählers
+    GrÃ¶ÃŸe des ZÃ¤hlers
     """
     ist_fernschaltbar: Optional[bool] = Field(default=None, alias="istFernschaltbar", title="Istfernschaltbar")
     """
-    Der Hersteller des Zählers
+    Der Hersteller des ZÃ¤hlers
     """
     letzte_eichung: Optional[datetime] = Field(default=None, alias="letzteEichung", title="Letzteeichung")
     """
-    Bis zu diesem Datum (exklusiv) ist der Zähler geeicht.
+    Bis zu diesem Datum (exklusiv) ist der ZÃ¤hler geeicht.
     """
     messwerterfassung: Optional[Messwerterfassung] = Field(default=None, title="Messwerterfassung")
     registeranzahl: Optional[Registeranzahl] = None
     """
-    Spezifikation bezüglich unterstützter Tarif
+    Spezifikation bezÃ¼glich unterstÃ¼tzter Tarif
     """
     sparte: Sparte
     """
-    Nummerierung des Zählers,vergeben durch den Messstellenbetreiber
+    Nummerierung des ZÃ¤hlers,vergeben durch den Messstellenbetreiber
     """
     zaehlerauspraegung: Optional[Zaehlerauspraegung] = None
     """
@@ -89,27 +89,27 @@ class Zaehler(BaseModel):
     """
     zaehlerhersteller: Optional["Geschaeftspartner"] = None
     """
-    Der Hersteller des Zählers
+    Der Hersteller des ZÃ¤hlers
     """
     zaehlerkonstante: Optional[Decimal] = Field(default=None, title="Zaehlerkonstante")
     """
-    Spezifikation bezüglich unterstützter Tarif
+    Spezifikation bezÃ¼glich unterstÃ¼tzter Tarif
     """
     zaehlernummer: str = Field(..., title="Zaehlernummer")
     """
-    Nummerierung des Zählers,vergeben durch den Messstellenbetreiber
+    Nummerierung des ZÃ¤hlers,vergeben durch den Messstellenbetreiber
     """
     zaehlertyp: Optional[Zaehlertyp] = None
     """
-    Spezifikation die Richtung des Zählers betreffend
+    Spezifikation die Richtung des ZÃ¤hlers betreffend
     """
     zaehlertyp_spezifikation: Optional[ZaehlertypSpezifikation] = Field(default=None, alias="zaehlertypSpezifikation")
     """
-    Messwerterfassung des Zählers
+    Messwerterfassung des ZÃ¤hlers
     """
     zaehlwerke: list["Zaehlwerk"] = Field(..., title="Zaehlwerke")
     """
-    Typisierung des Zählers
+    Typisierung des ZÃ¤hlers
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

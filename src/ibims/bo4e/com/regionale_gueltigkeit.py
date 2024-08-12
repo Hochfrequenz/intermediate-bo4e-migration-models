@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class RegionaleGueltigkeit(BaseModel):
     """
-    Mit dieser Komponente können regionale Gültigkeiten, z.B. für Tarife, Zu- und Abschläge und Preise definiert werden.
+    Mit dieser Komponente kÃ¶nnen regionale GÃ¼ltigkeiten, z.B. fÃ¼r Tarife, Zu- und AbschlÃ¤ge und Preise definiert werden.
 
     .. raw:: html
 
@@ -27,8 +27,8 @@ class RegionaleGueltigkeit(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -36,13 +36,13 @@ class RegionaleGueltigkeit(BaseModel):
     """
     gueltigkeitstyp: Optional[Gueltigkeitstyp] = None
     """
-    Unterscheidung ob Positivliste oder Negativliste übertragen wird
+    Unterscheidung ob Positivliste oder Negativliste Ã¼bertragen wird
     """
     kriteriums_werte: Optional[list["KriteriumWert"]] = Field(
         default=None, alias="kriteriumsWerte", title="Kriteriumswerte"
     )
     """
-    Hier stehen die Kriterien, die die regionale Gültigkeit festlegen
+    Hier stehen die Kriterien, die die regionale GÃ¼ltigkeit festlegen
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

@@ -3,7 +3,7 @@ from enum import Enum
 
 class EMobilitaetsart(str, Enum):
     """
-    Art der E-Mobilität
+    Art der E-MobilitÃ¤t
     """
 
     WALLBOX = "WALLBOX"

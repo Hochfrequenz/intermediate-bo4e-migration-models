@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 class Rechnungsposition(BaseModel):
     """
-    Über Rechnungspositionen werden Rechnungen strukturiert.
+    Ãœber Rechnungspositionen werden Rechnungen strukturiert.
     In einem Rechnungsteil wird jeweils eine in sich geschlossene Leistung abgerechnet.
 
     .. raw:: html
@@ -33,8 +33,8 @@ class Rechnungsposition(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -42,7 +42,7 @@ class Rechnungsposition(BaseModel):
     """
     artikel_id: Optional[str] = Field(default=None, alias="artikelId", title="Artikelid")
     """
-    Standardisierte vom BDEW herausgegebene Liste, welche im Strommarkt die BDEW-Artikelnummer ablöst
+    Standardisierte vom BDEW herausgegebene Liste, welche im Strommarkt die BDEW-Artikelnummer ablÃ¶st
     """
     artikelnummer: Optional[BDEWArtikelnummer] = None
     """
@@ -50,19 +50,19 @@ class Rechnungsposition(BaseModel):
     """
     einzelpreis: Optional["Preis"] = None
     """
-    Der Preis für eine Einheit der energetischen Menge
+    Der Preis fÃ¼r eine Einheit der energetischen Menge
     """
     lieferung_bis: Optional[datetime] = Field(default=None, alias="lieferungBis", title="Lieferungbis")
     """
-    Ende der Lieferung für die abgerechnete Leistung (exklusiv)
+    Ende der Lieferung fÃ¼r die abgerechnete Leistung (exklusiv)
     """
     lieferung_von: Optional[datetime] = Field(default=None, alias="lieferungVon", title="Lieferungvon")
     """
-    Start der Lieferung für die abgerechnete Leistung (inklusiv)
+    Start der Lieferung fÃ¼r die abgerechnete Leistung (inklusiv)
     """
     lokations_id: Optional[str] = Field(default=None, alias="lokationsId", title="Lokationsid")
     """
-    Marktlokation, die zu dieser Position gehört
+    Marktlokation, die zu dieser Position gehÃ¶rt
     """
     positions_menge: "Menge" = Field(..., alias="positionsMenge")
     """
@@ -70,20 +70,20 @@ class Rechnungsposition(BaseModel):
     """
     positionsnummer: Optional[int] = Field(default=None, title="Positionsnummer")
     """
-    Fortlaufende Nummer für die Rechnungsposition
+    Fortlaufende Nummer fÃ¼r die Rechnungsposition
     """
     positionstext: Optional[str] = Field(default=None, title="Positionstext")
     """
-    Bezeichung für die abgerechnete Position
+    Bezeichung fÃ¼r die abgerechnete Position
     """
     teilrabatt_netto: Optional["Betrag"] = Field(default=None, alias="teilrabattNetto")
     """
-    Nettobetrag für den Rabatt dieser Position
+    Nettobetrag fÃ¼r den Rabatt dieser Position
     """
     teilsumme_netto: "Betrag" = Field(..., alias="teilsummeNetto")
     """
     Das Ergebnis der Multiplikation aus einzelpreis * positionsMenge * (Faktor aus zeitbezogeneMenge).
-    Z.B. 12,60€ * 120 kW * 3/12 (für 3 Monate).
+    Z.B. 12,60â‚¬ * 120 kW * 3/12 (fÃ¼r 3 Monate).
     """
     teilsumme_steuer: "Steuerbetrag" = Field(..., alias="teilsummeSteuer")
     """

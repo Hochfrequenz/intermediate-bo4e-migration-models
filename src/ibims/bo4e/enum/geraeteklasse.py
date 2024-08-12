@@ -3,7 +3,7 @@ from enum import Enum
 
 class Geraeteklasse(str, Enum):
     """
-    Auflistung möglicher übergreifenden Geräteklassen.
+    Auflistung mÃ¶glicher Ã¼bergreifenden GerÃ¤teklassen.
     """
 
     WANDLER = "WANDLER"

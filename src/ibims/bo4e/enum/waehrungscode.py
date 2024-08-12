@@ -3,7 +3,7 @@ from enum import Enum
 
 class Waehrungscode(str, Enum):
     """
-    Aufzählung der Währungscodes.
+    AufzÃ¤hlung der WÃ¤hrungscodes.
     """
 
     AED = "AED"

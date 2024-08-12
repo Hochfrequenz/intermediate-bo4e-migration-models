@@ -3,7 +3,7 @@ from enum import Enum
 
 class Messwertstatuszusatz(str, Enum):
     """
-    Aufzählung von zusätzlichen Informationen zum Status, beispielsweise in Lastgängen oder Zählwerkständen.
+    AufzÃ¤hlung von zusÃ¤tzlichen Informationen zum Status, beispielsweise in LastgÃ¤ngen oder ZÃ¤hlwerkstÃ¤nden.
     """
 
     Z84_LEERSTAND = "Z84_LEERSTAND"

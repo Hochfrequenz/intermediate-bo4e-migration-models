@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class Kostenposition(BaseModel):
     """
-    Diese Komponente wird zur Übertagung der Details zu einer Kostenposition verwendet.
+    Diese Komponente wird zur Ãœbertagung der Details zu einer Kostenposition verwendet.
 
     .. raw:: html
 
@@ -28,8 +28,8 @@ class Kostenposition(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -37,11 +37,11 @@ class Kostenposition(BaseModel):
     """
     artikelbezeichnung: Optional[str] = Field(default=None, title="Artikelbezeichnung")
     """
-    Bezeichnung für den Artikel für den die Kosten ermittelt wurden. Beispiel: Arbeitspreis HT
+    Bezeichnung fÃ¼r den Artikel fÃ¼r den die Kosten ermittelt wurden. Beispiel: Arbeitspreis HT
     """
     artikeldetail: Optional[str] = Field(default=None, title="Artikeldetail")
     """
-    Detaillierung des Artikels (optional). Beispiel: 'Drehstromzähler'
+    Detaillierung des Artikels (optional). Beispiel: 'DrehstromzÃ¤hler'
     """
     betrag_kostenposition: Optional["Betrag"] = Field(default=None, alias="betragKostenposition")
     """
@@ -54,7 +54,7 @@ class Kostenposition(BaseModel):
     """
     einzelpreis: Optional["Preis"] = None
     """
-    Der Preis für eine Einheit. Beispiele: 5,8200 ct/kWh oder 55 €/Jahr.
+    Der Preis fÃ¼r eine Einheit. Beispiele: 5,8200 ct/kWh oder 55 â‚¬/Jahr.
     """
     menge: Optional["Menge"] = None
     """
@@ -62,7 +62,7 @@ class Kostenposition(BaseModel):
     """
     positionstitel: Optional[str] = Field(default=None, title="Positionstitel")
     """
-    Ein Titel für die Zeile. Hier kann z.B. der Netzbetreiber eingetragen werden, wenn es sich um Netzkosten handelt.
+    Ein Titel fÃ¼r die Zeile. Hier kann z.B. der Netzbetreiber eingetragen werden, wenn es sich um Netzkosten handelt.
     """
     von: Optional[datetime] = Field(default=None, title="Von")
     """
@@ -70,7 +70,7 @@ class Kostenposition(BaseModel):
     """
     zeitmenge: Optional["Menge"] = None
     """
-    Wenn es einen zeitbasierten Preis gibt (z.B. €/Jahr), dann ist hier die Menge angegeben mit der die Kosten berechnet
+    Wenn es einen zeitbasierten Preis gibt (z.B. â‚¬/Jahr), dann ist hier die Menge angegeben mit der die Kosten berechnet
     wurden. Z.B. 138 Tage.
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(

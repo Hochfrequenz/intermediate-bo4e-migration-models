@@ -3,7 +3,7 @@ from enum import Enum
 
 class Ausschreibungstyp(str, Enum):
     """
-    Aufzählung für die Typisierung von Ausschreibungen.
+    AufzÃ¤hlung fÃ¼r die Typisierung von Ausschreibungen.
     """
 
     PRIVATRECHTLICH = "PRIVATRECHTLICH"

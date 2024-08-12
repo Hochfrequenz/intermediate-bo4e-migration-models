@@ -3,7 +3,7 @@ from enum import Enum
 
 class Befestigungsart(str, Enum):
     """
-    Befestigungsart von Zählern
+    Befestigungsart von ZÃ¤hlern
     """
 
     STECKTECHNIK = "STECKTECHNIK"

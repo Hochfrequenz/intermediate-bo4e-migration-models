@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 class Katasteradresse(BaseModel):
     """
-    Dient der Adressierung über die Liegenschafts-Information.
+    Dient der Adressierung Ã¼ber die Liegenschafts-Information.
 
     .. raw:: html
 
@@ -24,8 +24,8 @@ class Katasteradresse(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """

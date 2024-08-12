@@ -3,7 +3,7 @@ from enum import Enum
 
 class Tarifregionskriterium(str, Enum):
     """
-    Mit diesen Kriterien können regionale Bereiche definiert werden.
+    Mit diesen Kriterien kÃ¶nnen regionale Bereiche definiert werden.
     """
 
     NETZ_NUMMER = "NETZ_NUMMER"

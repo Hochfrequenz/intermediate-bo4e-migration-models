@@ -3,7 +3,7 @@ from enum import Enum
 
 class Rechnungsstatus(str, Enum):
     """
-    Abbildung verschiedener Zustände, die im Rahmen der Rechnungsbearbeitung durchlaufen werden.
+    Abbildung verschiedener ZustÃ¤nde, die im Rahmen der Rechnungsbearbeitung durchlaufen werden.
     """
 
     UNGEPRUEFT = "UNGEPRUEFT"

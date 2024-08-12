@@ -29,8 +29,8 @@ class Zeitreihenwert(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -42,15 +42,15 @@ class Zeitreihenwert(BaseModel):
     """
     statuszusatz: Optional[Messwertstatuszusatz] = None
     """
-    Eine Zusatzinformation zum Status, beispielsweise ein Grund für einen fehlenden Wert.
+    Eine Zusatzinformation zum Status, beispielsweise ein Grund fÃ¼r einen fehlenden Wert.
     """
     wert: Optional[Decimal] = Field(default=None, title="Wert")
     """
-    Zeitespanne für das Messintervall
+    Zeitespanne fÃ¼r das Messintervall
     """
     zeitspanne: Optional["Zeitspanne"] = None
     """
-    Zeitespanne für das Messintervall
+    Zeitespanne fÃ¼r das Messintervall
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

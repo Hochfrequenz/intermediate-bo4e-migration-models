@@ -16,8 +16,8 @@ if TYPE_CHECKING:
 class Angebot(BaseModel):
     """
     Mit diesem BO kann ein Versorgungsangebot zur Strom- oder Gasversorgung oder die Teilnahme an einer Ausschreibung
-    übertragen werden. Es können verschiedene Varianten enthalten sein (z.B. ein- und mehrjährige Laufzeit).
-    Innerhalb jeder Variante können Teile enthalten sein, die jeweils für eine oder mehrere Marktlokationen erstellt
+    Ã¼bertragen werden. Es kÃ¶nnen verschiedene Varianten enthalten sein (z.B. ein- und mehrjÃ¤hrige Laufzeit).
+    Innerhalb jeder Variante kÃ¶nnen Teile enthalten sein, die jeweils fÃ¼r eine oder mehrere Marktlokationen erstellt
     werden.
 
     .. raw:: html
@@ -34,7 +34,7 @@ class Angebot(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.ANGEBOT, alias="_typ")
     """
@@ -58,7 +58,7 @@ class Angebot(BaseModel):
     """
     angebotsnehmer: Optional["Geschaeftspartner"] = None
     """
-    Empfänger des Angebots
+    EmpfÃ¤nger des Angebots
     """
     angebotsnummer: Optional[str] = Field(default=None, title="Angebotsnummer")
     """
@@ -70,7 +70,7 @@ class Angebot(BaseModel):
     """
     sparte: Optional[Sparte] = None
     """
-    Sparte, für die das Angebot abgegeben wird (Strom/Gas)
+    Sparte, fÃ¼r die das Angebot abgegeben wird (Strom/Gas)
     """
     unterzeichner_angebotsgeber: Optional["Person"] = Field(default=None, alias="unterzeichnerAngebotsgeber")
     """

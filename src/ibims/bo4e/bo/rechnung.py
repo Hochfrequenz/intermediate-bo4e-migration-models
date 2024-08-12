@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 
 class Rechnung(BaseModel):
     """
-    Modell für die Abbildung von Rechnungen und Netznutzungsrechnungen im Kontext der Energiewirtschaft;
+    Modell fÃ¼r die Abbildung von Rechnungen und Netznutzungsrechnungen im Kontext der Energiewirtschaft;
 
     .. raw:: html
 
@@ -39,7 +39,7 @@ class Rechnung(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.RECHNUNG, alias="_typ")
     """
@@ -51,7 +51,7 @@ class Rechnung(BaseModel):
     """
     faelligkeitsdatum: Optional[datetime] = Field(default=None, title="Faelligkeitsdatum")
     """
-    Zu diesem Datum ist die Zahlung fällig
+    Zu diesem Datum ist die Zahlung fÃ¤llig
     """
     gesamtbrutto: "Betrag"
     """
@@ -59,11 +59,11 @@ class Rechnung(BaseModel):
     """
     gesamtnetto: Optional["Betrag"] = None
     """
-    Die Summe der Nettobeträge der Rechnungsteile
+    Die Summe der NettobetrÃ¤ge der Rechnungsteile
     """
     gesamtsteuer: "Betrag"
     """
-    Die Summe der Steuerbeträge der Rechnungsteile
+    Die Summe der SteuerbetrÃ¤ge der Rechnungsteile
     """
     ist_original: Optional[bool] = Field(default=None, alias="istOriginal", title="Istoriginal")
     """
@@ -71,11 +71,11 @@ class Rechnung(BaseModel):
     """
     ist_simuliert: Optional[bool] = Field(default=None, alias="istSimuliert", title="Istsimuliert")
     """
-    Kennzeichen, ob es sich um eine simulierte Rechnung, z.B. zur Rechnungsprüfung handelt
+    Kennzeichen, ob es sich um eine simulierte Rechnung, z.B. zur RechnungsprÃ¼fung handelt
     """
     ist_storno: bool = Field(..., alias="istStorno", title="Iststorno")
     """
-    Eine im Verwendungskontext eindeutige Nummer für die Rechnung
+    Eine im Verwendungskontext eindeutige Nummer fÃ¼r die Rechnung
     """
     marktlokation: Optional["Marktlokation"] = None
     """
@@ -87,11 +87,11 @@ class Rechnung(BaseModel):
     """
     netznutzungrechnungsart: Optional[NetznutzungRechnungsart] = None
     """
-    Aus der INVOIC entnommen, befüllt wenn es sich um eine Netznutzungsrechnung handelt
+    Aus der INVOIC entnommen, befÃ¼llt wenn es sich um eine Netznutzungsrechnung handelt
     """
     netznutzungrechnungstyp: Optional[NetznutzungRechnungstyp] = None
     """
-    Aus der INVOIC entnommen, befüllt wenn es sich um eine Netznutzungsrechnung handelt
+    Aus der INVOIC entnommen, befÃ¼llt wenn es sich um eine Netznutzungsrechnung handelt
     """
     original_rechnungsnummer: Optional[str] = Field(
         default=None, alias="originalRechnungsnummer", title="Originalrechnungsnummer"
@@ -109,15 +109,15 @@ class Rechnung(BaseModel):
     """
     rechnungsempfaenger: Optional["Geschaeftspartner"] = None
     """
-    Der Aussteller der Rechnung, die Rollencodenummer kennt man über den im Geschäftspartner verlinkten Marktteilnehmer
+    Der Aussteller der Rechnung, die Rollencodenummer kennt man Ã¼ber den im GeschÃ¤ftspartner verlinkten Marktteilnehmer
     """
     rechnungsersteller: Optional["Geschaeftspartner"] = None
     """
-    Der Aussteller der Rechnung, die Rollencodenummer kennt man über den im Geschäftspartner verlinkten Marktteilnehmer
+    Der Aussteller der Rechnung, die Rollencodenummer kennt man Ã¼ber den im GeschÃ¤ftspartner verlinkten Marktteilnehmer
     """
     rechnungsnummer: Optional[str] = Field(default=None, title="Rechnungsnummer")
     """
-    Eine im Verwendungskontext eindeutige Nummer für die Rechnung
+    Eine im Verwendungskontext eindeutige Nummer fÃ¼r die Rechnung
     """
     rechnungsperiode: Optional["Zeitraum"] = None
     """
@@ -133,7 +133,7 @@ class Rechnung(BaseModel):
     """
     rechnungstitel: Optional[str] = Field(default=None, title="Rechnungstitel")
     """
-    Bezeichnung für die vorliegende Rechnung
+    Bezeichnung fÃ¼r die vorliegende Rechnung
     """
     rechnungstyp: Rechnungstyp
     """
@@ -141,15 +141,15 @@ class Rechnung(BaseModel):
     """
     sparte: Optional[Sparte] = None
     """
-    Sparte (Strom, Gas ...) für die die Rechnung ausgestellt ist
+    Sparte (Strom, Gas ...) fÃ¼r die die Rechnung ausgestellt ist
     """
     steuerbetraege: Optional[list["Steuerbetrag"]] = Field(default=None, title="Steuerbetraege")
     """
-    Sparte (Strom, Gas ...) für die die Rechnung ausgestellt ist
+    Sparte (Strom, Gas ...) fÃ¼r die die Rechnung ausgestellt ist
     """
     vorausgezahlt: Optional["Betrag"] = None
     """
-    Die Summe evtl. vorausgezahlter Beträge, z.B. Abschläge. Angabe als Bruttowert
+    Die Summe evtl. vorausgezahlter BetrÃ¤ge, z.B. AbschlÃ¤ge. Angabe als Bruttowert
     """
     zu_zahlen: "Betrag" = Field(..., alias="zuZahlen")
     """

@@ -2,9 +2,17 @@
   {
     "pattern": "bo\\.Marktlokation",
     "fieldName": "messtechnischeEinordnung",
-    "fieldDef": {
-      "$ref": "../enum/MesstechnischeEinordnung.json#"
-    }
+        "fieldDef": {
+      "anyOf": [
+        {
+          "$ref": "../enum/MesstechnischeEinordnung.json#"
+        },
+        {
+          "type": "null"
+        }
+      ],
+          "default": null
+        }
   },
   {
     "pattern": "bo\\.Marktlokation",
@@ -38,7 +46,15 @@
     "pattern": "bo\\.Marktlokation",
     "fieldName": "variant",
     "fieldDef": {
-      "$ref": "../enum/Variant.json#"
+      "anyOf": [
+        {
+          "$ref": "../enum/Variant.json#"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     }
   },
   {
@@ -46,7 +62,15 @@
     "fieldName": "communityId",
     "fieldDef": {
       "title": "Communityid",
-      "type": "string"
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     }
   },
   {

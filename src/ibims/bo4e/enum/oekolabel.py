@@ -3,7 +3,7 @@ from enum import Enum
 
 class Oekolabel(str, Enum):
     """
-    Aufzählung der Labels für Öko-Strom von verschiedenen Herausgebern.
+    AufzÃ¤hlung der Labels fÃ¼r Ã–ko-Strom von verschiedenen Herausgebern.
     """
 
     ENERGREEN = "ENERGREEN"

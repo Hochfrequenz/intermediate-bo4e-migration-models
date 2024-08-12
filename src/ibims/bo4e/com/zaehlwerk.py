@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 class Zaehlwerk(BaseModel):
     """
-    Mit dieser Komponente werden Zählwerke modelliert.
+    Mit dieser Komponente werden ZÃ¤hlwerke modelliert.
 
     .. raw:: html
 
@@ -34,8 +34,8 @@ class Zaehlwerk(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -69,13 +69,13 @@ class Zaehlwerk(BaseModel):
     """
     konzessionsabgabe: Optional["Konzessionsabgabe"] = None
     """
-    Wärmenutzung Marktlokation
+    WÃ¤rmenutzung Marktlokation
     """
     nachkommastelle: Optional[int] = Field(default=None, title="Nachkommastelle")
     """
     Anzahl der Vorkommastellen
     """
-    obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
+    obis_kennzahl: Optional[str] = Field(default=None, alias="obisKennzahl", title="Obiskennzahl")
     richtung: Optional[Energierichtung] = None
     verbrauchsart: Optional[str] = Field(default=None, title="Verbrauchsart")
     verwendungszwecke: Optional[list["VerwendungszweckProMarktrolle"]] = Field(default=None, title="Verwendungszwecke")
@@ -99,10 +99,10 @@ class Zaehlwerk(BaseModel):
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
-    vorkommastellen: int = Field(..., title="Vorkommastellen")
-    nachkommastellen: int = Field(..., title="Nachkommastellen")
-    schwachlastfaehig: bool = Field(..., title="Schwachlastfaehig")
+    vorkommastellen: Optional[int] = Field(default=None, title="Vorkommastellen")
+    nachkommastellen: Optional[int] = Field(default=None, title="Nachkommastellen")
+    schwachlastfaehig: Optional[bool] = Field(default=None, title="Schwachlastfaehig")
     konzessionsabgaben_typ: Optional[AbgabeArt] = Field(default=None, alias="konzessionsabgabenTyp")
-    active_from: datetime = Field(..., alias="activeFrom", title="Activefrom")
+    active_from: Optional[datetime] = Field(default=None, alias="activeFrom", title="Activefrom")
     active_until: Optional[datetime] = Field(default=None, alias="activeUntil", title="Activeuntil")
     description: Optional[str] = Field(default=None, title="Description")

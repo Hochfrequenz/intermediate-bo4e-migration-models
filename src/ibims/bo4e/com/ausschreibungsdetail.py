@@ -30,8 +30,8 @@ class Ausschreibungsdetail(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -50,7 +50,7 @@ class Ausschreibungsdetail(BaseModel):
     """
     lieferzeitraum: Optional["Zeitraum"] = None
     """
-    Angefragter Zeitraum für die ausgeschriebene Belieferung
+    Angefragter Zeitraum fÃ¼r die ausgeschriebene Belieferung
     """
     marktlokations_id: Optional[str] = Field(default=None, alias="marktlokationsId", title="Marktlokationsid")
     """
@@ -62,31 +62,31 @@ class Ausschreibungsdetail(BaseModel):
     """
     marktlokationsbezeichnung: Optional[str] = Field(default=None, title="Marktlokationsbezeichnung")
     """
-    Bezeichnung für die Lokation, z.B. 'Zentraler Einkauf, Hamburg'
+    Bezeichnung fÃ¼r die Lokation, z.B. 'Zentraler Einkauf, Hamburg'
     """
     netzbetreiber: Optional[str] = Field(default=None, title="Netzbetreiber")
     """
-    Bezeichnung des zuständigen Netzbetreibers, z.B. 'Stromnetz Hamburg GmbH'
+    Bezeichnung des zustÃ¤ndigen Netzbetreibers, z.B. 'Stromnetz Hamburg GmbH'
     """
     netzebene_lieferung: Optional[str] = Field(default=None, alias="netzebeneLieferung", title="Netzebenelieferung")
     """
-    In der angegebenen Netzebene wird die Marktlokation versorgt, z.B. MSP für Mittelspannung
+    In der angegebenen Netzebene wird die Marktlokation versorgt, z.B. MSP fÃ¼r Mittelspannung
     """
     netzebene_messung: Optional[str] = Field(default=None, alias="netzebeneMessung", title="Netzebenemessung")
     """
-    In der angegebenen Netzebene wird die Lokation gemessen, z.B. NSP für Niederspannung
+    In der angegebenen Netzebene wird die Lokation gemessen, z.B. NSP fÃ¼r Niederspannung
     """
     prognose_arbeit_lieferzeitraum: Optional["Menge"] = Field(default=None, alias="prognoseArbeitLieferzeitraum")
     """
-    Ein Prognosewert für die Arbeit innerhalb des angefragten Lieferzeitraums der ausgeschriebenen Lokation
+    Ein Prognosewert fÃ¼r die Arbeit innerhalb des angefragten Lieferzeitraums der ausgeschriebenen Lokation
     """
     prognose_jahresarbeit: Optional["Menge"] = Field(default=None, alias="prognoseJahresarbeit")
     """
-    Prognosewert für die Jahresarbeit der ausgeschriebenen Lokation
+    Prognosewert fÃ¼r die Jahresarbeit der ausgeschriebenen Lokation
     """
     prognose_leistung: Optional["Menge"] = Field(default=None, alias="prognoseLeistung")
     """
-    Prognosewert für die abgenommene maximale Leistung der ausgeschriebenen Lokation
+    Prognosewert fÃ¼r die abgenommene maximale Leistung der ausgeschriebenen Lokation
     """
     rechnungsadresse: Optional["Adresse"] = None
     """
@@ -94,11 +94,11 @@ class Ausschreibungsdetail(BaseModel):
     """
     zaehlernummer: Optional[str] = Field(default=None, title="Zaehlernummer")
     """
-    Die Bezeichnung des Zählers an der Marktlokation
+    Die Bezeichnung des ZÃ¤hlers an der Marktlokation
     """
     zaehlertechnik: Optional[Zaehlertyp] = None
     """
-    Spezifikation, um welche Zählertechnik es sich im vorliegenden Fall handelt, z.B. Leistungsmessung
+    Spezifikation, um welche ZÃ¤hlertechnik es sich im vorliegenden Fall handelt, z.B. Leistungsmessung
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

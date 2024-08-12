@@ -34,7 +34,7 @@ class TechnischeRessource(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.TECHNISCHERESSOURCE, alias="_typ")
     """
@@ -46,7 +46,7 @@ class TechnischeRessource(BaseModel):
     """
     emobilitaetsart: Optional[EMobilitaetsart] = None
     """
-    Art der E-Mobilität
+    Art der E-MobilitÃ¤t
     """
     erzeugungsart: Optional[Erzeugungsart] = None
     """
@@ -60,7 +60,7 @@ class TechnischeRessource(BaseModel):
     """
     lokationszuordnungen: Optional[list["Lokationszuordnung"]] = Field(default=None, title="Lokationszuordnungen")
     """
-    Lokationszuordnung, um bspw. die zugehörigen Messlokationen anzugeben
+    Lokationszuordnung, um bspw. die zugehÃ¶rigen Messlokationen anzugeben
     """
     nennleistungabgabe: Optional["Menge"] = None
     """
@@ -76,7 +76,7 @@ class TechnischeRessource(BaseModel):
     """
     speicherkapazitaet: Optional["Menge"] = None
     """
-    Speicherkapazität
+    SpeicherkapazitÃ¤t
     """
     technische_ressource_id: Optional[str] = Field(
         default=None, alias="technischeRessourceId", title="Technischeressourceid"
@@ -104,7 +104,7 @@ class TechnischeRessource(BaseModel):
     """
     waermenutzung: Optional[Waermenutzung] = None
     """
-    Wärmenutzung
+    WÃ¤rmenutzung
     """
     zugeordnete_marktlokation_id: Optional[str] = Field(
         default=None, alias="zugeordneteMarktlokationId", title="Zugeordnetemarktlokationid"

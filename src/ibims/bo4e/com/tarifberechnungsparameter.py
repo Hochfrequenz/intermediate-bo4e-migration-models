@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 class Tarifberechnungsparameter(BaseModel):
     """
-    In dieser Komponente sind die Berechnungsparameter für die Ermittlung der Tarifkosten zusammengefasst.
+    In dieser Komponente sind die Berechnungsparameter fÃ¼r die Ermittlung der Tarifkosten zusammengefasst.
     .. raw:: html
 
         <object data="../_static/images/bo4e/com/Tarifberechnungsparameter.svg" type="image/svg+xml"></object>
@@ -29,8 +29,8 @@ class Tarifberechnungsparameter(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -42,11 +42,11 @@ class Tarifberechnungsparameter(BaseModel):
     """
     hoechstpreis_ht: Optional["Preis"] = Field(default=None, alias="hoechstpreisHT")
     """
-    Höchstpreis für den Durchschnitts-Arbeitspreis HT
+    HÃ¶chstpreis fÃ¼r den Durchschnitts-Arbeitspreis HT
     """
     hoechstpreis_nt: Optional["Preis"] = Field(default=None, alias="hoechstpreisNT")
     """
-    Höchstpreis für den Durchschnitts-Arbeitspreis NT
+    HÃ¶chstpreis fÃ¼r den Durchschnitts-Arbeitspreis NT
     """
     ist_messpreis_in_grundpreis_enthalten: Optional[bool] = Field(
         default=None, alias="istMesspreisInGrundpreisEnthalten", title="Istmesspreisingrundpreisenthalten"
@@ -58,16 +58,16 @@ class Tarifberechnungsparameter(BaseModel):
         default=None, alias="istMesspreisZuBeruecksichtigen", title="Istmesspreiszuberuecksichtigen"
     )
     """
-    True, falls bei der Bildung des Durchschnittspreises für die Höchst- und Mindestpreisbetrachtung der Messpreis mit
-    berücksichtigt wird
+    True, falls bei der Bildung des Durchschnittspreises fÃ¼r die HÃ¶chst- und Mindestpreisbetrachtung der Messpreis mit
+    berÃ¼cksichtigt wird
     """
     kw_inklusive: Optional[Decimal] = Field(default=None, alias="kwInklusive", title="Kwinklusive")
     """
-    Im Preis bereits eingeschlossene Leistung (für Gas)
+    Im Preis bereits eingeschlossene Leistung (fÃ¼r Gas)
     """
     kw_weitere_mengen: Optional[Decimal] = Field(default=None, alias="kwWeitereMengen", title="Kwweiteremengen")
     """
-    Intervall, indem die über "kwInklusive" hinaus abgenommene Leistung kostenpflichtig wird (z.B. je 5 kW 20 EURO)
+    Intervall, indem die Ã¼ber "kwInklusive" hinaus abgenommene Leistung kostenpflichtig wird (z.B. je 5 kW 20 EURO)
     """
     messpreistyp: Optional[Messpreistyp] = None
     """
@@ -75,12 +75,12 @@ class Tarifberechnungsparameter(BaseModel):
     """
     mindestpreis: Optional["Preis"] = None
     """
-    Mindestpreis für den Durchschnitts-Arbeitspreis
+    Mindestpreis fÃ¼r den Durchschnitts-Arbeitspreis
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
     zusatzpreise: Optional[list["Tarifpreis"]] = Field(default=None, title="Zusatzpreise")
     """
-    Liste mit zusätzlichen Preisen, beispielsweise Messpreise und/oder Leistungspreise
+    Liste mit zusÃ¤tzlichen Preisen, beispielsweise Messpreise und/oder Leistungspreise
     """

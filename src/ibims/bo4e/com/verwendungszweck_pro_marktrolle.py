@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class VerwendungszweckProMarktrolle(BaseModel):
     """
-    Dient zur Identifizierung des Verwendungszwecks der Marktrolle an der Marktlokation, der die Werte zu übermitteln sind.
+    Dient zur Identifizierung des Verwendungszwecks der Marktrolle an der Marktlokation, der die Werte zu Ã¼bermitteln sind.
 
     .. raw:: html
 
@@ -27,8 +27,8 @@ class VerwendungszweckProMarktrolle(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -36,7 +36,7 @@ class VerwendungszweckProMarktrolle(BaseModel):
     """
     marktrolle: Optional[Marktrolle] = None
     """
-    Marktrolle, für die die Daten relevant sind
+    Marktrolle, fÃ¼r die die Daten relevant sind
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

@@ -33,7 +33,7 @@ class Ausschreibung(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.AUSSCHREIBUNG, alias="_typ")
     """
@@ -47,7 +47,7 @@ class Ausschreibung(BaseModel):
     ausschreibender: Optional["Geschaeftspartner"] = None
     ausschreibungportal: Optional[Ausschreibungsportal] = None
     """
-    Aufzählung der unterstützten Ausschreibungsportale
+    AufzÃ¤hlung der unterstÃ¼tzten Ausschreibungsportale
     """
     ausschreibungsnummer: Optional[str] = Field(default=None, title="Ausschreibungsnummer")
     """
@@ -55,11 +55,11 @@ class Ausschreibung(BaseModel):
     """
     ausschreibungsstatus: Optional[Ausschreibungsstatus] = None
     """
-    Bezeichnungen für die Ausschreibungsphasen
+    Bezeichnungen fÃ¼r die Ausschreibungsphasen
     """
     ausschreibungstyp: Optional[Ausschreibungstyp] = None
     """
-    Aufzählung für die Typisierung von Ausschreibungen
+    AufzÃ¤hlung fÃ¼r die Typisierung von Ausschreibungen
     """
     bindefrist: Optional["Zeitraum"] = None
     """
@@ -75,11 +75,11 @@ class Ausschreibung(BaseModel):
     """
     veroeffentlichungszeitpunkt: Optional[datetime] = Field(default=None, title="Veroeffentlichungszeitpunkt")
     """
-    Gibt den Veröffentlichungszeitpunkt der Ausschreibung an
+    Gibt den VerÃ¶ffentlichungszeitpunkt der Ausschreibung an
     """
     webseite: Optional[str] = Field(default=None, title="Webseite")
     """
-    Internetseite, auf der die Ausschreibung veröffentlicht wurde (falls vorhanden)
+    Internetseite, auf der die Ausschreibung verÃ¶ffentlicht wurde (falls vorhanden)
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

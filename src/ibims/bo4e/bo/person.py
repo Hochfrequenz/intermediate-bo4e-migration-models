@@ -32,11 +32,11 @@ class Person(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.PERSON, alias="_typ")
     """
-    Mögliche Anrede der Person
+    MÃ¶gliche Anrede der Person
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -44,11 +44,11 @@ class Person(BaseModel):
     """
     adresse: Optional["Adresse"] = None
     """
-    Adresse der Person, falls diese von der Adresse des Geschäftspartners abweicht
+    Adresse der Person, falls diese von der Adresse des GeschÃ¤ftspartners abweicht
     """
     anrede: Optional[Anrede] = None
     """
-    Mögliche Anrede der Person
+    MÃ¶gliche Anrede der Person
     """
     geburtsdatum: Optional[datetime] = Field(default=None, title="Geburtsdatum")
     """
@@ -69,7 +69,7 @@ class Person(BaseModel):
     """
     titel: Optional[Titel] = None
     """
-    Möglicher Titel der Person
+    MÃ¶glicher Titel der Person
     """
     vorname: Optional[str] = Field(default=None, title="Vorname")
     """
@@ -80,5 +80,5 @@ class Person(BaseModel):
     )
     zustaendigkeiten: Optional[list["Zustaendigkeit"]] = Field(default=None, title="Zustaendigkeiten")
     """
-    Liste der Abteilungen und Zuständigkeiten der Person
+    Liste der Abteilungen und ZustÃ¤ndigkeiten der Person
     """

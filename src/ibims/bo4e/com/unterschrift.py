@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class Unterschrift(BaseModel):
     """
-    Modellierung einer Unterschrift, z.B. für Verträge, Angebote etc.
+    Modellierung einer Unterschrift, z.B. fÃ¼r VertrÃ¤ge, Angebote etc.
 
     .. raw:: html
 
@@ -25,8 +25,8 @@ class Unterschrift(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """

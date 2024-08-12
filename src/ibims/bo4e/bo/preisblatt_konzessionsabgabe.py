@@ -32,11 +32,11 @@ class PreisblattKonzessionsabgabe(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.PREISBLATTKONZESSIONSABGABE, alias="_typ")
     """
-    Kundegruppe anhand derer die Höhe der Konzessionabgabe festgelegt ist
+    Kundegruppe anhand derer die HÃ¶he der Konzessionabgabe festgelegt ist
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -44,31 +44,31 @@ class PreisblattKonzessionsabgabe(BaseModel):
     """
     bezeichnung: Optional[str] = Field(default=None, title="Bezeichnung")
     """
-    Eine Bezeichnung für das Preisblatt
+    Eine Bezeichnung fÃ¼r das Preisblatt
     """
     gueltigkeit: Optional["Zeitraum"] = None
     """
-    Der Zeitraum für den der Preis festgelegt ist
+    Der Zeitraum fÃ¼r den der Preis festgelegt ist
     """
     herausgeber: Optional["Marktteilnehmer"] = None
     """
-    Der Netzbetreiber, der die Preise veröffentlicht hat
+    Der Netzbetreiber, der die Preise verÃ¶ffentlicht hat
     """
     kundengruppe_ka: Optional[KundengruppeKA] = Field(default=None, alias="kundengruppeKA")
     """
-    Kundegruppe anhand derer die Höhe der Konzessionabgabe festgelegt ist
+    Kundegruppe anhand derer die HÃ¶he der Konzessionabgabe festgelegt ist
     """
     preispositionen: Optional[list["Preisposition"]] = Field(default=None, title="Preispositionen")
     """
-    Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden können. Z.B. Arbeitspreis, Grundpreis etc
+    Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden kÃ¶nnen. Z.B. Arbeitspreis, Grundpreis etc
     """
     preisstatus: Optional[Preisstatus] = None
     """
-    Merkmal, das anzeigt, ob es sich um vorläufige oder endgültige Preise handelt
+    Merkmal, das anzeigt, ob es sich um vorlÃ¤ufige oder endgÃ¼ltige Preise handelt
     """
     sparte: Optional[Sparte] = None
     """
-    Preisblatt gilt für angegebene Sparte
+    Preisblatt gilt fÃ¼r angegebene Sparte
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

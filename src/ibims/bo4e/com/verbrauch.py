@@ -32,8 +32,8 @@ class Verbrauch(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -45,16 +45,16 @@ class Verbrauch(BaseModel):
     """
     enddatum: Optional[datetime] = Field(default=None, title="Enddatum")
     """
-    Exklusives Ende des Zeitraumes, für den der Verbrauch angegeben wird
+    Exklusives Ende des Zeitraumes, fÃ¼r den der Verbrauch angegeben wird
     """
     messwertstatus: Optional[Messwertstatus] = None
     obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
     """
-    Die OBIS-Kennzahl für den Wert, die festlegt, welche Größe mit dem Stand gemeldet wird, z.B. '1-0:
+    Die OBIS-Kennzahl fÃ¼r den Wert, die festlegt, welche GrÃ¶ÃŸe mit dem Stand gemeldet wird, z.B. '1-0:
     """
     startdatum: Optional[datetime] = Field(default=None, title="Startdatum")
     """
-    Inklusiver Beginn des Zeitraumes, für den der Verbrauch angegeben wird
+    Inklusiver Beginn des Zeitraumes, fÃ¼r den der Verbrauch angegeben wird
     """
     wert: Decimal = Field(..., title="Wert")
     """

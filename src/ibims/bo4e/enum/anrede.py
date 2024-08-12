@@ -3,7 +3,7 @@ from enum import Enum
 
 class Anrede(str, Enum):
     """
-    Übersicht möglicher Anreden, z.B. eines Geschäftspartners.
+    Ãœbersicht mÃ¶glicher Anreden, z.B. eines GeschÃ¤ftspartners.
     """
 
     HERR = "HERR"

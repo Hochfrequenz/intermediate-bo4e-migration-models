@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class Konzessionsabgabe(BaseModel):
     """
-    Diese Komponente wird zur Übertagung der Details zu einer Konzessionsabgabe verwendet.
+    Diese Komponente wird zur Ãœbertagung der Details zu einer Konzessionsabgabe verwendet.
 
     .. raw:: html
 
@@ -27,8 +27,8 @@ class Konzessionsabgabe(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -36,7 +36,7 @@ class Konzessionsabgabe(BaseModel):
     """
     kategorie: Optional[str] = Field(default=None, title="Kategorie")
     """
-    Gebührenkategorie der Konzessionsabgabe
+    GebÃ¼hrenkategorie der Konzessionsabgabe
     """
     kosten: Optional[Decimal] = Field(default=None, title="Kosten")
     """

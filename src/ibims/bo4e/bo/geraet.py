@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class Geraet(BaseModel):
     """
-    Mit diesem BO werden alle Geräte modelliert, die keine Zähler sind.
+    Mit diesem BO werden alle GerÃ¤te modelliert, die keine ZÃ¤hler sind.
 
     .. raw:: html
 
@@ -28,11 +28,11 @@ class Geraet(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.GERAET, alias="_typ")
     """
-    Die auf dem Gerät aufgedruckte Nummer, die vom MSB vergeben wird.
+    Die auf dem GerÃ¤t aufgedruckte Nummer, die vom MSB vergeben wird.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -40,19 +40,19 @@ class Geraet(BaseModel):
     """
     bezeichnung: Optional[str] = Field(default=None, title="Bezeichnung")
     """
-    Bezeichnung des Geräts
+    Bezeichnung des GerÃ¤ts
     """
     geraeteklasse: Optional[Geraeteklasse] = None
     """
-    Die übergreifende Klasse eines Geräts, beispielsweise Wandler
+    Die Ã¼bergreifende Klasse eines GerÃ¤ts, beispielsweise Wandler
     """
     geraetenummer: Optional[str] = Field(default=None, title="Geraetenummer")
     """
-    Die auf dem Gerät aufgedruckte Nummer, die vom MSB vergeben wird.
+    Die auf dem GerÃ¤t aufgedruckte Nummer, die vom MSB vergeben wird.
     """
     geraetetyp: Optional[Geraetetyp] = None
     """
-    Der speziellere Typ eines Gerätes, beispielsweise Stromwandler
+    Der speziellere Typ eines GerÃ¤tes, beispielsweise Stromwandler
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

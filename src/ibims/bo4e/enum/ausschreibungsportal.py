@@ -3,7 +3,7 @@ from enum import Enum
 
 class Ausschreibungsportal(str, Enum):
     """
-    Aufzählung der unterstützten Ausschreibungsportale.
+    AufzÃ¤hlung der unterstÃ¼tzten Ausschreibungsportale.
     """
 
     ENPORTAL = "ENPORTAL"

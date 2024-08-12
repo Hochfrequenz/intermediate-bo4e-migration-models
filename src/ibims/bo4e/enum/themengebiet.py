@@ -3,7 +3,7 @@ from enum import Enum
 
 class Themengebiet(str, Enum):
     """
-    Über dieses ENUM kann eine thematische Zuordnung, beispielsweise eines Ansprechpartners, vorgenommen werden.
+    Ãœber dieses ENUM kann eine thematische Zuordnung, beispielsweise eines Ansprechpartners, vorgenommen werden.
     """
 
     ALLGEMEINER_INFORMATIONSAUSTAUSCH = "ALLGEMEINER_INFORMATIONSAUSTAUSCH"

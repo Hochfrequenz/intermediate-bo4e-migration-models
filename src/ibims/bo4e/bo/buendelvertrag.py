@@ -18,8 +18,8 @@ if TYPE_CHECKING:
 
 class Buendelvertrag(BaseModel):
     """
-    Abbildung eines Bündelvertrags.
-    Es handelt sich hierbei um eine Liste von Einzelverträgen, die in einem Vertragsobjekt gebündelt sind.
+    Abbildung eines BÃ¼ndelvertrags.
+    Es handelt sich hierbei um eine Liste von EinzelvertrÃ¤gen, die in einem Vertragsobjekt gebÃ¼ndelt sind.
 
     .. raw:: html
 
@@ -35,11 +35,11 @@ class Buendelvertrag(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.BUENDELVERTRAG, alias="_typ")
     """
-    Der Typ des Geschäftsobjektes
+    Der Typ des GeschÃ¤ftsobjektes
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -51,11 +51,11 @@ class Buendelvertrag(BaseModel):
     """
     einzelvertraege: Optional[list["Vertrag"]] = Field(default=None, title="Einzelvertraege")
     """
-    Die Liste mit den Einzelverträgen zu den Abnahmestellen
+    Die Liste mit den EinzelvertrÃ¤gen zu den Abnahmestellen
     """
     sparte: Optional[Sparte] = None
     """
-    Unterscheidungsmöglichkeiten für die Sparte
+    UnterscheidungsmÃ¶glichkeiten fÃ¼r die Sparte
     """
     unterzeichnervp1: Optional[list["Unterschrift"]] = Field(default=None, title="Unterzeichnervp1")
     """
@@ -79,11 +79,11 @@ class Buendelvertrag(BaseModel):
     """
     vertragskonditionen: Optional[list["Vertragskonditionen"]] = Field(default=None, title="Vertragskonditionen")
     """
-    Festlegungen zu Laufzeiten und Kündigungsfristen
+    Festlegungen zu Laufzeiten und KÃ¼ndigungsfristen
     """
     vertragsnummer: Optional[str] = Field(default=None, title="Vertragsnummer")
     """
-    Eine im Verwendungskontext eindeutige Nummer für den Vertrag
+    Eine im Verwendungskontext eindeutige Nummer fÃ¼r den Vertrag
     """
     vertragspartner1: Optional["Geschaeftspartner"] = None
     """

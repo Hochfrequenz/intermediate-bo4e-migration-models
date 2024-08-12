@@ -3,7 +3,7 @@ from enum import Enum
 
 class Dienstleistungstyp(str, Enum):
     """
-    Auflistung möglicher abzurechnender Dienstleistungen.
+    Auflistung mÃ¶glicher abzurechnender Dienstleistungen.
     """
 
     DATENBEREITSTELLUNG_TAEGLICH = "DATENBEREITSTELLUNG_TAEGLICH"

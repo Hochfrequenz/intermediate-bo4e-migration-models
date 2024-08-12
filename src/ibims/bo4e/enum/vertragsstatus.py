@@ -3,7 +3,7 @@ from enum import Enum
 
 class Vertragsstatus(str, Enum):
     """
-    Abbildung einer Statusinformation für Verträge.
+    Abbildung einer Statusinformation fÃ¼r VertrÃ¤ge.
     """
 
     IN_ARBEIT = "IN_ARBEIT"

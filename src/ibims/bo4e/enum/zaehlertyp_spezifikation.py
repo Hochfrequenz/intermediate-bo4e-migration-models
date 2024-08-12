@@ -3,7 +3,7 @@ from enum import Enum
 
 class ZaehlertypSpezifikation(str, Enum):
     """
-    Bei diesem Enum handelt es sich um die Abbildung von besonderen Zählertyp-Spezifikationen der Sparten Strom und Gas.
+    Bei diesem Enum handelt es sich um die Abbildung von besonderen ZÃ¤hlertyp-Spezifikationen der Sparten Strom und Gas.
     """
 
     EDL40 = "EDL40"

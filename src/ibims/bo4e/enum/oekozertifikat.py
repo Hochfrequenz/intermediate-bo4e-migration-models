@@ -3,7 +3,7 @@ from enum import Enum
 
 class Oekozertifikat(str, Enum):
     """
-    Zertifikate für Ökostrom von verschiedenen Herausgebern.
+    Zertifikate fÃ¼r Ã–kostrom von verschiedenen Herausgebern.
     """
 
     CMS_EE01 = "CMS_EE01"

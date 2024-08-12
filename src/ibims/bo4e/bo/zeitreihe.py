@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 class Zeitreihe(BaseModel):
     """
     Abbildung einer allgemeinen Zeitreihe mit einem Wertvektor.
-    Die Werte können mit wahlfreier zeitlicher Distanz im Vektor abgelegt sein.
+    Die Werte kÃ¶nnen mit wahlfreier zeitlicher Distanz im Vektor abgelegt sein.
 
     .. raw:: html
 
@@ -33,11 +33,11 @@ class Zeitreihe(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.ZEITREIHE, alias="_typ")
     """
-    Bezeichnung für die Zeitreihe
+    Bezeichnung fÃ¼r die Zeitreihe
     """
     beschreibung: Optional[str] = Field(default=None, title="Beschreibung")
     """
@@ -45,7 +45,7 @@ class Zeitreihe(BaseModel):
     """
     bezeichnung: Optional[str] = Field(default=None, title="Bezeichnung")
     """
-    Bezeichnung für die Zeitreihe
+    Bezeichnung fÃ¼r die Zeitreihe
     """
     einheit: Optional[Mengeneinheit] = None
     """

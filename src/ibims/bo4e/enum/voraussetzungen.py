@@ -3,7 +3,7 @@ from enum import Enum
 
 class Voraussetzungen(str, Enum):
     """
-    Voraussetzungen, die erfüllt sein müssen, damit dieser Tarif zur Anwendung kommen kann.
+    Voraussetzungen, die erfÃ¼llt sein mÃ¼ssen, damit dieser Tarif zur Anwendung kommen kann.
     """
 
     EINZUGSERMAECHTIGUNG = "EINZUGSERMAECHTIGUNG"

@@ -39,7 +39,7 @@ class Regionaltarif(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.REGIONALTARIF, alias="_typ")
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
@@ -66,11 +66,11 @@ class Regionaltarif(BaseModel):
     """
     energiemix: Optional["Energiemix"] = None
     """
-    Der Energiemix, der für diesen Tarif gilt
+    Der Energiemix, der fÃ¼r diesen Tarif gilt
     """
     kundentypen: Optional[list[Kundentyp]] = Field(default=None, title="Kundentypen")
     """
-    Kundentypen für den der Tarif gilt, z.B. Privatkunden
+    Kundentypen fÃ¼r den der Tarif gilt, z.B. Privatkunden
     """
     preisgarantien: Optional[list["RegionalePreisgarantie"]] = Field(default=None, title="Preisgarantien")
     preisstand: Optional[datetime] = Field(default=None, title="Preisstand")
@@ -97,7 +97,7 @@ class Regionaltarif(BaseModel):
     """
     vertragskonditionen: Optional["Vertragskonditionen"] = None
     """
-    Mindestlaufzeiten und Kündigungsfristen zusammengefasst
+    Mindestlaufzeiten und KÃ¼ndigungsfristen zusammengefasst
     """
     website: Optional[str] = Field(default=None, title="Website")
     """
@@ -105,7 +105,7 @@ class Regionaltarif(BaseModel):
     """
     zeitliche_gueltigkeit: Optional["Zeitraum"] = Field(default=None, alias="zeitlicheGueltigkeit")
     """
-    Angabe, in welchem Zeitraum der Tarif gültig ist
+    Angabe, in welchem Zeitraum der Tarif gÃ¼ltig ist
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

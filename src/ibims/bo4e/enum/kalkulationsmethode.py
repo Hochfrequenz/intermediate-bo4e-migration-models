@@ -3,7 +3,7 @@ from enum import Enum
 
 class Kalkulationsmethode(str, Enum):
     """
-    Auflistung der verschiedenen Berechnungsmethoden für ein Preisblatt.
+    Auflistung der verschiedenen Berechnungsmethoden fÃ¼r ein Preisblatt.
     """
 
     STUFEN = "STUFEN"

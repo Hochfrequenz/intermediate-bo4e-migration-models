@@ -4,7 +4,15 @@
     "fieldName": "vorkommastellen",
     "fieldDef": {
       "title": "Vorkommastellen",
-      "type": "integer"
+            "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     }
   },
   {
@@ -12,7 +20,15 @@
     "fieldName": "nachkommastellen",
     "fieldDef": {
       "title": "Nachkommastellen",
-      "type": "integer"
+            "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     }
   },
   {
@@ -20,7 +36,15 @@
     "fieldName": "schwachlastfaehig",
     "fieldDef": {
       "title": "Schwachlastfaehig",
-      "type": "boolean"
+            "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     }
   },
   {
@@ -42,9 +66,17 @@
     "pattern": "com\\.Zaehlwerk",
     "fieldName": "activeFrom",
     "fieldDef": {
-      "format": "date-time",
       "title": "Activefrom",
-      "type": "string"
+            "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     }
   },
   {

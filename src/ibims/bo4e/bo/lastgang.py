@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 class Lastgang(BaseModel):
     """
     Modell zur Abbildung eines Lastganges;
-    In diesem Modell werden die Messwerte mit einem vollständigen Zeitintervall (zeit_intervall_laenge) angegeben und es bietet daher eine hohe Flexibilität in der Übertragung jeglicher zeitlich veränderlicher Messgrössen.
+    In diesem Modell werden die Messwerte mit einem vollstÃ¤ndigen Zeitintervall (zeit_intervall_laenge) angegeben und es bietet daher eine hohe FlexibilitÃ¤t in der Ãœbertragung jeglicher zeitlich verÃ¤nderlicher MessgrÃ¶ssen.
 
     .. raw:: html
 
@@ -33,7 +33,7 @@ class Lastgang(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.LASTGANG, alias="_typ")
     """
@@ -41,19 +41,19 @@ class Lastgang(BaseModel):
     """
     marktlokation: Optional["Marktlokation"] = None
     """
-    Marktlokation, zu der der Lastgang gehört
+    Marktlokation, zu der der Lastgang gehÃ¶rt
     """
     messgroesse: Optional[Mengeneinheit] = None
     """
-    Definition der gemessenen Größe anhand ihrer Einheit
+    Definition der gemessenen GrÃ¶ÃŸe anhand ihrer Einheit
     """
     messlokation: Optional["Messlokation"] = None
     """
-    Marktlokation, zu der der Lastgang gehört
+    Marktlokation, zu der der Lastgang gehÃ¶rt
     """
     obis_kennzahl: Optional[str] = Field(default=None, alias="obisKennzahl", title="Obiskennzahl")
     """
-    Die OBIS-Kennzahl für den Wert, die festlegt, welche Größe mit dem Stand gemeldet wird, z.B. '1-0:1.8.1'
+    Die OBIS-Kennzahl fÃ¼r den Wert, die festlegt, welche GrÃ¶ÃŸe mit dem Stand gemeldet wird, z.B. '1-0:1.8.1'
     """
     sparte: Optional[Sparte] = None
     """

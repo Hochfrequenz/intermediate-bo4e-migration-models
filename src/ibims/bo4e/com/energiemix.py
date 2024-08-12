@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 class Energiemix(BaseModel):
     """
-    Zusammensetzung der gelieferten Energie aus den verschiedenen Primärenergieformen.
+    Zusammensetzung der gelieferten Energie aus den verschiedenen PrimÃ¤renergieformen.
 
     .. raw:: html
 
@@ -30,8 +30,8 @@ class Energiemix(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -43,7 +43,7 @@ class Energiemix(BaseModel):
     """
     atommuell: Optional[Decimal] = Field(default=None, title="Atommuell")
     """
-    Höhe des erzeugten Atommülls in g/kWh
+    HÃ¶he des erzeugten AtommÃ¼lls in g/kWh
     """
     bemerkung: Optional[str] = Field(default=None, title="Bemerkung")
     """
@@ -55,7 +55,7 @@ class Energiemix(BaseModel):
     """
     co2_emission: Optional[Decimal] = Field(default=None, alias="co2Emission", title="Co2Emission")
     """
-    Höhe des erzeugten CO2-Ausstosses in g/kWh
+    HÃ¶he des erzeugten CO2-Ausstosses in g/kWh
     """
     energieart: Optional[Sparte] = None
     """
@@ -67,23 +67,23 @@ class Energiemix(BaseModel):
     """
     gueltigkeitsjahr: Optional[int] = Field(default=None, title="Gueltigkeitsjahr")
     """
-    Jahr, für das der Energiemix gilt
+    Jahr, fÃ¼r das der Energiemix gilt
     """
     ist_in_oeko_top_ten: Optional[bool] = Field(default=None, alias="istInOekoTopTen", title="Istinoekotopten")
     """
-    Kennzeichen, ob der Versorger zu den Öko Top Ten gehört
+    Kennzeichen, ob der Versorger zu den Ã–ko Top Ten gehÃ¶rt
     """
     oekolabel: Optional[list[Oekolabel]] = Field(default=None, title="Oekolabel")
     """
-    Ökolabel für den Energiemix
+    Ã–kolabel fÃ¼r den Energiemix
     """
     oekozertifikate: Optional[list[Oekozertifikat]] = Field(default=None, title="Oekozertifikate")
     """
-    Zertifikate für den Energiemix
+    Zertifikate fÃ¼r den Energiemix
     """
     website: Optional[str] = Field(default=None, title="Website")
     """
-    Internetseite, auf der die Strommixdaten veröffentlicht sind
+    Internetseite, auf der die Strommixdaten verÃ¶ffentlicht sind
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

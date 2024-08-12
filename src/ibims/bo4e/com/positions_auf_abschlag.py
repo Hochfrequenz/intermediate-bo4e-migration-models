@@ -12,10 +12,10 @@ if TYPE_CHECKING:
 
 class PositionsAufAbschlag(BaseModel):
     """
-    Differenzierung der zu betrachtenden Produkte anhand der preiserhöhenden (Aufschlag)
+    Differenzierung der zu betrachtenden Produkte anhand der preiserhÃ¶henden (Aufschlag)
     bzw. preisvermindernden (Abschlag) Zusatzvereinbarungen,
-    die individuell zu einem neuen oder bestehenden Liefervertrag abgeschlossen werden können.
-    Es können mehrere Auf-/Abschläge gleichzeitig ausgewählt werden.
+    die individuell zu einem neuen oder bestehenden Liefervertrag abgeschlossen werden kÃ¶nnen.
+    Es kÃ¶nnen mehrere Auf-/AbschlÃ¤ge gleichzeitig ausgewÃ¤hlt werden.
 
     .. raw:: html
 
@@ -31,8 +31,8 @@ class PositionsAufAbschlag(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -48,7 +48,7 @@ class PositionsAufAbschlag(BaseModel):
     """
     auf_abschlagswert: Optional[Decimal] = Field(default=None, alias="aufAbschlagswert", title="Aufabschlagswert")
     """
-    Höhe des Auf-/Abschlages
+    HÃ¶he des Auf-/Abschlages
     """
     beschreibung: Optional[str] = Field(default=None, title="Beschreibung")
     """

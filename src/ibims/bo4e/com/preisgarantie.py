@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class Preisgarantie(BaseModel):
     """
-    Definition für eine Preisgarantie mit der Möglichkeit verschiedener Ausprägungen.
+    Definition fÃ¼r eine Preisgarantie mit der MÃ¶glichkeit verschiedener AusprÃ¤gungen.
 
     .. raw:: html
 
@@ -28,8 +28,8 @@ class Preisgarantie(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -41,7 +41,7 @@ class Preisgarantie(BaseModel):
     """
     preisgarantietyp: Optional[Preisgarantietyp] = None
     """
-    Festlegung, auf welche Preisbestandteile die Garantie gewährt wird.
+    Festlegung, auf welche Preisbestandteile die Garantie gewÃ¤hrt wird.
     """
     zeitliche_gueltigkeit: "Zeitraum" = Field(..., alias="zeitlicheGueltigkeit")
     """

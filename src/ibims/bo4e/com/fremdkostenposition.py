@@ -28,8 +28,8 @@ class Fremdkostenposition(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -37,11 +37,11 @@ class Fremdkostenposition(BaseModel):
     """
     artikelbezeichnung: Optional[str] = Field(default=None, title="Artikelbezeichnung")
     """
-    Bezeichnung für den Artikel für den die Kosten ermittelt wurden. Beispiel: Arbeitspreis HT
+    Bezeichnung fÃ¼r den Artikel fÃ¼r den die Kosten ermittelt wurden. Beispiel: Arbeitspreis HT
     """
     artikeldetail: Optional[str] = Field(default=None, title="Artikeldetail")
     """
-    Detaillierung des Artikels (optional). Beispiel: 'Drehstromzähler'
+    Detaillierung des Artikels (optional). Beispiel: 'DrehstromzÃ¤hler'
     """
     betrag_kostenposition: Optional["Betrag"] = Field(default=None, alias="betragKostenposition")
     """
@@ -54,15 +54,15 @@ class Fremdkostenposition(BaseModel):
     """
     einzelpreis: Optional["Preis"] = None
     """
-    Der Preis für eine Einheit. Beispiele: 5,8200 ct/kWh oder 55 €/Jahr.
+    Der Preis fÃ¼r eine Einheit. Beispiele: 5,8200 ct/kWh oder 55 â‚¬/Jahr.
     """
     gebietcode_eic: Optional[str] = Field(default=None, alias="gebietcodeEic", title="Gebietcodeeic")
     """
-    EIC-Code des Regel- oder Marktgebietes eingetragen. Z.B. '10YDE-EON------1' für die Regelzone TenneT
+    EIC-Code des Regel- oder Marktgebietes eingetragen. Z.B. '10YDE-EON------1' fÃ¼r die Regelzone TenneT
     """
     link_preisblatt: Optional[str] = Field(default=None, alias="linkPreisblatt", title="Linkpreisblatt")
     """
-    Link zum veröffentlichten Preisblatt
+    Link zum verÃ¶ffentlichten Preisblatt
     """
     marktpartnercode: Optional[str] = Field(default=None, title="Marktpartnercode")
     """
@@ -78,7 +78,7 @@ class Fremdkostenposition(BaseModel):
     """
     positionstitel: Optional[str] = Field(default=None, title="Positionstitel")
     """
-    Ein Titel für die Zeile. Hier kann z.B. der Netzbetreiber eingetragen werden, wenn es sich um Netzkosten handelt.
+    Ein Titel fÃ¼r die Zeile. Hier kann z.B. der Netzbetreiber eingetragen werden, wenn es sich um Netzkosten handelt.
     """
     von: Optional[datetime] = Field(default=None, title="Von")
     """
@@ -86,7 +86,7 @@ class Fremdkostenposition(BaseModel):
     """
     zeitmenge: Optional["Menge"] = None
     """
-    Wenn es einen zeitbasierten Preis gibt (z.B. €/Jahr), dann ist hier die Menge angegeben mit der die Kosten berechnet
+    Wenn es einen zeitbasierten Preis gibt (z.B. â‚¬/Jahr), dann ist hier die Menge angegeben mit der die Kosten berechnet
     wurden. Z.B. 138 Tage.
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(

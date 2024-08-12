@@ -6,7 +6,6 @@
     "bo\\.Messlokation\\.messlokationsId",
     "bo\\.Marktlokation\\.marktlokationsId",
     "bo\\.Marktlokation\\.sparte",
-    "bo\\.Marktlokation\\.kundengruppen",
     "bo\\.Marktteilnehmer\\.name1",
     "bo\\.Preisblatt\\.bezeichnung",
     "bo\\.Preisblatt\\.gueltigkeit",
@@ -16,10 +15,7 @@
     "bo\\.Rechnung\\.rechnungstyp",
     "bo\\.Rechnung\\.istStorno",
     "bo\\.Rechnung\\.zuZahlen",
-    "bo\\.Vertrag\\.vertragsbeginn",
     "bo\\.Vertrag\\.vertragsnummer",
-    "bo\\.Vertrag\\.vertragspartner1",
-    "bo\\.Vertrag\\.vertragspartner2",
     "bo\\.Zaehler(Gas)?\\.zaehlernummer",
     "bo\\.Zaehler(Gas)?\\.zaehlwerke",
     "bo\\.Zaehler(Gas)?\\.sparte",
@@ -39,8 +35,7 @@
     "com\\.Steuerbetrag\\.basiswert",
     "com\\.Steuerbetrag\\.steuerwert",
     "com\\.Verbrauch\\.obisKennzahl",
-    "com\\.Verbrauch\\.wert",
-    "com\\.Zaehlwerk\\.obisKennzahl"
+    "com\\.Verbrauch\\.wert"
   ],
   "additionalFields": [
     {

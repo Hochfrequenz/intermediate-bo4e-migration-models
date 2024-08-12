@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 class PreisblattDienstleistung(BaseModel):
     """
-    Variante des Preisblattmodells zur Abbildung der Preise für wahlfreie Dienstleistungen
+    Variante des Preisblattmodells zur Abbildung der Preise fÃ¼r wahlfreie Dienstleistungen
 
     .. raw:: html
 
@@ -34,11 +34,11 @@ class PreisblattDienstleistung(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Hier können IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
+    Hier kÃ¶nnen IDs anderer Systeme hinterlegt werden (z.B. eine SAP-GP-Nummer oder eine GUID)
     """
     typ: Typ = Field(default=Typ.PREISBLATTDIENSTLEISTUNG, alias="_typ")
     """
-    Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode
+    Die Preise gelten fÃ¼r Marktlokationen der angebebenen Bilanzierungsmethode
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -46,27 +46,27 @@ class PreisblattDienstleistung(BaseModel):
     """
     basisdienstleistung: Optional[Dienstleistungstyp] = None
     """
-    Dienstleistung, für die der Preis abgebildet wird, z.B. Sperrung/Entsperrung
+    Dienstleistung, fÃ¼r die der Preis abgebildet wird, z.B. Sperrung/Entsperrung
     """
     bezeichnung: Optional[str] = Field(default=None, title="Bezeichnung")
     """
-    Eine Bezeichnung für das Preisblatt
+    Eine Bezeichnung fÃ¼r das Preisblatt
     """
     bilanzierungsmethode: Optional[Bilanzierungsmethode] = None
     """
-    Die Preise gelten für Marktlokationen der angebebenen Bilanzierungsmethode
+    Die Preise gelten fÃ¼r Marktlokationen der angebebenen Bilanzierungsmethode
     """
     geraetedetails: Optional["Geraet"] = None
     """
-    Hier kann der Preis auf bestimmte Geräte eingegrenzt werden. Z.B. auf die Zählergröße
+    Hier kann der Preis auf bestimmte GerÃ¤te eingegrenzt werden. Z.B. auf die ZÃ¤hlergrÃ¶ÃŸe
     """
     gueltigkeit: Optional["Zeitraum"] = None
     """
-    Der Zeitraum für den der Preis festgelegt ist
+    Der Zeitraum fÃ¼r den der Preis festgelegt ist
     """
     herausgeber: Optional["Marktteilnehmer"] = None
     """
-    Der Netzbetreiber, der die Preise veröffentlicht hat
+    Der Netzbetreiber, der die Preise verÃ¶ffentlicht hat
     """
     inklusive_dienstleistungen: Optional[list[Dienstleistungstyp]] = Field(
         default=None, alias="inklusiveDienstleistungen", title="Inklusivedienstleistungen"
@@ -76,15 +76,15 @@ class PreisblattDienstleistung(BaseModel):
     """
     preispositionen: Optional[list["Preisposition"]] = Field(default=None, title="Preispositionen")
     """
-    Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden können. Z.B. Arbeitspreis, Grundpreis etc
+    Die einzelnen Positionen, die mit dem Preisblatt abgerechnet werden kÃ¶nnen. Z.B. Arbeitspreis, Grundpreis etc
     """
     preisstatus: Optional[Preisstatus] = None
     """
-    Merkmal, das anzeigt, ob es sich um vorläufige oder endgültige Preise handelt
+    Merkmal, das anzeigt, ob es sich um vorlÃ¤ufige oder endgÃ¼ltige Preise handelt
     """
     sparte: Optional[Sparte] = None
     """
-    Preisblatt gilt für angegebene Sparte
+    Preisblatt gilt fÃ¼r angegebene Sparte
     """
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"

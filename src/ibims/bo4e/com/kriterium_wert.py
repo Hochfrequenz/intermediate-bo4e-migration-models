@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class KriteriumWert(BaseModel):
     """
-    Mit dieser Komponente können Kriterien und deren Werte definiert werden
+    Mit dieser Komponente kÃ¶nnen Kriterien und deren Werte definiert werden
 
     .. raw:: html
 
@@ -26,8 +26,8 @@ class KriteriumWert(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     """
-    Eine generische ID, die für eigene Zwecke genutzt werden kann.
-    Z.B. könnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
+    Eine generische ID, die fÃ¼r eigene Zwecke genutzt werden kann.
+    Z.B. kÃ¶nnten hier UUIDs aus einer Datenbank stehen oder URLs zu einem Backend-System.
     """
     version: str = Field(default="v202401.4.0", alias="_version", title=" Version")
     """
@@ -35,7 +35,7 @@ class KriteriumWert(BaseModel):
     """
     kriterium: Optional[Tarifregionskriterium] = None
     """
-    Hier steht, für welches Kriterium der Wert gilt. Z.B. Postleitzahlen
+    Hier steht, fÃ¼r welches Kriterium der Wert gilt. Z.B. Postleitzahlen
     """
     wert: Optional[str] = Field(default=None, title="Wert")
     """
