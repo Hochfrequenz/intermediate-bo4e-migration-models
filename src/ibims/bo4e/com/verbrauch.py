@@ -48,7 +48,7 @@ class Verbrauch(BaseModel):
     Exklusives Ende des Zeitraumes, für den der Verbrauch angegeben wird
     """
     messwertstatus: Optional[Messwertstatus] = None
-    obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
+    obis_kennzahl: Optional[str] = Field(default=None, alias="obisKennzahl", title="Obiskennzahl")
     """
     Die OBIS-Kennzahl für den Wert, die festlegt, welche Größe mit dem Stand gemeldet wird, z.B. '1-0:
     """

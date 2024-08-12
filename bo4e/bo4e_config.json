@@ -12,8 +12,6 @@
     "bo\\.Preisblatt\\.preispositionen",
     "bo\\.Vertrag\\.vertragsnummer",
     "bo\\.Zaehler(Gas)?\\.zaehlernummer",
-    "bo\\.Zaehler(Gas)?\\.zaehlwerke",
-    "bo\\.Zaehler(Gas)?\\.sparte",
     "com\\.Adresse\\.ort",
     "com\\.Adresse\\.postleitzahl",
     "com\\.Betrag\\.wert",
