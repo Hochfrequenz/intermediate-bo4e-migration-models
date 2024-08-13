@@ -9,7 +9,6 @@
     "bo\\.Preisblatt\\.bezeichnung",
     "bo\\.Preisblatt\\.gueltigkeit",
     "bo\\.Preisblatt\\.preispositionen",
-    "bo\\.Vertrag\\.vertragsnummer",
     "bo\\.Zaehler(Gas)?\\.zaehlernummer",
     "com\\.Adresse\\.ort",
     "com\\.Adresse\\.postleitzahl",
