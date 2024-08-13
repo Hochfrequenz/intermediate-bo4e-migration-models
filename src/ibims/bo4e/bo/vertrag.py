@@ -77,7 +77,7 @@ class Vertrag(BaseModel):
     """
     Festlegungen zu Laufzeiten und Kündigungsfristen
     """
-    vertragsnummer: str = Field(..., title="Vertragsnummer")
+    vertragsnummer: Optional[str] = Field(default=None, title="Vertragsnummer")
     """
     Eine im Verwendungskontext eindeutige Nummer für den Vertrag
     """
