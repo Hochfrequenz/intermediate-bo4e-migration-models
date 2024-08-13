@@ -75,7 +75,7 @@ class Zaehlwerk(BaseModel):
     """
     Anzahl der Vorkommastellen
     """
-    obis_kennzahl: str = Field(..., alias="obisKennzahl", title="Obiskennzahl")
+    obis_kennzahl: Optional[str] = Field(default=None, alias="obisKennzahl", title="Obiskennzahl")
     richtung: Optional[Energierichtung] = None
     verbrauchsart: Optional[str] = Field(default=None, title="Verbrauchsart")
     verwendungszwecke: Optional[list["VerwendungszweckProMarktrolle"]] = Field(default=None, title="Verwendungszwecke")
@@ -99,10 +99,10 @@ class Zaehlwerk(BaseModel):
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
-    vorkommastellen: int = Field(..., title="Vorkommastellen")
-    nachkommastellen: int = Field(..., title="Nachkommastellen")
-    schwachlastfaehig: bool = Field(..., title="Schwachlastfaehig")
+    vorkommastellen: Optional[int] = Field(default=None, title="Vorkommastellen")
+    nachkommastellen: Optional[int] = Field(default=None, title="Nachkommastellen")
+    schwachlastfaehig: Optional[bool] = Field(default=None, title="Schwachlastfaehig")
     konzessionsabgaben_typ: Optional[AbgabeArt] = Field(default=None, alias="konzessionsabgabenTyp")
-    active_from: datetime = Field(..., alias="activeFrom", title="Activefrom")
+    active_from: Optional[datetime] = Field(default=None, alias="activeFrom", title="Activefrom")
     active_until: Optional[datetime] = Field(default=None, alias="activeUntil", title="Activeuntil")
     description: Optional[str] = Field(default=None, title="Description")

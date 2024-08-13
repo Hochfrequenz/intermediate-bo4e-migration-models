@@ -49,10 +49,18 @@
       "type": "string"
     },
     "bilanzierungsende": {
-      "format": "date-time",
-      "title": "Bilanzierungsende",
-      "type": "string"
-    },
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Bilanzierungsende"
+      },
     "bilanzkreis": {
       "anyOf": [
         {
@@ -129,8 +137,7 @@
     }
   },
   "required": [
-    "bilanzierungsbeginn",
-    "bilanzierungsende"
+    "bilanzierungsbeginn"
   ],
   "title": "Bilanzierung",
   "type": "object"

@@ -75,7 +75,7 @@ class Zaehler(BaseModel):
     """
     Spezifikation bezüglich unterstützter Tarif
     """
-    sparte: Sparte
+    sparte: Optional[Sparte] = None
     """
     Nummerierung des Zählers,vergeben durch den Messstellenbetreiber
     """
@@ -107,7 +107,7 @@ class Zaehler(BaseModel):
     """
     Messwerterfassung des Zählers
     """
-    zaehlwerke: list["Zaehlwerk"] = Field(..., title="Zaehlwerke")
+    zaehlwerke: Optional[list["Zaehlwerk"]] = Field(default=None, title="Zaehlwerke")
     """
     Typisierung des Zählers
     """

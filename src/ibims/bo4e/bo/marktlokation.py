@@ -91,7 +91,7 @@ class Marktlokation(BaseModel):
     Gibt an, ob es sich um eine unterbrechbare Belieferung handelt
     """
     katasterinformation: Optional["Katasteradresse"] = None
-    kundengruppen: list[Kundentyp] = Field(..., title="Kundengruppen")
+    kundengruppen: Optional[list[Kundentyp]] = Field(default=None, title="Kundengruppen")
     """
     Kundengruppen der Marktlokation
     """
@@ -149,9 +149,11 @@ class Marktlokation(BaseModel):
     zusatz_attribute: Optional[list["ZusatzAttribut"]] = Field(
         default=None, alias="zusatzAttribute", title="Zusatzattribute"
     )
-    messtechnische_einordnung: MesstechnischeEinordnung = Field(..., alias="messtechnischeEinordnung")
+    messtechnische_einordnung: Optional[MesstechnischeEinordnung] = Field(
+        default=None, alias="messtechnischeEinordnung"
+    )
     uebertragungsnetzgebiet: Optional[Regelzone] = None
-    variant: Variant
-    community_id: str = Field(..., alias="communityId", title="Communityid")
+    variant: Optional[Variant] = None
+    community_id: Optional[str] = Field(default=None, alias="communityId", title="Communityid")
     prognose_grundlage: Optional[Prognosegrundlage] = Field(default=None, alias="prognoseGrundlage")
     prognose_grundlage_detail: Optional[Profiltyp] = Field(default=None, alias="prognoseGrundlageDetail")

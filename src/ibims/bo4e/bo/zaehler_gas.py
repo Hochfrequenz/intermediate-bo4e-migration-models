@@ -36,10 +36,10 @@ class ZaehlerGas(BaseModel):
     )
     id: Optional[str] = Field(default=None, alias="_id", title=" Id")
     zaehlernummer: str = Field(..., title="Zaehlernummer")
-    sparte: Sparte
+    sparte: Optional[Sparte] = None
     zaehlerauspraegung: Optional[Zaehlerauspraegung] = None
     zaehlertyp: Zaehlertyp
-    zaehlwerke: list["Zaehlwerk"] = Field(..., title="Zaehlwerke")
+    zaehlwerke: Optional[list["Zaehlwerk"]] = Field(default=None, title="Zaehlwerke")
     registeranzahl: Optional[Registeranzahl] = None
     zaehlerkonstante: Optional[Decimal] = Field(default=None, title="Zaehlerkonstante")
     eichung_bis: Optional[datetime] = Field(default=None, alias="eichungBis", title="Eichungbis")

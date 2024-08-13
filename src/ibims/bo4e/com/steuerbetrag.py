@@ -43,7 +43,7 @@ class Steuerbetrag(BaseModel):
     """
     Kennzeichnung des Steuersatzes, bzw. Verfahrens.
     """
-    steuerwert: Decimal = Field(..., title="Steuerwert")
+    steuerwert: Optional[Decimal] = Field(default=None, title="Steuerwert")
     """
     Aus dem Basiswert berechnete Steuer. Z.B. 19 (bei UST_19)
     """

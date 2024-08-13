@@ -53,7 +53,7 @@ class Rechnung(BaseModel):
     """
     Zu diesem Datum ist die Zahlung fällig
     """
-    gesamtbrutto: "Betrag"
+    gesamtbrutto: Optional["Betrag"] = None
     """
     Die Summe aus Netto- und Steuerbetrag
     """
@@ -61,7 +61,7 @@ class Rechnung(BaseModel):
     """
     Die Summe der Nettobeträge der Rechnungsteile
     """
-    gesamtsteuer: "Betrag"
+    gesamtsteuer: Optional["Betrag"] = None
     """
     Die Summe der Steuerbeträge der Rechnungsteile
     """
@@ -73,7 +73,7 @@ class Rechnung(BaseModel):
     """
     Kennzeichen, ob es sich um eine simulierte Rechnung, z.B. zur Rechnungsprüfung handelt
     """
-    ist_storno: bool = Field(..., alias="istStorno", title="Iststorno")
+    ist_storno: Optional[bool] = Field(default=None, alias="istStorno", title="Iststorno")
     """
     Eine im Verwendungskontext eindeutige Nummer für die Rechnung
     """
@@ -135,7 +135,7 @@ class Rechnung(BaseModel):
     """
     Bezeichnung für die vorliegende Rechnung
     """
-    rechnungstyp: Rechnungstyp
+    rechnungstyp: Optional[Rechnungstyp] = None
     """
     Ein kontextbezogender Rechnungstyp, z.B. Netznutzungsrechnung
     """
@@ -151,7 +151,7 @@ class Rechnung(BaseModel):
     """
     Die Summe evtl. vorausgezahlter Beträge, z.B. Abschläge. Angabe als Bruttowert
     """
-    zu_zahlen: "Betrag" = Field(..., alias="zuZahlen")
+    zu_zahlen: Optional["Betrag"] = Field(default=None, alias="zuZahlen")
     """
     Der zu zahlende Betrag, der sich aus (gesamtbrutto - vorausbezahlt - rabattBrutto) ergibt
     """

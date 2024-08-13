@@ -79,7 +79,7 @@ class Geschaeftspartner(BaseModel):
     """
     Kontaktwege des Geschäftspartners
     """
-    nachname: str = Field(..., title="Nachname")
+    nachname: Optional[str] = Field(default=None, title="Nachname")
     """
     Nachname (Familienname) der Person
     """

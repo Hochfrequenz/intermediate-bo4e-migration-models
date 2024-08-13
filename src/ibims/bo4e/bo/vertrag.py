@@ -65,7 +65,7 @@ class Vertrag(BaseModel):
     """
     Hier ist festgelegt, um welche Art von Vertrag es sich handelt.
     """
-    vertragsbeginn: datetime = Field(..., title="Vertragsbeginn")
+    vertragsbeginn: Optional[datetime] = Field(default=None, title="Vertragsbeginn")
     """
     Gibt an, wann der Vertrag beginnt (inklusiv)
     """
@@ -81,8 +81,8 @@ class Vertrag(BaseModel):
     """
     Eine im Verwendungskontext eindeutige Nummer für den Vertrag
     """
-    vertragspartner1: "Geschaeftspartner"
-    vertragspartner2: "Geschaeftspartner"
+    vertragspartner1: Optional["Geschaeftspartner"] = None
+    vertragspartner2: Optional["Geschaeftspartner"] = None
     vertragsstatus: Optional[Vertragsstatus] = None
     """
     Gibt den Status des Vertrags an
