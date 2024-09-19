@@ -21,35 +21,6 @@ dependencies = [ # add all the dependencies from requirements.in here, too
 ]
 dynamic = ["readme", "version"]
 
-[project.optional-dependencies]
-tests = [
-    "pytest==8.3.3"
-]
-linting = [
-    "pylint==3.2.7",
-]
-type_check = [
-    "mypy==1.11.2"
-]
-spell_check = [
-    "codespell==2.3.0"
-]
-coverage = [
-    "coverage==7.6.1"
-]
-formatting = [
-    "black==24.8.0",
-    "isort==5.13.2"
-]
-test_packaging = [
-    "build==1.2.2",
-    "twine==5.1.1"
-]
-docs = [
-    "sphinx==8.0.2",
-    "sphinx_rtd_theme==2.0.0",
-]
-
 [project.urls]
 Changelog = "https://github.com/Hochfrequenz/intermediate-bo4e-migration-models/releases"
 Homepage = "https://github.com/Hochfrequenz/intermediate-bo4e-migration-models"
