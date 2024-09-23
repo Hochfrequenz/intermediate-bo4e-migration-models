@@ -1,0 +1,5 @@
+BO4E-Schema-Tool
+BO4E-Python-Generator>=0.0.9
+requests
+python-dotenv
+GitPython
