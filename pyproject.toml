@@ -30,7 +30,7 @@ linting = [
 ]
 type_check = [
     "mypy==1.11.2",
-    "typing-extensions==4.7.1"
+    "typing-extensions==4.12.2"
 ]
 spellcheck = [
     "codespell==2.3.0"
