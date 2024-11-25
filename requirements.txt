@@ -24,9 +24,9 @@ networkx==3.1
     #   pvframework
 pvframework==0.0.2
     # via bomf
-pydantic==2.3.0
+pydantic==2.4.0
     # via bomf
-pydantic-core==2.6.3
+pydantic-core==2.10.0
     # via pydantic
 python-generics==0.0.2
     # via bomf
