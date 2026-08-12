@@ -3,7 +3,7 @@
 ![Unittests status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Unittests/badge.svg)
 ![Coverage status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Coverage/badge.svg)
 ![Linting status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Linting/badge.svg)
-![Black status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Formatting/badge.svg)
+![Formatting status badge](https://github.com/Hochfrequenz/bo4e-migration-model/workflows/Formatting/badge.svg)
 
 A data model for migrating data from one system to another.
 The package name is "ibims".
@@ -29,7 +29,8 @@ uv run pre-commit install
 Run the tooling via the corresponding dependency groups, e.g.:
 ```bash
 uv run --group tests python -m pytest
-uv run --group linting pylint ibims
+uv run --group linting ruff check .
+uv run --group linting ruff format --check .
 uv run --group type_check mypy --show-error-codes src/ibims
 ```
 The BO4E models in `src/ibims/bo4e` are generated from the configuration in `bo4e/`. Regenerate them with:

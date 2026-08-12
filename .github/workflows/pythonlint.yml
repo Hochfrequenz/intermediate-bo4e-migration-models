@@ -27,12 +27,10 @@ jobs:
       - name: Install Dependencies (spellcheck)
         if: matrix.linter-env == 'spellcheck'
         run: uv sync --group spellcheck
-      - name: Run pylint
+      - name: Run ruff check
         if: matrix.linter-env == 'linting'
         run: |
-          uv run --group linting pylint ibims
-          uv run --group linting pylint unittests --rcfile=unittests/.pylintrc
-          uv run --group linting pylint bo4e/bo4e_updater.py
+          uv run --locked --group linting ruff check .
       - name: Run mypy
         if: matrix.linter-env == 'type_check'
         run: |

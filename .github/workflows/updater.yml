@@ -19,9 +19,9 @@ jobs:
         with:
           python-version: 3.12
       - name: Install Dependencies
-        run: uv sync --group generate_bo4e --group formatting
+        run: uv sync --group generate_bo4e --group linting
       - name: Run updater
         run: |
-          uv run --group generate_bo4e --group formatting python bo4e/bo4e_updater.py
+          uv run --group generate_bo4e --group linting python bo4e/bo4e_updater.py
         env:
           GITHUB_ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
