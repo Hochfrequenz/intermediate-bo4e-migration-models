@@ -59,7 +59,7 @@ coverage = [
     {include-group = "tests"}
 ]
 formatting = [
-    "black==24.10.0",
+    "black==26.5.1",
     "isort==5.13.2"
 ]
 docs = [
