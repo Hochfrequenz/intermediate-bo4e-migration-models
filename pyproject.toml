@@ -16,47 +16,70 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
-dependencies = [ # add all the dependencies from requirements.in here, too
+dependencies = [
     "bomf>=0.6.8"
 ]
 dynamic = ["readme", "version"]
 
-[project.optional-dependencies]
+[dependency-groups]
 tests = [
     "pytest==8.3.3"
 ]
+generate_bo4e = [
+    "bo4e-schema-tool==0.0.9",
+    "bo4e-python-generator==0.0.13",
+    # datamodel-code-generator is an (unpinned) transitive dependency of
+    # bo4e-python-generator==0.0.13. A fresh universal resolution pulls a version
+    # that is API-incompatible with the generator (DataModelSet signature change)
+    # and whose runtime needs a newer typing_extensions. Pin it to the version the
+    # committed src/ibims/bo4e output was generated with so regeneration stays
+    # byte-identical (see .github/workflows/bo4e_consistency.yml).
+    "datamodel-code-generator==0.25.9",
+    "requests==2.32.3",
+    "python-dotenv==1.0.1",
+    "gitpython==3.1.43",
+]
 linting = [
     "pylint==3.3.1",
+    {include-group = "tests"},
+    {include-group = "generate_bo4e"}
 ]
 type_check = [
     "mypy==1.11.2",
-    "typing-extensions==4.7.1"
+    "typing-extensions>=4.7.1",
+    {include-group = "tests"},
+    {include-group = "generate_bo4e"}
 ]
 spellcheck = [
-    "codespell==2.3.0"
+    "codespell==2.3.0",
+    {include-group = "tests"}
 ]
 coverage = [
-    "coverage==7.6.3"
+    "coverage==7.6.3",
+    {include-group = "tests"}
 ]
 formatting = [
     "black==24.10.0",
     "isort==5.13.2"
 ]
-generate_bo4e = [
-    "bo4e-schema-tool==0.0.9",
-    "bo4e-python-generator==0.0.13",
-    "requests==2.32.3",
-    "python-dotenv==1.0.1",
-    "gitpython==3.1.43",
-]
-test_packaging = [
-    "build==1.2.2.post1",
-    "twine==5.1.1"
-]
 docs = [
     "sphinx==8.0.2",
-    "sphinx_rtd_theme==3.0.1",
+    "sphinx_rtd_theme==3.0.1"
 ]
+dev = [
+    "pre-commit",
+    {include-group = "tests"},
+    {include-group = "linting"},
+    {include-group = "type_check"},
+    {include-group = "spellcheck"},
+    {include-group = "coverage"},
+    {include-group = "formatting"},
+    {include-group = "generate_bo4e"},
+    {include-group = "docs"}
+]
+
+[tool.uv]
+default-groups = []
 
 [project.urls]
 Changelog = "https://github.com/Hochfrequenz/intermediate-bo4e-migration-models/releases"
