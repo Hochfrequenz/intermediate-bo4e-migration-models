@@ -55,7 +55,7 @@ spellcheck = [
     {include-group = "tests"}
 ]
 coverage = [
-    "coverage==7.6.3",
+    "coverage==7.15.4",
     {include-group = "tests"}
 ]
 formatting = [
