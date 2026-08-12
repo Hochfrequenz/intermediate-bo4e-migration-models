@@ -34,8 +34,9 @@ uv run --group type_check mypy --show-error-codes src/ibims
 ```
 The BO4E models in `src/ibims/bo4e` are generated from the configuration in `bo4e/`. Regenerate them with:
 ```bash
-uv run --group generate_bo4e bost -o "tmp/bo4e_schemas" -t "$(grep -oP '(?<=BO4E_VERSION=).*' bo4e/tox.env)" -c "bo4e/bo4e_config.json" --clear-output --cache-dir "tmp/bo4e_cache"
-uv run --group generate_bo4e bo4e-generator -i "tmp/bo4e_schemas" -o "src/ibims/bo4e" --clear-output -t "$(grep -oP '(?<=BO4E_VERSION=).*' bo4e/tox.env)"
+source bo4e/tox.env  # sets BO4E_VERSION
+uv run --group generate_bo4e bost -o "tmp/bo4e_schemas" -t "$BO4E_VERSION" -c "bo4e/bo4e_config.json" --clear-output --cache-dir "tmp/bo4e_cache"
+uv run --group generate_bo4e bo4e-generator -i "tmp/bo4e_schemas" -o "src/ibims/bo4e" --clear-output -t "$BO4E_VERSION"
 ```
 
 For general guidance, see our [Python template repository](https://github.com/Hochfrequenz/python_template_repository#how-to-use-this-repository-on-your-machine).

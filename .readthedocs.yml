@@ -16,7 +16,7 @@ build:
     # golang: "1.17"
   jobs:
     post_create_environment:
-      - pip install uv
+      - python -m pip install uv
     post_install:
       - UV_PROJECT_ENVIRONMENT=$READTHEDOCS_VIRTUALENV_PATH uv sync --group docs
 
