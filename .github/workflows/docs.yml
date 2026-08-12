@@ -8,16 +8,18 @@ jobs:
       matrix:
         python-version: ["3.11"] # todo: bump to 3.12 when possible; https://github.com/Hochfrequenz/intermediate-bo4e-migration-models/issues/48
         os: [ubuntu-latest]
+    env:
+      PYTHONPATH: src
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9.0.0
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install tox
+        run: uv sync --group docs
       - name: Check Docs
         run: |
-          tox -e docs
+          uv run --group docs sphinx-build -b html -d ${{ runner.temp }}/doctrees docs ${{ runner.temp }}/html
+          uv run --group docs sphinx-build -n -T -b doctest -d ${{ runner.temp }}/doctrees docs docs/_build/html
+          uv run --group docs python -m doctest README.md

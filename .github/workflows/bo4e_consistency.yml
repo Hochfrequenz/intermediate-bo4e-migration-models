@@ -6,23 +6,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9.0.0
         with:
           python-version: 3.12
       - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install .[formatting]
-      - name: Install tox
-        run: pip install tox
+        run: uv sync --group generate_bo4e --group formatting
+      - name: Load BO4E version
+        run: cat bo4e/tox.env >> "$GITHUB_ENV"
       - name: Build BO4E
         run: |
-          tox -e generate_bo4e
+          uv run --group generate_bo4e bost -o "tmp/bo4e_schemas" -t "$BO4E_VERSION" -c "bo4e/bo4e_config.json" --clear-output --cache-dir "tmp/bo4e_cache"
+          uv run --group generate_bo4e bo4e-generator -i "tmp/bo4e_schemas" -o "src/ibims/bo4e" --clear-output -t "$BO4E_VERSION"
       - name: Run formatters
         run: |
-          isort src/ibims/bo4e
-          black src/ibims/bo4e
+          uv run --group formatting isort src/ibims/bo4e
+          uv run --group formatting black src/ibims/bo4e
       - name: Detect changed files
         uses: tj-actions/verify-changed-files@v20
         id: verify-changed-files
@@ -32,7 +31,7 @@ jobs:
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: |
           echo "src/ibims/bo4e is inconsistent with the configuration in bo4e/. \
-          Please run 'tox -e generate_bo4e' and commit the changes or try editing the configuration files \
+          Please regenerate the models (see README / bo4e_consistency.yml) and commit the changes or try editing the configuration files \
           if you want to change files in src/ibims/bo4e/."
 
           echo "The following files have been changed:"
