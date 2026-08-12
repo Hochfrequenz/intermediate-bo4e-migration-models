@@ -35,7 +35,7 @@ generate_bo4e = [
     # committed src/ibims/bo4e output was generated with so regeneration stays
     # byte-identical (see .github/workflows/bo4e_consistency.yml).
     "datamodel-code-generator==0.25.9",
-    "requests==2.32.3",
+    "requests==2.34.2",
     "python-dotenv==1.0.1",
     "gitpython==3.1.43",
 ]
