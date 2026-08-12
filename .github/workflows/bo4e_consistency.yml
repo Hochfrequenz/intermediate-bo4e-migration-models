@@ -11,7 +11,7 @@ jobs:
         with:
           python-version: 3.12
       - name: Install Dependencies
-        run: uv sync --group generate_bo4e --group formatting
+        run: uv sync --group generate_bo4e --group linting
       - name: Load BO4E version
         run: cat bo4e/tox.env >> "$GITHUB_ENV"
       - name: Build BO4E
@@ -20,8 +20,8 @@ jobs:
           uv run --group generate_bo4e bo4e-generator -i "tmp/bo4e_schemas" -o "src/ibims/bo4e" --clear-output -t "$BO4E_VERSION"
       - name: Run formatters
         run: |
-          uv run --group formatting isort src/ibims/bo4e
-          uv run --group formatting black src/ibims/bo4e
+          uv run --group linting ruff check --select I --fix src/ibims/bo4e
+          uv run --group linting ruff format src/ibims/bo4e
       - name: Detect changed files
         uses: tj-actions/verify-changed-files@v20
         id: verify-changed-files

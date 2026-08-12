@@ -69,7 +69,9 @@ class PreisblattDienstleistung(BaseModel):
     Der Netzbetreiber, der die Preise veröffentlicht hat
     """
     inklusive_dienstleistungen: Optional[list[Dienstleistungstyp]] = Field(
-        default=None, alias="inklusiveDienstleistungen", title="Inklusivedienstleistungen"
+        default=None,
+        alias="inklusiveDienstleistungen",
+        title="Inklusivedienstleistungen",
     )
     """
     Weitere Dienstleistungen, die im Preis enthalten sind

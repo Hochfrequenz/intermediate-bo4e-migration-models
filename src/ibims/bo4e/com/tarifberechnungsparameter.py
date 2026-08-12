@@ -49,13 +49,17 @@ class Tarifberechnungsparameter(BaseModel):
     Höchstpreis für den Durchschnitts-Arbeitspreis NT
     """
     ist_messpreis_in_grundpreis_enthalten: Optional[bool] = Field(
-        default=None, alias="istMesspreisInGrundpreisEnthalten", title="Istmesspreisingrundpreisenthalten"
+        default=None,
+        alias="istMesspreisInGrundpreisEnthalten",
+        title="Istmesspreisingrundpreisenthalten",
     )
     """
     True, falls der Messpreis im Grundpreis (GP) enthalten ist
     """
     ist_messpreis_zu_beruecksichtigen: Optional[bool] = Field(
-        default=None, alias="istMesspreisZuBeruecksichtigen", title="Istmesspreiszuberuecksichtigen"
+        default=None,
+        alias="istMesspreisZuBeruecksichtigen",
+        title="Istmesspreiszuberuecksichtigen",
     )
     """
     True, falls bei der Bildung des Durchschnittspreises für die Höchst- und Mindestpreisbetrachtung der Messpreis mit

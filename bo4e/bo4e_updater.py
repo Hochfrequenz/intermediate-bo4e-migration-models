@@ -4,6 +4,7 @@ This script checks if the current BO4E version is up-to-date.
 
 import logging
 import os
+import subprocess
 from contextlib import contextmanager
 from pathlib import Path
 from traceback import format_exception
@@ -18,7 +19,6 @@ from dotenv import dotenv_values, set_key
 from git import Repo
 from github import Github
 from github.Auth import Token
-from isort.main import main as isort_main
 
 PR_TARGET_OWNER = "Hochfrequenz"
 PR_TARGET_REPO = "intermediate-bo4e-migration-models"
@@ -97,8 +97,10 @@ def rebuild_bo4e(version: str, gh_access_token: str) -> Optional[Exception]:
             clear_output=True,
             output_type=OutputType.PYDANTIC_V2,
         )
-        logger.info("Run isort on auto-generated code. Normally, this should not change anything.")
-        isort_main(str(REPO_ROOT / "src/ibims/bo4e"))
+        logger.info("Run ruff on auto-generated code. Normally, this should not change anything.")
+        bo4e_output_dir = str(REPO_ROOT / "src/ibims/bo4e")
+        subprocess.run(["ruff", "check", "--select", "I", "--fix", bo4e_output_dir], check=True)
+        subprocess.run(["ruff", "format", bo4e_output_dir], check=True)
     return error_during_rebuild
 
 

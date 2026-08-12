@@ -47,7 +47,9 @@ class Netzlokation(BaseModel):
     Eigenschaft des Messstellenbetreibers an der Lokation
     """
     grundzustaendiger_msb_codenr: Optional[str] = Field(
-        default=None, alias="grundzustaendigerMsbCodenr", title="Grundzustaendigermsbcodenr"
+        default=None,
+        alias="grundzustaendigerMsbCodenr",
+        title="Grundzustaendigermsbcodenr",
     )
     """
     Codenummer des grundzuständigen Messstellenbetreibers, der für diese Netzlokation zuständig ist.
@@ -59,7 +61,9 @@ class Netzlokation(BaseModel):
     Produkt-Daten der Netzlokation
     """
     lokationsbuendel_objektcode: Optional[str] = Field(
-        default=None, alias="lokationsbuendelObjektcode", title="Lokationsbuendelobjektcode"
+        default=None,
+        alias="lokationsbuendelObjektcode",
+        title="Lokationsbuendelobjektcode",
     )
     """
     Lokationsbuendel Code, der die Funktion dieses BOs an der Lokationsbuendelstruktur beschreibt.
