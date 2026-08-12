@@ -9,7 +9,7 @@ jobs:
         python-version: ["3.12"]
         os: [ubuntu-latest]
     env:
-      PYTHONPATH: src
+      PYTHONPATH: ${{ github.workspace }}/src
     steps:
       - uses: actions/checkout@v4
       - name: Install uv
@@ -22,5 +22,5 @@ jobs:
         run: |
           cd unittests
           uv run --group coverage coverage run -m pytest
-          uv run --group coverage coverage html --omit unittests/*
-          uv run --group coverage coverage report --fail-under 80 --omit unittests/*
+          uv run --group coverage coverage html --omit '*/.venv/*',unittests/*
+          uv run --group coverage coverage report --fail-under 80 --omit '*/.venv/*',unittests/*
