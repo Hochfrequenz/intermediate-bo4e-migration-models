@@ -53,7 +53,9 @@ class TechnischeRessource(BaseModel):
     Art der Erzeugung der Energie
     """
     lokationsbuendel_objektcode: Optional[str] = Field(
-        default=None, alias="lokationsbuendelObjektcode", title="Lokationsbuendelobjektcode"
+        default=None,
+        alias="lokationsbuendelObjektcode",
+        title="Lokationsbuendelobjektcode",
     )
     """
     Lokationsbuendel Code, der die Funktion dieses BOs an der Lokationsbuendelstruktur beschreibt.
@@ -97,7 +99,9 @@ class TechnischeRessource(BaseModel):
     Verbrauchsart der technischen Ressource
     """
     vorgelagerte_messlokation_id: Optional[str] = Field(
-        default=None, alias="vorgelagerteMesslokationId", title="Vorgelagertemesslokationid"
+        default=None,
+        alias="vorgelagerteMesslokationId",
+        title="Vorgelagertemesslokationid",
     )
     """
     Vorgelagerte Messlokation ID
@@ -107,13 +111,17 @@ class TechnischeRessource(BaseModel):
     Wärmenutzung
     """
     zugeordnete_marktlokation_id: Optional[str] = Field(
-        default=None, alias="zugeordneteMarktlokationId", title="Zugeordnetemarktlokationid"
+        default=None,
+        alias="zugeordneteMarktlokationId",
+        title="Zugeordnetemarktlokationid",
     )
     """
     Referenz auf die der technischen Ressource zugeordneten Marktlokation
     """
     zugeordnete_steuerbare_ressource_id: Optional[str] = Field(
-        default=None, alias="zugeordneteSteuerbareRessourceId", title="Zugeordnetesteuerbareressourceid"
+        default=None,
+        alias="zugeordneteSteuerbareRessourceId",
+        title="Zugeordnetesteuerbareressourceid",
     )
     """
     Referenz auf die der technischen Ressource zugeordneten Steuerbaren Ressource

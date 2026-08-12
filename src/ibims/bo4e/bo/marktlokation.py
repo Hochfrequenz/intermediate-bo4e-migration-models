@@ -100,7 +100,9 @@ class Marktlokation(BaseModel):
     Die Adresse, an der die Energie-Lieferung oder -Einspeisung erfolgt
     """
     lokationsbuendel_objektcode: Optional[str] = Field(
-        default=None, alias="lokationsbuendelObjektcode", title="Lokationsbuendelobjektcode"
+        default=None,
+        alias="lokationsbuendelObjektcode",
+        title="Lokationsbuendelobjektcode",
     )
     """
     Lokationsbuendel Code, der die Funktion dieses BOs an der Lokationsbuendelstruktur beschreibt.
@@ -141,7 +143,9 @@ class Marktlokation(BaseModel):
     für Gas. Code vom EIC, https://www.entsog.eu/data/data-portal/codes-list
     """
     zaehlwerke_der_beteiligten_marktrolle: Optional[list["Zaehlwerk"]] = Field(
-        default=None, alias="zaehlwerkeDerBeteiligtenMarktrolle", title="Zaehlwerkederbeteiligtenmarktrolle"
+        default=None,
+        alias="zaehlwerkeDerBeteiligtenMarktrolle",
+        title="Zaehlwerkederbeteiligtenmarktrolle",
     )
     """
     Lokationszuordnung, um bspw. die zugehörigen Messlokationen anzugeben

@@ -51,17 +51,23 @@ class Messlokation(BaseModel):
     Liste der Geräte, die zu dieser Messstelle gehört
     """
     grundzustaendiger_msb_codenr: Optional[str] = Field(
-        default=None, alias="grundzustaendigerMsbCodenr", title="Grundzustaendigermsbcodenr"
+        default=None,
+        alias="grundzustaendigerMsbCodenr",
+        title="Grundzustaendigermsbcodenr",
     )
     grundzustaendiger_msbim_codenr: Optional[str] = Field(
-        default=None, alias="grundzustaendigerMsbimCodenr", title="Grundzustaendigermsbimcodenr"
+        default=None,
+        alias="grundzustaendigerMsbimCodenr",
+        title="Grundzustaendigermsbimcodenr",
     )
     katasterinformation: Optional["Katasteradresse"] = None
     """
     Lokationszuordnung, um bspw. die zugehörigen Marktlokationen anzugeben
     """
     lokationsbuendel_objektcode: Optional[str] = Field(
-        default=None, alias="lokationsbuendelObjektcode", title="Lokationsbuendelobjektcode"
+        default=None,
+        alias="lokationsbuendelObjektcode",
+        title="Lokationsbuendelobjektcode",
     )
     """
     Lokationsbuendel Code, der die Funktion dieses BOs an der Lokationsbuendelstruktur beschreibt.

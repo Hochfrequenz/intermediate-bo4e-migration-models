@@ -51,7 +51,9 @@ class SteuerbareRessource(BaseModel):
     Produkt-Daten der Steuerbaren Ressource
     """
     lokationsbuendel_objektcode: Optional[str] = Field(
-        default=None, alias="lokationsbuendelObjektcode", title="Lokationsbuendelobjektcode"
+        default=None,
+        alias="lokationsbuendelObjektcode",
+        title="Lokationsbuendelobjektcode",
     )
     """
     Lokationsbuendel Code, der die Funktion dieses BOs an der Lokationsbuendelstruktur beschreibt.

@@ -71,23 +71,33 @@ class Verbrauch(BaseModel):
     ablesebeschreibung: Optional[str] = Field(default=None, title="Ablesebeschreibung")
     periodenverbrauch: Optional[Decimal] = Field(default=None, title="Periodenverbrauch")
     periodenverbrauch_ursprung: Optional[str] = Field(
-        default=None, alias="periodenverbrauchUrsprung", title="Periodenverbrauchursprung"
+        default=None,
+        alias="periodenverbrauchUrsprung",
+        title="Periodenverbrauchursprung",
     )
     ableser: Optional[AblesendeRolle] = None
     status: Optional[Ablesungsstatus] = None
     energiegehalt_gas: Optional[Decimal] = Field(default=None, alias="energiegehaltGas", title="Energiegehaltgas")
     energiegehalt_gas_gueltig_von: Optional[datetime] = Field(
-        default=None, alias="energiegehaltGasGueltigVon", title="Energiegehaltgasgueltigvon"
+        default=None,
+        alias="energiegehaltGasGueltigVon",
+        title="Energiegehaltgasgueltigvon",
     )
     energiegehalt_gas_gueltig_bis: Optional[datetime] = Field(
-        default=None, alias="energiegehaltGasGueltigBis", title="Energiegehaltgasgueltigbis"
+        default=None,
+        alias="energiegehaltGasGueltigBis",
+        title="Energiegehaltgasgueltigbis",
     )
     umwandlungsfaktor_gas: Optional[Decimal] = Field(
         default=None, alias="umwandlungsfaktorGas", title="Umwandlungsfaktorgas"
     )
     umwandlungsfaktor_gas_gueltig_von: Optional[datetime] = Field(
-        default=None, alias="umwandlungsfaktorGasGueltigVon", title="Umwandlungsfaktorgasgueltigvon"
+        default=None,
+        alias="umwandlungsfaktorGasGueltigVon",
+        title="Umwandlungsfaktorgasgueltigvon",
     )
     umwandlungsfaktor_gas_gueltig_bis: Optional[datetime] = Field(
-        default=None, alias="umwandlungsfaktorGasGueltigBis", title="Umwandlungsfaktorgasgueltigbis"
+        default=None,
+        alias="umwandlungsfaktorGasGueltigBis",
+        title="Umwandlungsfaktorgasgueltigbis",
     )
