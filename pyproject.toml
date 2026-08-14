@@ -23,7 +23,7 @@ dynamic = ["readme", "version"]
 
 [dependency-groups]
 tests = [
-    "pytest==8.3.3"
+    "pytest==9.1.1"
 ]
 generate_bo4e = [
     "bo4e-schema-tool==0.0.9",
