@@ -334,11 +334,11 @@ wheels = [
 
 [[package]]
 name = "codespell"
-version = "2.3.0"
+version = "2.4.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a0/a9/98353dfc7afcdf18cffd2dd3e959a25eaaf2728cf450caa59af89648a8e4/codespell-2.3.0.tar.gz", hash = "sha256:360c7d10f75e65f67bad720af7007e1060a5d395670ec11a7ed1fed9dd17471f", size = 329791, upload-time = "2024-05-23T19:16:25.909Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/80/19/45e941380f69c042b43423513d201e6592346f992394347f5e7174c31407/codespell-2.4.3.tar.gz", hash = "sha256:cbe085e331227b37bb86ef8bddd08dc768c704ee9a07ca869852c093fa2793e2", size = 352773, upload-time = "2026-07-15T11:51:54.159Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0e/20/b6019add11e84f821184234cea0ad91442373489ef7ccfa3d73a71b908fa/codespell-2.3.0-py3-none-any.whl", hash = "sha256:a9c7cef2501c9cfede2110fd6d4e5e62296920efe9abfb84648df866e47f58d1", size = 329167, upload-time = "2024-05-23T19:16:23.817Z" },
+    { url = "https://files.pythonhosted.org/packages/8b/bf/bdb951d34eb169140b546f44be9ec4525d1acefb9eb5572071f5492b19fc/codespell-2.4.3-py3-none-any.whl", hash = "sha256:af2505b335e8573dbd2d384d1c4ef498f4006f4ba2d6fceca01e55b91f52628a", size = 340736, upload-time = "2026-07-15T11:51:52.925Z" },
 ]
 
 [[package]]
@@ -705,7 +705,7 @@ coverage = [
 dev = [
     { name = "bo4e-python-generator", specifier = "==0.0.13" },
     { name = "bo4e-schema-tool", specifier = "==0.0.9" },
-    { name = "codespell", specifier = "==2.3.0" },
+    { name = "codespell", specifier = "==2.4.3" },
     { name = "coverage", specifier = "==7.15.4" },
     { name = "datamodel-code-generator", specifier = "==0.25.9" },
     { name = "gitpython", specifier = "==3.1.59" },
@@ -733,7 +733,7 @@ generate-bo4e = [
 ]
 linting = [{ name = "ruff", specifier = "==0.16.2" }]
 spellcheck = [
-    { name = "codespell", specifier = "==2.3.0" },
+    { name = "codespell", specifier = "==2.4.3" },
     { name = "pytest", specifier = "==9.1.1" },
 ]
 tests = [{ name = "pytest", specifier = "==9.1.1" }]
