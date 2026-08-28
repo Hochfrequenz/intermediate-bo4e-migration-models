@@ -40,7 +40,7 @@ generate_bo4e = [
     "gitpython==3.1.59",
 ]
 linting = [
-    "ruff==0.16.3",
+    "ruff==0.16.4",
 ]
 type_check = [
     "mypy==2.3.1",
