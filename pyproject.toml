@@ -34,7 +34,7 @@ generate_bo4e = [
     # and whose runtime needs a newer typing_extensions. Pin it to the version the
     # committed src/ibims/bo4e output was generated with so regeneration stays
     # byte-identical (see .github/workflows/bo4e_consistency.yml).
-    "datamodel-code-generator==0.25.9",
+    "datamodel-code-generator==0.64.0",
     "requests==2.34.2",
     "python-dotenv==1.2.3",
     "gitpython==3.1.61",
