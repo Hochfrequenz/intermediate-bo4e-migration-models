@@ -37,7 +37,7 @@ generate_bo4e = [
     "datamodel-code-generator==0.25.9",
     "requests==2.34.2",
     "python-dotenv==1.2.4",
-    "gitpython==3.2.0",
+    "gitpython==3.2.1",
 ]
 linting = [
     "ruff==0.17.0",
